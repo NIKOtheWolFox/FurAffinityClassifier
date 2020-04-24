@@ -44,6 +44,9 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                     IsFolderPicker = true,
                     InitialDirectory = Environment.CurrentDirectory,
                     DefaultDirectory = Environment.CurrentDirectory,
+                    EnsureFileExists = true,
+                    EnsurePathExists = true,
+                    EnsureValidNames = true,
                 })
             {
                 if (folderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
@@ -67,6 +70,9 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                     IsFolderPicker = true,
                     InitialDirectory = Environment.CurrentDirectory,
                     DefaultDirectory = Environment.CurrentDirectory,
+                    EnsureFileExists = true,
+                    EnsurePathExists = true,
+                    EnsureValidNames = true,
                 })
             {
                 if (folderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
