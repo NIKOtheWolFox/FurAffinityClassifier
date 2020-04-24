@@ -8,16 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AppWindowsForms
+namespace FurAffinityClassifier.AppWindowsForms.Views
 {
-    public partial class Form1 : Form
+    /// <summary>
+    /// メイン画面
+    /// </summary>
+    public partial class MainForm : Form
     {
+        #region Constructor
+
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
+
+        #endregion
     }
 }
