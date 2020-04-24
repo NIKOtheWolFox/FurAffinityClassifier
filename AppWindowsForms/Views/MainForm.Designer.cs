@@ -81,9 +81,9 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ToFolderLabel.AutoSize = true;
             this.ToFolderLabel.Location = new System.Drawing.Point(6, 63);
             this.ToFolderLabel.Name = "ToFolderLabel";
-            this.ToFolderLabel.Size = new System.Drawing.Size(47, 15);
+            this.ToFolderLabel.Size = new System.Drawing.Size(46, 15);
             this.ToFolderLabel.TabIndex = 3;
-            this.ToFolderLabel.Text = "コピー先:";
+            this.ToFolderLabel.Text = "移動先:";
             // 
             // FromFolderButton
             // 
@@ -109,9 +109,9 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.FromFolderLabel.AutoSize = true;
             this.FromFolderLabel.Location = new System.Drawing.Point(6, 19);
             this.FromFolderLabel.Name = "FromFolderLabel";
-            this.FromFolderLabel.Size = new System.Drawing.Size(47, 15);
+            this.FromFolderLabel.Size = new System.Drawing.Size(46, 15);
             this.FromFolderLabel.TabIndex = 0;
-            this.FromFolderLabel.Text = "コピー元:";
+            this.FromFolderLabel.Text = "移動元:";
             // 
             // ClassificationSettingGroupBox
             // 
