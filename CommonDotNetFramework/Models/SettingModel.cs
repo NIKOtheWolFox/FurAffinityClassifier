@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FurAffinityClassifier.CommonDotNetFramework.Datas;
+using Newtonsoft.Json;
 
 namespace FurAffinityClassifier.CommonDotNetFramework.Models
 {
@@ -22,6 +24,24 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
         #endregion
 
         #region Public Method
+
+        public bool Save(SettingData settingData)
+        {
+            try
+            {
+                using (var writer = new StreamWriter(settingFilePath))
+                {
+                    writer.Write(JsonConvert.SerializeObject(settingData, Formatting.Indented));
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return false;
+        }
+
         #endregion
     }
 }

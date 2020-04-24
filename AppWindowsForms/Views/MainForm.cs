@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using FurAffinityClassifier.CommonDotNetFramework.Datas;
+using FurAffinityClassifier.CommonDotNetFramework.Models;
 
 namespace FurAffinityClassifier.AppWindowsForms.Views
 {
@@ -80,6 +82,22 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                     ToFolderTextBox.Text = folderSelectDialog.FileName;
                 }
             }
+        }
+
+        /// <summary>
+        /// [設定を保存]ボタンのクリックイベントハンドラー
+        /// </summary>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベントパラメーター</param>
+        private void SaveSettingButton_Click(object sender, EventArgs e)
+        {
+            var data = new SettingData()
+            {
+                FromFolder = FromFolderTextBox.Text,
+                ToFolder = ToFolderTextBox.Text,
+            };
+            var model = new SettingModel();
+            model.Save(data);
         }
 
         #endregion

@@ -173,6 +173,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.SaveSettingButton.TabIndex = 3;
             this.SaveSettingButton.Text = "設定を保存";
             this.SaveSettingButton.UseVisualStyleBackColor = true;
+            this.SaveSettingButton.Click += new System.EventHandler(this.SaveSettingButton_Click);
             // 
             // MainForm
             // 
