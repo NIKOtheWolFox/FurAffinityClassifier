@@ -40,6 +40,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.CreateFolderIfNotExistCheckBox = new System.Windows.Forms.CheckBox();
             this.ClassifyAsDataGridView = new System.Windows.Forms.DataGridView();
             this.ButtonExecute = new System.Windows.Forms.Button();
+            this.SaveSettingButton = new System.Windows.Forms.Button();
             this.FolderSettingGroupBox.SuspendLayout();
             this.ClassificationSettingGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClassifyAsDataGridView)).BeginInit();
@@ -157,12 +158,21 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             // 
             // ButtonExecute
             // 
-            this.ButtonExecute.Location = new System.Drawing.Point(223, 454);
+            this.ButtonExecute.Location = new System.Drawing.Point(223, 483);
             this.ButtonExecute.Name = "ButtonExecute";
             this.ButtonExecute.Size = new System.Drawing.Size(75, 23);
             this.ButtonExecute.TabIndex = 2;
             this.ButtonExecute.Text = "実行";
             this.ButtonExecute.UseVisualStyleBackColor = true;
+            // 
+            // SaveSettingButton
+            // 
+            this.SaveSettingButton.Location = new System.Drawing.Point(198, 454);
+            this.SaveSettingButton.Name = "SaveSettingButton";
+            this.SaveSettingButton.Size = new System.Drawing.Size(100, 23);
+            this.SaveSettingButton.TabIndex = 3;
+            this.SaveSettingButton.Text = "設定を保存";
+            this.SaveSettingButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -170,6 +180,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(584, 561);
+            this.Controls.Add(this.SaveSettingButton);
             this.Controls.Add(this.ButtonExecute);
             this.Controls.Add(this.ClassificationSettingGroupBox);
             this.Controls.Add(this.FolderSettingGroupBox);
@@ -203,5 +214,6 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         private System.Windows.Forms.CheckBox CreateFolderIfNotExistCheckBox;
         private System.Windows.Forms.Button ButtonExecute;
         private System.Windows.Forms.Label ClassifyAsLabel;
+        private System.Windows.Forms.Button SaveSettingButton;
     }
 }
