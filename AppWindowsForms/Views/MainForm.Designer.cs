@@ -55,14 +55,14 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.FolderSettingGroupBox.Controls.Add(this.FromFolderLabel);
             this.FolderSettingGroupBox.Location = new System.Drawing.Point(12, 12);
             this.FolderSettingGroupBox.Name = "FolderSettingGroupBox";
-            this.FolderSettingGroupBox.Size = new System.Drawing.Size(286, 110);
+            this.FolderSettingGroupBox.Size = new System.Drawing.Size(293, 110);
             this.FolderSettingGroupBox.TabIndex = 0;
             this.FolderSettingGroupBox.TabStop = false;
             this.FolderSettingGroupBox.Text = "フォルダー設定";
             // 
             // ToFolderButton
             // 
-            this.ToFolderButton.Location = new System.Drawing.Point(112, 81);
+            this.ToFolderButton.Location = new System.Drawing.Point(212, 80);
             this.ToFolderButton.Name = "ToFolderButton";
             this.ToFolderButton.Size = new System.Drawing.Size(75, 23);
             this.ToFolderButton.TabIndex = 5;
@@ -74,7 +74,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             // 
             this.ToFolderTextBox.Location = new System.Drawing.Point(6, 81);
             this.ToFolderTextBox.Name = "ToFolderTextBox";
-            this.ToFolderTextBox.Size = new System.Drawing.Size(100, 23);
+            this.ToFolderTextBox.Size = new System.Drawing.Size(200, 23);
             this.ToFolderTextBox.TabIndex = 4;
             // 
             // ToFolderLabel
@@ -88,7 +88,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             // 
             // FromFolderButton
             // 
-            this.FromFolderButton.Location = new System.Drawing.Point(112, 37);
+            this.FromFolderButton.Location = new System.Drawing.Point(212, 37);
             this.FromFolderButton.Name = "FromFolderButton";
             this.FromFolderButton.Size = new System.Drawing.Size(75, 23);
             this.FromFolderButton.TabIndex = 2;
@@ -102,7 +102,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.FromFolderTextBox.ForeColor = System.Drawing.Color.Black;
             this.FromFolderTextBox.Location = new System.Drawing.Point(6, 37);
             this.FromFolderTextBox.Name = "FromFolderTextBox";
-            this.FromFolderTextBox.Size = new System.Drawing.Size(100, 23);
+            this.FromFolderTextBox.Size = new System.Drawing.Size(200, 23);
             this.FromFolderTextBox.TabIndex = 1;
             // 
             // FromFolderLabel
