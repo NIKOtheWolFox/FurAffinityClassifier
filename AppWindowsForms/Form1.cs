@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +12,9 @@ namespace AppWindowsForms
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
