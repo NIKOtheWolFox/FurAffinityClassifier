@@ -93,5 +93,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonDotNetFramework\CommonDotNetFramework.csproj">
+      <Project>{cc438d99-be30-4467-8d60-084873c7a6a4}</Project>
+      <Name>CommonDotNetFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
