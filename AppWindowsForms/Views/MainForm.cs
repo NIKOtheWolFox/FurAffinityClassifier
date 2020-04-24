@@ -42,8 +42,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 {
                     Title = "移動元フォルダー選択",
                     IsFolderPicker = true,
-                    InitialDirectory = Environment.CurrentDirectory,
-                    DefaultDirectory = Environment.CurrentDirectory,
+                    InitialDirectory = string.IsNullOrEmpty(FromFolderTextBox.Text) ? Environment.CurrentDirectory : FromFolderTextBox.Text,
+                    DefaultDirectory = string.IsNullOrEmpty(FromFolderTextBox.Text) ? Environment.CurrentDirectory : FromFolderTextBox.Text,
                     EnsureFileExists = true,
                     EnsurePathExists = true,
                     EnsureValidNames = true,
@@ -68,8 +68,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 {
                     Title = "移動先フォルダー選択",
                     IsFolderPicker = true,
-                    InitialDirectory = Environment.CurrentDirectory,
-                    DefaultDirectory = Environment.CurrentDirectory,
+                    InitialDirectory = string.IsNullOrEmpty(ToFolderTextBox.Text) ? Environment.CurrentDirectory : ToFolderTextBox.Text,
+                    DefaultDirectory = string.IsNullOrEmpty(ToFolderTextBox.Text) ? Environment.CurrentDirectory : ToFolderTextBox.Text,
                     EnsureFileExists = true,
                     EnsurePathExists = true,
                     EnsureValidNames = true,
