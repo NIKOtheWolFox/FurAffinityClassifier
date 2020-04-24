@@ -38,9 +38,9 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         private void FromFolderButton_Click(object sender, EventArgs e)
         {
             using (
-                var folderSelectDialog = new CommonOpenFileDialog("移動元フォルダー選択")
+                var folderSelectDialog = new CommonOpenFileDialog()
                 {
-                    Title = "",
+                    Title = "移動元フォルダー選択",
                     IsFolderPicker = true,
                     InitialDirectory = Environment.CurrentDirectory,
                     DefaultDirectory = Environment.CurrentDirectory,
