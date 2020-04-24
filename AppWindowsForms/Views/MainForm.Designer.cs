@@ -68,6 +68,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ToFolderButton.TabIndex = 5;
             this.ToFolderButton.Text = "選択...";
             this.ToFolderButton.UseVisualStyleBackColor = true;
+            this.ToFolderButton.Click += new System.EventHandler(this.ToFolderButton_Click);
             // 
             // ToFolderTextBox
             // 

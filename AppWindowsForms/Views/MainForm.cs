@@ -53,6 +53,29 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             }
         }
 
+        /// <summary>
+        /// 移動先[選択]ボタンのクリックイベントハンドラー
+        /// </summary>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベントパラメーター</param>
+        private void ToFolderButton_Click(object sender, EventArgs e)
+        {
+            using (
+                var folderSelectDialog = new CommonOpenFileDialog()
+                {
+                    Title = "移動先フォルダー選択",
+                    IsFolderPicker = true,
+                    InitialDirectory = Environment.CurrentDirectory,
+                    DefaultDirectory = Environment.CurrentDirectory,
+                })
+            {
+                if (folderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    ToFolderTextBox.Text = folderSelectDialog.FileName;
+                }
+            }
+        }
+
         #endregion
     }
 }
