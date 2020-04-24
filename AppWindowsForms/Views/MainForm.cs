@@ -26,5 +26,19 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         }
 
         #endregion
+
+        #region Private Method
+
+        /// <summary>
+        /// コピー元[選択]ボタンのクリックイベントハンドラー
+        /// </summary>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベントパラメーター</param>
+        private void FromFolderButton_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("テスト");
+        }
+
+        #endregion
     }
 }
