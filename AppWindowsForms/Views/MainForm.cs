@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace FurAffinityClassifier.AppWindowsForms.Views
 {
@@ -36,7 +37,20 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// <param name="e">イベントパラメーター</param>
         private void FromFolderButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("テスト");
+            using (
+                var folderSelectDialog = new CommonOpenFileDialog("移動元フォルダー選択")
+                {
+                    Title = "",
+                    IsFolderPicker = true,
+                    InitialDirectory = Environment.CurrentDirectory,
+                    DefaultDirectory = Environment.CurrentDirectory,
+                })
+            {
+                if (folderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    FromFolderTextBox.Text = folderSelectDialog.FileName;
+                }
+            }
         }
 
         #endregion

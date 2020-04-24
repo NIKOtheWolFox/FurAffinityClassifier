@@ -97,6 +97,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             // 
             // FromFolderTextBox
             // 
+            this.FromFolderTextBox.BackColor = System.Drawing.Color.White;
+            this.FromFolderTextBox.ForeColor = System.Drawing.Color.Black;
             this.FromFolderTextBox.Location = new System.Drawing.Point(6, 37);
             this.FromFolderTextBox.Name = "FromFolderTextBox";
             this.FromFolderTextBox.Size = new System.Drawing.Size(100, 23);
