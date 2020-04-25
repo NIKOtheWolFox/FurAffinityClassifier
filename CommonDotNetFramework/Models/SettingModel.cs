@@ -25,6 +25,11 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
 
         #region Public Method
 
+        /// <summary>
+        /// 設定を保存する
+        /// </summary>
+        /// <param name="settingData">設定データ</param>
+        /// <returns>実行結果</returns>
         public bool Save(SettingData settingData)
         {
             try

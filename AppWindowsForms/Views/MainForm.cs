@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using FurAffinityClassifier.CommonDotNetFramework.Datas;
 using FurAffinityClassifier.CommonDotNetFramework.Models;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace FurAffinityClassifier.AppWindowsForms.Views
 {
