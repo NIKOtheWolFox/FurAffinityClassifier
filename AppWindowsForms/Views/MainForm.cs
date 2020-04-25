@@ -123,7 +123,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 MessageBox.Show(
                     this,
                     "設定の保存が完了しました。",
-                    "",
+                    string.Empty,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
@@ -132,7 +132,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 MessageBox.Show(
                     this,
                     "設定の保存に失敗しました。",
-                    "",
+                    string.Empty,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -208,7 +208,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 Console.WriteLine($"ID={e.Row["id"]}");
                 Console.WriteLine($"Folder={e.Row["folder_name"]}");
                 */
-                viewModel.ClassifyAs = dataTable.AsEnumerable().Where(row=>!string.IsNullOrEmpty(row["id"].ToString())&& !string.IsNullOrEmpty(row["folder_name"].ToString())).ToDictionary(row => row["id"].ToString(), row => row["folder_name"].ToString());
+                viewModel.ClassifyAs = dataTable.AsEnumerable().Where(row => !string.IsNullOrEmpty(row["id"].ToString()) && !string.IsNullOrEmpty(row["folder_name"].ToString())).ToDictionary(row => row["id"].ToString(), row => row["folder_name"].ToString());
             };
 
             bindingSource.DataSource = dataTable;

@@ -24,6 +24,9 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
 
         #region Public Property
 
+        /// <summary>
+        /// 移動元フォルダー
+        /// </summary>
         public string FromFolder
         {
             get
@@ -37,6 +40,9 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
             }
         }
 
+        /// <summary>
+        /// 移動先フォルダー
+        /// </summary>
         public string ToFolder
         {
             get
@@ -50,6 +56,9 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
             }
         }
 
+        /// <summary>
+        /// フォルダーが存在しないときに作成するか
+        /// </summary>
         public bool CreateFolderIfNotExist
         {
             get
@@ -63,22 +72,26 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
             }
         }
 
+        /// <summary>
+        /// IDと異なるフォルダーに振り分ける設定
+        /// </summary>
         public Dictionary<string, string> ClassifyAs
         {
             get
             {
                 var dd = new Dictionary<string, string>();
-                foreach(var tt in settingData.IdFolderMappings)
+                foreach (var tt in settingData.IdFolderMappings)
                 {
                     dd.Add(tt.Id, tt.FolderName);
                 }
+
                 return dd;
             }
 
             set
             {
                 settingData.IdFolderMappings.Clear();
-                foreach(var tt in value)
+                foreach (var tt in value)
                 {
                     settingData.IdFolderMappings.Add(new IdFolderMappingData()
                     {
@@ -93,17 +106,26 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
 
         #region Public Method
 
+        /// <summary>
+        /// 設定を読み込む
+        /// </summary>
+        /// <returns>実行結果</returns>
         public bool LoadSetting()
         {
             settingData = new SettingModel().Load();
             return settingData != null;
         }
 
+        /// <summary>
+        /// 設定を保存する
+        /// </summary>
+        /// <returns>実行結果</returns>
         public bool SaveSetting()
         {
             return new SettingModel().Save(settingData);
         }
 
+        /*
         public void UpdateFromFolder(string path)
         {
             settingData.FromFolder = path;
@@ -132,6 +154,7 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
 
             return result;
         }
+        */
 
         #endregion
     }
