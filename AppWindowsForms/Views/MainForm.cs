@@ -19,6 +19,20 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
     /// </summary>
     public partial class MainForm : Form
     {
+        #region Private Field
+
+        /// <summary>
+        /// 振り分け設定DataGridView用のデータテーブル
+        /// </summary>
+        private DataTable dataTable = new DataTable();
+
+        /// <summary>
+        /// データテーブルとDataGridViewを紐付けるオブジェクト
+        /// </summary>
+        private BindingSource bindingSource = new BindingSource();
+
+        #endregion
+
         #region Constructor
 
         /// <summary>
@@ -27,6 +41,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         public MainForm()
         {
             InitializeComponent();
+
+            SetDataGridView();
         }
 
         #endregion
@@ -119,6 +135,24 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 Console.WriteLine($"from={data.FromFolder}");
                 Console.WriteLine($"to={data.ToFolder}");
             }
+        }
+
+        /// <summary>
+        /// 振り分け設定DataGridViewを設定する
+        /// </summary>
+        private void SetDataGridView()
+        {
+            dataTable.Columns.Add("id", typeof(string));
+            dataTable.Columns.Add("folder_name", typeof(string));
+
+            bindingSource.DataSource = dataTable;
+            ClassifyAsDataGridView.DataSource = bindingSource;
+
+            ClassifyAsDataGridView.Columns[0].HeaderText = "ID";
+            ClassifyAsDataGridView.Columns[0].Width = 100;
+
+            ClassifyAsDataGridView.Columns[1].HeaderText = "フォルダー名";
+            ClassifyAsDataGridView.Columns[1].Width = 100;
         }
 
         #endregion
