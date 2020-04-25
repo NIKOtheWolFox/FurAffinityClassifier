@@ -16,6 +16,11 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
     {
         #region Public Method
 
+        /// <summary>
+        /// 分類を実行する
+        /// </summary>
+        /// <param name="settingData">設定データ</param>
+        /// <returns>実行結果</returns>
         public bool Execute(SettingData settingData)
         {
             bool result = true;
@@ -26,7 +31,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                 ////files.ToList().ForEach(f => Console.WriteLine(f));
                 var files2 = files.Where(f => Regex.IsMatch(Path.GetFileName(f), @"[0-9]+\.[a-z0-9-~^.]{3,}_.*"));
                 ////files2.ToList().ForEach(f => Console.WriteLine(f));
-                foreach(var f in files2)
+                foreach (var f in files2)
                 {
                     var match = Regex.Match(f, @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
                     var id = string.Empty;
