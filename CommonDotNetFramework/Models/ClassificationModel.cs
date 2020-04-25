@@ -83,9 +83,12 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                             continue;
                         }
                     }
-                }
 
-                Console.WriteLine("＼(^o^)／");
+                    var filename = Path.GetFileName(f);
+                    File.Move(f, Path.Combine(folderTo, filename));
+
+                    Console.WriteLine($"DONE : {f} -> {Path.Combine(folderTo, filename)}");
+                }
             }
             catch (Exception e)
             {
