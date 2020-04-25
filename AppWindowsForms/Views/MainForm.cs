@@ -145,6 +145,33 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             dataTable.Columns.Add("id", typeof(string));
             dataTable.Columns.Add("folder_name", typeof(string));
 
+            dataTable.TableNewRow += (s, e) =>
+            {
+                Console.WriteLine("dataTable.TableNewRow");
+            };
+
+            /*
+            dataTable.RowDeleted += (s, e) =>
+            {
+                Console.WriteLine("dataTable.RowDeleted");
+                Console.WriteLine($"ID={e.Row["id"]}");
+                Console.WriteLine($"Folder={e.Row["folder_name"]}");
+            };
+            */
+            dataTable.RowDeleting += (s, e) =>
+            {
+                Console.WriteLine("dataTable.RowDeleting");
+                Console.WriteLine($"ID={e.Row["id"]}");
+                Console.WriteLine($"Folder={e.Row["folder_name"]}");
+            };
+
+            dataTable.RowChanged += (s, e) =>
+            {
+                Console.WriteLine("dataTable.RowChanged");
+                Console.WriteLine($"ID={e.Row["id"]}");
+                Console.WriteLine($"Folder={e.Row["folder_name"]}");
+            };
+
             bindingSource.DataSource = dataTable;
             ClassifyAsDataGridView.DataSource = bindingSource;
 
