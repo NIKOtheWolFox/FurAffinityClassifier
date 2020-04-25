@@ -28,8 +28,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.FolderSettingGroupBox = new System.Windows.Forms.GroupBox();
             this.ToFolderButton = new System.Windows.Forms.Button();
             this.ToFolderTextBox = new System.Windows.Forms.TextBox();
@@ -59,7 +59,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.FolderSettingGroupBox.Location = new System.Drawing.Point(12, 12);
             this.FolderSettingGroupBox.Name = "FolderSettingGroupBox";
             this.FolderSettingGroupBox.Size = new System.Drawing.Size(293, 110);
-            this.FolderSettingGroupBox.TabIndex = 0;
+            this.FolderSettingGroupBox.TabIndex = 1;
             this.FolderSettingGroupBox.TabStop = false;
             this.FolderSettingGroupBox.Text = "フォルダー設定";
             // 
@@ -129,7 +129,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ClassificationSettingGroupBox.Location = new System.Drawing.Point(12, 128);
             this.ClassificationSettingGroupBox.Name = "ClassificationSettingGroupBox";
             this.ClassificationSettingGroupBox.Size = new System.Drawing.Size(293, 268);
-            this.ClassificationSettingGroupBox.TabIndex = 1;
+            this.ClassificationSettingGroupBox.TabIndex = 2;
             this.ClassificationSettingGroupBox.TabStop = false;
             this.ClassificationSettingGroupBox.Text = "振り分け設定";
             // 
@@ -139,7 +139,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ClassifyAsLabel.Location = new System.Drawing.Point(6, 44);
             this.ClassifyAsLabel.Name = "ClassifyAsLabel";
             this.ClassifyAsLabel.Size = new System.Drawing.Size(160, 15);
-            this.ClassifyAsLabel.TabIndex = 2;
+            this.ClassifyAsLabel.TabIndex = 1;
             this.ClassifyAsLabel.Text = "IDと異なるフォルダーに振り分ける";
             // 
             // CreateFolderIfNotExistCheckBox
@@ -148,7 +148,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.CreateFolderIfNotExistCheckBox.Location = new System.Drawing.Point(6, 22);
             this.CreateFolderIfNotExistCheckBox.Name = "CreateFolderIfNotExistCheckBox";
             this.CreateFolderIfNotExistCheckBox.Size = new System.Drawing.Size(219, 19);
-            this.CreateFolderIfNotExistCheckBox.TabIndex = 1;
+            this.CreateFolderIfNotExistCheckBox.TabIndex = 0;
             this.CreateFolderIfNotExistCheckBox.Text = "対応するフォルダーがない場合は作成する";
             this.CreateFolderIfNotExistCheckBox.UseVisualStyleBackColor = true;
             this.CreateFolderIfNotExistCheckBox.CheckedChanged += new System.EventHandler(this.CreateFolderIfNotExistCheckBox_CheckedChanged);
@@ -157,36 +157,36 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             // 
             this.ClassifyAsDataGridView.BackgroundColor = System.Drawing.Color.DarkGray;
             this.ClassifyAsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ClassifyAsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ClassifyAsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.ClassifyAsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ClassifyAsDataGridView.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ClassifyAsDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.ClassifyAsDataGridView.GridColor = System.Drawing.Color.DarkGray;
             this.ClassifyAsDataGridView.Location = new System.Drawing.Point(6, 62);
             this.ClassifyAsDataGridView.Name = "ClassifyAsDataGridView";
             this.ClassifyAsDataGridView.RowTemplate.Height = 21;
             this.ClassifyAsDataGridView.Size = new System.Drawing.Size(281, 200);
-            this.ClassifyAsDataGridView.TabIndex = 0;
+            this.ClassifyAsDataGridView.TabIndex = 2;
             // 
             // ButtonExecute
             // 
             this.ButtonExecute.Location = new System.Drawing.Point(230, 431);
             this.ButtonExecute.Name = "ButtonExecute";
             this.ButtonExecute.Size = new System.Drawing.Size(75, 23);
-            this.ButtonExecute.TabIndex = 2;
+            this.ButtonExecute.TabIndex = 0;
             this.ButtonExecute.Text = "実行";
             this.ButtonExecute.UseVisualStyleBackColor = true;
             this.ButtonExecute.Click += new System.EventHandler(this.ButtonExecute_Click);
