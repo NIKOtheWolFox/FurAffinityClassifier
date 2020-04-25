@@ -58,6 +58,48 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         #region Private Method
 
         /// <summary>
+        /// 仮面のロードイベントハンドラー
+        /// </summary>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベントパラメーター</param>
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            FromFolderTextBox.Text = viewModel.FromFolder;
+            ToFolderTextBox.Text = viewModel.ToFolder;
+            CreateFolderIfNotExistCheckBox.Checked = viewModel.CreateFolderIfNotExist;
+
+            dataTable.Rows.Clear();
+            foreach (var classifyAsData in viewModel.ClassifyAs)
+            {
+                var row = dataTable.NewRow();
+                row["id"] = classifyAsData.Key;
+                row["folder_name"] = classifyAsData.Value;
+                dataTable.Rows.Add(row);
+            }
+
+            dataTable.RowDeleting += (s, ea) =>
+            {
+                viewModel.ClassifyAs = dataTable
+                    .AsEnumerable()
+                    .Where(
+                        row => !string.IsNullOrEmpty(row["id"].ToString()) && !string.IsNullOrEmpty(row["folder_name"].ToString()))
+                    .ToDictionary(
+                        row => row["id"].ToString(),
+                        row => row["folder_name"].ToString());
+            };
+            dataTable.RowChanged += (s, ea) =>
+            {
+                viewModel.ClassifyAs = dataTable
+                    .AsEnumerable()
+                    .Where(
+                        row => !string.IsNullOrEmpty(row["id"].ToString()) && !string.IsNullOrEmpty(row["folder_name"].ToString()))
+                    .ToDictionary(
+                        row => row["id"].ToString(),
+                        row => row["folder_name"].ToString());
+            };
+        }
+
+        /// <summary>
         /// コピー元[選択]ボタンのクリックイベントハンドラー
         /// </summary>
         /// <param name="sender">イベント発生元</param>
@@ -175,41 +217,6 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         {
             dataTable.Columns.Add("id", typeof(string));
             dataTable.Columns.Add("folder_name", typeof(string));
-
-            /*
-            dataTable.TableNewRow += (s, e) =>
-            {
-                Console.WriteLine("dataTable.TableNewRow");
-            };
-            */
-
-            /*
-            dataTable.RowDeleted += (s, e) =>
-            {
-                Console.WriteLine("dataTable.RowDeleted");
-                Console.WriteLine($"ID={e.Row["id"]}");
-                Console.WriteLine($"Folder={e.Row["folder_name"]}");
-            };
-            */
-            dataTable.RowDeleting += (s, e) =>
-            {
-                /*
-                Console.WriteLine("dataTable.RowDeleting");
-                Console.WriteLine($"ID={e.Row["id"]}");
-                Console.WriteLine($"Folder={e.Row["folder_name"]}");
-                */
-                viewModel.ClassifyAs = dataTable.AsEnumerable().Where(row => !string.IsNullOrEmpty(row["id"].ToString()) && !string.IsNullOrEmpty(row["folder_name"].ToString())).ToDictionary(row => row["id"].ToString(), row => row["folder_name"].ToString());
-            };
-
-            dataTable.RowChanged += (s, e) =>
-            {
-                /*
-                Console.WriteLine("dataTable.RowChanged");
-                Console.WriteLine($"ID={e.Row["id"]}");
-                Console.WriteLine($"Folder={e.Row["folder_name"]}");
-                */
-                viewModel.ClassifyAs = dataTable.AsEnumerable().Where(row => !string.IsNullOrEmpty(row["id"].ToString()) && !string.IsNullOrEmpty(row["folder_name"].ToString())).ToDictionary(row => row["id"].ToString(), row => row["folder_name"].ToString());
-            };
 
             bindingSource.DataSource = dataTable;
             ClassifyAsDataGridView.DataSource = bindingSource;
