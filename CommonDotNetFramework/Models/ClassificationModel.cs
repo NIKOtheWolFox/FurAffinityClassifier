@@ -66,8 +66,22 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
 
                         if (foldername.TrimEnd('.')== Path.GetFileName(folderOnTo).ToLower().Replace("_", string.Empty))
                         {
+                            folderTo = folderOnTo;
                             Console.WriteLine($"forder for ID({id}) is to {Path.GetFileName(folderOnTo)}");
                             break;
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(folderTo))
+                    {
+                        if (settingData.CreateFolderIfNotExist)
+                        {
+                            Console.WriteLine($"I have to create filder {foldername}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("no folder, continue");
+                            continue;
                         }
                     }
                 }
