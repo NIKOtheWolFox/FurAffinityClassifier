@@ -138,6 +138,16 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         }
 
         /// <summary>
+        /// フォルダー作成有無の切り替えイベントハンドラー
+        /// </summary>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベントパラメーター</param>
+        private void CreateFolderIfNotExistCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine($"folder_create is {(CreateFolderIfNotExistCheckBox.Checked ? "ON" : "OFF")}");
+        }
+
+        /// <summary>
         /// 振り分け設定DataGridViewを設定する
         /// </summary>
         private void SetDataGridView()
