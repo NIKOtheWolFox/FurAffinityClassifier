@@ -160,23 +160,19 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// <param name="e">イベントパラメーター</param>
         private void SaveSettingButton_Click(object sender, EventArgs e)
         {
-            if (viewModel.SaveSetting())
+            var result = viewModel.SaveSetting();
+            using (
+                var dialog = new TaskDialog()
+                {
+                    OwnerWindowHandle = Handle,
+                    StartupLocation = TaskDialogStartupLocation.CenterOwner,
+                    Icon = result ? TaskDialogStandardIcon.Information : TaskDialogStandardIcon.Error,
+                    Caption = "設定の保存",
+                    Text = result ? "設定の保存が完了しました。" : "設定の保存に失敗しました。",
+                    StandardButtons = TaskDialogStandardButtons.Ok,
+                })
             {
-                MessageBox.Show(
-                    this,
-                    "設定の保存が完了しました。",
-                    string.Empty,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show(
-                    this,
-                    "設定の保存に失敗しました。",
-                    string.Empty,
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                dialog.Show();
             }
         }
 
