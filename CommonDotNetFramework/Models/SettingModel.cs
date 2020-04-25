@@ -56,6 +56,8 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
         /// <returns>実行結果</returns>
         public bool Save(SettingData settingData)
         {
+            bool result = true;
+
             try
             {
                 using (var writer = new StreamWriter(settingFilePath))
@@ -66,9 +68,10 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                result = false;
             }
 
-            return false;
+            return result;
         }
 
         #endregion
