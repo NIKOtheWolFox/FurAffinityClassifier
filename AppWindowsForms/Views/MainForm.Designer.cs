@@ -28,6 +28,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.FolderSettingGroupBox = new System.Windows.Forms.GroupBox();
             this.ToFolderButton = new System.Windows.Forms.Button();
             this.ToFolderTextBox = new System.Windows.Forms.TextBox();
@@ -39,7 +41,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ClassifyAsLabel = new System.Windows.Forms.Label();
             this.CreateFolderIfNotExistCheckBox = new System.Windows.Forms.CheckBox();
             this.ClassifyAsDataGridView = new System.Windows.Forms.DataGridView();
-            this.ButtonExecute = new System.Windows.Forms.Button();
+            this.ExecuteButton = new System.Windows.Forms.Button();
             this.SaveSettingButton = new System.Windows.Forms.Button();
             this.FolderSettingGroupBox.SuspendLayout();
             this.ClassificationSettingGroupBox.SuspendLayout();
@@ -57,7 +59,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.FolderSettingGroupBox.Location = new System.Drawing.Point(12, 12);
             this.FolderSettingGroupBox.Name = "FolderSettingGroupBox";
             this.FolderSettingGroupBox.Size = new System.Drawing.Size(293, 110);
-            this.FolderSettingGroupBox.TabIndex = 0;
+            this.FolderSettingGroupBox.TabIndex = 1;
             this.FolderSettingGroupBox.TabStop = false;
             this.FolderSettingGroupBox.Text = "フォルダー設定";
             // 
@@ -73,8 +75,11 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             // 
             // ToFolderTextBox
             // 
+            this.ToFolderTextBox.BackColor = System.Drawing.Color.White;
+            this.ToFolderTextBox.ForeColor = System.Drawing.Color.Black;
             this.ToFolderTextBox.Location = new System.Drawing.Point(6, 81);
             this.ToFolderTextBox.Name = "ToFolderTextBox";
+            this.ToFolderTextBox.ReadOnly = true;
             this.ToFolderTextBox.Size = new System.Drawing.Size(200, 23);
             this.ToFolderTextBox.TabIndex = 4;
             // 
@@ -103,6 +108,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.FromFolderTextBox.ForeColor = System.Drawing.Color.Black;
             this.FromFolderTextBox.Location = new System.Drawing.Point(6, 37);
             this.FromFolderTextBox.Name = "FromFolderTextBox";
+            this.FromFolderTextBox.ReadOnly = true;
             this.FromFolderTextBox.Size = new System.Drawing.Size(200, 23);
             this.FromFolderTextBox.TabIndex = 1;
             // 
@@ -122,8 +128,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ClassificationSettingGroupBox.Controls.Add(this.ClassifyAsDataGridView);
             this.ClassificationSettingGroupBox.Location = new System.Drawing.Point(12, 128);
             this.ClassificationSettingGroupBox.Name = "ClassificationSettingGroupBox";
-            this.ClassificationSettingGroupBox.Size = new System.Drawing.Size(286, 320);
-            this.ClassificationSettingGroupBox.TabIndex = 1;
+            this.ClassificationSettingGroupBox.Size = new System.Drawing.Size(293, 268);
+            this.ClassificationSettingGroupBox.TabIndex = 2;
             this.ClassificationSettingGroupBox.TabStop = false;
             this.ClassificationSettingGroupBox.Text = "振り分け設定";
             // 
@@ -133,7 +139,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ClassifyAsLabel.Location = new System.Drawing.Point(6, 44);
             this.ClassifyAsLabel.Name = "ClassifyAsLabel";
             this.ClassifyAsLabel.Size = new System.Drawing.Size(160, 15);
-            this.ClassifyAsLabel.TabIndex = 2;
+            this.ClassifyAsLabel.TabIndex = 1;
             this.ClassifyAsLabel.Text = "IDと異なるフォルダーに振り分ける";
             // 
             // CreateFolderIfNotExistCheckBox
@@ -142,33 +148,52 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.CreateFolderIfNotExistCheckBox.Location = new System.Drawing.Point(6, 22);
             this.CreateFolderIfNotExistCheckBox.Name = "CreateFolderIfNotExistCheckBox";
             this.CreateFolderIfNotExistCheckBox.Size = new System.Drawing.Size(219, 19);
-            this.CreateFolderIfNotExistCheckBox.TabIndex = 1;
+            this.CreateFolderIfNotExistCheckBox.TabIndex = 0;
             this.CreateFolderIfNotExistCheckBox.Text = "対応するフォルダーがない場合は作成する";
             this.CreateFolderIfNotExistCheckBox.UseVisualStyleBackColor = true;
+            this.CreateFolderIfNotExistCheckBox.CheckedChanged += new System.EventHandler(this.CreateFolderIfNotExistCheckBox_CheckedChanged);
             // 
             // ClassifyAsDataGridView
             // 
             this.ClassifyAsDataGridView.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.ClassifyAsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ClassifyAsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ClassifyAsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ClassifyAsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ClassifyAsDataGridView.GridColor = System.Drawing.Color.DarkGray;
             this.ClassifyAsDataGridView.Location = new System.Drawing.Point(6, 62);
             this.ClassifyAsDataGridView.Name = "ClassifyAsDataGridView";
             this.ClassifyAsDataGridView.RowTemplate.Height = 21;
-            this.ClassifyAsDataGridView.Size = new System.Drawing.Size(240, 150);
-            this.ClassifyAsDataGridView.TabIndex = 0;
+            this.ClassifyAsDataGridView.Size = new System.Drawing.Size(281, 200);
+            this.ClassifyAsDataGridView.TabIndex = 2;
             // 
-            // ButtonExecute
+            // ExecuteButton
             // 
-            this.ButtonExecute.Location = new System.Drawing.Point(223, 483);
-            this.ButtonExecute.Name = "ButtonExecute";
-            this.ButtonExecute.Size = new System.Drawing.Size(75, 23);
-            this.ButtonExecute.TabIndex = 2;
-            this.ButtonExecute.Text = "実行";
-            this.ButtonExecute.UseVisualStyleBackColor = true;
-            this.ButtonExecute.Click += new System.EventHandler(this.ButtonExecute_Click);
+            this.ExecuteButton.Location = new System.Drawing.Point(230, 431);
+            this.ExecuteButton.Name = "ExecuteButton";
+            this.ExecuteButton.Size = new System.Drawing.Size(75, 23);
+            this.ExecuteButton.TabIndex = 0;
+            this.ExecuteButton.Text = "実行";
+            this.ExecuteButton.UseVisualStyleBackColor = true;
+            this.ExecuteButton.Click += new System.EventHandler(this.ButtonExecute_Click);
             // 
             // SaveSettingButton
             // 
-            this.SaveSettingButton.Location = new System.Drawing.Point(198, 454);
+            this.SaveSettingButton.Location = new System.Drawing.Point(205, 402);
             this.SaveSettingButton.Name = "SaveSettingButton";
             this.SaveSettingButton.Size = new System.Drawing.Size(100, 23);
             this.SaveSettingButton.TabIndex = 3;
@@ -181,9 +206,9 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(584, 561);
+            this.ClientSize = new System.Drawing.Size(317, 466);
             this.Controls.Add(this.SaveSettingButton);
-            this.Controls.Add(this.ButtonExecute);
+            this.Controls.Add(this.ExecuteButton);
             this.Controls.Add(this.ClassificationSettingGroupBox);
             this.Controls.Add(this.FolderSettingGroupBox);
             this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -193,6 +218,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Fur Affinity Classifier";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.FolderSettingGroupBox.ResumeLayout(false);
             this.FolderSettingGroupBox.PerformLayout();
             this.ClassificationSettingGroupBox.ResumeLayout(false);
@@ -214,7 +240,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         private System.Windows.Forms.GroupBox ClassificationSettingGroupBox;
         private System.Windows.Forms.DataGridView ClassifyAsDataGridView;
         private System.Windows.Forms.CheckBox CreateFolderIfNotExistCheckBox;
-        private System.Windows.Forms.Button ButtonExecute;
+        private System.Windows.Forms.Button ExecuteButton;
         private System.Windows.Forms.Label ClassifyAsLabel;
         private System.Windows.Forms.Button SaveSettingButton;
     }
