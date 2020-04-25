@@ -77,7 +77,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 dataTable.Rows.Add(row);
             }
 
-            dataTable.RowDeleting += (s, ea) =>
+            dataTable.RowDeleted += (s, ea) =>
             {
                 viewModel.ClassifyAs = dataTable
                     .AsEnumerable()
