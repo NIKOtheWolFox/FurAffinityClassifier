@@ -75,6 +75,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                         {
                             Console.WriteLine($"I have to create filder {foldername}");
                             Directory.CreateDirectory(Path.Combine(settingData.ToFolder, foldername.TrimEnd('.')));
+                            folderTo = Path.Combine(settingData.ToFolder, foldername.TrimEnd('.'));
                         }
                         else
                         {
@@ -83,8 +84,6 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                         }
                     }
                 }
-
-                ////TODO:ファイルを移動先に移動する
 
                 Console.WriteLine("＼(^o^)／");
             }
