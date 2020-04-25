@@ -183,6 +183,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// <param name="e">イベントパラメーター</param>
         private void ButtonExecute_Click(object sender, EventArgs e)
         {
+            //// TODO : 終わったら通知！
+            //// TODO : async/await必要？
             viewModel.ExecuteClassification();
         }
 
