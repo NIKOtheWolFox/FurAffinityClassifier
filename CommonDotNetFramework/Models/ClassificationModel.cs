@@ -55,15 +55,6 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                     ////foldersOnTo.Contains(foldername);
                     foreach(var folderOnTo in foldersOnTo)
                     {
-                        /*
-                        if (foldername == Path.GetFileName(folderOnTo).TrimEnd('.').ToLower().Replace("_", string.Empty))
-                        {
-                            string fn = Path.GetFileName(folderOnTo).TrimEnd('.').ToLower().Replace("_", string.Empty);
-                            Console.WriteLine($"forder for ID({id}) is to {fn}");
-                            break;
-                        }
-                        */
-
                         if (foldername.TrimEnd('.')== Path.GetFileName(folderOnTo).ToLower().Replace("_", string.Empty))
                         {
                             folderTo = folderOnTo;
