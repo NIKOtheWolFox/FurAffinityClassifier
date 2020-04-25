@@ -35,9 +35,16 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
 
             try
             {
-                using (var reader = new StreamReader(settingFilePath))
+                if (File.Exists(settingFilePath))
                 {
-                    settingData = JsonConvert.DeserializeObject<SettingData>(reader.ReadToEnd());
+                    using (var reader = new StreamReader(settingFilePath))
+                    {
+                        settingData = JsonConvert.DeserializeObject<SettingData>(reader.ReadToEnd());
+                    }
+                }
+                else
+                {
+                    settingData = new SettingData();
                 }
             }
             catch (Exception e)

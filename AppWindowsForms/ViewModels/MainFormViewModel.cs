@@ -79,26 +79,21 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
         {
             get
             {
-                var dd = new Dictionary<string, string>();
-                foreach (var tt in settingData.IdFolderMappings)
-                {
-                    dd.Add(tt.Id, tt.FolderName);
-                }
-
-                return dd;
+                return settingData.IdFolderMappings.ToDictionary(
+                    mapping => mapping.Id,
+                    mapping => mapping.FolderName);
             }
 
             set
             {
-                settingData.IdFolderMappings.Clear();
-                foreach (var tt in value)
-                {
-                    settingData.IdFolderMappings.Add(new IdFolderMappingData()
-                    {
-                        Id = tt.Key,
-                        FolderName = tt.Value,
-                    });
-                }
+                settingData.IdFolderMappings = value
+                    .Select(
+                        kvp => new IdFolderMappingData()
+                        {
+                            Id = kvp.Key,
+                            FolderName = kvp.Value
+                        })
+                    .ToList();
             }
         }
 
