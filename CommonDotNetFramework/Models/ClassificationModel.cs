@@ -29,8 +29,10 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                 foreach(var f in files2)
                 {
                     var match = Regex.Match(f, @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
+                    var id = string.Empty;
                     if (match.Success)
                     {
+                        id = match.Groups["id"].Value;
                         Console.WriteLine($"id from {f} is {match.Groups["id"].Value}");
                     }
                     else
