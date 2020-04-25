@@ -16,6 +16,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Datas
         {
             FromFolder = string.Empty;
             ToFolder = string.Empty;
+            CreateFolderIfNotExist = false;
             IdFolderMappings = new List<IdFolderMappingData>();
         }
 
@@ -32,6 +33,11 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Datas
         /// 移動先フォルダー
         /// </summary>
         public string ToFolder { get; set; }
+
+        /// <summary>
+        /// フォルダーが存在しないときに作成するか
+        /// </summary>
+        public bool CreateFolderIfNotExist { get; set; }
 
         /// <summary>
         /// IDとフォルダーの対応
