@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FurAffinityClassifier.CommonDotNetFramework.Datas;
 
@@ -22,7 +23,9 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
             try
             {
                 var files = Directory.GetFiles(settingData.FromFolder);
-                files.ToList().ForEach(f => Console.WriteLine(f));
+                ////files.ToList().ForEach(f => Console.WriteLine(f));
+                var files2 = files.Where(f => Regex.IsMatch(Path.GetFileName(f), @"[0-9]+\.[a-z0-9-~^.]{3,}_.*"));
+                files2.ToList().ForEach(f => Console.WriteLine(f));
             }
             catch (Exception e)
             {
