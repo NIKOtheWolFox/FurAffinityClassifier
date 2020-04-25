@@ -120,6 +120,11 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
             return new SettingModel().Save(settingData);
         }
 
+        public void ExecuteClassification()
+        {
+            new ClassificationModel().Execute(settingData);
+        }
+
         /*
         public void UpdateFromFolder(string path)
         {

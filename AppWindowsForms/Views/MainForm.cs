@@ -183,17 +183,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// <param name="e">イベントパラメーター</param>
         private void ButtonExecute_Click(object sender, EventArgs e)
         {
-            var model = new SettingModel();
-            var data = model.Load();
-            if (data == null)
-            {
-                Console.WriteLine("fuck");
-            }
-            else
-            {
-                Console.WriteLine($"from={data.FromFolder}");
-                Console.WriteLine($"to={data.ToFolder}");
-            }
+            viewModel.ExecuteClassification();
         }
 
         /// <summary>
