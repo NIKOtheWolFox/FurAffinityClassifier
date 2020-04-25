@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents.Serialization;
 using System.Windows.Forms;
+using FurAffinityClassifier.AppWindowsForms.ViewModels;
 using FurAffinityClassifier.CommonDotNetFramework.Datas;
 using FurAffinityClassifier.CommonDotNetFramework.Models;
 using Microsoft.WindowsAPICodePack.Dialogs;
@@ -20,6 +21,11 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
     public partial class MainForm : Form
     {
         #region Private Field
+
+        /// <summary>
+        /// ViewModel
+        /// </summary>
+        private MainFormViewModel viewModel = new MainFormViewModel();
 
         /// <summary>
         /// 振り分け設定DataGridView用のデータテーブル
@@ -43,6 +49,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             InitializeComponent();
 
             SetDataGridView();
+
+            viewModel.LoadSetting();
         }
 
         #endregion
@@ -71,6 +79,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 if (folderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
                     FromFolderTextBox.Text = folderSelectDialog.FileName;
+                    viewModel.FromFolder = folderSelectDialog.FileName;
                 }
             }
         }
@@ -97,6 +106,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 if (folderSelectDialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
                     ToFolderTextBox.Text = folderSelectDialog.FileName;
+                    viewModel.ToFolder = folderSelectDialog.FileName;
                 }
             }
         }
@@ -108,13 +118,24 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// <param name="e">イベントパラメーター</param>
         private void SaveSettingButton_Click(object sender, EventArgs e)
         {
-            var data = new SettingData()
+            if (viewModel.SaveSetting())
             {
-                FromFolder = FromFolderTextBox.Text,
-                ToFolder = ToFolderTextBox.Text,
-            };
-            var model = new SettingModel();
-            model.Save(data);
+                MessageBox.Show(
+                    this,
+                    "設定の保存が完了しました。",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(
+                    this,
+                    "設定の保存に失敗しました。",
+                    "",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -144,7 +165,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// <param name="e">イベントパラメーター</param>
         private void CreateFolderIfNotExistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Console.WriteLine($"folder_create is {(CreateFolderIfNotExistCheckBox.Checked ? "ON" : "OFF")}");
+            viewModel.CreateFolderIfNotExist = CreateFolderIfNotExistCheckBox.Checked;
         }
 
         /// <summary>
@@ -155,10 +176,12 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             dataTable.Columns.Add("id", typeof(string));
             dataTable.Columns.Add("folder_name", typeof(string));
 
+            /*
             dataTable.TableNewRow += (s, e) =>
             {
                 Console.WriteLine("dataTable.TableNewRow");
             };
+            */
 
             /*
             dataTable.RowDeleted += (s, e) =>
@@ -170,16 +193,22 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             */
             dataTable.RowDeleting += (s, e) =>
             {
+                /*
                 Console.WriteLine("dataTable.RowDeleting");
                 Console.WriteLine($"ID={e.Row["id"]}");
                 Console.WriteLine($"Folder={e.Row["folder_name"]}");
+                */
+                viewModel.ClassifyAs = dataTable.AsEnumerable().Where(row => !string.IsNullOrEmpty(row["id"].ToString()) && !string.IsNullOrEmpty(row["folder_name"].ToString())).ToDictionary(row => row["id"].ToString(), row => row["folder_name"].ToString());
             };
 
             dataTable.RowChanged += (s, e) =>
             {
+                /*
                 Console.WriteLine("dataTable.RowChanged");
                 Console.WriteLine($"ID={e.Row["id"]}");
                 Console.WriteLine($"Folder={e.Row["folder_name"]}");
+                */
+                viewModel.ClassifyAs = dataTable.AsEnumerable().Where(row=>!string.IsNullOrEmpty(row["id"].ToString())&& !string.IsNullOrEmpty(row["folder_name"].ToString())).ToDictionary(row => row["id"].ToString(), row => row["folder_name"].ToString());
             };
 
             bindingSource.DataSource = dataTable;
