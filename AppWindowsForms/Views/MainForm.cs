@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents.Serialization;
 using System.Windows.Forms;
 using FurAffinityClassifier.CommonDotNetFramework.Datas;
 using FurAffinityClassifier.CommonDotNetFramework.Models;
@@ -98,6 +99,26 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             };
             var model = new SettingModel();
             model.Save(data);
+        }
+
+        /// <summary>
+        /// [実行]ボタンのクリックイベントハンドラー
+        /// </summary>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベントパラメーター</param>
+        private void ButtonExecute_Click(object sender, EventArgs e)
+        {
+            var model = new SettingModel();
+            var data = model.Load();
+            if (data == null)
+            {
+                Console.WriteLine("fuck");
+            }
+            else
+            {
+                Console.WriteLine($"from={data.FromFolder}");
+                Console.WriteLine($"to={data.ToFolder}");
+            }
         }
 
         #endregion

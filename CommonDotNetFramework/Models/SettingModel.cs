@@ -26,6 +26,30 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
         #region Public Method
 
         /// <summary>
+        /// 設定を読み込む
+        /// </summary>
+        /// <returns>設定データ</returns>
+        public SettingData Load()
+        {
+            SettingData settingData = null;
+
+            try
+            {
+                using (var reader = new StreamReader(settingFilePath))
+                {
+                    settingData = JsonConvert.DeserializeObject<SettingData>(reader.ReadToEnd());
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                settingData = null;
+            }
+
+            return settingData;
+        }
+
+        /// <summary>
         /// 設定を保存する
         /// </summary>
         /// <param name="settingData">設定データ</param>
