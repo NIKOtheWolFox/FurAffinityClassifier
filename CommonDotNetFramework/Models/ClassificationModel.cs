@@ -25,7 +25,19 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                 var files = Directory.GetFiles(settingData.FromFolder);
                 ////files.ToList().ForEach(f => Console.WriteLine(f));
                 var files2 = files.Where(f => Regex.IsMatch(Path.GetFileName(f), @"[0-9]+\.[a-z0-9-~^.]{3,}_.*"));
-                files2.ToList().ForEach(f => Console.WriteLine(f));
+                ////files2.ToList().ForEach(f => Console.WriteLine(f));
+                foreach(var f in files2)
+                {
+                    var match = Regex.Match(f, @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
+                    if (match.Success)
+                    {
+                        Console.WriteLine($"id from {f} is {match.Groups["id"].Value}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"cannot find id from {f}");
+                    }
+                }
             }
             catch (Exception e)
             {
