@@ -29,17 +29,18 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         private void InitializeComponent()
         {
             this.FolderSettingGroupBox = new System.Windows.Forms.GroupBox();
-            this.FromFolderLabel = new System.Windows.Forms.Label();
-            this.FromFolderTextBox = new System.Windows.Forms.TextBox();
-            this.FromFolderButton = new System.Windows.Forms.Button();
-            this.ToFolderLabel = new System.Windows.Forms.Label();
-            this.ToFolderTextBox = new System.Windows.Forms.TextBox();
             this.ToFolderButton = new System.Windows.Forms.Button();
+            this.ToFolderTextBox = new System.Windows.Forms.TextBox();
+            this.ToFolderLabel = new System.Windows.Forms.Label();
+            this.FromFolderButton = new System.Windows.Forms.Button();
+            this.FromFolderTextBox = new System.Windows.Forms.TextBox();
+            this.FromFolderLabel = new System.Windows.Forms.Label();
             this.ClassificationSettingGroupBox = new System.Windows.Forms.GroupBox();
-            this.ClassifyAsDataGridView = new System.Windows.Forms.DataGridView();
-            this.CreateFolderIfNotExistCheckBox = new System.Windows.Forms.CheckBox();
-            this.ButtonExecute = new System.Windows.Forms.Button();
             this.ClassifyAsLabel = new System.Windows.Forms.Label();
+            this.CreateFolderIfNotExistCheckBox = new System.Windows.Forms.CheckBox();
+            this.ClassifyAsDataGridView = new System.Windows.Forms.DataGridView();
+            this.ButtonExecute = new System.Windows.Forms.Button();
+            this.SaveSettingButton = new System.Windows.Forms.Button();
             this.FolderSettingGroupBox.SuspendLayout();
             this.ClassificationSettingGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClassifyAsDataGridView)).BeginInit();
@@ -55,60 +56,64 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.FolderSettingGroupBox.Controls.Add(this.FromFolderLabel);
             this.FolderSettingGroupBox.Location = new System.Drawing.Point(12, 12);
             this.FolderSettingGroupBox.Name = "FolderSettingGroupBox";
-            this.FolderSettingGroupBox.Size = new System.Drawing.Size(286, 110);
+            this.FolderSettingGroupBox.Size = new System.Drawing.Size(293, 110);
             this.FolderSettingGroupBox.TabIndex = 0;
             this.FolderSettingGroupBox.TabStop = false;
             this.FolderSettingGroupBox.Text = "フォルダー設定";
             // 
-            // FromFolderLabel
+            // ToFolderButton
             // 
-            this.FromFolderLabel.AutoSize = true;
-            this.FromFolderLabel.Location = new System.Drawing.Point(6, 19);
-            this.FromFolderLabel.Name = "FromFolderLabel";
-            this.FromFolderLabel.Size = new System.Drawing.Size(47, 15);
-            this.FromFolderLabel.TabIndex = 0;
-            this.FromFolderLabel.Text = "コピー元:";
+            this.ToFolderButton.Location = new System.Drawing.Point(212, 80);
+            this.ToFolderButton.Name = "ToFolderButton";
+            this.ToFolderButton.Size = new System.Drawing.Size(75, 23);
+            this.ToFolderButton.TabIndex = 5;
+            this.ToFolderButton.Text = "選択...";
+            this.ToFolderButton.UseVisualStyleBackColor = true;
+            this.ToFolderButton.Click += new System.EventHandler(this.ToFolderButton_Click);
             // 
-            // FromFolderTextBox
+            // ToFolderTextBox
             // 
-            this.FromFolderTextBox.Location = new System.Drawing.Point(6, 37);
-            this.FromFolderTextBox.Name = "FromFolderTextBox";
-            this.FromFolderTextBox.Size = new System.Drawing.Size(100, 23);
-            this.FromFolderTextBox.TabIndex = 1;
-            // 
-            // FromFolderButton
-            // 
-            this.FromFolderButton.Location = new System.Drawing.Point(112, 37);
-            this.FromFolderButton.Name = "FromFolderButton";
-            this.FromFolderButton.Size = new System.Drawing.Size(75, 23);
-            this.FromFolderButton.TabIndex = 2;
-            this.FromFolderButton.Text = "選択...";
-            this.FromFolderButton.UseVisualStyleBackColor = true;
+            this.ToFolderTextBox.Location = new System.Drawing.Point(6, 81);
+            this.ToFolderTextBox.Name = "ToFolderTextBox";
+            this.ToFolderTextBox.Size = new System.Drawing.Size(200, 23);
+            this.ToFolderTextBox.TabIndex = 4;
             // 
             // ToFolderLabel
             // 
             this.ToFolderLabel.AutoSize = true;
             this.ToFolderLabel.Location = new System.Drawing.Point(6, 63);
             this.ToFolderLabel.Name = "ToFolderLabel";
-            this.ToFolderLabel.Size = new System.Drawing.Size(47, 15);
+            this.ToFolderLabel.Size = new System.Drawing.Size(46, 15);
             this.ToFolderLabel.TabIndex = 3;
-            this.ToFolderLabel.Text = "コピー先:";
+            this.ToFolderLabel.Text = "移動先:";
             // 
-            // ToFolderTextBox
+            // FromFolderButton
             // 
-            this.ToFolderTextBox.Location = new System.Drawing.Point(6, 81);
-            this.ToFolderTextBox.Name = "ToFolderTextBox";
-            this.ToFolderTextBox.Size = new System.Drawing.Size(100, 23);
-            this.ToFolderTextBox.TabIndex = 4;
+            this.FromFolderButton.Location = new System.Drawing.Point(212, 37);
+            this.FromFolderButton.Name = "FromFolderButton";
+            this.FromFolderButton.Size = new System.Drawing.Size(75, 23);
+            this.FromFolderButton.TabIndex = 2;
+            this.FromFolderButton.Text = "選択...";
+            this.FromFolderButton.UseVisualStyleBackColor = true;
+            this.FromFolderButton.Click += new System.EventHandler(this.FromFolderButton_Click);
             // 
-            // ToFolderButton
+            // FromFolderTextBox
             // 
-            this.ToFolderButton.Location = new System.Drawing.Point(112, 81);
-            this.ToFolderButton.Name = "ToFolderButton";
-            this.ToFolderButton.Size = new System.Drawing.Size(75, 23);
-            this.ToFolderButton.TabIndex = 5;
-            this.ToFolderButton.Text = "選択...";
-            this.ToFolderButton.UseVisualStyleBackColor = true;
+            this.FromFolderTextBox.BackColor = System.Drawing.Color.White;
+            this.FromFolderTextBox.ForeColor = System.Drawing.Color.Black;
+            this.FromFolderTextBox.Location = new System.Drawing.Point(6, 37);
+            this.FromFolderTextBox.Name = "FromFolderTextBox";
+            this.FromFolderTextBox.Size = new System.Drawing.Size(200, 23);
+            this.FromFolderTextBox.TabIndex = 1;
+            // 
+            // FromFolderLabel
+            // 
+            this.FromFolderLabel.AutoSize = true;
+            this.FromFolderLabel.Location = new System.Drawing.Point(6, 19);
+            this.FromFolderLabel.Name = "FromFolderLabel";
+            this.FromFolderLabel.Size = new System.Drawing.Size(46, 15);
+            this.FromFolderLabel.TabIndex = 0;
+            this.FromFolderLabel.Text = "移動元:";
             // 
             // ClassificationSettingGroupBox
             // 
@@ -122,15 +127,14 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ClassificationSettingGroupBox.TabStop = false;
             this.ClassificationSettingGroupBox.Text = "振り分け設定";
             // 
-            // ClassifyAsDataGridView
+            // ClassifyAsLabel
             // 
-            this.ClassifyAsDataGridView.BackgroundColor = System.Drawing.Color.DarkGray;
-            this.ClassifyAsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ClassifyAsDataGridView.Location = new System.Drawing.Point(6, 62);
-            this.ClassifyAsDataGridView.Name = "ClassifyAsDataGridView";
-            this.ClassifyAsDataGridView.RowTemplate.Height = 21;
-            this.ClassifyAsDataGridView.Size = new System.Drawing.Size(240, 150);
-            this.ClassifyAsDataGridView.TabIndex = 0;
+            this.ClassifyAsLabel.AutoSize = true;
+            this.ClassifyAsLabel.Location = new System.Drawing.Point(6, 44);
+            this.ClassifyAsLabel.Name = "ClassifyAsLabel";
+            this.ClassifyAsLabel.Size = new System.Drawing.Size(160, 15);
+            this.ClassifyAsLabel.TabIndex = 2;
+            this.ClassifyAsLabel.Text = "IDと異なるフォルダーに振り分ける";
             // 
             // CreateFolderIfNotExistCheckBox
             // 
@@ -142,23 +146,35 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.CreateFolderIfNotExistCheckBox.Text = "対応するフォルダーがない場合は作成する";
             this.CreateFolderIfNotExistCheckBox.UseVisualStyleBackColor = true;
             // 
+            // ClassifyAsDataGridView
+            // 
+            this.ClassifyAsDataGridView.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.ClassifyAsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ClassifyAsDataGridView.Location = new System.Drawing.Point(6, 62);
+            this.ClassifyAsDataGridView.Name = "ClassifyAsDataGridView";
+            this.ClassifyAsDataGridView.RowTemplate.Height = 21;
+            this.ClassifyAsDataGridView.Size = new System.Drawing.Size(240, 150);
+            this.ClassifyAsDataGridView.TabIndex = 0;
+            // 
             // ButtonExecute
             // 
-            this.ButtonExecute.Location = new System.Drawing.Point(223, 454);
+            this.ButtonExecute.Location = new System.Drawing.Point(223, 483);
             this.ButtonExecute.Name = "ButtonExecute";
             this.ButtonExecute.Size = new System.Drawing.Size(75, 23);
             this.ButtonExecute.TabIndex = 2;
             this.ButtonExecute.Text = "実行";
             this.ButtonExecute.UseVisualStyleBackColor = true;
+            this.ButtonExecute.Click += new System.EventHandler(this.ButtonExecute_Click);
             // 
-            // ClassifyAsLabel
+            // SaveSettingButton
             // 
-            this.ClassifyAsLabel.AutoSize = true;
-            this.ClassifyAsLabel.Location = new System.Drawing.Point(6, 44);
-            this.ClassifyAsLabel.Name = "ClassifyAsLabel";
-            this.ClassifyAsLabel.Size = new System.Drawing.Size(160, 15);
-            this.ClassifyAsLabel.TabIndex = 2;
-            this.ClassifyAsLabel.Text = "IDと異なるフォルダーに振り分ける";
+            this.SaveSettingButton.Location = new System.Drawing.Point(198, 454);
+            this.SaveSettingButton.Name = "SaveSettingButton";
+            this.SaveSettingButton.Size = new System.Drawing.Size(100, 23);
+            this.SaveSettingButton.TabIndex = 3;
+            this.SaveSettingButton.Text = "設定を保存";
+            this.SaveSettingButton.UseVisualStyleBackColor = true;
+            this.SaveSettingButton.Click += new System.EventHandler(this.SaveSettingButton_Click);
             // 
             // MainForm
             // 
@@ -166,6 +182,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(584, 561);
+            this.Controls.Add(this.SaveSettingButton);
             this.Controls.Add(this.ButtonExecute);
             this.Controls.Add(this.ClassificationSettingGroupBox);
             this.Controls.Add(this.FolderSettingGroupBox);
@@ -199,5 +216,6 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         private System.Windows.Forms.CheckBox CreateFolderIfNotExistCheckBox;
         private System.Windows.Forms.Button ButtonExecute;
         private System.Windows.Forms.Label ClassifyAsLabel;
+        private System.Windows.Forms.Button SaveSettingButton;
     }
 }
