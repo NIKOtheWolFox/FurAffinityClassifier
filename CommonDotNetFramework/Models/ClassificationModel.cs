@@ -53,6 +53,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                     var foldersOnTo = Directory.GetDirectories(settingData.ToFolder);
                     var folderTo = string.Empty;
                     ////foldersOnTo.Contains(foldername);
+                    ////TODO:LINQ使って短くする(なんかあるはずだが)
                     foreach(var folderOnTo in foldersOnTo)
                     {
                         if (foldername.TrimEnd('.')== Path.GetFileName(folderOnTo).ToLower().Replace("_", string.Empty))
@@ -77,6 +78,8 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                         }
                     }
                 }
+
+                ////TODO:ファイルを移動先に移動する
 
                 Console.WriteLine("＼(^o^)／");
             }
