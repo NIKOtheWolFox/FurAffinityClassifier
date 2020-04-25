@@ -52,16 +52,16 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                     ////Console.WriteLine($"path {folderpath} exist? : {Directory.Exists(folderpath)}");
                     var foldersOnTo = Directory.GetDirectories(settingData.ToFolder);
                     var folderTo = string.Empty;
-                    ////foldersOnTo.Contains(foldername);
-                    ////TODO:LINQ使って短くする(なんかあるはずだが)
-                    foreach(var folderOnTo in foldersOnTo)
+                    var matchedfolder = foldersOnTo.Where(ff => foldername.TrimEnd('.') == Path.GetFileName(ff).ToLower().Replace("_", string.Empty));
+                    if (matchedfolder.Count() > 1)
                     {
-                        if (foldername.TrimEnd('.')== Path.GetFileName(folderOnTo).ToLower().Replace("_", string.Empty))
-                        {
-                            folderTo = folderOnTo;
-                            Console.WriteLine($"forder for ID({id}) is to {Path.GetFileName(folderOnTo)}");
-                            break;
-                        }
+                        Console.WriteLine($"multiple fromders for {foldername}");
+                        continue;
+                    }
+                    else if (matchedfolder.Count() == 1)
+                    {
+                        folderTo = matchedfolder.First();
+                        Console.WriteLine($"folder for ID({id}) is to {folderTo}");
                     }
 
                     if (string.IsNullOrEmpty(folderTo))
