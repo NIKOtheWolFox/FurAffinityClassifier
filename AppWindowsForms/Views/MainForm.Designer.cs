@@ -122,7 +122,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ClassificationSettingGroupBox.Controls.Add(this.ClassifyAsDataGridView);
             this.ClassificationSettingGroupBox.Location = new System.Drawing.Point(12, 128);
             this.ClassificationSettingGroupBox.Name = "ClassificationSettingGroupBox";
-            this.ClassificationSettingGroupBox.Size = new System.Drawing.Size(286, 320);
+            this.ClassificationSettingGroupBox.Size = new System.Drawing.Size(293, 268);
             this.ClassificationSettingGroupBox.TabIndex = 1;
             this.ClassificationSettingGroupBox.TabStop = false;
             this.ClassificationSettingGroupBox.Text = "振り分け設定";
@@ -153,12 +153,12 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ClassifyAsDataGridView.Location = new System.Drawing.Point(6, 62);
             this.ClassifyAsDataGridView.Name = "ClassifyAsDataGridView";
             this.ClassifyAsDataGridView.RowTemplate.Height = 21;
-            this.ClassifyAsDataGridView.Size = new System.Drawing.Size(240, 150);
+            this.ClassifyAsDataGridView.Size = new System.Drawing.Size(281, 200);
             this.ClassifyAsDataGridView.TabIndex = 0;
             // 
             // ButtonExecute
             // 
-            this.ButtonExecute.Location = new System.Drawing.Point(223, 483);
+            this.ButtonExecute.Location = new System.Drawing.Point(230, 431);
             this.ButtonExecute.Name = "ButtonExecute";
             this.ButtonExecute.Size = new System.Drawing.Size(75, 23);
             this.ButtonExecute.TabIndex = 2;
@@ -168,7 +168,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             // 
             // SaveSettingButton
             // 
-            this.SaveSettingButton.Location = new System.Drawing.Point(198, 454);
+            this.SaveSettingButton.Location = new System.Drawing.Point(205, 402);
             this.SaveSettingButton.Name = "SaveSettingButton";
             this.SaveSettingButton.Size = new System.Drawing.Size(100, 23);
             this.SaveSettingButton.TabIndex = 3;
@@ -181,7 +181,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(584, 561);
+            this.ClientSize = new System.Drawing.Size(317, 466);
             this.Controls.Add(this.SaveSettingButton);
             this.Controls.Add(this.ButtonExecute);
             this.Controls.Add(this.ClassificationSettingGroupBox);
