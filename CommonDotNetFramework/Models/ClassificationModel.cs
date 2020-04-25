@@ -36,6 +36,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                     else
                     {
                         Console.WriteLine($"cannot find id from {f}");
+                        continue;
                     }
                 }
             }
