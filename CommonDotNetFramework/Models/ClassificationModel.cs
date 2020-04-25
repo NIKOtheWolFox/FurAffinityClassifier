@@ -33,13 +33,22 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                     if (match.Success)
                     {
                         id = match.Groups["id"].Value;
-                        Console.WriteLine($"id from {f} is {match.Groups["id"].Value}");
+                        ////Console.WriteLine($"id from {f} is {match.Groups["id"].Value}");
                     }
                     else
                     {
-                        Console.WriteLine($"cannot find id from {f}");
+                        ////Console.WriteLine($"cannot find id from {f}");
                         continue;
                     }
+
+                    string foldername = id;
+                    if (settingData.IdFolderMappings.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
+                    {
+                        foldername = settingData.IdFolderMappings.Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()).FirstOrDefault().FolderName;
+                        Console.WriteLine($"ID({id}) is to {foldername}");
+                    }
+
+
                 }
             }
             catch (Exception e)
