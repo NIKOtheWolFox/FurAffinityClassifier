@@ -31,10 +31,9 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
 
             try
             {
-                var files = Directory.GetFiles(settingData.FromFolder);
-                ////files.ToList().ForEach(f => Console.WriteLine(f));
-                var files2 = files.Where(f => Regex.IsMatch(Path.GetFileName(f), @"[0-9]+\.[a-z0-9-~^.]{3,}_.*"));
-                ////files2.ToList().ForEach(f => Console.WriteLine(f));
+                var files2 = Directory.GetFiles(settingData.FromFolder)
+                    .Where(f => Regex.IsMatch(Path.GetFileName(f), @"[0-9]+\.[a-z0-9-~^.]{3,}_.*"));
+                /*
                 foreach (var f in files2)
                 {
                     var match = Regex.Match(f, @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
@@ -93,6 +92,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
 
                     Console.WriteLine($"DONE : {f} -> {Path.Combine(folderTo, filename)}");
                 }
+                */
             }
             catch (Exception e)
             {
