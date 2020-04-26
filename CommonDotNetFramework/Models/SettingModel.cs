@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FurAffinityClassifier.CommonDotNetFramework.Datas;
+using log4net;
 using Newtonsoft.Json;
 
 namespace FurAffinityClassifier.CommonDotNetFramework.Models
@@ -15,6 +16,11 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
     public class SettingModel
     {
         #region Private Field
+
+        /// <summary>
+        /// log4netのロガー
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(SettingModel));
 
         /// <summary>
         /// 設定ファイルのパス
@@ -31,7 +37,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
         /// <returns>設定データ</returns>
         public SettingData Load()
         {
-            SettingData settingData = null;
+            var settingData = new SettingData();
 
             try
             {
@@ -42,14 +48,10 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                         settingData = JsonConvert.DeserializeObject<SettingData>(reader.ReadToEnd());
                     }
                 }
-                else
-                {
-                    settingData = new SettingData();
-                }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Logger.Error(e.ToString());
                 settingData = null;
             }
 
@@ -63,7 +65,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
         /// <returns>実行結果</returns>
         public bool Save(SettingData settingData)
         {
-            bool result = true;
+            var result = true;
 
             try
             {
@@ -74,7 +76,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
             }
             catch (Exception e)
             {
-                // Should I log here?
+                Logger.Error(e.ToString());
                 result = false;
             }
 

@@ -104,11 +104,13 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
         /// <summary>
         /// 設定を読み込む
         /// </summary>
-        /// <returns>実行結果</returns>
-        public bool LoadSetting()
+        public void LoadSetting()
         {
             settingData = new SettingModel().Load();
-            return settingData != null;
+            if (settingData == null)
+            {
+                settingData = new SettingData();
+            }
         }
 
         /// <summary>
@@ -128,37 +130,6 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
         {
             return new ClassificationModel().Execute(settingData);
         }
-
-        /*
-        public void UpdateFromFolder(string path)
-        {
-            settingData.FromFolder = path;
-        }
-
-        public void UpdateToFolder(string path)
-        {
-            settingData.ToFolder = path;
-        }
-
-        public void UpdateCreateFolderIfNotExist(bool enable)
-        {
-            settingData.CreateFolderIfNotExist = enable;
-        }
-
-        public bool UpdateClassifyAs(string id, string folderName)
-        {
-            bool result = true;
-
-            return result;
-        }
-
-        public bool DeleteClassifyAs(string id, string folderName)
-        {
-            bool result = true;
-
-            return result;
-        }
-        */
 
         #endregion
     }
