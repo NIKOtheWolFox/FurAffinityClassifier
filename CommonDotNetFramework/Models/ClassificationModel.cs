@@ -31,7 +31,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
 
             try
             {
-                var files2 = Directory.GetFiles(settingData.FromFolder)
+                var files = Directory.GetFiles(settingData.FromFolder)
                     .Where(f => Regex.IsMatch(Path.GetFileName(f), @"[0-9]+\.[a-z0-9-~^.]{3,}_.*"));
                 /*
                 foreach (var f in files2)
