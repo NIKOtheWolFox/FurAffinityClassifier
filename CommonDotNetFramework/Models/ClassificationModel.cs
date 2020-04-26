@@ -33,6 +33,24 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
             {
                 var files = Directory.GetFiles(settingData.FromFolder)
                     .Where(f => Regex.IsMatch(Path.GetFileName(f), @"[0-9]+\.[a-z0-9-~^.]{3,}_.*"));
+                foreach (var file in files)
+                {
+                    var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
+                    if (!match.Success)
+                    {
+                        continue;
+                    }
+
+                    var id = match.Groups["id"].Value;
+
+                    var folderName = id;
+                    if (settingData.IdFolderMappings.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
+                    {
+                        folderName = settingData.IdFolderMappings
+                            .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()).FirstOrDefault()
+                            .FolderName;
+                    }
+                }
                 /*
                 foreach (var f in files2)
                 {
