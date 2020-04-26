@@ -25,10 +25,6 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
         {
             bool result = true;
 
-            //// TODO : 不要なコメントの削除
-            //// TODO : 不要なコンソール出力の削除(ログ出力？)
-            //// TODO : リファクタリング
-
             try
             {
                 var files = Directory.GetFiles(settingData.FromFolder)
