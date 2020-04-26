@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using FurAffinityClassifier.AppWindowsForms.ViewModels;
 using FurAffinityClassifier.CommonDotNetFramework.Datas;
 using FurAffinityClassifier.CommonDotNetFramework.Models;
+using log4net;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace FurAffinityClassifier.AppWindowsForms.Views
@@ -21,6 +22,11 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
     public partial class MainForm : Form
     {
         #region Private Field
+
+        /// <summary>
+        /// log4netのロガー
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(MainForm));
 
         /// <summary>
         /// ViewModel
@@ -46,6 +52,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// </summary>
         public MainForm()
         {
+            Logger.Debug("メイン画面の作成");
             InitializeComponent();
 
             SetDataGridView();
