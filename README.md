@@ -17,6 +17,10 @@ Unzip and execute the .exe file.
 * Fit to multilingual (This app have GUI in Japanese only)
 * Fit to .NET Core
 
+### License
+MIT License
+(c) 2020 NIKO
+
 ***
 ## 日本語/Japanese
 
@@ -33,3 +37,7 @@ zipファイルを解凍し、.exeファイルを実行してください。
 ### 今後の予定
 * 多言語対応 (現在GUIは日本語のみ)
 * .NET Core対応
+
+### ライセンス
+MITライセンス
+(c) 2020 NIKO
