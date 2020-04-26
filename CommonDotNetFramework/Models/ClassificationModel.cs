@@ -67,6 +67,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                     {
                         if (settingData.CreateFolderIfNotExist)
                         {
+                            folderName = id.TrimEnd('.');
                             Directory.CreateDirectory(Path.Combine(settingData.ToFolder, folderName));
                         }
                         else
