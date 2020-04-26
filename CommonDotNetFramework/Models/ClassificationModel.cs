@@ -81,7 +81,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                // Should I log here?
                 result = false;
             }
 
