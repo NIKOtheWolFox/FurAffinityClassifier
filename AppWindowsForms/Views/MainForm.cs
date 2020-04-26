@@ -52,7 +52,6 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// </summary>
         public MainForm()
         {
-            Logger.Debug("メイン画面の作成");
             InitializeComponent();
 
             SetDataGridView();
