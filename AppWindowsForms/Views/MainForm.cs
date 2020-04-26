@@ -179,7 +179,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// </summary>
         /// <param name="sender">イベント発生元</param>
         /// <param name="e">イベントパラメーター</param>
-        private void ButtonExecute_Click(object sender, EventArgs e)
+        private void ExecuteButton_Click(object sender, EventArgs e)
         {
             var result = viewModel.ExecuteClassification();
             using (
