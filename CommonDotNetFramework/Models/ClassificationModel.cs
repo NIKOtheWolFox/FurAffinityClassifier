@@ -52,16 +52,16 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                     }
                     else
                     {
-                        var matchedfolder = Directory.GetDirectories(settingData.ToFolder)
+                        var matchedFolder = Directory.GetDirectories(settingData.ToFolder)
                             .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
-                        if (matchedfolder.Count() > 1)
+                        if (matchedFolder.Count() > 1)
                         {
                             // Should I log here?
                             continue;
                         }
-                        else if (matchedfolder.Count() == 1)
+                        else if (matchedFolder.Count() == 1)
                         {
-                            folderName = Path.GetFileName(matchedfolder.First());
+                            folderName = Path.GetFileName(matchedFolder.First());
                         }
                     }
 
@@ -71,14 +71,19 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                     {
                         if (settingData.CreateFolderIfNotExist)
                         {
-                            Directory.CreateDirectory(Path.Combine(settingData.ToFolder, folderName.TrimEnd('.')));
+                            Directory.CreateDirectory(Path.Combine(settingData.ToFolder, folderName));
                         }
                         else
                         {
                             continue;
                         }
                     }
+
+                    File.Move(
+                        file,
+                        Path.Combine(settingData.ToFolder, folderName, Path.GetFileName(file)));
                 }
+
                 /*
                 foreach (var f in files2)
                 {
