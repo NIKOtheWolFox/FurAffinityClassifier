@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using FurAffinityClassifier.AppWindowsForms.Datas;
 using FurAffinityClassifier.CommonDotNetFramework.Datas;
 using FurAffinityClassifier.CommonDotNetFramework.Models;
 
@@ -117,6 +119,40 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
         public bool SaveSetting()
         {
             return new SettingModel().Save(settingData);
+        }
+
+        /// <summary>
+        /// 設定を検証する
+        /// </summary>
+        /// <returns>検証結果</returns>
+        public Dictionary<string, bool> ValidateSetting()
+        {
+            var result = new Dictionary<string, bool>
+            {
+                { Const.ValidationResultKeyFromFolder, true },
+                { Const.ValidationResultKeyToFolder, true },
+                { Const.ValidationResultKeyMapping, true },
+            };
+
+            if (string.IsNullOrEmpty(settingData.FromFolder)
+                || !Directory.Exists(settingData.FromFolder))
+            {
+                result[Const.ValidationResultKeyFromFolder] = false;
+            }
+
+            if (string.IsNullOrEmpty(settingData.ToFolder)
+                || !Directory.Exists(settingData.ToFolder))
+            {
+                result[Const.ValidationResultKeyToFolder] = false;
+            }
+
+            if (settingData.IdFolderMappings.Exists(mapping => string.IsNullOrEmpty(mapping.Id))
+                || settingData.IdFolderMappings.Exists(mapping => string.IsNullOrEmpty(mapping.FolderName)))
+            {
+                result[Const.ValidationResultKeyMapping] = false;
+            }
+
+            return result;
         }
 
         /// <summary>

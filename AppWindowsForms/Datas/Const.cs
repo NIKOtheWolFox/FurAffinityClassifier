@@ -20,5 +20,20 @@ namespace FurAffinityClassifier.AppWindowsForms.Datas
         /// 列名 フォルダー名
         /// </summary>
         public const string ColumnNameFolderName = "folder_name";
+
+        /// <summary>
+        /// 設定検証結果 移動元
+        /// </summary>
+        public const string ValidationResultKeyFromFolder = "from_folder";
+
+        /// <summary>
+        /// 設定検証結果 移動先
+        /// </summary>
+        public const string ValidationResultKeyToFolder = "to_folder";
+
+        /// <summary>
+        /// 設定検証結果 IDとフォルダーの紐付け
+        /// </summary>
+        public const string ValidationResultKeyMapping = "mapping";
     }
 }

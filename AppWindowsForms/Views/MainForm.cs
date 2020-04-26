@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using FurAffinityClassifier.AppWindowsForms.Datas;
 using FurAffinityClassifier.AppWindowsForms.ViewModels;
@@ -184,15 +185,51 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// <param name="e">イベントパラメーター</param>
         private void ExecuteButton_Click(object sender, EventArgs e)
         {
-            var result = viewModel.ExecuteClassification();
+            var validationResult = viewModel.ValidateSetting();
+            if (validationResult.ContainsValue(false))
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                if (!validationResult[Const.ValidationResultKeyFromFolder])
+                {
+                    stringBuilder.AppendLine("移動元フォルダーが不正です。");
+                }
+
+                if (!validationResult[Const.ValidationResultKeyToFolder])
+                {
+                    stringBuilder.AppendLine("移動先フォルダーが不正です。");
+                }
+
+                if (!validationResult[Const.ValidationResultKeyMapping])
+                {
+                    stringBuilder.AppendLine("振り分け設定が不正です。");
+                }
+
+                using (
+                    var dialog = new TaskDialog()
+                    {
+                        OwnerWindowHandle = Handle,
+                        StartupLocation = TaskDialogStartupLocation.CenterOwner,
+                        Icon = TaskDialogStandardIcon.Error,
+                        Caption = "設定を確認してください",
+                        Text = stringBuilder.ToString(),
+                        StandardButtons = TaskDialogStandardButtons.Ok,
+                    })
+                {
+                    dialog.Show();
+                }
+
+                return;
+            }
+
+            var ClassificationResult = viewModel.ExecuteClassification();
             using (
                 var dialog = new TaskDialog()
                 {
                     OwnerWindowHandle = Handle,
                     StartupLocation = TaskDialogStartupLocation.CenterOwner,
-                    Icon = result ? TaskDialogStandardIcon.Information : TaskDialogStandardIcon.Error,
+                    Icon = ClassificationResult ? TaskDialogStandardIcon.Information : TaskDialogStandardIcon.Error,
                     Caption = "ファイルの分類",
-                    Text = result ? "ファイルの分類が完了しました。" : "ファイルの分類に失敗しました。",
+                    Text = ClassificationResult ? "ファイルの分類が完了しました。" : "ファイルの分類に失敗しました。",
                     StandardButtons = TaskDialogStandardButtons.Ok,
                 })
             {
