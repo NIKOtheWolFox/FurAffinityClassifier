@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using FurAffinityClassifier.AppWindowsForms.Datas;
 using FurAffinityClassifier.AppWindowsForms.ViewModels;
 using log4net;
 using Microsoft.WindowsAPICodePack.Dialogs;
@@ -70,8 +71,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             foreach (var classifyAsData in viewModel.ClassifyAs)
             {
                 var row = dataTable.NewRow();
-                row["id"] = classifyAsData.Key;
-                row["folder_name"] = classifyAsData.Value;
+                row[Const.ColumnNameId] = classifyAsData.Key;
+                row[Const.ColumnNameFolderName] = classifyAsData.Value;
                 dataTable.Rows.Add(row);
             }
 
@@ -80,20 +81,22 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 viewModel.ClassifyAs = dataTable
                     .AsEnumerable()
                     .Where(
-                        row => !string.IsNullOrEmpty(row["id"].ToString()) && !string.IsNullOrEmpty(row["folder_name"].ToString()))
+                        row => !string.IsNullOrEmpty(row[Const.ColumnNameId].ToString())
+                            && !string.IsNullOrEmpty(row[Const.ColumnNameFolderName].ToString()))
                     .ToDictionary(
-                        row => row["id"].ToString(),
-                        row => row["folder_name"].ToString());
+                        row => row[Const.ColumnNameId].ToString(),
+                        row => row[Const.ColumnNameFolderName].ToString());
             };
             dataTable.RowChanged += (s, ea) =>
             {
                 viewModel.ClassifyAs = dataTable
                     .AsEnumerable()
                     .Where(
-                        row => !string.IsNullOrEmpty(row["id"].ToString()) && !string.IsNullOrEmpty(row["folder_name"].ToString()))
+                        row => !string.IsNullOrEmpty(row[Const.ColumnNameId].ToString())
+                            && !string.IsNullOrEmpty(row[Const.ColumnNameFolderName].ToString()))
                     .ToDictionary(
-                        row => row["id"].ToString(),
-                        row => row["folder_name"].ToString());
+                        row => row[Const.ColumnNameId].ToString(),
+                        row => row[Const.ColumnNameFolderName].ToString());
             };
         }
 
@@ -212,8 +215,8 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// </summary>
         private void SetDataGridView()
         {
-            dataTable.Columns.Add("id", typeof(string));
-            dataTable.Columns.Add("folder_name", typeof(string));
+            dataTable.Columns.Add(Const.ColumnNameId, typeof(string));
+            dataTable.Columns.Add(Const.ColumnNameFolderName, typeof(string));
 
             bindingSource.DataSource = dataTable;
             ClassifyAsDataGridView.DataSource = bindingSource;
