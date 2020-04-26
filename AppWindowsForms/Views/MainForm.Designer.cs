@@ -30,6 +30,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.FolderSettingGroupBox = new System.Windows.Forms.GroupBox();
             this.ToFolderButton = new System.Windows.Forms.Button();
             this.ToFolderTextBox = new System.Windows.Forms.TextBox();
@@ -213,6 +214,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.Controls.Add(this.FolderSettingGroupBox);
             this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ForeColor = System.Drawing.Color.Black;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
