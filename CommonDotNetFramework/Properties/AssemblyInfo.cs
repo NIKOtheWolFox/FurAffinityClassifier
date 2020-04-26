@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("CommonDotNetFramework")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Fur Affinity Classifier Common Module for .NET Framework")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("CommonDotNetFramework")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("Copyright © 2020 NIKO")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
