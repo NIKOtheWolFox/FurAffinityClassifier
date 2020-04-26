@@ -129,37 +129,6 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
             return new ClassificationModel().Execute(settingData);
         }
 
-        /*
-        public void UpdateFromFolder(string path)
-        {
-            settingData.FromFolder = path;
-        }
-
-        public void UpdateToFolder(string path)
-        {
-            settingData.ToFolder = path;
-        }
-
-        public void UpdateCreateFolderIfNotExist(bool enable)
-        {
-            settingData.CreateFolderIfNotExist = enable;
-        }
-
-        public bool UpdateClassifyAs(string id, string folderName)
-        {
-            bool result = true;
-
-            return result;
-        }
-
-        public bool DeleteClassifyAs(string id, string folderName)
-        {
-            bool result = true;
-
-            return result;
-        }
-        */
-
         #endregion
     }
 }
