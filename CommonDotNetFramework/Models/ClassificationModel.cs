@@ -43,12 +43,40 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
 
                     var id = match.Groups["id"].Value;
 
-                    var folderName = id;
+                    var folderName = string.Empty;
                     if (settingData.IdFolderMappings.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
                     {
                         folderName = settingData.IdFolderMappings
                             .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()).FirstOrDefault()
                             .FolderName;
+                    }
+                    else
+                    {
+                        var matchedfolder = Directory.GetDirectories(settingData.ToFolder)
+                            .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
+                        if (matchedfolder.Count() > 1)
+                        {
+                            // Should I log here?
+                            continue;
+                        }
+                        else if (matchedfolder.Count() == 1)
+                        {
+                            folderName = Path.GetFileName(matchedfolder.First());
+                        }
+                    }
+
+                    Console.WriteLine($"folder for ID({id}) is to {(string.IsNullOrEmpty(folderName) ? "<not found>" : folderName)}");
+
+                    if (string.IsNullOrEmpty(folderName))
+                    {
+                        if (settingData.CreateFolderIfNotExist)
+                        {
+                            Directory.CreateDirectory(Path.Combine(settingData.ToFolder, folderName.TrimEnd('.')));
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
                 }
                 /*
