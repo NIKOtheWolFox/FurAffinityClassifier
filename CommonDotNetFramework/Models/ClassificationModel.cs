@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FurAffinityClassifier.CommonDotNetFramework.Datas;
+using log4net;
 
 namespace FurAffinityClassifier.CommonDotNetFramework.Models
 {
@@ -14,6 +15,15 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
     /// </summary>
     public class ClassificationModel
     {
+        #region Private Field
+
+        /// <summary>
+        /// log4netのロガー
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(ClassificationModel));
+
+        #endregion
+
         #region Public Method
 
         /// <summary>
@@ -52,7 +62,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                             .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
                         if (matchedFolder.Count() > 1)
                         {
-                            // Should I log here?
+                            Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
                             continue;
                         }
                         else if (matchedFolder.Count() == 1)
@@ -81,7 +91,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
             }
             catch (Exception e)
             {
-                // Should I log here?
+                Logger.Error(e.ToString());
                 result = false;
             }
 
