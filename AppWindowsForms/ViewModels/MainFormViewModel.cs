@@ -104,11 +104,13 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
         /// <summary>
         /// 設定を読み込む
         /// </summary>
-        /// <returns>実行結果</returns>
-        public bool LoadSetting()
+        public void LoadSetting()
         {
             settingData = new SettingModel().Load();
-            return settingData != null;
+            if (settingData == null)
+            {
+                settingData = new SettingData();
+            }
         }
 
         /// <summary>
