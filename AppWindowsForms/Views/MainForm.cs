@@ -183,16 +183,19 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// <param name="e">イベントパラメーター</param>
         private void ButtonExecute_Click(object sender, EventArgs e)
         {
-            var model = new SettingModel();
-            var data = model.Load();
-            if (data == null)
+            var result = viewModel.ExecuteClassification();
+            using (
+                var dialog = new TaskDialog()
+                {
+                    OwnerWindowHandle = Handle,
+                    StartupLocation = TaskDialogStartupLocation.CenterOwner,
+                    Icon = result ? TaskDialogStandardIcon.Information : TaskDialogStandardIcon.Error,
+                    Caption = "ファイルの分類",
+                    Text = result ? "ファイルの分類が完了しました。" : "ファイルの分類に失敗しました。",
+                    StandardButtons = TaskDialogStandardButtons.Ok,
+                })
             {
-                Console.WriteLine("fuck");
-            }
-            else
-            {
-                Console.WriteLine($"from={data.FromFolder}");
-                Console.WriteLine($"to={data.ToFolder}");
+                dialog.Show();
             }
         }
 
