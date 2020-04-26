@@ -61,8 +61,6 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                         }
                     }
 
-                    Console.WriteLine($"folder for ID({id}) is to {(string.IsNullOrEmpty(folderName) ? "<not found>" : folderName)}");
-
                     if (string.IsNullOrEmpty(folderName))
                     {
                         if (settingData.CreateFolderIfNotExist)
