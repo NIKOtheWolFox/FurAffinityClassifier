@@ -183,9 +183,20 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
         /// <param name="e">イベントパラメーター</param>
         private void ButtonExecute_Click(object sender, EventArgs e)
         {
-            //// TODO : 終わったら通知！
-            //// TODO : async/await必要？
-            viewModel.ExecuteClassification();
+            var result = viewModel.ExecuteClassification();
+            using (
+                var dialog = new TaskDialog()
+                {
+                    OwnerWindowHandle = Handle,
+                    StartupLocation = TaskDialogStartupLocation.CenterOwner,
+                    Icon = result ? TaskDialogStandardIcon.Information : TaskDialogStandardIcon.Error,
+                    Caption = "ファイルの分類",
+                    Text = result ? "ファイルの分類が完了しました。" : "ファイルの分類に失敗しました。",
+                    StandardButtons = TaskDialogStandardButtons.Ok,
+                })
+            {
+                dialog.Show();
+            }
         }
 
         /// <summary>

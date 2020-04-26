@@ -123,9 +123,10 @@ namespace FurAffinityClassifier.AppWindowsForms.ViewModels
         /// <summary>
         /// 分類を実行する
         /// </summary>
-        public void ExecuteClassification()
+        /// <returns>実行結果</returns>
+        public bool ExecuteClassification()
         {
-            new ClassificationModel().Execute(settingData);
+            return new ClassificationModel().Execute(settingData);
         }
 
         /*
