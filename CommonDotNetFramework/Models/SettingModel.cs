@@ -31,7 +31,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
         /// <returns>設定データ</returns>
         public SettingData Load()
         {
-            SettingData settingData = null;
+            var settingData = new SettingData();
 
             try
             {
@@ -41,10 +41,6 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
                     {
                         settingData = JsonConvert.DeserializeObject<SettingData>(reader.ReadToEnd());
                     }
-                }
-                else
-                {
-                    settingData = new SettingData();
                 }
             }
             catch (Exception e)
@@ -63,7 +59,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
         /// <returns>実行結果</returns>
         public bool Save(SettingData settingData)
         {
-            bool result = true;
+            var result = true;
 
             try
             {

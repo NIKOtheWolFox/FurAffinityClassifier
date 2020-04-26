@@ -23,7 +23,7 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
         /// <returns>実行結果</returns>
         public bool Execute(SettingData settingData)
         {
-            bool result = true;
+            var result = true;
 
             try
             {
