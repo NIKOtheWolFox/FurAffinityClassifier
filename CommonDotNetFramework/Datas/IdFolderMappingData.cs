@@ -6,6 +6,16 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Datas
     public class IdFolderMappingData
     {
         #region Constructor
+
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        public IdFolderMappingData()
+        {
+            Id = string.Empty;
+            FolderName = string.Empty;
+        }
+
         #endregion
 
         #region Public Property

@@ -190,7 +190,7 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
             this.ExecuteButton.TabIndex = 0;
             this.ExecuteButton.Text = "実行";
             this.ExecuteButton.UseVisualStyleBackColor = true;
-            this.ExecuteButton.Click += new System.EventHandler(this.ButtonExecute_Click);
+            this.ExecuteButton.Click += new System.EventHandler(this.ExecuteButton_Click);
             // 
             // SaveSettingButton
             // 
