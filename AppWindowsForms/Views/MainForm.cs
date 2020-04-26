@@ -221,15 +221,15 @@ namespace FurAffinityClassifier.AppWindowsForms.Views
                 return;
             }
 
-            var ClassificationResult = viewModel.ExecuteClassification();
+            var classificationResult = viewModel.ExecuteClassification();
             using (
                 var dialog = new TaskDialog()
                 {
                     OwnerWindowHandle = Handle,
                     StartupLocation = TaskDialogStartupLocation.CenterOwner,
-                    Icon = ClassificationResult ? TaskDialogStandardIcon.Information : TaskDialogStandardIcon.Error,
+                    Icon = classificationResult ? TaskDialogStandardIcon.Information : TaskDialogStandardIcon.Error,
                     Caption = "ファイルの分類",
-                    Text = ClassificationResult ? "ファイルの分類が完了しました。" : "ファイルの分類に失敗しました。",
+                    Text = classificationResult ? "ファイルの分類が完了しました。" : "ファイルの分類に失敗しました。",
                     StandardButtons = TaskDialogStandardButtons.Ok,
                 })
             {
