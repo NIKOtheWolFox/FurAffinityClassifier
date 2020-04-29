@@ -154,5 +154,11 @@
       <Name>FurAffinityClassifier.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ViewModels\tmp.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\tmp.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
