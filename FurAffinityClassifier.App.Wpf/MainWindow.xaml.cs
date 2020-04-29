@@ -28,7 +28,6 @@ namespace FurAffinityClassifier.App.Wpf
 
         public MainWindow()
         {
-            Logger.Debug("動作テスト");
             InitializeComponent();
         }
     }
