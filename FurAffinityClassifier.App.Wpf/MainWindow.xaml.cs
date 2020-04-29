@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using log4net;
 
 namespace FurAffinityClassifier.App.Wpf
 {
@@ -20,8 +21,14 @@ namespace FurAffinityClassifier.App.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// log4netのロガー
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(MainWindow));
+
         public MainWindow()
         {
+            Logger.Debug("動作テスト");
             InitializeComponent();
         }
     }
