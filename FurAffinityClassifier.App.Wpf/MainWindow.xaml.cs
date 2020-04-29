@@ -21,14 +21,25 @@ namespace FurAffinityClassifier.App.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Private Field
+
         /// <summary>
         /// log4netのロガー
         /// </summary>
         private static readonly ILog Logger = LogManager.GetLogger(typeof(MainWindow));
 
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        #endregion
     }
 }
