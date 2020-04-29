@@ -12,12 +12,18 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Navigation;
 using CommonServiceLocator;
 ////using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 ////using Microsoft.Practices.ServiceLocation;
 
-namespace FurAffinityClassifier.App.Wpf.ViewModel
+namespace FurAffinityClassifier.App.Wpf.ViewModels
 {
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -43,17 +49,17 @@ namespace FurAffinityClassifier.App.Wpf.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<MainWindowViewModel>();
         }
 
-        public MainViewModel Main
+        /// <summary>
+        /// メイン画面のViewModel
+        /// </summary>
+        public MainWindowViewModel MainWindowViewModel
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
+            get => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
         }
-        
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
