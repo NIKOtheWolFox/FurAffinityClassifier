@@ -31,6 +31,8 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
     /// </summary>
     public class ViewModelLocator
     {
+        #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
@@ -52,6 +54,10 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
             SimpleIoc.Default.Register<MainWindowViewModel>();
         }
 
+        #endregion
+
+        #region Public Property
+
         /// <summary>
         /// メイン画面のViewModel
         /// </summary>
@@ -60,9 +66,18 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
             get => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
         }
 
+        #endregion
+
+        #region Public Method
+
+        /// <summary>
+        /// 後処理
+        /// </summary>
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
         }
+
+        #endregion
     }
 }

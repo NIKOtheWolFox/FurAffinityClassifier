@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +19,16 @@ namespace FurAffinityClassifier.App.Wpf.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Constructor
+
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        #endregion
     }
 }
