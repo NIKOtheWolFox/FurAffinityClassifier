@@ -30,6 +30,10 @@ namespace FurAffinityClassifier.CommonDotNetFramework.Models
         /// <returns>実行結果</returns>
         public bool Execute(SettingData settingData)
         {
+            //// TODO : return Dictionary<string,int> {移動元フォルダにあるファイルの総数,対象ファイル数,移動したファイル数}
+            //// TODO : 失敗したらスキップ
+            //// TODO : 上書き有効なら上書き
+
             var result = true;
 
             try
