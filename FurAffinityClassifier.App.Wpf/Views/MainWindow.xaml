@@ -8,6 +8,7 @@
         Title="MainWindow"
         Height="450"
         Width="800"
+        Style="{StaticResource window_common}"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}">
     <Grid>
         <Grid.RowDefinitions>

@@ -13,6 +13,9 @@
                 x:Key="Locator"
                 d:IsDataSource="True"
                 xmlns:vm="clr-namespace:FurAffinityClassifier.App.Wpf.ViewModels" />
+            <Style x:Key="window_common" TargetType="Window">
+                <Setter Property="Icon" Value="app.ico" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
