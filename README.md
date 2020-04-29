@@ -1,4 +1,8 @@
 # FurAffinityClassifier
+## NOTICE
+Fur Affinity Classifier version 0.2.0 will have major changes from 0.1.0, including
+* Setting file items
+* Project structure
 
 ***
 ## 英語/English
