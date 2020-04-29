@@ -145,5 +145,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FurAffinityClassifier.Common\FurAffinityClassifier.Common.csproj">
+      <Project>{0bf4af2c-3453-4b56-b0e6-24cca0214228}</Project>
+      <Name>FurAffinityClassifier.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
