@@ -88,6 +88,9 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     }
 
                     Messenger.Default.Send(showDialogMessage, MessageToken.ShowDialog);
+                    ////var x = new NotificationMessageAction("", () => { });
+                    ////var y = new NotificationMessageAction<string>("", s => Console.WriteLine(s));
+                    ////var z = new NotificationMessage("");
                 })
                 .AddTo(Disposables);
             ExecuteCommand = new ReactiveCommand()

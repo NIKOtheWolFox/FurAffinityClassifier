@@ -1,3 +1,4 @@
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace FurAffinityClassifier.App.Wpf.Datas.Messages
@@ -5,7 +6,7 @@ namespace FurAffinityClassifier.App.Wpf.Datas.Messages
     /// <summary>
     /// ダイアログ表示メッセージ
     /// </summary>
-    public class ShowDialogMessage
+    public class ShowDialogMessage : NotificationMessage
     {
         #region Constructor
 
@@ -13,26 +14,12 @@ namespace FurAffinityClassifier.App.Wpf.Datas.Messages
         /// コンストラクター
         /// </summary>
         public ShowDialogMessage()
+            : base(string.Empty)
         {
             Title = string.Empty;
             Message = string.Empty;
             Icon = TaskDialogStandardIcon.None;
             Button = TaskDialogStandardButtons.Ok;
-        }
-
-        /// <summary>
-        /// コンストラクター
-        /// </summary>
-        /// <param name="title">タイトル</param>
-        /// <param name="message">メッセージ</param>
-        /// <param name="icon">アイコン</param>
-        /// <param name="button">ボタン</param>
-        public ShowDialogMessage(string title, string message, TaskDialogStandardIcon icon, TaskDialogStandardButtons button)
-        {
-            Title = title;
-            Message = message;
-            Icon = icon;
-            Button = button;
         }
 
         #endregion
