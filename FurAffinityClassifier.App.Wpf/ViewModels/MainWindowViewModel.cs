@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
+using FurAffinityClassifier.Common.Datas;
 using FurAffinityClassifier.Common.Models;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -25,6 +26,12 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         {
             SettingModel.LoadFromFile();
 
+            /*
+            FromFolder = ReactiveProperty.FromObject(SettingModel, x => x.FromFolder).AddTo(Disposables);
+            ToFolder = ReactiveProperty.FromObject(SettingModel, x => x.ToFolder).AddTo(Disposables);
+            CreateFolderIfNotExist = ReactiveProperty.FromObject(SettingModel, x => x.CreateFolderIfNotExist).AddTo(Disposables);
+            OverwriteIfExist = ReactiveProperty.FromObject(SettingModel, x => x.OverwriteIfExist).AddTo(Disposables);
+            */
             FromFolder = new ReactiveProperty<string>(SettingModel.FromFolder)
                 .AddTo(Disposables);
             ToFolder = new ReactiveProperty<string>(SettingModel.ToFolder)
@@ -32,6 +39,10 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
             CreateFolderIfNotExist = new ReactiveProperty<bool>(SettingModel.CreateFolderIfNotExist)
                 .AddTo(Disposables);
             OverwriteIfExist = new ReactiveProperty<bool>(SettingModel.OverwriteIfExist)
+                .AddTo(Disposables);
+
+            ExecuteCommand = new ReactiveCommand()
+                .WithSubscribe(_ => { Console.WriteLine("CLICK"); })
                 .AddTo(Disposables);
         }
 
@@ -68,6 +79,8 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         /// 同名のファイルが存在するときに上書きするか
         /// </summary>
         public ReactiveProperty<bool> OverwriteIfExist { get; }
+
+        public ReactiveCommand<object> ExecuteCommand { get; }
 
         #endregion
 

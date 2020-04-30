@@ -118,6 +118,7 @@
         <Button Grid.Row="12"
                 Margin="0 6 0 0"
                 HorizontalAlignment="Right"
-                Content="{x:Static properties:Resources.Execute}" />
+                Content="{x:Static properties:Resources.Execute}"
+                Command="{Binding ExecuteCommand}"/>
     </Grid>
 </Window>
