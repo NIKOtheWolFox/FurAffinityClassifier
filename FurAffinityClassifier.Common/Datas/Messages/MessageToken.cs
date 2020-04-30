@@ -9,5 +9,10 @@ namespace FurAffinityClassifier.Common.Datas.Messages
         /// ダイアログ表示
         /// </summary>
         public const string ShowDialog = "show_dialog";
+
+        /// <summary>
+        /// フォルダー選択ダイアログ表示
+        /// </summary>
+        public const string ShowFolderSelectDialog = "show_folder_select_dialog";
     }
 }

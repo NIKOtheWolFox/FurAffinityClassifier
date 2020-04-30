@@ -51,6 +51,30 @@ namespace FurAffinityClassifier.App.Wpf.Views
                         dialog.Show();
                     }
                 });
+
+            Messenger.Default.Register<ShowFolderSelectDialogMessage<string>>(
+                this,
+                MessageToken.ShowFolderSelectDialog,
+                m =>
+                {
+                    using (
+                        var folderSelectDialog = new CommonOpenFileDialog()
+                        {
+                            Title = m.Title,
+                            IsFolderPicker = true,
+                            InitialDirectory = m.InitialDirectory,
+                            DefaultDirectory = m.DefaultDirectory,
+                            EnsureFileExists = true,
+                            EnsurePathExists = true,
+                            EnsureValidNames = true,
+                        })
+                    {
+                        var returnValue = folderSelectDialog.ShowDialog(this) == CommonFileDialogResult.Ok
+                            ? folderSelectDialog.FileName
+                            : string.Empty;
+                        m.Execute(returnValue);
+                    }
+                });
         }
 
         #endregion

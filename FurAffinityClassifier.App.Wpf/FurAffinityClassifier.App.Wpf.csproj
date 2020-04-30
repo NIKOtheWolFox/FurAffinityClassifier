@@ -119,6 +119,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Datas\Messages\ShowDialogMessage.cs" />
+    <Compile Include="Datas\Messages\ShowFolderSelectDialogMessage.cs" />
     <Compile Include="Properties\Resources.ja-JP.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

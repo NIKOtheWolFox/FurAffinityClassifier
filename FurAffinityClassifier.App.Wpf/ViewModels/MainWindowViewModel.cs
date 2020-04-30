@@ -51,7 +51,21 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
             SelectFromFolderCommand = new ReactiveCommand()
                 .WithSubscribe(_ =>
                 {
-                    Console.WriteLine("select from folder");
+                    ShowFolderSelectDialogMessage<string> showFolderSelectDialogMessage =
+                        new ShowFolderSelectDialogMessage<string>(
+                            s =>
+                            {
+                                if (!string.IsNullOrEmpty(s))
+                                {
+                                    FromFolder.Value = s;
+                                }
+                            })
+                        {
+                            Title = "移動元フォルダー選択",
+                            InitialDirectory = string.IsNullOrEmpty(FromFolder.Value) ? Environment.CurrentDirectory : FromFolder.Value,
+                            DefaultDirectory = string.IsNullOrEmpty(FromFolder.Value) ? Environment.CurrentDirectory : FromFolder.Value,
+                        };
+                    Messenger.Default.Send(showFolderSelectDialogMessage, MessageToken.ShowFolderSelectDialog);
                 })
                 .AddTo(Disposables);
             SelectToFolderCommand = new ReactiveCommand()
@@ -90,12 +104,16 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     Messenger.Default.Send(showDialogMessage, MessageToken.ShowDialog);
                     ////var x = new NotificationMessageAction("", () => { });
                     ////var y = new NotificationMessageAction<string>("", s => Console.WriteLine(s));
-                    ////var z = new NotificationMessage("");
+                    ////var z = new NotificationMessage<bool>(true, "");
+                    ////var xx = new NotificationMessageAction<string>("", "");
                 })
                 .AddTo(Disposables);
             ExecuteCommand = new ReactiveCommand()
                 .WithSubscribe(_ =>
                 {
+                    Console.WriteLine($"this.FromFolder.Value={FromFolder.Value}");
+                    Console.WriteLine($"SettingModel.FromFolder={SettingModel.FromFolder}");
+                    /*
                     if (SettingModel.Validate())
                     {
                         Console.WriteLine("setting valid");
@@ -104,6 +122,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     {
                         Console.WriteLine("setting invalid");
                     }
+                    */
                 })
                 .AddTo(Disposables);
         }
