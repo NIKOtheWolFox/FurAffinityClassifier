@@ -30,6 +30,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
+            //// TODO : 検索欄の実装
             SettingModel.LoadFromFile();
 
             FromFolder = ReactiveProperty
@@ -125,6 +126,9 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
             ExecuteCommand = new ReactiveCommand()
                 .WithSubscribe(_ =>
                 {
+                    //// TODO : ClassificationModelの実装変更
+                    ////        移動元フォルダーのファイル数/移動対象のファイル数/移動したファイル数を返してもらう
+                    ////        それらの数は結果ダイアログで表示する
                     Console.WriteLine($"this.FromFolder.Value={FromFolder.Value}");
                     Console.WriteLine($"SettingModel.FromFolder={SettingModel.FromFolder}");
                     Console.WriteLine($"this.ToFolder.Value={ToFolder.Value}");
