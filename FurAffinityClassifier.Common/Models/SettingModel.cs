@@ -119,6 +119,7 @@ namespace FurAffinityClassifier.Common.Models
             catch (Exception e)
             {
                 Logger.Error(e.ToString());
+                settingData = new SettingData();
                 result = false;
             }
 

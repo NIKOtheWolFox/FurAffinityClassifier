@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FurAffinityClassifier.Common.Models;
 using Reactive.Bindings;
 
 namespace FurAffinityClassifier.App.Wpf.ViewModels
@@ -12,6 +13,15 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
     /// </summary>
     public class MainWindowViewModel
     {
+        #region Private Field
+
+        /// <summary>
+        /// 設定機能
+        /// </summary>
+        private readonly SettingModel settingModel = new SettingModel();
+
+        #endregion
+
         #region Constructor
 
         /// <summary>
@@ -19,6 +29,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
+            settingModel.LoadFromFile();
             Content = new ReactiveProperty<string>("TEST");
         }
 
