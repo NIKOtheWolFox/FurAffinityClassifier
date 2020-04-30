@@ -63,7 +63,14 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
             ExecuteCommand = new ReactiveCommand()
                 .WithSubscribe(_ =>
                 {
-                    Console.WriteLine("execute");
+                    if (SettingModel.Validate())
+                    {
+                        Console.WriteLine("setting valid");
+                    }
+                    else
+                    {
+                        Console.WriteLine("setting invalid");
+                    }
                 })
                 .AddTo(Disposables);
         }
