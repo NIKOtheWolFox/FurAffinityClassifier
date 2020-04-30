@@ -30,7 +30,6 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
-            //// TODO : 検索欄の実装
             SettingModel.LoadFromFile();
 
             FromFolder = ReactiveProperty

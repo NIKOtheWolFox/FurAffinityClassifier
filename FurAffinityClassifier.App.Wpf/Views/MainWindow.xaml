@@ -22,7 +22,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -101,10 +100,7 @@
         <TextBlock Grid.Row="8"
                    Margin="0 6 0 0"
                    Text="{x:Static properties:Resources.ClassifyAs}" />
-        <TextBox Grid.Row="9"
-                 Margin="0 6 0 0"
-                 Text="" />
-        <DataGrid Grid.Row="10"
+        <DataGrid Grid.Row="9"
                   Margin="0 6 0 0"
                   ItemsSource="{Binding ClassifyAsDatas.Value}"
                   AutoGenerateColumns="False"
@@ -118,13 +114,13 @@
                                     Binding="{Binding Folder}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="11"
+        <Button Grid.Row="10"
                 Margin="0 6 0 0"
                 Style="{StaticResource button_common}"
                 HorizontalAlignment="Right"
                 Content="{x:Static properties:Resources.SaveSetting}"
                 Command="{Binding SaveSettingCommand}" />
-        <Button Grid.Row="12"
+        <Button Grid.Row="11"
                 Margin="0 6 0 0"
                 Style="{StaticResource button_common}"
                 HorizontalAlignment="Right"
