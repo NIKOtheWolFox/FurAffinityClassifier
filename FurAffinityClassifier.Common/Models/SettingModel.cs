@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using FurAffinityClassifier.Common.Datas;
 using log4net;
 using Newtonsoft.Json;
@@ -148,6 +149,19 @@ namespace FurAffinityClassifier.Common.Models
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 設定を検証する
+        /// </summary>
+        /// <returns>検証結果</returns>
+        public bool Validate()
+        {
+            return !string.IsNullOrEmpty(FromFolder)
+                && Directory.Exists(FromFolder)
+                && !string.IsNullOrEmpty(ToFolder)
+                && Directory.Exists(ToFolder)
+                && ClassifyAsDatas.Count(x => string.IsNullOrEmpty(x.Id) || string.IsNullOrEmpty(x.Folder)) == 0;
         }
 
         #endregion
