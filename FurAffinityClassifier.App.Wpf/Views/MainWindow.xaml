@@ -49,7 +49,7 @@
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0"
                      VerticalAlignment="Center"
-                     Text="from folder"
+                     Text="{Binding FromFolder.Value}"
                      IsReadOnly="True" />
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
@@ -67,7 +67,7 @@
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0"
                      VerticalAlignment="Center"
-                     Text="to folder"
+                     Text="{Binding ToFolder.Value}"
                      IsReadOnly="True" />
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
@@ -88,10 +88,12 @@
         </Grid>
         <CheckBox Grid.Row="6"
                   Margin="0 6 0 0"
-                  Content="{x:Static properties:Resources.CreateFolderIfNotExist}" />
+                  Content="{x:Static properties:Resources.CreateFolderIfNotExist}"
+                  IsChecked="{Binding CreateFolderIfNotExist.Value}" />
         <CheckBox Grid.Row="7"
                   Margin="0 6 0 0"
-                  Content="{x:Static properties:Resources.OverwriteIfExist}" />
+                  Content="{x:Static properties:Resources.OverwriteIfExist}"
+                  IsChecked="{Binding OverwriteIfExist.Value}" />
         <TextBlock Grid.Row="8"
                    Margin="0 6 0 0"
                    Text="{x:Static properties:Resources.ClassifyAs}" />

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Common.Models;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 
 namespace FurAffinityClassifier.App.Wpf.ViewModels
 {
@@ -23,7 +24,15 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         public MainWindowViewModel()
         {
             SettingModel.LoadFromFile();
-            Content = new ReactiveProperty<string>("TEST");
+
+            FromFolder = new ReactiveProperty<string>(SettingModel.FromFolder)
+                .AddTo(Disposables);
+            ToFolder = new ReactiveProperty<string>(SettingModel.ToFolder)
+                .AddTo(Disposables);
+            CreateFolderIfNotExist = new ReactiveProperty<bool>(SettingModel.CreateFolderIfNotExist)
+                .AddTo(Disposables);
+            OverwriteIfExist = new ReactiveProperty<bool>(SettingModel.OverwriteIfExist)
+                .AddTo(Disposables);
         }
 
         #endregion
@@ -41,9 +50,24 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         #region Public Property
 
         /// <summary>
-        /// テスト用プロパティ
+        /// 移動元フォルダー
         /// </summary>
-        public ReactiveProperty<string> Content { get; set; }
+        public ReactiveProperty<string> FromFolder { get; }
+
+        /// <summary>
+        /// 移動先フォルダー
+        /// </summary>
+        public ReactiveProperty<string> ToFolder { get; }
+
+        /// <summary>
+        /// 移動先のフォルダーが存在しないときに作成するか
+        /// </summary>
+        public ReactiveProperty<bool> CreateFolderIfNotExist { get; }
+
+        /// <summary>
+        /// 同名のファイルが存在するときに上書きするか
+        /// </summary>
+        public ReactiveProperty<bool> OverwriteIfExist { get; }
 
         #endregion
 
