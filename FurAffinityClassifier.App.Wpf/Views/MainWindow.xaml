@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FurAffinityClassifier.App.Wpf.Views"
         xmlns:properties="clr-namespace:FurAffinityClassifier.App.Wpf.Properties"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Fur Affinity Classifier"
         Height="500"
         Width="350"
         Style="{StaticResource window_common}"
