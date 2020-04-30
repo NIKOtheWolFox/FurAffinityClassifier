@@ -4,20 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FurAffinityClassifier.App.Wpf.Views"
+        xmlns:properties="clr-namespace:FurAffinityClassifier.App.Wpf.Properties"
         mc:Ignorable="d"
         Title="MainWindow"
         Height="450"
         Width="800"
         Style="{StaticResource window_common}"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}">
-    <Grid>
+    <Grid Margin="6">
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock
-            Grid.Row="0"
-            Text="{Binding Content.Value}"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center" />
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="{x:Static properties:Resources.FolderSetting}"/>
+            <Separator Grid.Column="1"
+                       Margin="10 0 0 0"
+                       VerticalAlignment="Center"/>
+        </Grid>
     </Grid>
 </Window>

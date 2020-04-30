@@ -118,36 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ClassificationSetting" xml:space="preserve">
-    <value>Classification setting</value>
+    <value>分類設定</value>
   </data>
   <data name="ClassifyAs" xml:space="preserve">
-    <value>Classify as</value>
+    <value>IDと異なるフォルダーに分類する</value>
   </data>
   <data name="CreateFolderIfNotExist" xml:space="preserve">
-    <value>Create folder if not exist</value>
+    <value>フォルダーがないときは作成する</value>
   </data>
   <data name="Execute" xml:space="preserve">
-    <value>Execute</value>
+    <value>実行</value>
   </data>
   <data name="FolderSetting" xml:space="preserve">
-    <value>Folder setting</value>
+    <value>フォルダー設定</value>
   </data>
   <data name="FromFolder" xml:space="preserve">
-    <value>From:</value>
+    <value>移動元:</value>
   </data>
   <data name="OverwriteIfExist" xml:space="preserve">
-    <value>Overwrite if exist</value>
+    <value>ファイルがあるときは上書きする</value>
   </data>
   <data name="SaveSetting" xml:space="preserve">
-    <value>Save setting</value>
+    <value>設定を保存</value>
   </data>
   <data name="SearchWatermark" xml:space="preserve">
-    <value>Search</value>
+    <value>検索</value>
   </data>
   <data name="SelectFolder" xml:space="preserve">
-    <value>Select...</value>
+    <value>選択...</value>
   </data>
   <data name="ToFolder" xml:space="preserve">
-    <value>To:</value>
+    <value>移動先:</value>
   </data>
 </root>
