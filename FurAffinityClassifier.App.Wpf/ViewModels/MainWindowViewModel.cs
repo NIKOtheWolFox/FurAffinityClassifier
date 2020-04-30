@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Common.Datas;
 using FurAffinityClassifier.Common.Models;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
@@ -66,6 +69,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     if (SettingModel.Validate())
                     {
                         Console.WriteLine("setting valid");
+                        Messenger.Default.Send(new NotificationMessage("DO MOMETHING"), "TEST_TOKEN");
                     }
                     else
                     {

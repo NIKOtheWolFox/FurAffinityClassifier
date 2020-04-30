@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace FurAffinityClassifier.App.Wpf.Views
 {
@@ -27,6 +28,8 @@ namespace FurAffinityClassifier.App.Wpf.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            Messenger.Default.Register<NotificationMessage>(this, "TEST_TOKEN", message => Console.WriteLine(message.Notification));
         }
 
         #endregion
