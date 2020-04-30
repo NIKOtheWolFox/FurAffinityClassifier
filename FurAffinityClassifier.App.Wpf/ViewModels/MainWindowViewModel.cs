@@ -26,12 +26,20 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         {
             SettingModel.LoadFromFile();
 
+            FromFolder = ReactiveProperty
+                .FromObject(SettingModel, x => x.FromFolder)
+                .AddTo(Disposables);
+            ToFolder = ReactiveProperty
+                .FromObject(SettingModel, x => x.ToFolder)
+                .AddTo(Disposables);
+            CreateFolderIfNotExist = ReactiveProperty
+                .FromObject(SettingModel, x => x.CreateFolderIfNotExist)
+                .AddTo(Disposables);
+            OverwriteIfExist = ReactiveProperty
+                .FromObject(SettingModel, x => x.OverwriteIfExist)
+                .AddTo(Disposables);
+
             /*
-            FromFolder = ReactiveProperty.FromObject(SettingModel, x => x.FromFolder).AddTo(Disposables);
-            ToFolder = ReactiveProperty.FromObject(SettingModel, x => x.ToFolder).AddTo(Disposables);
-            CreateFolderIfNotExist = ReactiveProperty.FromObject(SettingModel, x => x.CreateFolderIfNotExist).AddTo(Disposables);
-            OverwriteIfExist = ReactiveProperty.FromObject(SettingModel, x => x.OverwriteIfExist).AddTo(Disposables);
-            */
             FromFolder = new ReactiveProperty<string>(SettingModel.FromFolder)
                 .AddTo(Disposables);
             ToFolder = new ReactiveProperty<string>(SettingModel.ToFolder)
@@ -40,9 +48,14 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 .AddTo(Disposables);
             OverwriteIfExist = new ReactiveProperty<bool>(SettingModel.OverwriteIfExist)
                 .AddTo(Disposables);
+                */
 
             ExecuteCommand = new ReactiveCommand()
-                .WithSubscribe(_ => { Console.WriteLine("CLICK"); })
+                .WithSubscribe(_ => {
+                    Console.WriteLine("CLICK");
+                    Console.WriteLine($"SettingModel.CreateFolderIfNotExist={SettingModel.CreateFolderIfNotExist}");
+                    Console.WriteLine("------");
+                })
                 .AddTo(Disposables);
         }
 
