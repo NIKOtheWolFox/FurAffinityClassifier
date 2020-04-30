@@ -71,7 +71,21 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
             SelectToFolderCommand = new ReactiveCommand()
                 .WithSubscribe(_ =>
                 {
-                    Console.WriteLine("select to folder");
+                    ShowFolderSelectDialogMessage<string> showFolderSelectDialogMessage =
+                        new ShowFolderSelectDialogMessage<string>(
+                            s =>
+                            {
+                                if (!string.IsNullOrEmpty(s))
+                                {
+                                    ToFolder.Value = s;
+                                }
+                            })
+                        {
+                            Title = "移動先フォルダー選択",
+                            InitialDirectory = string.IsNullOrEmpty(ToFolder.Value) ? Environment.CurrentDirectory : ToFolder.Value,
+                            DefaultDirectory = string.IsNullOrEmpty(ToFolder.Value) ? Environment.CurrentDirectory : ToFolder.Value,
+                        };
+                    Messenger.Default.Send(showFolderSelectDialogMessage, MessageToken.ShowFolderSelectDialog);
                 })
                 .AddTo(Disposables);
             SaveSettingCommand = new ReactiveCommand()
@@ -113,6 +127,8 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 {
                     Console.WriteLine($"this.FromFolder.Value={FromFolder.Value}");
                     Console.WriteLine($"SettingModel.FromFolder={SettingModel.FromFolder}");
+                    Console.WriteLine($"this.ToFolder.Value={ToFolder.Value}");
+                    Console.WriteLine($"SettingModel.ToFolder={SettingModel.ToFolder}");
                     /*
                     if (SettingModel.Validate())
                     {
