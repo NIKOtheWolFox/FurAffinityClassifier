@@ -102,13 +102,16 @@
                  Text="" />
         <DataGrid Grid.Row="10"
                   Margin="0 6 0 0"
+                  ItemsSource="{Binding ClassifyAsDatas.Value}"
                   AutoGenerateColumns="False"
                   RowHeaderWidth="20">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderId}"
-                                    Width="*" />
+                                    Width="*"
+                                    Binding="{Binding Id}" />
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderFolder}"
-                                    Width="*" />
+                                    Width="*"
+                                    Binding="{Binding Folder}" />
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Row="11"

@@ -38,6 +38,9 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
             OverwriteIfExist = ReactiveProperty
                 .FromObject(SettingModel, x => x.OverwriteIfExist)
                 .AddTo(Disposables);
+            ClassifyAsDatas = ReactiveProperty
+                .FromObject(SettingModel, x => x.ClassifyAsDatas)
+                .AddTo(Disposables);
 
             /*
             FromFolder = new ReactiveProperty<string>(SettingModel.FromFolder)
@@ -53,7 +56,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
             ExecuteCommand = new ReactiveCommand()
                 .WithSubscribe(_ => {
                     Console.WriteLine("CLICK");
-                    Console.WriteLine($"SettingModel.CreateFolderIfNotExist={SettingModel.CreateFolderIfNotExist}");
+                    SettingModel.ClassifyAsDatas.ForEach(x => Console.WriteLine($"{x.Id}->{x.Folder}"));
                     Console.WriteLine("------");
                 })
                 .AddTo(Disposables);
@@ -92,6 +95,11 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         /// 同名のファイルが存在するときに上書きするか
         /// </summary>
         public ReactiveProperty<bool> OverwriteIfExist { get; }
+
+        /// <summary>
+        /// IDと異なるフォルダーに分類する設定のリスト
+        /// </summary>
+        public ReactiveProperty<List<ClassifyAsData>> ClassifyAsDatas { get; }
 
         public ReactiveCommand<object> ExecuteCommand { get; }
 
