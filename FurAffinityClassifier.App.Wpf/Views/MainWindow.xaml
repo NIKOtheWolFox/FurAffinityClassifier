@@ -53,6 +53,7 @@
                      IsReadOnly="True" />
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
+                    Style="{StaticResource button_common}"
                     VerticalAlignment="Center"
                     Content="{x:Static properties:Resources.SelectFolder}"
                     Command="{Binding SelectFromFolderCommand}" />
@@ -72,6 +73,7 @@
                      IsReadOnly="True" />
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
+                    Style="{StaticResource button_common}"
                     VerticalAlignment="Center"
                     Content="{x:Static properties:Resources.SelectFolder}"
                     Command="{Binding SelectToFolderCommand}" />
@@ -118,11 +120,13 @@
         </DataGrid>
         <Button Grid.Row="11"
                 Margin="0 6 0 0"
+                Style="{StaticResource button_common}"
                 HorizontalAlignment="Right"
                 Content="{x:Static properties:Resources.SaveSetting}"
                 Command="{Binding SaveSettingCommand}" />
         <Button Grid.Row="12"
                 Margin="0 6 0 0"
+                Style="{StaticResource button_common}"
                 HorizontalAlignment="Right"
                 Content="{x:Static properties:Resources.Execute}"
                 Command="{Binding ExecuteCommand}" />
