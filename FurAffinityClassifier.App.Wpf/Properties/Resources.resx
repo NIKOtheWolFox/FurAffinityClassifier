@@ -126,6 +126,12 @@
   <data name="CreateFolderIfNotExist" xml:space="preserve">
     <value>Create folder if not exist</value>
   </data>
+  <data name="DataGridHeaderFolder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="DataGridHeaderId" xml:space="preserve">
+    <value>ID</value>
+  </data>
   <data name="Execute" xml:space="preserve">
     <value>Execute</value>
   </data>

@@ -88,6 +88,24 @@ namespace FurAffinityClassifier.App.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Folder に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DataGridHeaderFolder {
+            get {
+                return ResourceManager.GetString("DataGridHeaderFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ID に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DataGridHeaderId {
+            get {
+                return ResourceManager.GetString("DataGridHeaderId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Execute に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Execute {

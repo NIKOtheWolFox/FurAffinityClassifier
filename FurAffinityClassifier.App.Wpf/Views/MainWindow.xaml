@@ -38,5 +38,84 @@
                        Margin="10 0 0 0"
                        VerticalAlignment="Center"/>
         </Grid>
+        <TextBlock Grid.Row="1"
+                   Margin="0 6 0 0"
+                   Text="{x:Static properties:Resources.FromFolder}" />
+        <Grid Grid.Row="2"
+              Margin="0 0 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0"
+                     VerticalAlignment="Center"
+                     Text="from folder"
+                     IsReadOnly="True" />
+            <Button Grid.Column="1"
+                    Margin="6 0 0 0"
+                    VerticalAlignment="Center"
+                    Content="{x:Static properties:Resources.SelectFolder}" />
+        </Grid>
+        <TextBlock Grid.Row="3"
+                   Margin="0 6 0 0"
+                   Text="{x:Static properties:Resources.ToFolder}" />
+        <Grid Grid.Row="4"
+              Margin="0 0 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0"
+                     VerticalAlignment="Center"
+                     Text="to folder"
+                     IsReadOnly="True" />
+            <Button Grid.Column="1"
+                    Margin="6 0 0 0"
+                    VerticalAlignment="Center"
+                    Content="{x:Static properties:Resources.SelectFolder}" />
+        </Grid>
+        <Grid Grid.Row="5"
+              Margin=" 0 6 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="{x:Static properties:Resources.ClassificationSetting}"/>
+            <Separator Grid.Column="1"
+                       Margin="10 0 0 0"
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <CheckBox Grid.Row="6"
+                  Margin="0 6 0 0"
+                  Content="{x:Static properties:Resources.CreateFolderIfNotExist}" />
+        <CheckBox Grid.Row="7"
+                  Margin="0 6 0 0"
+                  Content="{x:Static properties:Resources.OverwriteIfExist}" />
+        <TextBlock Grid.Row="8"
+                   Margin="0 6 0 0"
+                   Text="{x:Static properties:Resources.ClassifyAs}" />
+        <TextBox Grid.Row="9"
+                 Margin="0 6 0 0"
+                 Text="" />
+        <DataGrid Grid.Row="10"
+                  Margin="0 6 0 0"
+                  AutoGenerateColumns="False"
+                  RowHeaderWidth="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderId}"
+                                    Width="*" />
+                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderFolder}"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="11"
+                Margin="0 6 0 0"
+                HorizontalAlignment="Right"
+                Content="{x:Static properties:Resources.SaveSetting}" />
+        <Button Grid.Row="12"
+                Margin="0 6 0 0"
+                HorizontalAlignment="Right"
+                Content="{x:Static properties:Resources.Execute}" />
     </Grid>
 </Window>
