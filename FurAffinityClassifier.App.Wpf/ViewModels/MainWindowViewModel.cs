@@ -5,11 +5,14 @@ using System.Linq;
 using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
+using FurAffinityClassifier.App.Wpf.Datas.Messages;
 using FurAffinityClassifier.Common.Datas;
+using FurAffinityClassifier.Common.Datas.Messages;
 using FurAffinityClassifier.Common.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
@@ -60,7 +63,31 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
             SaveSettingCommand = new ReactiveCommand()
                 .WithSubscribe(_ =>
                 {
-                    Console.WriteLine("save setting");
+                    ShowDialogMessage showDialogMessage = new ShowDialogMessage()
+                    {
+                        Title = "設定の保存",
+                        Button = TaskDialogStandardButtons.Ok,
+                    };
+                    if (SettingModel.Validate())
+                    {
+                        if (SettingModel.SaveToFile())
+                        {
+                            showDialogMessage.Message = "設定の保存が完了しました。";
+                            showDialogMessage.Icon = TaskDialogStandardIcon.Information;
+                        }
+                        else
+                        {
+                            showDialogMessage.Message = "設定の保存に失敗しました。";
+                            showDialogMessage.Icon = TaskDialogStandardIcon.Error;
+                        }
+                    }
+                    else
+                    {
+                        showDialogMessage.Message = "設定に誤りがあります。";
+                        showDialogMessage.Icon = TaskDialogStandardIcon.Error;
+                    }
+
+                    Messenger.Default.Send(showDialogMessage, MessageToken.ShowDialog);
                 })
                 .AddTo(Disposables);
             ExecuteCommand = new ReactiveCommand()
@@ -69,7 +96,6 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     if (SettingModel.Validate())
                     {
                         Console.WriteLine("setting valid");
-                        Messenger.Default.Send(new NotificationMessage("DO MOMETHING"), "TEST_TOKEN");
                     }
                     else
                     {

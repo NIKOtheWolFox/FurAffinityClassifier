@@ -11,7 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FurAffinityClassifier.App.Wpf.Datas.Messages;
+using FurAffinityClassifier.Common.Datas.Messages;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace FurAffinityClassifier.App.Wpf.Views
 {
@@ -29,7 +32,25 @@ namespace FurAffinityClassifier.App.Wpf.Views
         {
             InitializeComponent();
 
-            Messenger.Default.Register<NotificationMessage>(this, "TEST_TOKEN", message => Console.WriteLine(message.Notification));
+            Messenger.Default.Register<ShowDialogMessage>(
+                this,
+                MessageToken.ShowDialog,
+                m =>
+                {
+                    using (
+                        var dialog = new TaskDialog()
+                        {
+                            OwnerWindowHandle = new System.Windows.Interop.WindowInteropHelper(this).Handle,
+                            StartupLocation = TaskDialogStartupLocation.CenterOwner,
+                            Icon = m.Icon,
+                            Caption = m.Title,
+                            Text = m.Message,
+                            StandardButtons = m.Button,
+                        })
+                    {
+                        dialog.Show();
+                    }
+                });
         }
 
         #endregion
