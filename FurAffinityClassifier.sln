@@ -13,7 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme_jp.txt = readme_jp.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurAffinityClassifier.Common", "FurAffinityClassifier.Common\FurAffinityClassifier.Common.csproj", "{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FurAffinityClassifier.Common", "FurAffinityClassifier.Common\FurAffinityClassifier.Common.csproj", "{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurAffinityClassifier.App.Wpf", "FurAffinityClassifier.App.Wpf\FurAffinityClassifier.App.Wpf.csproj", "{1763A4B2-F134-4533-8560-39C8AECAB896}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1763A4B2-F134-4533-8560-39C8AECAB896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1763A4B2-F134-4533-8560-39C8AECAB896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1763A4B2-F134-4533-8560-39C8AECAB896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1763A4B2-F134-4533-8560-39C8AECAB896}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
