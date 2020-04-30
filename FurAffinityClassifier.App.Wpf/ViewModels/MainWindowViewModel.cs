@@ -42,22 +42,8 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 .FromObject(SettingModel, x => x.ClassifyAsDatas)
                 .AddTo(Disposables);
 
-            /*
-            FromFolder = new ReactiveProperty<string>(SettingModel.FromFolder)
-                .AddTo(Disposables);
-            ToFolder = new ReactiveProperty<string>(SettingModel.ToFolder)
-                .AddTo(Disposables);
-            CreateFolderIfNotExist = new ReactiveProperty<bool>(SettingModel.CreateFolderIfNotExist)
-                .AddTo(Disposables);
-            OverwriteIfExist = new ReactiveProperty<bool>(SettingModel.OverwriteIfExist)
-                .AddTo(Disposables);
-                */
-
             ExecuteCommand = new ReactiveCommand()
                 .WithSubscribe(_ => {
-                    Console.WriteLine("CLICK");
-                    SettingModel.ClassifyAsDatas.ForEach(x => Console.WriteLine($"{x.Id}->{x.Folder}"));
-                    Console.WriteLine("------");
                 })
                 .AddTo(Disposables);
         }
