@@ -54,7 +54,8 @@
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
                     VerticalAlignment="Center"
-                    Content="{x:Static properties:Resources.SelectFolder}" />
+                    Content="{x:Static properties:Resources.SelectFolder}"
+                    Command="{Binding SelectFromFolderCommand}" />
         </Grid>
         <TextBlock Grid.Row="3"
                    Margin="0 6 0 0"
@@ -72,7 +73,8 @@
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
                     VerticalAlignment="Center"
-                    Content="{x:Static properties:Resources.SelectFolder}" />
+                    Content="{x:Static properties:Resources.SelectFolder}"
+                    Command="{Binding SelectToFolderCommand}" />
         </Grid>
         <Grid Grid.Row="5"
               Margin=" 0 6 0 0">
@@ -117,11 +119,12 @@
         <Button Grid.Row="11"
                 Margin="0 6 0 0"
                 HorizontalAlignment="Right"
-                Content="{x:Static properties:Resources.SaveSetting}" />
+                Content="{x:Static properties:Resources.SaveSetting}"
+                Command="{Binding SaveSettingCommand}" />
         <Button Grid.Row="12"
                 Margin="0 6 0 0"
                 HorizontalAlignment="Right"
                 Content="{x:Static properties:Resources.Execute}"
-                Command="{Binding ExecuteCommand}"/>
+                Command="{Binding ExecuteCommand}" />
     </Grid>
 </Window>

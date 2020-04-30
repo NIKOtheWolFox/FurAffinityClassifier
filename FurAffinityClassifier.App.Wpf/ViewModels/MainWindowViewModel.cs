@@ -42,8 +42,28 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 .FromObject(SettingModel, x => x.ClassifyAsDatas)
                 .AddTo(Disposables);
 
+            SelectFromFolderCommand = new ReactiveCommand()
+                .WithSubscribe(_ =>
+                {
+                    Console.WriteLine("select from folder");
+                })
+                .AddTo(Disposables);
+            SelectToFolderCommand = new ReactiveCommand()
+                .WithSubscribe(_ =>
+                {
+                    Console.WriteLine("select to folder");
+                })
+                .AddTo(Disposables);
+            SaveSettingCommand = new ReactiveCommand()
+                .WithSubscribe(_ =>
+                {
+                    Console.WriteLine("save setting");
+                })
+                .AddTo(Disposables);
             ExecuteCommand = new ReactiveCommand()
-                .WithSubscribe(_ => {
+                .WithSubscribe(_ =>
+                {
+                    Console.WriteLine("execute");
                 })
                 .AddTo(Disposables);
         }
@@ -87,6 +107,24 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         /// </summary>
         public ReactiveProperty<List<ClassifyAsData>> ClassifyAsDatas { get; }
 
+        /// <summary>
+        /// 移動元の[選択]ボタンクリック時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> SelectFromFolderCommand { get; }
+
+        /// <summary>
+        /// 移動先の[選択]ボタンクリック時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> SelectToFolderCommand { get; }
+
+        /// <summary>
+        /// [設定を保存]ボタンクリック時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> SaveSettingCommand { get; }
+
+        /// <summary>
+        /// [実行]ボタンクリック時のコマンド
+        /// </summary>
         public ReactiveCommand<object> ExecuteCommand { get; }
 
         #endregion
