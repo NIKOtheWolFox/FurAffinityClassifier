@@ -47,68 +47,97 @@ namespace FurAffinityClassifier.Common.Models
         /// 分類を実行する
         /// </summary>
         /// <returns>実行結果</returns>
-        public bool Execute()
+        public Dictionary<string, int> Execute()
         {
-            var result = true;
+            var result = new Dictionary<string, int>()
+            {
+                { Const.ClassificationResultFoundFileCount, 0 },
+                { Const.ClassificationResultTargetFileCount, 0 },
+                { Const.ClassificationResultClassifiedFileCount, 0 },
+            };
 
             try
             {
-                var files = Directory.GetFiles(settingData.FromFolder)
-                    .Where(f => Regex.IsMatch(Path.GetFileName(f), @"[0-9]+\.[a-z0-9-~^.]{3,}_.*"));
-                foreach (var file in files)
+                var foundFiles = Directory.GetFiles(settingData.FromFolder);
+                result[Const.ClassificationResultFoundFileCount] = foundFiles.Count();
+
+                var targetFiles = foundFiles.Where(f => Regex.IsMatch(Path.GetFileName(f), @"[0-9]+\.[a-z0-9-~^.]{3,}_.*"));
+                result[Const.ClassificationResultTargetFileCount] = targetFiles.Count();
+
+                foreach (var file in targetFiles)
                 {
-                    var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
-                    if (!match.Success)
+                    try
                     {
-                        continue;
-                    }
-
-                    var id = match.Groups["id"].Value;
-
-                    var folderName = string.Empty;
-                    if (settingData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
-                    {
-                        folderName = settingData.ClassifyAsDatas
-                            .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()).FirstOrDefault()
-                            .Folder;
-                    }
-                    else
-                    {
-                        var matchedFolder = Directory.GetDirectories(settingData.ToFolder)
-                            .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
-                        if (matchedFolder.Count() > 1)
+                        var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
+                        if (!match.Success)
                         {
-                            Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
                             continue;
                         }
-                        else if (matchedFolder.Count() == 1)
-                        {
-                            folderName = Path.GetFileName(matchedFolder.First());
-                        }
-                    }
 
-                    if (string.IsNullOrEmpty(folderName))
-                    {
-                        if (settingData.CreateFolderIfNotExist)
+                        var id = match.Groups["id"].Value;
+
+                        var folderName = string.Empty;
+                        if (settingData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
                         {
-                            folderName = id.TrimEnd('.');
-                            Directory.CreateDirectory(Path.Combine(settingData.ToFolder, folderName));
+                            folderName = settingData.ClassifyAsDatas
+                                .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()).FirstOrDefault()
+                                .Folder;
                         }
                         else
                         {
-                            continue;
+                            var matchedFolder = Directory.GetDirectories(settingData.ToFolder)
+                                .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
+                            if (matchedFolder.Count() > 1)
+                            {
+                                Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
+                                continue;
+                            }
+                            else if (matchedFolder.Count() == 1)
+                            {
+                                folderName = Path.GetFileName(matchedFolder.First());
+                            }
                         }
-                    }
 
-                    File.Move(
-                        file,
-                        Path.Combine(settingData.ToFolder, folderName, Path.GetFileName(file)));
+                        if (string.IsNullOrEmpty(folderName))
+                        {
+                            if (settingData.CreateFolderIfNotExist)
+                            {
+                                folderName = id.TrimEnd('.');
+                                Directory.CreateDirectory(Path.Combine(settingData.ToFolder, folderName));
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+
+                        var classifiedFileName = Path.Combine(settingData.ToFolder, folderName, Path.GetFileName(file));
+                        if (File.Exists(classifiedFileName))
+                        {
+                            if (settingData.OverwriteIfExist)
+                            {
+                                File.Delete(classifiedFileName);
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
+
+                        File.Move(file, classifiedFileName);
+
+                        result[Const.ClassificationResultClassifiedFileCount]++;
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Error($"Error occurred while classifying {file}");
+                        Logger.Error(e.ToString());
+                    }
                 }
             }
             catch (Exception e)
             {
                 Logger.Error(e.ToString());
-                result = false;
             }
 
             return result;
