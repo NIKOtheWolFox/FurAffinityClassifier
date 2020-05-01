@@ -47,7 +47,7 @@ namespace FurAffinityClassifier.Common.Models
         /// 分類を実行する
         /// </summary>
         /// <returns>実行結果</returns>
-        public Dictionary<string, int> Execute2()
+        public Dictionary<string, int> Execute()
         {
             var result = new Dictionary<string, int>()
             {
@@ -138,77 +138,6 @@ namespace FurAffinityClassifier.Common.Models
             catch (Exception e)
             {
                 Logger.Error(e.ToString());
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// 分類を実行する
-        /// </summary>
-        /// <returns>実行結果</returns>
-        public bool Execute()
-        {
-            var result = true;
-
-            try
-            {
-                var files = Directory.GetFiles(settingData.FromFolder)
-                    .Where(f => Regex.IsMatch(Path.GetFileName(f), @"[0-9]+\.[a-z0-9-~^.]{3,}_.*"));
-                foreach (var file in files)
-                {
-                    var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
-                    if (!match.Success)
-                    {
-                        continue;
-                    }
-
-                    var id = match.Groups["id"].Value;
-
-                    var folderName = string.Empty;
-                    if (settingData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
-                    {
-                        folderName = settingData.ClassifyAsDatas
-                            .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()).FirstOrDefault()
-                            .Folder;
-                    }
-                    else
-                    {
-                        var matchedFolder = Directory.GetDirectories(settingData.ToFolder)
-                            .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
-                        if (matchedFolder.Count() > 1)
-                        {
-                            Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
-                            continue;
-                        }
-                        else if (matchedFolder.Count() == 1)
-                        {
-                            folderName = Path.GetFileName(matchedFolder.First());
-                        }
-                    }
-
-                    if (string.IsNullOrEmpty(folderName))
-                    {
-                        if (settingData.CreateFolderIfNotExist)
-                        {
-                            folderName = id.TrimEnd('.');
-                            Directory.CreateDirectory(Path.Combine(settingData.ToFolder, folderName));
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-
-                    File.Move(
-                        file,
-                        Path.Combine(settingData.ToFolder, folderName, Path.GetFileName(file)));
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Error(e.ToString());
-                result = false;
             }
 
             return result;

@@ -116,18 +116,11 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     }
 
                     Messenger.Default.Send(showDialogMessage, MessageToken.ShowDialog);
-                    ////var x = new NotificationMessageAction("", () => { });
-                    ////var y = new NotificationMessageAction<string>("", s => Console.WriteLine(s));
-                    ////var z = new NotificationMessage<bool>(true, "");
-                    ////var xx = new NotificationMessageAction<string>("", "");
                 })
                 .AddTo(Disposables);
             ExecuteCommand = new ReactiveCommand()
                 .WithSubscribe(_ =>
                 {
-                    //// TODO : ClassificationModelの実装変更
-                    ////        移動元フォルダーのファイル数/移動対象のファイル数/移動したファイル数を返してもらう
-                    ////        それらの数は結果ダイアログで表示する
                     ShowDialogMessage showDialogMessage = new ShowDialogMessage()
                     {
                         Title = "ファイルの分類",
@@ -136,7 +129,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
 
                     if (SettingModel.Validate())
                     {
-                        var classificationResult = new ClassificationModel(SettingModel.SettingData).Execute2();
+                        var classificationResult = new ClassificationModel(SettingModel.SettingData).Execute();
                         var messageBuilder = new StringBuilder();
                         messageBuilder.AppendLine("ファイルの分類が完了しました。");
                         messageBuilder.AppendLine();
