@@ -96,6 +96,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                         Title = "設定の保存",
                         Button = TaskDialogStandardButtons.Ok,
                     };
+
                     if (SettingModel.Validate())
                     {
                         if (SettingModel.SaveToFile())
