@@ -128,20 +128,31 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     //// TODO : ClassificationModelの実装変更
                     ////        移動元フォルダーのファイル数/移動対象のファイル数/移動したファイル数を返してもらう
                     ////        それらの数は結果ダイアログで表示する
-                    Console.WriteLine($"this.FromFolder.Value={FromFolder.Value}");
-                    Console.WriteLine($"SettingModel.FromFolder={SettingModel.FromFolder}");
-                    Console.WriteLine($"this.ToFolder.Value={ToFolder.Value}");
-                    Console.WriteLine($"SettingModel.ToFolder={SettingModel.ToFolder}");
-                    /*
+                    ShowDialogMessage showDialogMessage = new ShowDialogMessage()
+                    {
+                        Title = "ファイルの分類",
+                        Button = TaskDialogStandardButtons.Ok,
+                    };
+
                     if (SettingModel.Validate())
                     {
-                        Console.WriteLine("setting valid");
+                        var classificationResult = new ClassificationModel(SettingModel.SettingData).Execute2();
+                        var messageBuilder = new StringBuilder();
+                        messageBuilder.AppendLine("ファイルの分類が完了しました。");
+                        messageBuilder.AppendLine();
+                        messageBuilder.AppendLine($"移動元フォルダーにあるファイル数:{classificationResult[Const.ClassificationResultFoundFileCount]}");
+                        messageBuilder.AppendLine($"分類対象のファイル数:{classificationResult[Const.ClassificationResultTargetFileCount]}");
+                        messageBuilder.AppendLine($"分類したファイル数:{classificationResult[Const.ClassificationResultClassifiedFileCount]}");
+                        showDialogMessage.Message = messageBuilder.ToString();
+                        showDialogMessage.Icon = TaskDialogStandardIcon.Information;
                     }
                     else
                     {
-                        Console.WriteLine("setting invalid");
+                        showDialogMessage.Message = "設定に誤りがあります。";
+                        showDialogMessage.Icon = TaskDialogStandardIcon.Error;
                     }
-                    */
+
+                    Messenger.Default.Send(showDialogMessage, MessageToken.ShowDialog);
                 })
                 .AddTo(Disposables);
         }
