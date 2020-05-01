@@ -4,7 +4,7 @@ Fur Affinityから保存したファイルを分類するツールです。
 
 ■実行方法
 インストールは不要です。
-FurAffinityClassifier.exeを実行してください。
+FurAffinityClassifier.App.Wpf.exeを実行してください。
 
 ■設定項目について
 ・フォルダー設定
@@ -14,13 +14,13 @@ FurAffinityClassifier.exeを実行してください。
 ・振り分け設定
 分類はFur AffinityのユーザーIDを基準にして行います。
 
-「対応するフォルダーがない場合は作成する」は
+「フォルダーがないときは作成する」は
 IDに対応するフォルダーが見つからない場合の動作に影響します。
 チェックされている場合、ユーザーIDと同じ名前のフォルダーを作成します。
 チェックされていない場合、その画像の分類をスキップします。
 
 Fur AffinityのユーザーIDと違う名前のフォルダーに分類したい場合、
-「IDと異なるフォルダーに振り分ける」に設定を追加してください。
+「IDと異なるフォルダーに分類する」に設定を追加してください。
 
 ■動作概要
 以下のフォルダー設定を行った場合
@@ -33,8 +33,20 @@ Fur AffinityのユーザーIDと違う名前のフォルダーに分類したい
 Fur AffinityのユーザーIDはファイル名から判断します。
 ファイルをリネームした場合は正常に動作しません。
 
+■更新履歴
+2020/04/26 0.1.0
+初版リリース
+
+2020/05/01 0.2.0
+プロジェクト構成を見直し
+GUIフレームワークをWPFに変更
+
+2020/05/01 0.2.1
+0.2.0でreadmeの不備があったため差し替えリリース
+
 ■作者に連絡を取りたい
 Twitter : @NIKOtheWolFox
+eメール : nikothewolfox@gmail.com
 
 ■著作権
 (c) 2020 NIKO
@@ -47,12 +59,22 @@ log4net
 Apache License 2.0
 http://logging.apache.org/log4net/license.html
 
+Json.NET
+(c) 2008 James Newton-King
+MIT License
+https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md
+
 WindowsAPICodePack
 (c) 2020 rpastric, contre, dahall
 Custom License
 https://github.com/contre/Windows-API-Code-Pack-1.1/blob/master/LICENSE
 
-Json.NET
-(c) 2008 James Newton-King
+MVVM Light Toolkit
+(c) 2009-2018 Laurent Bugnion (GalaSoft)
 MIT License
-https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md
+https://github.com/lbugnion/mvvmlight/blob/master/LICENSE
+
+ReactiveProperty
+(c) 2018 neuecc, xin9le, okazuki
+MIT License
+https://github.com/runceel/ReactiveProperty/blob/master/LICENSE.txt
