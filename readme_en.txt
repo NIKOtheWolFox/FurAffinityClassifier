@@ -4,7 +4,7 @@ No download function included.
 
 ■How to execute
 No installation required.
-Run FurAffinityClassifier.exe.
+Run FurAffinityClassifier.App.Wpf.exe.
 
 ■About setting
 *** Currently Japanese GUI only
@@ -15,16 +15,15 @@ You cannot input folder path.
 - Classification setting
 Classification is based on Fur Affinity user ID.
 
-"対応するフォルダーがない場合は作成する" will effect if no folders were found.
+"Create folder if not exist" will effect if no folders were found.
 If it checked, this app will create a folder.
 If it not checked, classification of the file will be skipped.
 
 If you want to put the file to a folder that differ from ID,
-please add "IDと異なるフォルダーに振り分ける" settings.
+please add "Classify as" settings.
 
 ■How app works
 If you set Folder setting as below:
-以下のフォルダー設定を行った場合
 ・source：C:\Users\foo\Downloads
 ・destination：C:\Users\foo\Pictures
 ・file in source folder：[Submission ID].[FA_user_ID]_[orig_name].jpg
@@ -34,8 +33,20 @@ File will be put in C:\Users\foo\Pictures\[FA_user_ID].
 This app detect Fur Affinity user ID via filename.
 If you rename files before execution, app cannot classify renamed files.
 
+■Change log
+2020/04/26 0.1.0
+Initial release.
+
+2020/05/01 0.2.0
+Renew projects associatios.
+Change GUI Framework to WPF.
+
+2020/05/01 0.2.1
+Fix missed updated of readme at 0.2.0.
+
 ■Contact
 Twitter : @NIKOtheWolFox
+e-mail : nikothewolfox@gmail.com
 
 ■Copyright
 (c) 2020 NIKO
@@ -48,12 +59,22 @@ log4net
 Apache License 2.0
 http://logging.apache.org/log4net/license.html
 
+Json.NET
+(c) 2008 James Newton-King
+MIT License
+https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md
+
 WindowsAPICodePack
 (c) 2020 rpastric, contre, dahall
 Custom License
 https://github.com/contre/Windows-API-Code-Pack-1.1/blob/master/LICENSE
 
-Json.NET
-(c) 2008 James Newton-King
+MVVM Light Toolkit
+(c) 2009-2018 Laurent Bugnion (GalaSoft)
 MIT License
-https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md
+https://github.com/lbugnion/mvvmlight/blob/master/LICENSE
+
+ReactiveProperty
+(c) 2018 neuecc, xin9le, okazuki
+MIT License
+https://github.com/runceel/ReactiveProperty/blob/master/LICENSE.txt
