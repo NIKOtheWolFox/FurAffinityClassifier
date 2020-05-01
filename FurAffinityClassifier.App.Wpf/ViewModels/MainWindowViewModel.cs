@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reactive.Disposables;
 using System.Text;
-using System.Threading.Tasks;
 using FurAffinityClassifier.App.Wpf.Datas.Messages;
 using FurAffinityClassifier.Common.Datas;
 using FurAffinityClassifier.Common.Datas.Messages;
 using FurAffinityClassifier.Common.Models;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Reactive.Bindings;
