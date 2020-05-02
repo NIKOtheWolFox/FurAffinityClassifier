@@ -132,6 +132,36 @@
   <data name="DataGridHeaderId" xml:space="preserve">
     <value>ID</value>
   </data>
+  <data name="DialogMessageInvalidSetting" xml:space="preserve">
+    <value>Setting is invalid.</value>
+  </data>
+  <data name="DialogMessageClassifyFileClassifiedFiles" xml:space="preserve">
+    <value>Classified files:{0}</value>
+  </data>
+  <data name="DialogMessageClassifyFileDone" xml:space="preserve">
+    <value>File classification completed.</value>
+  </data>
+  <data name="DialogMessageClassifyFileFoundFiles" xml:space="preserve">
+    <value>Found files:{0}</value>
+  </data>
+  <data name="DialogMessageClassifyFileTargetFiles" xml:space="preserve">
+    <value>Target files:{0}</value>
+  </data>
+  <data name="DialogMessageSaveSettingDone" xml:space="preserve">
+    <value>Setting save completed.</value>
+  </data>
+  <data name="DialogMessageSaveSettingError" xml:space="preserve">
+    <value>Error occurred while save setting.</value>
+  </data>
+  <data name="DialogTitleClassifyFile" xml:space="preserve">
+    <value>File Classification</value>
+  </data>
+  <data name="DialogTitleSaveSetting" xml:space="preserve">
+    <value>Save setting</value>
+  </data>
+  <data name="DialogTitleSelectFolder" xml:space="preserve">
+    <value>Select folder</value>
+  </data>
   <data name="Execute" xml:space="preserve">
     <value>Execute</value>
   </data>
