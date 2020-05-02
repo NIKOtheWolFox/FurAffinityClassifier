@@ -1,8 +1,4 @@
 # FurAffinityClassifier
-## NOTICE
-Fur Affinity Classifier version 0.2.0 will have major changes from 0.1.0, including
-* Setting file items
-* Project structure
 
 ***
 ## 英語/English
@@ -18,7 +14,6 @@ No installation required.
 Unzip and execute the .exe file.
 
 ### Future prospects
-* Fit to multilingual (This app have GUI in Japanese only)
 * Fit to .NET Core
 
 ### License
@@ -39,7 +34,6 @@ Fur Affinityからダウンロードしたファイルを分類するアプリ�
 zipファイルを解凍し、.exeファイルを実行してください。
 
 ### 今後の予定
-* 多言語対応 (現在GUIは日本語のみ)
 * .NET Core対応
 
 ### ライセンス

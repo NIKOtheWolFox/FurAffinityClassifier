@@ -2,7 +2,6 @@ using System.Windows;
 using FurAffinityClassifier.App.Wpf.Datas.Messages;
 using FurAffinityClassifier.Common.Datas.Messages;
 using GalaSoft.MvvmLight.Messaging;
-using log4net;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace FurAffinityClassifier.App.Wpf.Views
@@ -12,15 +11,6 @@ namespace FurAffinityClassifier.App.Wpf.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        #region Private Field
-
-        /// <summary>
-        /// log4netのロガー
-        /// </summary>
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(MainWindow));
-
-        #endregion
-
         #region Constructor
 
         /// <summary>
