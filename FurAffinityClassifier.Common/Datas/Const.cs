@@ -3,7 +3,7 @@ namespace FurAffinityClassifier.Common.Datas
     /// <summary>
     /// 定数
     /// </summary>
-    public static class Const
+    public class Const
     {
         /// <summary>
         /// 分類結果 移動元フォルダーにあるファイル数
