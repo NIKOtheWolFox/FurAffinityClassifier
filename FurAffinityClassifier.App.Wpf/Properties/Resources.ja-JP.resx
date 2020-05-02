@@ -156,4 +156,34 @@
   <data name="ToFolder" xml:space="preserve">
     <value>移動先:</value>
   </data>
+  <data name="DialogTitleSelectFolder" xml:space="preserve">
+    <value>フォルダーを選択</value>
+  </data>
+  <data name="DialogTitleSaveSetting" xml:space="preserve">
+    <value>設定の保存</value>
+  </data>
+  <data name="DialogTitleClassifyFile" xml:space="preserve">
+    <value>ファイルの分類</value>
+  </data>
+  <data name="DialogMesageInvalidSetting" xml:space="preserve">
+    <value>設定に誤りがあります。</value>
+  </data>
+  <data name="DialogMessageSaveSettingDone" xml:space="preserve">
+    <value>設定の保存が完了しました。</value>
+  </data>
+  <data name="DialogMessageSaveSettingError" xml:space="preserve">
+    <value>設定の保存に失敗しました。</value>
+  </data>
+  <data name="DialogMessageClassifyFileDone" xml:space="preserve">
+    <value>ファイルの分類が完了しました。</value>
+  </data>
+  <data name="DialogMessageClassifyFileClassifiedFiles" xml:space="preserve">
+    <value>分類したファイル数:{0}</value>
+  </data>
+  <data name="DialogMessageClassifyFileTargetFiles" xml:space="preserve">
+    <value>分類対象のファイル数:{0}</value>
+  </data>
+  <data name="DialogMessageClassifyFileFoundFiles" xml:space="preserve">
+    <value>検出したファイル数:{0}</value>
+  </data>
 </root>

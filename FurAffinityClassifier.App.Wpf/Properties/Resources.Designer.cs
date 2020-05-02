@@ -106,6 +106,96 @@ namespace FurAffinityClassifier.App.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Setting is invalid. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogMesageInvalidSetting {
+            get {
+                return ResourceManager.GetString("DialogMesageInvalidSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Classified files:{0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogMessageClassifyFileClassifiedFiles {
+            get {
+                return ResourceManager.GetString("DialogMessageClassifyFileClassifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   File classification completed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogMessageClassifyFileDone {
+            get {
+                return ResourceManager.GetString("DialogMessageClassifyFileDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Found files:{0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogMessageClassifyFileFoundFiles {
+            get {
+                return ResourceManager.GetString("DialogMessageClassifyFileFoundFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Target files:{0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogMessageClassifyFileTargetFiles {
+            get {
+                return ResourceManager.GetString("DialogMessageClassifyFileTargetFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Setting save completed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogMessageSaveSettingDone {
+            get {
+                return ResourceManager.GetString("DialogMessageSaveSettingDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Error occurred while save setting. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogMessageSaveSettingError {
+            get {
+                return ResourceManager.GetString("DialogMessageSaveSettingError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   File Classification に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogTitleClassifyFile {
+            get {
+                return ResourceManager.GetString("DialogTitleClassifyFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Save setting に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogTitleSaveSetting {
+            get {
+                return ResourceManager.GetString("DialogTitleSaveSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Select folder に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogTitleSelectFolder {
+            get {
+                return ResourceManager.GetString("DialogTitleSelectFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Execute に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Execute {
