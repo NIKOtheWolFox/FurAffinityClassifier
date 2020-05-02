@@ -9,7 +9,6 @@ using FurAffinityClassifier.Common.Datas;
 using FurAffinityClassifier.Common.Datas.Messages;
 using FurAffinityClassifier.Common.Models;
 using GalaSoft.MvvmLight.Messaging;
-using log4net;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -21,15 +20,6 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
     /// </summary>
     public class MainWindowViewModel : INotifyPropertyChanged, IDisposable
     {
-        #region Private Field
-
-        /// <summary>
-        /// log4netのロガー
-        /// </summary>
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(MainWindowViewModel));
-
-        #endregion
-
         #region Constructor
 
         /// <summary>
