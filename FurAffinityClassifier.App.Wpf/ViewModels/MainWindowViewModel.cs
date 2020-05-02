@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Text;
 using FurAffinityClassifier.App.Wpf.Datas.Messages;
+using FurAffinityClassifier.App.Wpf.Properties;
 using FurAffinityClassifier.Common.Datas;
 using FurAffinityClassifier.Common.Datas.Messages;
 using FurAffinityClassifier.Common.Models;
@@ -57,7 +58,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                                 }
                             })
                         {
-                            Title = "移動元フォルダー選択",
+                            Title = Resources.DialogTitleSelectFolder,
                             InitialDirectory = string.IsNullOrEmpty(FromFolder.Value) ? Environment.CurrentDirectory : FromFolder.Value,
                             DefaultDirectory = string.IsNullOrEmpty(FromFolder.Value) ? Environment.CurrentDirectory : FromFolder.Value,
                         };
@@ -77,7 +78,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                                 }
                             })
                         {
-                            Title = "移動先フォルダー選択",
+                            Title = Resources.DialogTitleSelectFolder,
                             InitialDirectory = string.IsNullOrEmpty(ToFolder.Value) ? Environment.CurrentDirectory : ToFolder.Value,
                             DefaultDirectory = string.IsNullOrEmpty(ToFolder.Value) ? Environment.CurrentDirectory : ToFolder.Value,
                         };
@@ -89,7 +90,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 {
                     ShowDialogMessage showDialogMessage = new ShowDialogMessage()
                     {
-                        Title = "設定の保存",
+                        Title = Resources.DialogTitleSaveSetting,
                         Button = TaskDialogStandardButtons.Ok,
                     };
 
@@ -97,18 +98,18 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     {
                         if (SettingModel.SaveToFile())
                         {
-                            showDialogMessage.Message = "設定の保存が完了しました。";
+                            showDialogMessage.Message = Resources.DialogMessageSaveSettingDone;
                             showDialogMessage.Icon = TaskDialogStandardIcon.Information;
                         }
                         else
                         {
-                            showDialogMessage.Message = "設定の保存に失敗しました。";
+                            showDialogMessage.Message = Resources.DialogMessageSaveSettingDone;
                             showDialogMessage.Icon = TaskDialogStandardIcon.Error;
                         }
                     }
                     else
                     {
-                        showDialogMessage.Message = "設定に誤りがあります。";
+                        showDialogMessage.Message = Resources.DialogMessageInvalidSetting;
                         showDialogMessage.Icon = TaskDialogStandardIcon.Error;
                     }
 
@@ -120,7 +121,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 {
                     ShowDialogMessage showDialogMessage = new ShowDialogMessage()
                     {
-                        Title = "ファイルの分類",
+                        Title = Resources.DialogTitleClassifyFile,
                         Button = TaskDialogStandardButtons.Ok,
                     };
 
@@ -128,17 +129,26 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     {
                         var classificationResult = new ClassificationModel(SettingModel.SettingData).Execute();
                         var messageBuilder = new StringBuilder();
-                        messageBuilder.AppendLine("ファイルの分類が完了しました。");
+                        messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
                         messageBuilder.AppendLine();
-                        messageBuilder.AppendLine($"移動元フォルダーにあるファイル数:{classificationResult[Const.ClassificationResultFoundFileCount]}");
-                        messageBuilder.AppendLine($"分類対象のファイル数:{classificationResult[Const.ClassificationResultTargetFileCount]}");
-                        messageBuilder.AppendLine($"分類したファイル数:{classificationResult[Const.ClassificationResultClassifiedFileCount]}");
+                        messageBuilder.AppendLine(
+                            string.Format(
+                                Resources.DialogMessageClassifyFileFoundFiles,
+                                classificationResult[Const.ClassificationResultFoundFileCount]));
+                        messageBuilder.AppendLine(
+                            string.Format(
+                                Resources.DialogMessageClassifyFileTargetFiles,
+                                classificationResult[Const.ClassificationResultTargetFileCount]));
+                        messageBuilder.AppendLine(
+                            string.Format(
+                                Resources.DialogMessageClassifyFileClassifiedFiles,
+                                classificationResult[Const.ClassificationResultClassifiedFileCount]));
                         showDialogMessage.Message = messageBuilder.ToString();
                         showDialogMessage.Icon = TaskDialogStandardIcon.Information;
                     }
                     else
                     {
-                        showDialogMessage.Message = "設定に誤りがあります。";
+                        showDialogMessage.Message = Resources.DialogMessageInvalidSetting;
                         showDialogMessage.Icon = TaskDialogStandardIcon.Error;
                     }
 

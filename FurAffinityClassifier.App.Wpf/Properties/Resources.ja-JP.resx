@@ -165,7 +165,7 @@
   <data name="DialogTitleClassifyFile" xml:space="preserve">
     <value>ファイルの分類</value>
   </data>
-  <data name="DialogMesageInvalidSetting" xml:space="preserve">
+  <data name="DialogMessageInvalidSetting" xml:space="preserve">
     <value>設定に誤りがあります。</value>
   </data>
   <data name="DialogMessageSaveSettingDone" xml:space="preserve">

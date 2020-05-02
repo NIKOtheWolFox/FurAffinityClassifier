@@ -106,15 +106,6 @@ namespace FurAffinityClassifier.App.Wpf.Properties {
         }
         
         /// <summary>
-        ///   Setting is invalid. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string DialogMesageInvalidSetting {
-            get {
-                return ResourceManager.GetString("DialogMesageInvalidSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Classified files:{0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DialogMessageClassifyFileClassifiedFiles {
@@ -147,6 +138,15 @@ namespace FurAffinityClassifier.App.Wpf.Properties {
         public static string DialogMessageClassifyFileTargetFiles {
             get {
                 return ResourceManager.GetString("DialogMessageClassifyFileTargetFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Setting is invalid. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DialogMessageInvalidSetting {
+            get {
+                return ResourceManager.GetString("DialogMessageInvalidSetting", resourceCulture);
             }
         }
         
