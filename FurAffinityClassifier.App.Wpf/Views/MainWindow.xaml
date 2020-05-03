@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FurAffinityClassifier.App.Wpf.Views"
-        xmlns:properties="clr-namespace:FurAffinityClassifier.App.Wpf.Properties"
+        xmlns:common_resource="clr-namespace:FurAffinityClassifier.Common.Resources;assembly=FurAffinityClassifier.Common"
         mc:Ignorable="d"
         Title="Fur Affinity Classifier"
         Height="500"
@@ -32,14 +32,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
-                       Text="{x:Static properties:Resources.FolderSetting}"/>
+                       Text="{x:Static common_resource:Resources.FolderSetting}"/>
             <Separator Grid.Column="1"
                        Margin="10 0 0 0"
                        VerticalAlignment="Center"/>
         </Grid>
         <TextBlock Grid.Row="1"
                    Margin="0 6 0 0"
-                   Text="{x:Static properties:Resources.FromFolder}" />
+                   Text="{x:Static common_resource:Resources.FromFolder}" />
         <Grid Grid.Row="2"
               Margin="0 0 0 0">
             <Grid.ColumnDefinitions>
@@ -54,12 +54,12 @@
                     Margin="6 0 0 0"
                     Style="{StaticResource button_common}"
                     VerticalAlignment="Center"
-                    Content="{x:Static properties:Resources.SelectFolder}"
+                    Content="{x:Static common_resource:Resources.SelectFolder}"
                     Command="{Binding SelectFromFolderCommand}" />
         </Grid>
         <TextBlock Grid.Row="3"
                    Margin="0 6 0 0"
-                   Text="{x:Static properties:Resources.ToFolder}" />
+                   Text="{x:Static common_resource:Resources.ToFolder}" />
         <Grid Grid.Row="4"
               Margin="0 0 0 0">
             <Grid.ColumnDefinitions>
@@ -74,7 +74,7 @@
                     Margin="6 0 0 0"
                     Style="{StaticResource button_common}"
                     VerticalAlignment="Center"
-                    Content="{x:Static properties:Resources.SelectFolder}"
+                    Content="{x:Static common_resource:Resources.SelectFolder}"
                     Command="{Binding SelectToFolderCommand}" />
         </Grid>
         <Grid Grid.Row="5"
@@ -84,32 +84,32 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
-                       Text="{x:Static properties:Resources.ClassificationSetting}"/>
+                       Text="{x:Static common_resource:Resources.ClassificationSetting}"/>
             <Separator Grid.Column="1"
                        Margin="10 0 0 0"
                        VerticalAlignment="Center"/>
         </Grid>
         <CheckBox Grid.Row="6"
                   Margin="0 6 0 0"
-                  Content="{x:Static properties:Resources.CreateFolderIfNotExist}"
+                  Content="{x:Static common_resource:Resources.CreateFolderIfNotExist}"
                   IsChecked="{Binding CreateFolderIfNotExist.Value}" />
         <CheckBox Grid.Row="7"
                   Margin="0 6 0 0"
-                  Content="{x:Static properties:Resources.OverwriteIfExist}"
+                  Content="{x:Static common_resource:Resources.OverwriteIfExist}"
                   IsChecked="{Binding OverwriteIfExist.Value}" />
         <TextBlock Grid.Row="8"
                    Margin="0 6 0 0"
-                   Text="{x:Static properties:Resources.ClassifyAs}" />
+                   Text="{x:Static common_resource:Resources.ClassifyAs}" />
         <DataGrid Grid.Row="9"
                   Margin="0 6 0 0"
                   ItemsSource="{Binding ClassifyAsDatas.Value}"
                   AutoGenerateColumns="False"
                   RowHeaderWidth="20">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderId}"
+                <DataGridTextColumn Header="{x:Static common_resource:Resources.DataGridHeaderId}"
                                     Width="*"
                                     Binding="{Binding Id}" />
-                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderFolder}"
+                <DataGridTextColumn Header="{x:Static common_resource:Resources.DataGridHeaderFolder}"
                                     Width="*"
                                     Binding="{Binding Folder}" />
             </DataGrid.Columns>
@@ -118,13 +118,13 @@
                 Margin="0 6 0 0"
                 Style="{StaticResource button_common}"
                 HorizontalAlignment="Right"
-                Content="{x:Static properties:Resources.SaveSetting}"
+                Content="{x:Static common_resource:Resources.SaveSetting}"
                 Command="{Binding SaveSettingCommand}" />
         <Button Grid.Row="11"
                 Margin="0 6 0 0"
                 Style="{StaticResource button_common}"
                 HorizontalAlignment="Right"
-                Content="{x:Static properties:Resources.Execute}"
+                Content="{x:Static common_resource:Resources.Execute}"
                 Command="{Binding ExecuteCommand}" />
     </Grid>
 </Window>
