@@ -1,11 +1,8 @@
 using System;
 using System.Linq;
-using log4net;
 
 //// TODO : "CONSOLE"の名前検討
 using CONSOLE = System.Console;
-
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
 
 namespace FurAffinityClassifier.App.Console
 {
@@ -15,12 +12,6 @@ namespace FurAffinityClassifier.App.Console
     public class Program
     {
         #region
-
-        /// <summary>
-        /// log4netのロガー
-        /// </summary>
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(Program));
-
         #endregion
 
         #region
