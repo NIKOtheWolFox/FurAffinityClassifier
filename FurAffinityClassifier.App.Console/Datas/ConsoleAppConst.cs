@@ -5,16 +5,21 @@ namespace FurAffinityClassifier.App.Console.Datas
         /// <summary>
         /// サブコマンド ヘルプ
         /// </summary>
-        public const string SubCommandHelp = "help";
+        public const string SubcommandHelp = "help";
+
+        /// <summary>
+        /// サブコマンド バージョンの表示
+        /// </summary>
+        public const string SubcommandShowVersion = "show-version";
 
         /// <summary>
         /// サブコマンド 設定の表示
         /// </summary>
-        public const string SubCommandShowSetting = "show-setting";
+        public const string SubcommandShowSetting = "show-setting";
 
         /// <summary>
         /// サブコマンド 設定の変更
         /// </summary>
-        public const string SubCommandChangeSetting = "change-setting";
+        public const string SubcommandChangeSetting = "change-setting";
     }
 }
