@@ -1,5 +1,8 @@
 namespace FurAffinityClassifier.App.Console.Datas
 {
+    /// <summary>
+    /// コンソールアプリの定数
+    /// </summary>
     internal class ConsoleAppConst
     {
         /// <summary>
