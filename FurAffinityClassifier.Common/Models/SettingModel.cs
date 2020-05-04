@@ -39,6 +39,7 @@ namespace FurAffinityClassifier.Common.Models
         /// </summary>
         public SettingModel()
         {
+            Logger.Debug("NLog test");
         }
 
         #endregion
