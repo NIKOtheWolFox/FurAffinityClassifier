@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Text;
 using FurAffinityClassifier.App.Wpf.Datas.Messages;
-//using FurAffinityClassifier.App.Wpf.Properties;
 using FurAffinityClassifier.Common.Datas;
 using FurAffinityClassifier.Common.Datas.Messages;
 using FurAffinityClassifier.Common.Models;
