@@ -12,8 +12,6 @@ namespace FurAffinityClassifier.App.Wpf.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-
         #region Constructor
 
         /// <summary>
@@ -21,7 +19,6 @@ namespace FurAffinityClassifier.App.Wpf.Views
         /// </summary>
         public MainWindow()
         {
-            logger.Debug("NLog TEST");
             InitializeComponent();
 
             Messenger.Default.Register<ShowDialogMessage>(
