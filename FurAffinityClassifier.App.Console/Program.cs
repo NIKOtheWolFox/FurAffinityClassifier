@@ -1,6 +1,6 @@
-using NLog;
 using System;
 using System.Linq;
+using NLog;
 
 //// TODO : "CONSOLE"の名前検討
 using CONSOLE = System.Console;
@@ -14,6 +14,9 @@ namespace FurAffinityClassifier.App.Console
     {
         #region
 
+        /// <summary>
+        /// NLogのロガー
+        /// </summary>
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         #endregion
