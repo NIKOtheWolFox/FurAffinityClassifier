@@ -35,6 +35,7 @@ namespace FurAffinityClassifier.Common.Models
         /// <param name="settingData">設定データ</param>
         public ClassificationModel(SettingData settingData)
         {
+            Logger.Debug("NLog test");
             this.settingData = settingData;
         }
 
