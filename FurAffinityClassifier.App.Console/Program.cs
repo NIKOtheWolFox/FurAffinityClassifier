@@ -1,4 +1,7 @@
 using System;
+using log4net;
+
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
 
 namespace FurAffinityClassifier.App.Console
 {
@@ -10,12 +13,22 @@ namespace FurAffinityClassifier.App.Console
         #region
 
         /// <summary>
+        /// log4netのロガー
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(Program));
+
+        #endregion
+
+        #region
+
+        /// <summary>
         /// メインメソッド
         /// </summary>
         /// <param name="args">実行時の引数</param>
         public static void Main(string[] args)
         {
             System.Console.WriteLine("Hello World!");
+            Logger.Debug("Hello World!!");
         }
 
         #endregion
