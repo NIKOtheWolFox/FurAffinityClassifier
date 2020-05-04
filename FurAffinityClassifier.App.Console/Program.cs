@@ -26,8 +26,6 @@ namespace FurAffinityClassifier.App.Console
         /// <param name="args">実行時の引数</param>
         public static void Main(string[] args)
         {
-            logger.Debug("NLog test .NET Core 3.1");
-
             if (args.Count() == 0)
             {
                 //// TODO : 分類処理の実装
