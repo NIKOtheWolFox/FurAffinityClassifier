@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using FurAffinityClassifier.Common.Datas;
-using log4net;
+using NLog;
 
 namespace FurAffinityClassifier.Common.Models
 {
@@ -16,9 +16,9 @@ namespace FurAffinityClassifier.Common.Models
         #region Private Field
 
         /// <summary>
-        /// log4netのロガー
+        /// NLogのロガー
         /// </summary>
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(ClassificationModel));
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// 設定データ

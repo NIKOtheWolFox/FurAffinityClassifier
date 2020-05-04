@@ -55,7 +55,3 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.2.2.0")]
 [assembly: AssemblyFileVersion("0.2.2.0")]
-
-// Configuration for log4net
-// Write configuration to log4net.config
-[assembly: log4net.Config.XmlConfigurator(Watch = true, ConfigFile = "log4net.config")]
