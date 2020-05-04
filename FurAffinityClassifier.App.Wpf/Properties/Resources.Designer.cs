@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FurAffinityClassifier.Common.Resources {
+namespace FurAffinityClassifier.App.Wpf.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace FurAffinityClassifier.Common.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FurAffinityClassifier.Common.Resources.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FurAffinityClassifier.App.Wpf.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -237,15 +237,6 @@ namespace FurAffinityClassifier.Common.Resources {
         public static string SaveSetting {
             get {
                 return ResourceManager.GetString("SaveSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Search に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string SearchWatermark {
-            get {
-                return ResourceManager.GetString("SearchWatermark", resourceCulture);
             }
         }
         

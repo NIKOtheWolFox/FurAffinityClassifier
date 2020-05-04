@@ -98,72 +98,69 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ClassificationSetting" xml:space="preserve">
-    <value>分類設定</value>
+    <value>Classification setting</value>
   </data>
   <data name="ClassifyAs" xml:space="preserve">
-    <value>IDと異なるフォルダーに分類する</value>
+    <value>Classify as</value>
   </data>
   <data name="CreateFolderIfNotExist" xml:space="preserve">
-    <value>フォルダーがないときは作成する</value>
+    <value>Create folder if not exist</value>
   </data>
   <data name="DataGridHeaderFolder" xml:space="preserve">
-    <value>フォルダー</value>
+    <value>Folder</value>
   </data>
   <data name="DataGridHeaderId" xml:space="preserve">
     <value>ID</value>
   </data>
   <data name="DialogMessageClassifyFileClassifiedFiles" xml:space="preserve">
-    <value>分類したファイル数:{0}</value>
+    <value>Classified files:{0}</value>
   </data>
   <data name="DialogMessageClassifyFileDone" xml:space="preserve">
-    <value>ファイルの分類が完了しました。</value>
+    <value>File classification completed.</value>
   </data>
   <data name="DialogMessageClassifyFileFoundFiles" xml:space="preserve">
-    <value>検出したファイル数:{0}</value>
+    <value>Found files:{0}</value>
   </data>
   <data name="DialogMessageClassifyFileTargetFiles" xml:space="preserve">
-    <value>分類対象のファイル数:{0}</value>
+    <value>Target files:{0}</value>
   </data>
   <data name="DialogMessageInvalidSetting" xml:space="preserve">
-    <value>設定に誤りがあります。</value>
+    <value>Setting is invalid.</value>
   </data>
   <data name="DialogMessageSaveSettingDone" xml:space="preserve">
-    <value>設定の保存が完了しました。</value>
+    <value>Setting save completed.</value>
   </data>
   <data name="DialogMessageSaveSettingError" xml:space="preserve">
-    <value>設定の保存に失敗しました。</value>
+    <value>Error occurred while save setting.</value>
   </data>
   <data name="DialogTitleClassifyFile" xml:space="preserve">
-    <value>ファイルの分類</value>
+    <value>File Classification</value>
   </data>
   <data name="DialogTitleSaveSetting" xml:space="preserve">
-    <value>設定の保存</value>
+    <value>Save setting</value>
   </data>
   <data name="DialogTitleSelectFolder" xml:space="preserve">
-    <value>フォルダーを選択</value>
+    <value>Select folder</value>
   </data>
   <data name="Execute" xml:space="preserve">
-    <value>実行</value>
+    <value>Execute</value>
   </data>
   <data name="FolderSetting" xml:space="preserve">
-    <value>フォルダー設定</value>
+    <value>Folder setting</value>
   </data>
   <data name="FromFolder" xml:space="preserve">
-    <value>移動元:</value>
+    <value>From:</value>
   </data>
   <data name="OverwriteIfExist" xml:space="preserve">
-    <value>ファイルがあるときは上書きする</value>
+    <value>Overwrite if exist</value>
   </data>
   <data name="SaveSetting" xml:space="preserve">
-    <value>設定を保存</value>
-  </data>
-  <data name="SearchWatermark" xml:space="preserve">
-    <value>検索</value>
+    <value>Save setting</value>
   </data>
   <data name="SelectFolder" xml:space="preserve">
-    <value>選択...</value>
+    <value>Select...</value>
   </data>
   <data name="ToFolder" xml:space="preserve">
-    <value>移動先:</value>
+    <value>To:</value>
   </data>
 </root>
