@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using FurAffinityClassifier.App.Console.Models;
 using NLog;
 
 //// TODO : "CONSOLE"の名前検討
@@ -40,6 +41,16 @@ namespace FurAffinityClassifier.App.Console
                 ////        サブコマンドに従った表示をする
                 ////        更新後の保存が手動ならサブコマンドに「設定の保存」も追加
                 CONSOLE.WriteLine("NOT IMPLEMENTED");
+
+                var subcommand = args[0];
+                switch (subcommand)
+                {
+                    case "help":
+                        new HelpModel().Execute();
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
