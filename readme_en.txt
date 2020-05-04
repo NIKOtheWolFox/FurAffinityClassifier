@@ -54,15 +54,15 @@ This software is released under MIT License
 https://github.com/NIKOtheWolFox/FurAffinityClassifier/blob/master/LICENSE
 
 ■Library Usage
-log4net
-(c) 2004-2017 The Apache Software Foundation
-Apache License 2.0
-http://logging.apache.org/log4net/license.html
-
 Json.NET
 (c) 2008 James Newton-King
 MIT License
 https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md
+
+NLog
+(c) 2004-2020 NLog Project - https://nlog-project.org/
+BSD 3-Clause License
+https://github.com/NLog/NLog/blob/dev/LICENSE.txt
 
 WindowsAPICodePack
 (c) 2020 rpastric, contre, dahall
