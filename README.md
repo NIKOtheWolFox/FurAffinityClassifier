@@ -8,10 +8,10 @@ This application classify files that downloaded from Fur Affinity into ID-based 
 .NET Core 3.1 for Console application.
 
 ## How to use GUI application
-GUI application is at "App.WPF" folder.
+GUI application is at "App.Wpf" folder.
 1. Unzip released file.
 2. Run "FurAffinityClassifier.App.Wpf.exe".
-3. Set up as you wish.
+3. Set up as you wish. (setting will not save unless clicking "Save Setting")
 4. Click "Execute" button.
 
 ## How to use Console application
@@ -58,7 +58,7 @@ If you set up as:
     ]
 }
 ```
-and you have 2 files in From Folder(Do not rename file, this application detect file by filename):
+and you have 2 files in C:\Users\foo\Downloads (Do not rename file, this application detect file by filename):
 * 1234567890.test_bar.jpg
 * 2345678901.test2_baz.jpg
 
