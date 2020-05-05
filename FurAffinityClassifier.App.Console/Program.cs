@@ -10,7 +10,7 @@ namespace FurAffinityClassifier.App.Console
     /// </summary>
     public class Program
     {
-        #region
+        #region Private Field
 
         /// <summary>
         /// NLogのロガー
@@ -19,7 +19,7 @@ namespace FurAffinityClassifier.App.Console
 
         #endregion
 
-        #region
+        #region Public Method
 
         /// <summary>
         /// メインメソッド
