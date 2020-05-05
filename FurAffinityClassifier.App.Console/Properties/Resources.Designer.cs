@@ -83,5 +83,50 @@ namespace FurAffinityClassifier.App.Console.Properties {
                 return ResourceManager.GetString("InvalidOption", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Classified files:{0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageClassifyFileClassifiedFiles {
+            get {
+                return ResourceManager.GetString("MessageClassifyFileClassifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   File classification completed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageClassifyFileDone {
+            get {
+                return ResourceManager.GetString("MessageClassifyFileDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Found files:{0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageClassifyFileFoundFiles {
+            get {
+                return ResourceManager.GetString("MessageClassifyFileFoundFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Target files:{0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageClassifyFileTargetFiles {
+            get {
+                return ResourceManager.GetString("MessageClassifyFileTargetFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Setting is Invalid. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageInvalidSetting {
+            get {
+                return ResourceManager.GetString("MessageInvalidSetting", resourceCulture);
+            }
+        }
     }
 }
