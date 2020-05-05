@@ -36,8 +36,8 @@ namespace FurAffinityClassifier.App.Console
             }
             else if (args.Count() == 1)
             {
-                var subcommand = args[0];
-                switch (subcommand)
+                var option = args[0];
+                switch (option)
                 {
                     case "--help":
                         new HelpModel().Execute();

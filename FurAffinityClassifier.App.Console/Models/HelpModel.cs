@@ -5,7 +5,7 @@ using CONSOLE = System.Console;
 namespace FurAffinityClassifier.App.Console.Models
 {
     /// <summary>
-    /// helpサブコマンド
+    /// --helpオプション
     /// </summary>
     public class HelpModel
     {
