@@ -1,10 +1,7 @@
-using System;
 using System.Linq;
 using FurAffinityClassifier.App.Console.Datas;
 using FurAffinityClassifier.App.Console.Models;
 using NLog;
-
-using CONSOLE = System.Console;
 
 namespace FurAffinityClassifier.App.Console
 {

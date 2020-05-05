@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Text;
 using FurAffinityClassifier.App.Console.Properties;
 using FurAffinityClassifier.Common.Datas;
