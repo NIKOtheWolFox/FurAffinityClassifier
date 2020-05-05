@@ -61,7 +61,12 @@ namespace FurAffinityClassifier.App.Console.Properties {
         }
         
         /// <summary>
-        ///   Fur Affinity Classifier に類似しているローカライズされた文字列を検索します。
+        ///   Fur Affinity Classifier
+        ///Usage : FurAffinityClassifier.App.Console [option]
+        ///
+        ///option:
+        ///  --help[TAB]Show this help
+        ///  --version[TAB]Show version に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Help {
             get {

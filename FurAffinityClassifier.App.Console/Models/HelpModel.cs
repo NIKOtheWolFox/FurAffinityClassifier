@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using FurAffinityClassifier.App.Console.Properties;
 
@@ -17,7 +19,7 @@ namespace FurAffinityClassifier.App.Console.Models
         /// </summary>
         public void Execute()
         {
-            CONSOLE.WriteLine(Resources.Help);
+            CONSOLE.WriteLine(Resources.Help.Replace("[TAB]", "\t"));
         }
     }
 }

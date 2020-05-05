@@ -40,15 +40,16 @@ namespace FurAffinityClassifier.App.Console
                 //// TODO : サブコマンドを見る(ヘルプ、設定の表示、バージョン)
                 ////        サブコマンドに従った表示をする
                 ////        更新後の保存が手動ならサブコマンドに「設定の保存」も追加
-                CONSOLE.WriteLine("NOT IMPLEMENTED");
+                
 
                 var subcommand = args[0];
                 switch (subcommand)
                 {
-                    case "help":
+                    case "--help":
                         new HelpModel().Execute();
                         break;
                     default:
+                        CONSOLE.WriteLine("NOT IMPLEMENTED");
                         break;
                 }
             }

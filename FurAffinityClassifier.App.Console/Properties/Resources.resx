@@ -118,6 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Help" xml:space="preserve">
-    <value>Fur Affinity Classifier</value>
+    <value>Fur Affinity Classifier
+Usage : FurAffinityClassifier.App.Console [option]
+
+option:
+  --help[TAB]Show this help
+  --version[TAB]Show version</value>
   </data>
 </root>
