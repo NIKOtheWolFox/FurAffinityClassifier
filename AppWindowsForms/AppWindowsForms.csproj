@@ -115,9 +115,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release (
-copy "$(SolutionDir)readme_en.txt" "$(TargetDir)" /Y
-copy "$(SolutionDir)readme_jp.txt" "$(TargetDir)" /Y
-)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

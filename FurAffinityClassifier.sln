@@ -7,17 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppWindowsForms", "AppWindo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonDotNetFramework", "CommonDotNetFramework\CommonDotNetFramework.csproj", "{CC438D99-BE30-4467-8D60-084873C7A6A4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9DE1BE40-0A9E-4948-9EE2-C6EF29BA53A4}"
-	ProjectSection(SolutionItems) = preProject
-		readme_en.txt = readme_en.txt
-		readme_jp.txt = readme_jp.txt
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FurAffinityClassifier.Common", "FurAffinityClassifier.Common\FurAffinityClassifier.Common.csproj", "{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurAffinityClassifier.App.Wpf", "FurAffinityClassifier.App.Wpf\FurAffinityClassifier.App.Wpf.csproj", "{1763A4B2-F134-4533-8560-39C8AECAB896}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurAffinityClassifier.App.Console", "FurAffinityClassifier.App.Console\FurAffinityClassifier.App.Console.csproj", "{26C99098-0485-4840-8AF0-0F35F384AA0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FurAffinityClassifier.App.Console", "FurAffinityClassifier.App.Console\FurAffinityClassifier.App.Console.csproj", "{26C99098-0485-4840-8AF0-0F35F384AA0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
