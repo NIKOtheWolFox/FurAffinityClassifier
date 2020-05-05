@@ -48,6 +48,9 @@ namespace FurAffinityClassifier.App.Console
                     case "--help":
                         new HelpModel().Execute();
                         break;
+                    case "--version":
+                        new VersionModel().Execute();
+                        break;
                     default:
                         CONSOLE.WriteLine("NOT IMPLEMENTED");
                         break;
