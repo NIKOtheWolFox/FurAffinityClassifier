@@ -12,6 +12,15 @@ namespace FurAffinityClassifier.App.Console.Models
     /// </summary>
     public class DefaultModel
     {
+        #region Private Property
+
+        /// <summary>
+        /// 設定機能
+        /// </summary>
+        private SettingModel SettingModel { get; } = new SettingModel();
+
+        #endregion
+
         #region Public Method
 
         /// <summary>
@@ -44,15 +53,6 @@ namespace FurAffinityClassifier.App.Console.Models
                     classificationResult[Const.ClassificationResultClassifiedFileCount]));
             CONSOLE.WriteLine(messageBuilder.ToString());
         }
-
-        #endregion
-
-        #region Private Property
-
-        /// <summary>
-        /// 設定機能
-        /// </summary>
-        private SettingModel SettingModel { get; } = new SettingModel();
 
         #endregion
     }
