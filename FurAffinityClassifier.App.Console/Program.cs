@@ -32,8 +32,7 @@ namespace FurAffinityClassifier.App.Console
         {
             if (args.Count() == 0)
             {
-                //// TODO : 分類処理の実装
-                CONSOLE.WriteLine("NOT IMPLEMENTED");
+                new DefaultModel().Execute();
             }
             else if (args.Count() == 1)
             {
