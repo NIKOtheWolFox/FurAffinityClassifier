@@ -241,15 +241,6 @@ namespace FurAffinityClassifier.App.Wpf.Properties {
         }
         
         /// <summary>
-        ///   Search に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string SearchWatermark {
-            get {
-                return ResourceManager.GetString("SearchWatermark", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Select... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SelectFolder {

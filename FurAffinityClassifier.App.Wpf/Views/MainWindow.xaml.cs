@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Interop;
 using FurAffinityClassifier.App.Wpf.Datas.Messages;
 using FurAffinityClassifier.Common.Datas.Messages;
 using GalaSoft.MvvmLight.Messaging;
@@ -28,7 +29,7 @@ namespace FurAffinityClassifier.App.Wpf.Views
                     using (
                         var dialog = new TaskDialog()
                         {
-                            OwnerWindowHandle = new System.Windows.Interop.WindowInteropHelper(this).Handle,
+                            OwnerWindowHandle = new WindowInteropHelper(this).Handle,
                             StartupLocation = TaskDialogStartupLocation.CenterOwner,
                             Icon = m.Icon,
                             Caption = m.Title,
