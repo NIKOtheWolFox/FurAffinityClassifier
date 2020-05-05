@@ -15,11 +15,11 @@ GUI application is at "App.Wpf" folder.
 4. Click "Execute" button.
 
 ## How to use Console application
-Console application is at "App.Console" folder.
+Console application is at "App.Console" folder. This folder have 3 subfolders, choose one that suit for your environment.
 1. Unzip released file.
 2. create file "setting.json" in App.Console folder.
 3. Write setting to "setting.json".
-4. Run "FurAffinityClassifier.App.Console.exe".
+4. Run "FurAffinityClassifier.App.Console.exe (FurAffinityClassifier.App.Console in macOS or Linux)".
 
 ## Setting
 This application use a file "setting.json" in same folder as executable file to save setting.<br>
