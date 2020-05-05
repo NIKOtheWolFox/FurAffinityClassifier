@@ -6,23 +6,13 @@ namespace FurAffinityClassifier.App.Console.Datas
     internal class ConsoleAppConst
     {
         /// <summary>
-        /// サブコマンド ヘルプ
+        /// オプション ヘルプ
         /// </summary>
-        public const string SubcommandHelp = "help";
+        public const string OptionHelp = "--help";
 
         /// <summary>
-        /// サブコマンド バージョンの表示
+        /// オプション バージョンの表示
         /// </summary>
-        public const string SubcommandShowVersion = "show-version";
-
-        /// <summary>
-        /// サブコマンド 設定の表示
-        /// </summary>
-        public const string SubcommandShowSetting = "show-setting";
-
-        /// <summary>
-        /// サブコマンド 設定の変更
-        /// </summary>
-        public const string SubcommandChangeSetting = "change-setting";
+        public const string OptionVersion = "--version";
     }
 }

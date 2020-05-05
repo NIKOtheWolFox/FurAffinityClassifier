@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using FurAffinityClassifier.App.Console.Datas;
 using FurAffinityClassifier.App.Console.Models;
 using NLog;
 
@@ -39,10 +40,10 @@ namespace FurAffinityClassifier.App.Console
                 var option = args[0];
                 switch (option)
                 {
-                    case "--help":
+                    case ConsoleAppConst.OptionHelp:
                         new HelpModel().Execute();
                         break;
-                    case "--version":
+                    case ConsoleAppConst.OptionVersion:
                         new VersionModel().Execute();
                         break;
                     default:
