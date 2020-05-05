@@ -58,7 +58,7 @@ If you set up as:
     ]
 }
 ```
-and you have 2 files in From Folder:
+and you have 2 files in From Folder(Do not rename file, this application detect file by filename):
 * 1234567890.test_bar.jpg
 * 2345678901.test2_baz.jpg
 
