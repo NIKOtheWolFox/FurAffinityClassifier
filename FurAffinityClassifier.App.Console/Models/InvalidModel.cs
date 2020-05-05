@@ -1,7 +1,4 @@
 using FurAffinityClassifier.App.Console.Properties;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 using CONSOLE = System.Console;
 
