@@ -125,4 +125,8 @@ option:
   --help[TAB]ヘルプを表示する
   --version[TAB]バージョンを表示する</value>
   </data>
+  <data name="InvalidOption" xml:space="preserve">
+    <value>正しくないオプションです。
+使用法を確認するには'FuraffinityClassifier.App.Console --help'を実行してください。</value>
+  </data>
 </root>

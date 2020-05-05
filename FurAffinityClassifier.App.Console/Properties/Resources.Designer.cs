@@ -73,5 +73,15 @@ namespace FurAffinityClassifier.App.Console.Properties {
                 return ResourceManager.GetString("Help", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Invalid option.
+        ///Type &apos;FuraffinityClassifier.App.Console --help&apos; to see usage. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InvalidOption {
+            get {
+                return ResourceManager.GetString("InvalidOption", resourceCulture);
+            }
+        }
     }
 }

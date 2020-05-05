@@ -125,4 +125,8 @@ option:
   --help[TAB]Show this help
   --version[TAB]Show version</value>
   </data>
+  <data name="InvalidOption" xml:space="preserve">
+    <value>Invalid option.
+Type 'FuraffinityClassifier.App.Console --help' to see usage.</value>
+  </data>
 </root>

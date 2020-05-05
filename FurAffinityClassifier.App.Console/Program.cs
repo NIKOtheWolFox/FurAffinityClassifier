@@ -47,13 +47,13 @@ namespace FurAffinityClassifier.App.Console
                         new VersionModel().Execute();
                         break;
                     default:
-                        CONSOLE.WriteLine("NOT IMPLEMENTED");
+                        new InvalidModel().Execute();
                         break;
                 }
             }
             else
             {
-                CONSOLE.WriteLine("NOT IMPLEMENTED");
+                new InvalidModel().Execute();
             }
         }
 
