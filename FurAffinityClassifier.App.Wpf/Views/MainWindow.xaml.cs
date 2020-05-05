@@ -4,7 +4,6 @@ using FurAffinityClassifier.App.Wpf.Datas.Messages;
 using FurAffinityClassifier.Common.Datas.Messages;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using NLog;
 
 namespace FurAffinityClassifier.App.Wpf.Views
 {
