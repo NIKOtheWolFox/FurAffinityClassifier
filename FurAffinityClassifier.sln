@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppWindowsForms", "AppWindowsForms\AppWindowsForms.csproj", "{FFAB2C7E-69D3-401C-A034-090B6ED993EA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonDotNetFramework", "CommonDotNetFramework\CommonDotNetFramework.csproj", "{CC438D99-BE30-4467-8D60-084873C7A6A4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FurAffinityClassifier.Common", "FurAffinityClassifier.Common\FurAffinityClassifier.Common.csproj", "{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurAffinityClassifier.App.Wpf", "FurAffinityClassifier.App.Wpf\FurAffinityClassifier.App.Wpf.csproj", "{1763A4B2-F134-4533-8560-39C8AECAB896}"
@@ -19,14 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FFAB2C7E-69D3-401C-A034-090B6ED993EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFAB2C7E-69D3-401C-A034-090B6ED993EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFAB2C7E-69D3-401C-A034-090B6ED993EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFAB2C7E-69D3-401C-A034-090B6ED993EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC438D99-BE30-4467-8D60-084873C7A6A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC438D99-BE30-4467-8D60-084873C7A6A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC438D99-BE30-4467-8D60-084873C7A6A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC438D99-BE30-4467-8D60-084873C7A6A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}.Release|Any CPU.ActiveCfg = Release|Any CPU
