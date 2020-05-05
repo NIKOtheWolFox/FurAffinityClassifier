@@ -3,7 +3,6 @@ using System.Linq;
 using FurAffinityClassifier.App.Console.Models;
 using NLog;
 
-//// TODO : "CONSOLE"の名前検討
 using CONSOLE = System.Console;
 
 namespace FurAffinityClassifier.App.Console
@@ -37,11 +36,6 @@ namespace FurAffinityClassifier.App.Console
             }
             else if (args.Count() == 1)
             {
-                //// TODO : サブコマンドを見る(ヘルプ、設定の表示、バージョン)
-                ////        サブコマンドに従った表示をする
-                ////        更新後の保存が手動ならサブコマンドに「設定の保存」も追加
-                
-
                 var subcommand = args[0];
                 switch (subcommand)
                 {
@@ -58,9 +52,6 @@ namespace FurAffinityClassifier.App.Console
             }
             else
             {
-                //// TODO : サブコマンドを見る(設定の変更)
-                ////        引数を見て更新する
-                ////        更新したあとの保存は自動でやる？
                 CONSOLE.WriteLine("NOT IMPLEMENTED");
             }
         }
