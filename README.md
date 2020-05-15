@@ -99,4 +99,4 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 [MIT License](https://github.com/runceel/ReactiveProperty/blob/master/LICENSE.txt)
 
 ## Other things
-The author is not an English native, so advices are welsome.
+The author is not an English native, so advices are welcome.
