@@ -226,11 +226,6 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         private AppModel AppModel { get; } = new AppModel();
 
         /// <summary>
-        /// 設定機能
-        /// </summary>
-        ////private SettingModel SettingModel { get; } = new SettingModel();
-
-        /// <summary>
         /// 一括Disposeを行うためにReactiveXxをまとめるオブジェクト
         /// </summary>
         private CompositeDisposable Disposables { get; } = new CompositeDisposable();

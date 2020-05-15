@@ -29,32 +29,6 @@ namespace FurAffinityClassifier.App.Console
         {
             var viewModel = new ConsoleViewModel();
             CONSOLE.WriteLine(viewModel.Execute(args));
-            /*
-            if (args.Count() == 0)
-            {
-                new DefaultModel().Execute();
-            }
-            else if (args.Count() == 1)
-            {
-                var option = args[0];
-                switch (option)
-                {
-                    case ConsoleAppConst.OptionHelp:
-                        new HelpModel().Execute();
-                        break;
-                    case ConsoleAppConst.OptionVersion:
-                        new VersionModel().Execute();
-                        break;
-                    default:
-                        new InvalidModel().Execute();
-                        break;
-                }
-            }
-            else
-            {
-                new InvalidModel().Execute();
-            }
-            */
         }
 
         #endregion
