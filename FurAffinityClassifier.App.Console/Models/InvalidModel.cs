@@ -1,7 +1,5 @@
 using FurAffinityClassifier.App.Console.Properties;
 
-using CONSOLE = System.Console;
-
 namespace FurAffinityClassifier.App.Console.Models
 {
     /// <summary>
@@ -14,9 +12,10 @@ namespace FurAffinityClassifier.App.Console.Models
         /// <summary>
         /// 実行する
         /// </summary>
-        public void Execute()
+        /// <returns>コンソールに出力する文字列</returns>
+        public string Execute()
         {
-            CONSOLE.WriteLine(Resources.InvalidOption);
+            return Resources.InvalidOption;
         }
 
         #endregion

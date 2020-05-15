@@ -27,22 +27,22 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
-            SettingModel.LoadFromFile();
+            AppModel.LoadSetting();
 
             FromFolder = ReactiveProperty
-                .FromObject(SettingModel, x => x.FromFolder)
+                .FromObject(AppModel, x => x.FromFolder)
                 .AddTo(Disposables);
             ToFolder = ReactiveProperty
-                .FromObject(SettingModel, x => x.ToFolder)
+                .FromObject(AppModel, x => x.ToFolder)
                 .AddTo(Disposables);
             CreateFolderIfNotExist = ReactiveProperty
-                .FromObject(SettingModel, x => x.CreateFolderIfNotExist)
+                .FromObject(AppModel, x => x.CreateFolderIfNotExist)
                 .AddTo(Disposables);
             OverwriteIfExist = ReactiveProperty
-                .FromObject(SettingModel, x => x.OverwriteIfExist)
+                .FromObject(AppModel, x => x.OverwriteIfExist)
                 .AddTo(Disposables);
             ClassifyAsDatas = ReactiveProperty
-                .FromObject(SettingModel, x => x.ClassifyAsDatas)
+                .FromObject(AppModel, x => x.ClassifyAsDatas)
                 .AddTo(Disposables);
 
             SelectFromFolderCommand = new ReactiveCommand()
@@ -94,9 +94,9 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                         Button = TaskDialogStandardButtons.Ok,
                     };
 
-                    if (SettingModel.Validate())
+                    if (AppModel.ValidateSetting())
                     {
-                        if (SettingModel.SaveToFile())
+                        if (AppModel.SaveSetting())
                         {
                             showDialogMessage.Message = Resources.DialogMessageSaveSettingDone;
                             showDialogMessage.Icon = TaskDialogStandardIcon.Information;
@@ -125,9 +125,9 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                         Button = TaskDialogStandardButtons.Ok,
                     };
 
-                    if (SettingModel.Validate())
+                    if (AppModel.ValidateSetting())
                     {
-                        var classificationResult = new ClassificationModel(SettingModel.SettingData).Execute();
+                        var classificationResult = AppModel.Classify();
                         var messageBuilder = new StringBuilder();
                         messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
                         messageBuilder.AppendLine();
@@ -221,9 +221,9 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         #region Private Property
 
         /// <summary>
-        /// 設定機能
+        /// アプリケーションの機能
         /// </summary>
-        private SettingModel SettingModel { get; } = new SettingModel();
+        private AppModel AppModel { get; } = new AppModel();
 
         /// <summary>
         /// 一括Disposeを行うためにReactiveXxをまとめるオブジェクト

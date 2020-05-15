@@ -1,7 +1,5 @@
 using System.Reflection;
 
-using CONSOLE = System.Console;
-
 namespace FurAffinityClassifier.App.Console.Models
 {
     /// <summary>
@@ -14,10 +12,11 @@ namespace FurAffinityClassifier.App.Console.Models
         /// <summary>
         /// 実行する
         /// </summary>
-        public void Execute()
+        /// <returns>コンソールに出力する文字列</returns>
+        public string Execute()
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version;
-            CONSOLE.WriteLine($"{version.Major}.{version.Minor}.{version.Build}");
+            return $"{version.Major}.{version.Minor}.{version.Build}";
         }
 
         #endregion
