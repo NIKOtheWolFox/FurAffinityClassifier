@@ -53,8 +53,7 @@ If you set up as:
         {
             "Id": "test",
             "Folder": "test_folder"
-        },
-        ...
+        }
     ]
 }
 ```
