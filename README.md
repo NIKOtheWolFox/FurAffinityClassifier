@@ -1,7 +1,7 @@
 # Fur Affinity Classifier
 This application classify files that downloaded from Fur Affinity into ID-based folder.
 
-![Latest Release](https://img.shields.io/github/v/release/NIKOtheWolFox/FurAffinityClassifier)
+[![Latest Release](https://img.shields.io/github/v/release/NIKOtheWolFox/FurAffinityClassifier)](https://github.com/NIKOtheWolFox/FurAffinityClassifier/releases)
 
 ## Requirements
 .NET Framework 4.7.2 for GUI application.<br>
