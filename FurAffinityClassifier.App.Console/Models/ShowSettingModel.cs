@@ -1,7 +1,6 @@
 using System;
 using System.Text;
 using FurAffinityClassifier.App.Console.Properties;
-using FurAffinityClassifier.Common.Datas;
 using FurAffinityClassifier.Common.Models;
 
 namespace FurAffinityClassifier.App.Console.Models
