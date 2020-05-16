@@ -146,10 +146,10 @@ option:
     <value>分類対象のファイル数:{0}</value>
   </data>
   <data name="MessageShowSetting" xml:space="preserve">
-    <value>From : {0}
-To : {1}
-Create folder if not exest : {2}
-Overwrite if exist : {3}
-Classify as : {4}</value>
+    <value>移動元 : {0}
+移動先 : {1}
+フォルダーがないときは作成する : {2}
+ファイルがあるときは上書きする : {3}
+IDと異なるフォルダーへの分類 : {4}</value>
   </data>
 </root>
