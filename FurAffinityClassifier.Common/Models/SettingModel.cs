@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Common.Datas;
 using Jil;
-using Newtonsoft.Json;
 using NLog;
 
 namespace FurAffinityClassifier.Common.Models
