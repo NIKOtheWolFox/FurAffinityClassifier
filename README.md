@@ -39,7 +39,8 @@ Content of file is:
     ]
 }
 ```
-GUI application create this file by clicking "Save Setting" button, but you can create it manually.
+GUI application create and update this file by clicking "Save Setting" button, but you can create it manually.<br>
+If you make setting file by using this app, order of content can be differ from above example. This is derived from JSON processor library behavior.
 
 ## How application works
 If you set up as:
