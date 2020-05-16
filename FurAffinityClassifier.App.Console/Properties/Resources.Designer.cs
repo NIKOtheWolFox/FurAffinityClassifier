@@ -65,6 +65,7 @@ namespace FurAffinityClassifier.App.Console.Properties {
         ///Usage : FurAffinityClassifier.App.Console [option]
         ///
         ///option:
+        ///  (empty)[TAB]Execute classification
         ///  --help[TAB][TAB]Show this help
         ///  --version[TAB][TAB]Show version
         ///  --show-setting[TAB]Show setting に類似しているローカライズされた文字列を検索します。

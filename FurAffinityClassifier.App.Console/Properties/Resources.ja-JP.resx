@@ -122,6 +122,7 @@
 使用法 : FurAffinityClassifier.App.Console [option]
 
 option:
+  (オプションなし)[TAB]分類を実行する
   --help[TAB][TAB]ヘルプを表示する
   --version[TAB][TAB]バージョンを表示する
   --show-setting[TAB]設定を表示する</value>
