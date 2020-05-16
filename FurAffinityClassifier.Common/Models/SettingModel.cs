@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Common.Datas;
-using Newtonsoft.Json;
+using Jil;
 using NLog;
 
 namespace FurAffinityClassifier.Common.Models
@@ -114,7 +114,7 @@ namespace FurAffinityClassifier.Common.Models
                 {
                     using (var reader = new StreamReader(settingFilePath))
                     {
-                        settingData = JsonConvert.DeserializeObject<SettingData>(reader.ReadToEnd());
+                        settingData = JSON.Deserialize<SettingData>(reader);
                     }
                 }
             }
@@ -149,7 +149,7 @@ namespace FurAffinityClassifier.Common.Models
             {
                 using (var writer = new StreamWriter(settingFilePath))
                 {
-                    await writer.WriteAsync(JsonConvert.SerializeObject(settingData, Formatting.Indented));
+                    await writer.WriteAsync(JSON.Serialize(settingData, new Options(true)));
                 }
             }
             catch (Exception e)
