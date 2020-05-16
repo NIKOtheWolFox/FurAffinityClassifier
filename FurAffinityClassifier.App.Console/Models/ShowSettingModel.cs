@@ -39,19 +39,17 @@ namespace FurAffinityClassifier.App.Console.Models
         public string Execute()
         {
             var builder = new StringBuilder();
-
-            foreach(var ca in appModel.ClassifyAsDatas)
-            {
-                builder.AppendLine($"{ca.Id} -> {ca.Folder}");
-            }
+            appModel.ClassifyAsDatas.ForEach(ca => builder.AppendLine($"{ca.Id} -> {ca.Folder}"));
 
             return string.Format(
                 Resources.MessageShowSetting,
                 appModel.FromFolder,
-                    appModel.ToFolder,
-                    appModel.CreateFolderIfNotExist,
-                    appModel.OverwriteIfExist,
-                    Environment.NewLine + builder.ToString());
+                appModel.ToFolder,
+                appModel.CreateFolderIfNotExist,
+                appModel.OverwriteIfExist,
+                builder.Length == 0
+                    ? string.Empty
+                    : Environment.NewLine + builder.ToString());
         }
 
         #endregion
