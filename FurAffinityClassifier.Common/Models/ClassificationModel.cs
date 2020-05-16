@@ -45,9 +45,9 @@ namespace FurAffinityClassifier.Common.Models
 
         #region Public Method
 
-        public async Task<Dictionary<string, int>> ExecuteNew()
+        public async Task<Dictionary<string, int>> ExecuteAsync()
         {
-            var classificationDatas = new List<ClassificationData>();
+            var classificationResults = new List<ClassificationResult>();
 
             try
             {
@@ -58,16 +58,16 @@ namespace FurAffinityClassifier.Common.Models
                     var tasks = files.Select(async file =>
                     {
                         await semaphore.WaitAsync();
-                        var classificationData = new ClassificationData(file);
+                        var classificationResult = new ClassificationResult(file);
                         try
                         {
                             var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
                             if (!match.Success)
                             {
-                                return classificationData;
+                                return classificationResult;
                             }
 
-                            classificationData.Targeted = true;
+                            classificationResult.Targeted = true;
                             var id = match.Groups["id"].Value;
 
                             var folderName = string.Empty;
@@ -84,7 +84,7 @@ namespace FurAffinityClassifier.Common.Models
                                 if (matchedFolder.Count() > 1)
                                 {
                                     Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
-                                    return classificationData;
+                                    return classificationResult;
                                 }
                                 else if (matchedFolder.Count() == 1)
                                 {
@@ -101,7 +101,7 @@ namespace FurAffinityClassifier.Common.Models
                                 }
                                 else
                                 {
-                                    return classificationData;
+                                    return classificationResult;
                                 }
                             }
 
@@ -114,14 +114,13 @@ namespace FurAffinityClassifier.Common.Models
                                 }
                                 else
                                 {
-                                    return classificationData;
+                                    return classificationResult;
                                 }
                             }
 
-                            //最後までコメントで
-                            ////File.Move(file, classifiedFileName);
+                            File.Move(file, classifiedFileName);
 
-                            classificationData.Classified = true;
+                            classificationResult.Classified = true;
                         }
                         catch (Exception e)
                         {
@@ -132,10 +131,10 @@ namespace FurAffinityClassifier.Common.Models
                             semaphore.Release();
                         }
                         
-                        return classificationData;
+                        return classificationResult;
                     });
 
-                    classificationDatas = (await Task.WhenAll(tasks)).ToList();
+                    classificationResults = (await Task.WhenAll(tasks)).ToList();
                 }
             }
             catch (Exception e)
@@ -143,14 +142,11 @@ namespace FurAffinityClassifier.Common.Models
                 Logger.Error(e.ToString());
             }
 
-            // test
-            classificationDatas.ForEach(x => Console.WriteLine(x.Filename));
-
             return new Dictionary<string, int>()
             {
-                { Const.ClassificationResultFoundFileCount, classificationDatas.Count() },
-                { Const.ClassificationResultTargetFileCount, classificationDatas.Count(x => x.Targeted) },
-                { Const.ClassificationResultClassifiedFileCount, classificationDatas.Count(x => x.Classified) },
+                { Const.ClassificationResultFoundFileCount, classificationResults.Count() },
+                { Const.ClassificationResultTargetFileCount, classificationResults.Count(x => x.Targeted) },
+                { Const.ClassificationResultClassifiedFileCount, classificationResults.Count(x => x.Classified) },
             };
         }
 
@@ -256,16 +252,16 @@ namespace FurAffinityClassifier.Common.Models
 
         #endregion
 
-        private class ClassificationData
+        private class ClassificationResult
         {
-            public ClassificationData()
+            public ClassificationResult()
             {
                 Filename = string.Empty;
                 Targeted = false;
                 Classified = false;
             }
 
-            public ClassificationData(string filename)
+            public ClassificationResult(string filename)
                 : this()
             {
                 Filename = filename;
