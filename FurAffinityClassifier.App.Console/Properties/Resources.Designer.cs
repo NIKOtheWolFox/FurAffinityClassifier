@@ -128,5 +128,18 @@ namespace FurAffinityClassifier.App.Console.Properties {
                 return ResourceManager.GetString("MessageInvalidSetting", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   From : {0}
+        ///To : {1}
+        ///Create folder if not exest : {2}
+        ///Overwrite if exist : {3}
+        ///Classify as : {4} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageShowSetting {
+            get {
+                return ResourceManager.GetString("MessageShowSetting", resourceCulture);
+            }
+        }
     }
 }

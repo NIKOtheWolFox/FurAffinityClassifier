@@ -39,7 +39,14 @@ namespace FurAffinityClassifier.App.Console.Models
         {
             StringBuilder builder = new StringBuilder();
 
-            builder.Append("show version test");
+            builder.Append(
+                string.Format(
+                    Resources.MessageShowSetting,
+                    appModel.FromFolder,
+                    appModel.ToFolder,
+                    appModel.CreateFolderIfNotExist,
+                    appModel.OverwriteIfExist,
+                    appModel.ClassifyAsDatas));
 
             return builder.ToString();
         }

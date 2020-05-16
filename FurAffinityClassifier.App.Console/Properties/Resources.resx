@@ -144,4 +144,11 @@ Type 'FuraffinityClassifier.App.Console --help' to see usage.</value>
   <data name="MessageClassifyFileTargetFiles" xml:space="preserve">
     <value>Target files:{0}</value>
   </data>
+  <data name="MessageShowSetting" xml:space="preserve">
+    <value>From : {0}
+To : {1}
+Create folder if not exest : {2}
+Overwrite if exist : {3}
+Classify as : {4}</value>
+  </data>
 </root>
