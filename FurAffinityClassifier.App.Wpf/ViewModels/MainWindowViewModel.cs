@@ -10,6 +10,7 @@ using FurAffinityClassifier.Common.Datas.Messages;
 using FurAffinityClassifier.Common.Models;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using NLog;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
@@ -20,6 +21,15 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
     /// </summary>
     public class MainWindowViewModel : INotifyPropertyChanged, IDisposable
     {
+        #region Private Field
+
+        /// <summary>
+        /// NLogのロガー
+        /// </summary>
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Constructor
 
         /// <summary>
