@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using FurAffinityClassifier.App.Console.Properties;
 using FurAffinityClassifier.Common.Datas;
@@ -39,6 +40,12 @@ namespace FurAffinityClassifier.App.Console.Models
         {
             var builder = new StringBuilder();
 
+            var classifyAs = string.Empty;
+            foreach(var ca in appModel.ClassifyAsDatas)
+            {
+                classifyAs += $"{ca.Id} -> {ca.Folder}{Environment.NewLine}";
+            }
+
             builder.Append(
                 string.Format(
                     Resources.MessageShowSetting,
@@ -46,7 +53,7 @@ namespace FurAffinityClassifier.App.Console.Models
                     appModel.ToFolder,
                     appModel.CreateFolderIfNotExist,
                     appModel.OverwriteIfExist,
-                    appModel.ClassifyAsDatas));
+                    Environment.NewLine + classifyAs));
 
             return builder.ToString();
         }
