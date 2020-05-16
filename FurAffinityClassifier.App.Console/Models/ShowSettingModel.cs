@@ -1,7 +1,6 @@
 using System;
 using System.Text;
 using FurAffinityClassifier.App.Console.Properties;
-using FurAffinityClassifier.Common.Datas;
 using FurAffinityClassifier.Common.Models;
 
 namespace FurAffinityClassifier.App.Console.Models
@@ -13,6 +12,9 @@ namespace FurAffinityClassifier.App.Console.Models
     {
         #region Private Property
 
+        /// <summary>
+        /// アプリケーションの機能
+        /// </summary>
         private AppModel appModel;
 
         #endregion
@@ -47,9 +49,7 @@ namespace FurAffinityClassifier.App.Console.Models
                 appModel.ToFolder,
                 appModel.CreateFolderIfNotExist,
                 appModel.OverwriteIfExist,
-                builder.Length == 0
-                    ? string.Empty
-                    : Environment.NewLine + builder.ToString());
+                Environment.NewLine + builder.ToString());
         }
 
         #endregion

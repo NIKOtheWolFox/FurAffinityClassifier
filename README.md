@@ -21,6 +21,15 @@ Console application is at "App.Console" folder. This folder have 3 subfolders, c
 3. Write setting to "setting.json".
 4. Run "FurAffinityClassifier.App.Console.exe (FurAffinityClassifier.App.Console in macOS or Linux)".
 
+## Console application reference
+You can see this reference by running "FurAffinityClassifier.App.Console.exe --help".
+```
+FurAffinityClassifier.App.Console.exe : Execute classification.
+FurAffinityClassifier.App.Console.exe --help : Show usage.
+FurAffinityClassifier.App.Console.exe --version : Show version.
+FurAffinityClassifier.App.Console.exe --show-setting : Show setting.
+```
+
 ## Setting
 This application use a file "setting.json" in same folder as executable file to save setting.<br>
 Content of file is:
@@ -76,6 +85,11 @@ Fur Affinity : [NIKOtheWolFox](https://www.furaffinity.net/user/nikothewolfox/)
 ## License
 ![MIT License](https://img.shields.io/github/license/NIKOtheWolFox/FurAffinityClassifier)<br>
 See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier/master/LICENSE) for more information.
+
+## Plans(Withes)
+* Add change setting function to console application.
+* Make GUI more cool.
+* Create .NET Core multi platform GUI application.
 
 ## Libraries usage
 [Jil](https://github.com/kevin-montrose/Jil)<br>
