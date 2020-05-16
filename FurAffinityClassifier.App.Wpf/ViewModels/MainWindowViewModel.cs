@@ -127,7 +127,6 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
 
                     if (AppModel.ValidateSetting())
                     {
-                        // var classificationResult = AppModel.Classify();
                         var classificationResult = await AppModel.ClassifyAsync();
                         var messageBuilder = new StringBuilder();
                         messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
