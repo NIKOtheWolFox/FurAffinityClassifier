@@ -86,7 +86,7 @@ Fur Affinity : [NIKOtheWolFox](https://www.furaffinity.net/user/nikothewolfox/)
 ![MIT License](https://img.shields.io/github/license/NIKOtheWolFox/FurAffinityClassifier)<br>
 See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier/master/LICENSE) for more information.
 
-## Plan
+## Plans(Withes)
 * Add change setting function to console application.
 * Make GUI more cool.
 * Create .NET Core multi platform GUI application.
