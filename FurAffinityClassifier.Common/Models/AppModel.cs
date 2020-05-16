@@ -103,6 +103,11 @@ namespace FurAffinityClassifier.Common.Models
             return new ClassificationModel(SettingModel.SettingData).Execute();
         }
 
+        public async System.Threading.Tasks.Task<Dictionary<string, int>> Classify2()
+        {
+            return await new ClassificationModel(SettingModel.SettingData).ExecuteNew();
+        }
+
         #endregion
     }
 }

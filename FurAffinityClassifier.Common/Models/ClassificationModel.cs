@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using FurAffinityClassifier.Common.Datas;
 using NLog;
 
@@ -41,6 +44,115 @@ namespace FurAffinityClassifier.Common.Models
         #endregion
 
         #region Public Method
+
+        public async Task<Dictionary<string, int>> ExecuteNew()
+        {
+            var classificationDatas = new List<ClassificationData>();
+
+            try
+            {
+                var files = Directory.GetFiles(settingData.FromFolder);
+
+                using (var semaphore = new SemaphoreSlim(5))
+                {
+                    var tasks = files.Select(async file =>
+                    {
+                        await semaphore.WaitAsync();
+                        var classificationData = new ClassificationData(file);
+                        try
+                        {
+                            var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
+                            if (!match.Success)
+                            {
+                                return classificationData;
+                            }
+
+                            classificationData.Targeted = true;
+                            var id = match.Groups["id"].Value;
+
+                            var folderName = string.Empty;
+                            if (settingData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
+                            {
+                                folderName = settingData.ClassifyAsDatas
+                                    .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()).FirstOrDefault()
+                                    .Folder;
+                            }
+                            else
+                            {
+                                var matchedFolder = Directory.GetDirectories(settingData.ToFolder)
+                                    .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
+                                if (matchedFolder.Count() > 1)
+                                {
+                                    Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
+                                    return classificationData;
+                                }
+                                else if (matchedFolder.Count() == 1)
+                                {
+                                    folderName = Path.GetFileName(matchedFolder.First());
+                                }
+                            }
+
+                            if (string.IsNullOrEmpty(folderName))
+                            {
+                                if (settingData.CreateFolderIfNotExist)
+                                {
+                                    folderName = id.TrimEnd('.');
+                                    Directory.CreateDirectory(Path.Combine(settingData.ToFolder, folderName));
+                                }
+                                else
+                                {
+                                    return classificationData;
+                                }
+                            }
+
+                            var classifiedFileName = Path.Combine(settingData.ToFolder, folderName, Path.GetFileName(file));
+                            if (File.Exists(classifiedFileName))
+                            {
+                                if (settingData.OverwriteIfExist)
+                                {
+                                    File.Delete(classifiedFileName);
+                                }
+                                else
+                                {
+                                    return classificationData;
+                                }
+                            }
+
+                            //最後までコメントで
+                            ////File.Move(file, classifiedFileName);
+
+                            classificationData.Classified = true;
+                        }
+                        catch (Exception e)
+                        {
+                            Logger.Error(e.ToString());
+                        }
+                        finally
+                        {
+                            semaphore.Release();
+                        }
+                        
+                        return classificationData;
+                    });
+
+                    classificationDatas = (await Task.WhenAll(tasks)).ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.ToString());
+            }
+
+            // test
+            classificationDatas.ForEach(x => Console.WriteLine(x.Filename));
+
+            return new Dictionary<string, int>()
+            {
+                { Const.ClassificationResultFoundFileCount, classificationDatas.Count() },
+                { Const.ClassificationResultTargetFileCount, classificationDatas.Count(x => x.Targeted) },
+                { Const.ClassificationResultClassifiedFileCount, classificationDatas.Count(x => x.Classified) },
+            };
+        }
 
         /// <summary>
         /// 分類を実行する
@@ -143,5 +255,25 @@ namespace FurAffinityClassifier.Common.Models
         }
 
         #endregion
+
+        private class ClassificationData
+        {
+            public ClassificationData()
+            {
+                Filename = string.Empty;
+                Targeted = false;
+                Classified = false;
+            }
+
+            public ClassificationData(string filename)
+                : this()
+            {
+                Filename = filename;
+            }
+
+            public string Filename { get; set; }
+            public bool Targeted { get; set; }
+            public bool Classified { get; set; }
+        }
     }
 }
