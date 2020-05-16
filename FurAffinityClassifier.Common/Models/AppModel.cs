@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using FurAffinityClassifier.Common.Datas;
 
 namespace FurAffinityClassifier.Common.Models
@@ -101,6 +102,15 @@ namespace FurAffinityClassifier.Common.Models
         public Dictionary<string, int> Classify()
         {
             return new ClassificationModel(SettingModel.SettingData).Execute();
+        }
+
+        /// <summary>
+        /// 非同期で分類する
+        /// </summary>
+        /// <returns>実行結果</returns>
+        public async Task<Dictionary<string, int>> ClassifyAsync()
+        {
+            return await new ClassificationModel(SettingModel.SettingData).ExecuteAsync();
         }
 
         #endregion

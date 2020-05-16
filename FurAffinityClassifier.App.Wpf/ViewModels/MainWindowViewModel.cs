@@ -117,7 +117,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 })
                 .AddTo(Disposables);
             ExecuteCommand = new ReactiveCommand()
-                .WithSubscribe(_ =>
+                .WithSubscribe(async _ =>
                 {
                     ShowDialogMessage showDialogMessage = new ShowDialogMessage()
                     {
@@ -127,7 +127,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
 
                     if (AppModel.ValidateSetting())
                     {
-                        var classificationResult = AppModel.Classify();
+                        var classificationResult = await AppModel.ClassifyAsync();
                         var messageBuilder = new StringBuilder();
                         messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
                         messageBuilder.AppendLine();
