@@ -37,7 +37,7 @@ namespace FurAffinityClassifier.App.Console.Models
         /// <returns>コンソールに出力する文字列</returns>
         public string Execute()
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
 
             builder.Append(
                 string.Format(
