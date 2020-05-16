@@ -77,9 +77,9 @@ Fur Affinity : [NIKOtheWolFox](https://www.furaffinity.net/user/nikothewolfox/)
 See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier/master/LICENSE) for more information.
 
 ## Libraries usage
-[Json.NET](https://www.newtonsoft.com/json)<br>
-(c) 2008 James Newton-King<br>
-[MIT License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md)<br>
+[Jil](https://github.com/kevin-montrose/Jil)<br>
+(c) 2013-2019 Kevin Montrose<br>
+[MIT License](https://github.com/kevin-montrose/Jil/blob/master/LICENSE)<br>
 
 [NLog](https://nlog-project.org/)<br>
 (c) 2004-2020 NLog Project - https://nlog-project.org/<br>
