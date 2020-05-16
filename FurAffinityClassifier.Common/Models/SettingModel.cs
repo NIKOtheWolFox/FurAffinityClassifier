@@ -150,7 +150,7 @@ namespace FurAffinityClassifier.Common.Models
             {
                 using (var writer = new StreamWriter(settingFilePath))
                 {
-                    await writer.WriteAsync(JsonConvert.SerializeObject(settingData, Formatting.Indented));
+                    await writer.WriteAsync(JSON.Serialize(settingData, new Options(true)));
                 }
             }
             catch (Exception e)
