@@ -122,8 +122,9 @@
 Usage : FurAffinityClassifier.App.Console [option]
 
 option:
-  --help[TAB]Show this help
-  --version[TAB]Show version</value>
+  --help[TAB][TAB]Show this help
+  --version[TAB][TAB]Show version
+  --show-setting[TAB]Show setting</value>
   </data>
   <data name="InvalidOption" xml:space="preserve">
     <value>Invalid option.

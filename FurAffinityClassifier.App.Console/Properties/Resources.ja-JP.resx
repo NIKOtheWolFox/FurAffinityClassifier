@@ -122,8 +122,9 @@
 使用法 : FurAffinityClassifier.App.Console [option]
 
 option:
-  --help[TAB]ヘルプを表示する
-  --version[TAB]バージョンを表示する</value>
+  --help[TAB][TAB]ヘルプを表示する
+  --version[TAB][TAB]バージョンを表示する
+  --show-setting[TAB]設定を表示する</value>
   </data>
   <data name="InvalidOption" xml:space="preserve">
     <value>正しくないオプションです。
