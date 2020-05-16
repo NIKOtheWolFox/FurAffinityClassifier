@@ -87,6 +87,15 @@ namespace FurAffinityClassifier.Common.Models
         }
 
         /// <summary>
+        /// 設定を非同期で保存する
+        /// </summary>
+        /// <returns>実行結果</returns>
+        public async Task<bool> SaveSettingAsync()
+        {
+            return await SettingModel.SaveToFileAsync();
+        }
+
+        /// <summary>
         /// 設定を検証する
         /// </summary>
         /// <returns>検証結果</returns>

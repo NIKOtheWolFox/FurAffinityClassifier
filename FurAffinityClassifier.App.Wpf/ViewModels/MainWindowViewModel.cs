@@ -86,7 +86,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 })
                 .AddTo(Disposables);
             SaveSettingCommand = new ReactiveCommand()
-                .WithSubscribe(_ =>
+                .WithSubscribe(async _ =>
                 {
                     ShowDialogMessage showDialogMessage = new ShowDialogMessage()
                     {
@@ -96,7 +96,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
 
                     if (AppModel.ValidateSetting())
                     {
-                        if (AppModel.SaveSetting())
+                        if (await AppModel.SaveSettingAsync())
                         {
                             showDialogMessage.Message = Resources.DialogMessageSaveSettingDone;
                             showDialogMessage.Icon = TaskDialogStandardIcon.Information;
