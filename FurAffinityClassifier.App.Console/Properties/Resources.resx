@@ -122,8 +122,10 @@
 Usage : FurAffinityClassifier.App.Console [option]
 
 option:
-  --help[TAB]Show this help
-  --version[TAB]Show version</value>
+  (empty)[TAB]Execute classification
+  --help[TAB][TAB]Show this help
+  --version[TAB][TAB]Show version
+  --show-setting[TAB]Show setting</value>
   </data>
   <data name="InvalidOption" xml:space="preserve">
     <value>Invalid option.
@@ -143,5 +145,12 @@ Type 'FuraffinityClassifier.App.Console --help' to see usage.</value>
   </data>
   <data name="MessageClassifyFileTargetFiles" xml:space="preserve">
     <value>Target files:{0}</value>
+  </data>
+  <data name="MessageShowSetting" xml:space="preserve">
+    <value>From : {0}
+To : {1}
+Create folder if not exest : {2}
+Overwrite if exist : {3}
+Classify as : {4}</value>
   </data>
 </root>

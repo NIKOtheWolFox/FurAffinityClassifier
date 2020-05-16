@@ -57,6 +57,9 @@ namespace FurAffinityClassifier.App.Console.ViewModels
                     case ConsoleAppConst.OptionVersion:
                         message = new VersionModel().Execute();
                         break;
+                    case ConsoleAppConst.OptionShowSetting:
+                        message = new ShowSettingModel(AppModel).Execute();
+                        break;
                     default:
                         message = new InvalidModel().Execute();
                         break;

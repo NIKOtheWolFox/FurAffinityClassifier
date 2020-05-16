@@ -122,8 +122,10 @@
 使用法 : FurAffinityClassifier.App.Console [option]
 
 option:
-  --help[TAB]ヘルプを表示する
-  --version[TAB]バージョンを表示する</value>
+  (オプションなし)[TAB]分類を実行する
+  --help[TAB][TAB]ヘルプを表示する
+  --version[TAB][TAB]バージョンを表示する
+  --show-setting[TAB]設定を表示する</value>
   </data>
   <data name="InvalidOption" xml:space="preserve">
     <value>正しくないオプションです。
@@ -143,5 +145,12 @@ option:
   </data>
   <data name="MessageClassifyFileTargetFiles" xml:space="preserve">
     <value>分類対象のファイル数:{0}</value>
+  </data>
+  <data name="MessageShowSetting" xml:space="preserve">
+    <value>移動元 : {0}
+移動先 : {1}
+フォルダーがないときは作成する : {2}
+ファイルがあるときは上書きする : {3}
+IDと異なるフォルダーへの分類 : {4}</value>
   </data>
 </root>
