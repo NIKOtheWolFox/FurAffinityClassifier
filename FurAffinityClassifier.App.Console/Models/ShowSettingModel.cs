@@ -40,22 +40,18 @@ namespace FurAffinityClassifier.App.Console.Models
         {
             var builder = new StringBuilder();
 
-            var classifyAs = string.Empty;
             foreach(var ca in appModel.ClassifyAsDatas)
             {
-                classifyAs += $"{ca.Id} -> {ca.Folder}{Environment.NewLine}";
+                builder.AppendLine($"{ca.Id} -> {ca.Folder}");
             }
 
-            builder.Append(
-                string.Format(
-                    Resources.MessageShowSetting,
-                    appModel.FromFolder,
+            return string.Format(
+                Resources.MessageShowSetting,
+                appModel.FromFolder,
                     appModel.ToFolder,
                     appModel.CreateFolderIfNotExist,
                     appModel.OverwriteIfExist,
-                    Environment.NewLine + classifyAs));
-
-            return builder.ToString();
+                    Environment.NewLine + builder.ToString());
         }
 
         #endregion
