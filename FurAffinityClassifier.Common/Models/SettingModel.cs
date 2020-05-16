@@ -134,24 +134,6 @@ namespace FurAffinityClassifier.Common.Models
         /// <returns>実行結果</returns>
         public bool SaveToFile()
         {
-            /*
-            var result = true;
-
-            try
-            {
-                using (var writer = new StreamWriter(settingFilePath))
-                {
-                    writer.Write(JsonConvert.SerializeObject(settingData, Formatting.Indented));
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Error(e.ToString());
-                result = false;
-            }
-
-            return result;
-            */
             return SaveToFileAsync().Result;
         }
 
