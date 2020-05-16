@@ -104,6 +104,10 @@ namespace FurAffinityClassifier.Common.Models
             return new ClassificationModel(SettingModel.SettingData).Execute();
         }
 
+        /// <summary>
+        /// 非同期で分類する
+        /// </summary>
+        /// <returns>実行結果</returns>
         public async Task<Dictionary<string, int>> ClassifyAsync()
         {
             return await new ClassificationModel(SettingModel.SettingData).ExecuteAsync();

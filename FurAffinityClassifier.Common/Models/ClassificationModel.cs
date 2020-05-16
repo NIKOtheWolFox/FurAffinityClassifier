@@ -45,6 +45,10 @@ namespace FurAffinityClassifier.Common.Models
 
         #region Public Method
 
+        /// <summary>
+        /// 分類を非同期で実行する
+        /// </summary>
+        /// <returns>実行結果</returns>
         public async Task<Dictionary<string, int>> ExecuteAsync()
         {
             var classificationResults = new List<ClassificationResult>();
@@ -252,8 +256,16 @@ namespace FurAffinityClassifier.Common.Models
 
         #endregion
 
+        /// <summary>
+        /// 分類結果
+        /// </summary>
         private class ClassificationResult
         {
+            #region Constructor
+
+            /// <summary>
+            /// コンストラクター
+            /// </summary>
             public ClassificationResult()
             {
                 Filename = string.Empty;
@@ -261,15 +273,36 @@ namespace FurAffinityClassifier.Common.Models
                 Classified = false;
             }
 
+            /// <summary>
+            /// コンストラクター
+            /// </summary>
+            /// <param name="filename">ファイル名</param>
             public ClassificationResult(string filename)
                 : this()
             {
                 Filename = filename;
             }
 
+            #endregion
+
+            #region Public Property
+
+            /// <summary>
+            /// ファイル名
+            /// </summary>
             public string Filename { get; set; }
+
+            /// <summary>
+            /// 対象か
+            /// </summary>
             public bool Targeted { get; set; }
+
+            /// <summary>
+            /// 分類したか
+            /// </summary>
             public bool Classified { get; set; }
+
+            #endregion
         }
     }
 }
