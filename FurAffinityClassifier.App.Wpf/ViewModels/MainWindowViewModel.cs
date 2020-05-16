@@ -45,7 +45,10 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 .FromObject(AppModel, x => x.ClassifyAsDatas)
                 .AddTo(Disposables);
 
-            SelectFromFolderCommand = new ReactiveCommand()
+            ButtonEnable = new ReactiveProperty<bool>(true);
+
+            SelectFromFolderCommand = ButtonEnable
+                .ToReactiveCommand()
                 .WithSubscribe(_ =>
                 {
                     ShowFolderSelectDialogMessage<string> showFolderSelectDialogMessage =
@@ -65,7 +68,8 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     Messenger.Default.Send(showFolderSelectDialogMessage, MessageToken.ShowFolderSelectDialog);
                 })
                 .AddTo(Disposables);
-            SelectToFolderCommand = new ReactiveCommand()
+            SelectToFolderCommand = ButtonEnable
+                .ToReactiveCommand()
                 .WithSubscribe(_ =>
                 {
                     ShowFolderSelectDialogMessage<string> showFolderSelectDialogMessage =
@@ -85,9 +89,12 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     Messenger.Default.Send(showFolderSelectDialogMessage, MessageToken.ShowFolderSelectDialog);
                 })
                 .AddTo(Disposables);
-            SaveSettingCommand = new ReactiveCommand()
+            SaveSettingCommand = ButtonEnable
+                .ToReactiveCommand()
                 .WithSubscribe(async _ =>
                 {
+                    ButtonEnable.Value = false;
+
                     ShowDialogMessage showDialogMessage = new ShowDialogMessage()
                     {
                         Title = Resources.DialogTitleSaveSetting,
@@ -114,11 +121,16 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     }
 
                     Messenger.Default.Send(showDialogMessage, MessageToken.ShowDialog);
+
+                    ButtonEnable.Value = true;
                 })
                 .AddTo(Disposables);
-            ExecuteCommand = new ReactiveCommand()
+            ExecuteCommand = ButtonEnable
+                .ToReactiveCommand()
                 .WithSubscribe(async _ =>
                 {
+                    ButtonEnable.Value = false;
+
                     ShowDialogMessage showDialogMessage = new ShowDialogMessage()
                     {
                         Title = Resources.DialogTitleClassifyFile,
@@ -153,6 +165,8 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     }
 
                     Messenger.Default.Send(showDialogMessage, MessageToken.ShowDialog);
+
+                    ButtonEnable.Value = true;
                 })
                 .AddTo(Disposables);
         }
@@ -195,6 +209,11 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         /// IDと異なるフォルダーに分類する設定のリスト
         /// </summary>
         public ReactiveProperty<List<ClassifyAsData>> ClassifyAsDatas { get; }
+
+        /// <summary>
+        /// ボタンが操作可能か
+        /// </summary>
+        public ReactiveProperty<bool> ButtonEnable { get; }
 
         /// <summary>
         /// 移動元の[選択]ボタンクリック時のコマンド
