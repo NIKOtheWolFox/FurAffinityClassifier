@@ -61,7 +61,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 .ToReactiveCommand()
                 .WithSubscribe(_ =>
                 {
-                    ShowFolderSelectDialogMessage<string> showFolderSelectDialogMessage =
+                    var showFolderSelectDialogMessage =
                         new ShowFolderSelectDialogMessage<string>(
                             s =>
                             {
@@ -82,7 +82,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 .ToReactiveCommand()
                 .WithSubscribe(_ =>
                 {
-                    ShowFolderSelectDialogMessage<string> showFolderSelectDialogMessage =
+                    var showFolderSelectDialogMessage =
                         new ShowFolderSelectDialogMessage<string>(
                             s =>
                             {
@@ -105,7 +105,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 {
                     ButtonEnable.Value = false;
 
-                    ShowDialogMessage showDialogMessage = new ShowDialogMessage()
+                    var showDialogMessage = new ShowDialogMessage()
                     {
                         Title = Resources.DialogTitleSaveSetting,
                         Button = TaskDialogStandardButtons.Ok,
@@ -141,7 +141,7 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                 {
                     ButtonEnable.Value = false;
 
-                    ShowDialogMessage showDialogMessage = new ShowDialogMessage()
+                    var showDialogMessage = new ShowDialogMessage()
                     {
                         Title = Resources.DialogTitleClassifyFile,
                         Button = TaskDialogStandardButtons.Ok,
