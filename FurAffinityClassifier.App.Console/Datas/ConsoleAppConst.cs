@@ -19,5 +19,10 @@ namespace FurAffinityClassifier.App.Console.Datas
         /// オプション 設定の表示
         /// </summary>
         public const string OptionShowSetting = "--show-setting";
+
+        /// <summary>
+        /// オプション 設定の変更
+        /// </summary>
+        public const string OptionChangeSetting = "--change-setting";
     }
 }

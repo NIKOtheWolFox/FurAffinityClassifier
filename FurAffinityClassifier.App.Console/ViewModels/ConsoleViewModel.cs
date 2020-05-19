@@ -67,7 +67,20 @@ namespace FurAffinityClassifier.App.Console.ViewModels
             }
             else
             {
-                message = new InvalidModel().Execute();
+                var option = args[0];
+                if (option == ConsoleAppConst.OptionChangeSetting)
+                {
+                    for (int i = 0; i < args.Length; i++)
+                    {
+                        System.Console.WriteLine($"args[{i}]={args[i]}");
+                    }
+
+                    message = "change setting test";
+                }
+                else
+                {
+                    message = new InvalidModel().Execute();
+                }
             }
 
             return message;
