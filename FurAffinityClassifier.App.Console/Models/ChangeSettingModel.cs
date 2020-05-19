@@ -151,7 +151,7 @@ namespace FurAffinityClassifier.App.Console.Models
         /// <returns>コンソールに出力する文字列</returns>
         private string ChangeCreateFolderIfNotExist(string value)
         {
-            if (bool.TryParse(value, out bool result))
+            if (bool.TryParse(value, out var result))
             {
                 appModel.CreateFolderIfNotExist = result;
                 if (appModel.SaveSetting())
@@ -176,7 +176,7 @@ namespace FurAffinityClassifier.App.Console.Models
         /// <returns>コンソールに出力する文字列</returns>
         private string ChangeOverwriteIfExist(string value)
         {
-            if (bool.TryParse(value, out bool result))
+            if (bool.TryParse(value, out var result))
             {
                 appModel.OverwriteIfExist = result;
                 if (appModel.SaveSetting())
