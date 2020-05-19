@@ -80,7 +80,23 @@ namespace FurAffinityClassifier.App.Console.Models
                         }
 
                     case "to-folder":
-                        return "to-folder";
+                        if (Directory.Exists(value))
+                        {
+                            appModel.ToFolder = value;
+                            if (appModel.SaveSetting())
+                            {
+                                return "Setting changed successfully";
+                            }
+                            else
+                            {
+                                return "Failed to change setting";
+                            }
+                        }
+                        else
+                        {
+                            return "Given folder not exist";
+                        }
+
                     case "create-folder":
                         return "create-folder";
                     case "overwrite":
