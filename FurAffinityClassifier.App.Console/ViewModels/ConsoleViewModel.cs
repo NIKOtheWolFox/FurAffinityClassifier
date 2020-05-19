@@ -44,7 +44,7 @@ namespace FurAffinityClassifier.App.Console.ViewModels
 
             if (args.Count() == 0)
             {
-                message = new DefaultModel().Execute(AppModel);
+                message = new DefaultModel(AppModel).Execute();
             }
             else if (args.Count() == 1)
             {
@@ -67,7 +67,15 @@ namespace FurAffinityClassifier.App.Console.ViewModels
             }
             else
             {
-                message = new InvalidModel().Execute();
+                var option = args[0];
+                if (option == ConsoleAppConst.OptionChangeSetting)
+                {
+                    message = new ChangeSettingModel(AppModel, args).Execute();
+                }
+                else
+                {
+                    message = new InvalidModel().Execute();
+                }
             }
 
             return message;

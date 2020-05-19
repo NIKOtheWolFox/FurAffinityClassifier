@@ -10,14 +10,31 @@ namespace FurAffinityClassifier.App.Console.Models
     /// </summary>
     public class DefaultModel
     {
+        #region Private Property
+
+        /// <summary>
+        /// アプリケーションの機能
+        /// </summary>
+        private AppModel appModel;
+
+        #endregion
+
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        /// <param name="appModel">アプリケーションの機能</param>
+        public DefaultModel(AppModel appModel)
+        {
+            this.appModel = appModel;
+        }
+
         #region Public Method
 
         /// <summary>
         /// 実行する
         /// </summary>
-        /// <param name="appModel">アプリケーションの機能</param>
         /// <returns>コンソールに出力する文字列</returns>
-        public string Execute(AppModel appModel)
+        public string Execute()
         {
             if (!appModel.ValidateSetting())
             {

@@ -119,13 +119,22 @@
   </resheader>
   <data name="Help" xml:space="preserve">
     <value>Fur Affinity Classifier
-Usage : FurAffinityClassifier.App.Console [option]
+Usage : FurAffinityClassifier.App.Console [option] [param]
 
 option:
   (empty)[TAB]Execute classification
   --help[TAB][TAB]Show this help
   --version[TAB][TAB]Show version
-  --show-setting[TAB]Show setting</value>
+  --show-setting[TAB]Show setting
+  --change-setting[TAB]Change setting ([param] needed)
+
+param:
+  from-folder=[path][TAB][TAB]Set source folder
+  to-folder=[path][TAB][TAB]Set destination folder
+  create-folder=[True|False][TAB]Set create folder if not exist
+  overwrite=[True|False][TAB]Set overwrite file if exist
+  classify-as add [ID]=[folder][TAB]Add classify as setting
+  classify-as delete [ID][TAB]Delete classify as setting</value>
   </data>
   <data name="InvalidOption" xml:space="preserve">
     <value>Invalid option.
@@ -152,5 +161,14 @@ To : {1}
 Create folder if not exest : {2}
 Overwrite if exist : {3}
 Classify as : {4}</value>
+  </data>
+  <data name="MessageChangeSettingDone" xml:space="preserve">
+    <value>Setting changed successfully.</value>
+  </data>
+  <data name="MessageChangeSettingFailed" xml:space="preserve">
+    <value>Failed to change setting.</value>
+  </data>
+  <data name="MessageChangeSettingInvalidValue" xml:space="preserve">
+    <value>param is invalid.</value>
   </data>
 </root>
