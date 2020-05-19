@@ -62,13 +62,20 @@ namespace FurAffinityClassifier.App.Console.Properties {
         
         /// <summary>
         ///   Fur Affinity Classifier
-        ///Usage : FurAffinityClassifier.App.Console [option]
+        ///Usage : FurAffinityClassifier.App.Console [option] [param]
         ///
         ///option:
         ///  (empty)[TAB]Execute classification
         ///  --help[TAB][TAB]Show this help
         ///  --version[TAB][TAB]Show version
-        ///  --show-setting[TAB]Show setting に類似しているローカライズされた文字列を検索します。
+        ///  --show-setting[TAB]Show setting
+        ///  --change-setting[TAB]Change setting ([param] needed)
+        ///
+        ///param:
+        ///  from-folder=[path][TAB][TAB]Set source folder
+        ///  to-folder=[path][TAB][TAB]Set destination folder
+        ///  create-folder=[True|False][TAB]Set create folder if not exist
+        ///  overwrite=[True|False][TAB]Set overwrite [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Help {
             get {

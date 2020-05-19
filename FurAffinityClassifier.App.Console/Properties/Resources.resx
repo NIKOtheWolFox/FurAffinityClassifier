@@ -119,13 +119,22 @@
   </resheader>
   <data name="Help" xml:space="preserve">
     <value>Fur Affinity Classifier
-Usage : FurAffinityClassifier.App.Console [option]
+Usage : FurAffinityClassifier.App.Console [option] [param]
 
 option:
   (empty)[TAB]Execute classification
   --help[TAB][TAB]Show this help
   --version[TAB][TAB]Show version
-  --show-setting[TAB]Show setting</value>
+  --show-setting[TAB]Show setting
+  --change-setting[TAB]Change setting ([param] needed)
+
+param:
+  from-folder=[path][TAB][TAB]Set source folder
+  to-folder=[path][TAB][TAB]Set destination folder
+  create-folder=[True|False][TAB]Set create folder if not exist
+  overwrite=[True|False][TAB]Set overwrite file if exist
+  classify-as add [id=folder][TAB]Add classify as setting
+  classify-as delete [id][TAB]Delete classify as setting</value>
   </data>
   <data name="InvalidOption" xml:space="preserve">
     <value>Invalid option.
