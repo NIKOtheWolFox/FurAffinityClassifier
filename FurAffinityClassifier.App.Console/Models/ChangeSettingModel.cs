@@ -87,6 +87,11 @@ namespace FurAffinityClassifier.App.Console.Models
 
         #region Private Method
 
+        /// <summary>
+        /// 移動元フォルダーを変更する
+        /// </summary>
+        /// <param name="value">入力値</param>
+        /// <returns>コンソールに出力する文字列</returns>
         private string ChangeFromFolder(string value)
         {
             if (Directory.Exists(value))
@@ -94,19 +99,24 @@ namespace FurAffinityClassifier.App.Console.Models
                 appModel.FromFolder = value;
                 if (appModel.SaveSetting())
                 {
-                    return "Setting changed successfully";
+                    return Resources.MessageChangeSettingDone;
                 }
                 else
                 {
-                    return "Failed to change setting";
+                    return Resources.MessageChangeSettingFailed;
                 }
             }
             else
             {
-                return "Given folder not exist";
+                return Resources.MessageChangeSettingInvalidValue;
             }
         }
 
+        /// <summary>
+        /// 移動先フォルダーを変更する
+        /// </summary>
+        /// <param name="value">入力値</param>
+        /// <returns>コンソールに出力する文字列</returns>
         private string ChangeToFolder(string value)
         {
             if (Directory.Exists(value))
@@ -114,19 +124,24 @@ namespace FurAffinityClassifier.App.Console.Models
                 appModel.ToFolder = value;
                 if (appModel.SaveSetting())
                 {
-                    return "Setting changed successfully";
+                    return Resources.MessageChangeSettingDone;
                 }
                 else
                 {
-                    return "Failed to change setting";
+                    return Resources.MessageChangeSettingFailed;
                 }
             }
             else
             {
-                return "Given folder not exist";
+                return Resources.MessageChangeSettingInvalidValue;
             }
         }
 
+        /// <summary>
+        /// フォルダー自動作成有無を変更する
+        /// </summary>
+        /// <param name="value">入力値</param>
+        /// <returns>コンソールに出力する文字列</returns>
         private string ChangeCreateFolderIfNotExist(string value)
         {
             if (bool.TryParse(value, out bool result))
@@ -134,19 +149,24 @@ namespace FurAffinityClassifier.App.Console.Models
                 appModel.CreateFolderIfNotExist = result;
                 if (appModel.SaveSetting())
                 {
-                    return "Setting changed successfully";
+                    return Resources.MessageChangeSettingDone;
                 }
                 else
                 {
-                    return "Failed to change setting";
+                    return Resources.MessageChangeSettingFailed;
                 }
             }
             else
             {
-                return "Given value invalid";
+                return Resources.MessageChangeSettingInvalidValue;
             }
         }
 
+        /// <summary>
+        /// ファイルの上書き有無を変更する
+        /// </summary>
+        /// <param name="value">入力値</param>
+        /// <returns>コンソールに出力する文字列</returns>
         private string ChangeOverwriteIfExist(string value)
         {
             if (bool.TryParse(value, out bool result))
@@ -154,16 +174,16 @@ namespace FurAffinityClassifier.App.Console.Models
                 appModel.OverwriteIfExist = result;
                 if (appModel.SaveSetting())
                 {
-                    return "Setting changed successfully";
+                    return Resources.MessageChangeSettingDone;
                 }
                 else
                 {
-                    return "Failed to change setting";
+                    return Resources.MessageChangeSettingFailed;
                 }
             }
             else
             {
-                return "Given value invalid";
+                return Resources.MessageChangeSettingInvalidValue;
             }
         }
 

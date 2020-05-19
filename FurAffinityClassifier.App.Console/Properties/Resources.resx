@@ -162,4 +162,13 @@ Create folder if not exest : {2}
 Overwrite if exist : {3}
 Classify as : {4}</value>
   </data>
+  <data name="MessageChangeSettingDone" xml:space="preserve">
+    <value>Setting changed successfully.</value>
+  </data>
+  <data name="MessageChangeSettingFailed" xml:space="preserve">
+    <value>Failed to change setting.</value>
+  </data>
+  <data name="MessageChangeSettingInvalidValue" xml:space="preserve">
+    <value>param is invalid.</value>
+  </data>
 </root>

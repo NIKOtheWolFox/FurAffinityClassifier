@@ -162,4 +162,13 @@ param:
 ファイルがあるときは上書きする : {3}
 IDと異なるフォルダーへの分類 : {4}</value>
   </data>
+  <data name="MessageChangeSettingDone" xml:space="preserve">
+    <value>設定の変更が完了しました。</value>
+  </data>
+  <data name="MessageChangeSettingFailed" xml:space="preserve">
+    <value>設定の変更に失敗しました。</value>
+  </data>
+  <data name="MessageChangeSettingInvalidValue" xml:space="preserve">
+    <value>入力値が正しくありません。</value>
+  </data>
 </root>

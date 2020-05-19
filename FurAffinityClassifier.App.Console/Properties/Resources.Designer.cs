@@ -94,6 +94,33 @@ namespace FurAffinityClassifier.App.Console.Properties {
         }
         
         /// <summary>
+        ///   Setting changed successfully. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageChangeSettingDone {
+            get {
+                return ResourceManager.GetString("MessageChangeSettingDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Failed to change setting. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageChangeSettingFailed {
+            get {
+                return ResourceManager.GetString("MessageChangeSettingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   param is invalid. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageChangeSettingInvalidValue {
+            get {
+                return ResourceManager.GetString("MessageChangeSettingInvalidValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Classified files:{0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string MessageClassifyFileClassifiedFiles {
