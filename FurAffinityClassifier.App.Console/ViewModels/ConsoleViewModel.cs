@@ -44,7 +44,7 @@ namespace FurAffinityClassifier.App.Console.ViewModels
 
             if (args.Count() == 0)
             {
-                message = new DefaultModel().Execute(AppModel);
+                message = new DefaultModel(AppModel).Execute();
             }
             else if (args.Count() == 1)
             {
