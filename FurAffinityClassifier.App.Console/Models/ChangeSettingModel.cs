@@ -1,5 +1,6 @@
 using System.IO;
 using System.Linq;
+using FurAffinityClassifier.App.Console.Datas;
 using FurAffinityClassifier.App.Console.Properties;
 using FurAffinityClassifier.Common.Datas;
 using FurAffinityClassifier.Common.Models;
@@ -60,13 +61,13 @@ namespace FurAffinityClassifier.App.Console.Models
                 var value = param[1];
                 switch (key)
                 {
-                    case "from-folder":
+                    case ConsoleAppConst.ParamFromFolder:
                         return ChangeFromFolder(value);
-                    case "to-folder":
+                    case ConsoleAppConst.ParamToFolder:
                         return ChangeToFolder(value);
-                    case "create-folder":
+                    case ConsoleAppConst.ParamCreateFolderIfNotExist:
                         return ChangeCreateFolderIfNotExist(value);
-                    case "overwrite":
+                    case ConsoleAppConst.ParamOverwriteIfExist:
                         return ChangeOverwriteIfExist(value);
                     default:
                         return Resources.InvalidOption;
@@ -74,7 +75,7 @@ namespace FurAffinityClassifier.App.Console.Models
             }
             else if (args.Length == 4)
             {
-                if (args[1] == "classify-as")
+                if (args[1] == ConsoleAppConst.ParamClassifyAs)
                 {
                     return ChangeClassifyAs(args[2], args[3]);
                 }
@@ -201,7 +202,7 @@ namespace FurAffinityClassifier.App.Console.Models
         /// <returns>コンソールに出力する文字列</returns>
         private string ChangeClassifyAs(string mode, string param)
         {
-            if (mode == "add")
+            if (mode == ConsoleAppConst.ParamClassifyAsAdd)
             {
                 var x = param.Split("=");
                 if (x.Length != 2)
@@ -226,7 +227,7 @@ namespace FurAffinityClassifier.App.Console.Models
                     return Resources.MessageChangeSettingFailed;
                 }
             }
-            else if (mode == "delete")
+            else if (mode == ConsoleAppConst.ParamClassifyAsDelete)
             {
                 if (appModel.ClassifyAsDatas.Count(x => x.Id == param) != 0)
                 {
