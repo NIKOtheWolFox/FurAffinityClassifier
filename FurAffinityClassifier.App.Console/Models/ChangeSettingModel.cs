@@ -62,45 +62,13 @@ namespace FurAffinityClassifier.App.Console.Models
                 switch (key)
                 {
                     case "from-folder":
-                        if (Directory.Exists(value))
-                        {
-                            appModel.FromFolder = value;
-                            if (appModel.SaveSetting())
-                            {
-                                return "Setting changed successfully";
-                            }
-                            else
-                            {
-                                return "Failed to change setting";
-                            }
-                        }
-                        else
-                        {
-                            return "Given folder not exist";
-                        }
-
+                        return ChangeFromFolder(value);
                     case "to-folder":
-                        if (Directory.Exists(value))
-                        {
-                            appModel.ToFolder = value;
-                            if (appModel.SaveSetting())
-                            {
-                                return "Setting changed successfully";
-                            }
-                            else
-                            {
-                                return "Failed to change setting";
-                            }
-                        }
-                        else
-                        {
-                            return "Given folder not exist";
-                        }
-
+                        return ChangeToFolder(value);
                     case "create-folder":
-                        return "create-folder";
+                        return ChangeCreateFolderIfNotExist(value);
                     case "overwrite":
-                        return "overwrite";
+                        return ChangeOverwriteIfExist(value);
                     default:
                         return Resources.InvalidOption;
                 }
@@ -118,6 +86,87 @@ namespace FurAffinityClassifier.App.Console.Models
         #endregion
 
         #region Private Method
+
+        private string ChangeFromFolder(string value)
+        {
+            if (Directory.Exists(value))
+            {
+                appModel.FromFolder = value;
+                if (appModel.SaveSetting())
+                {
+                    return "Setting changed successfully";
+                }
+                else
+                {
+                    return "Failed to change setting";
+                }
+            }
+            else
+            {
+                return "Given folder not exist";
+            }
+        }
+
+        private string ChangeToFolder(string value)
+        {
+            if (Directory.Exists(value))
+            {
+                appModel.ToFolder = value;
+                if (appModel.SaveSetting())
+                {
+                    return "Setting changed successfully";
+                }
+                else
+                {
+                    return "Failed to change setting";
+                }
+            }
+            else
+            {
+                return "Given folder not exist";
+            }
+        }
+
+        private string ChangeCreateFolderIfNotExist(string value)
+        {
+            if (bool.TryParse(value, out bool result))
+            {
+                appModel.CreateFolderIfNotExist = result;
+                if (appModel.SaveSetting())
+                {
+                    return "Setting changed successfully";
+                }
+                else
+                {
+                    return "Failed to change setting";
+                }
+            }
+            else
+            {
+                return "Given value invalid";
+            }
+        }
+
+        private string ChangeOverwriteIfExist(string value)
+        {
+            if (bool.TryParse(value, out bool result))
+            {
+                appModel.OverwriteIfExist = result;
+                if (appModel.SaveSetting())
+                {
+                    return "Setting changed successfully";
+                }
+                else
+                {
+                    return "Failed to change setting";
+                }
+            }
+            else
+            {
+                return "Given value invalid";
+            }
+        }
+
         #endregion
     }
 }
