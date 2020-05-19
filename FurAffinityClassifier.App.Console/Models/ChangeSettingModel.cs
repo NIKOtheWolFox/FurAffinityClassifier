@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using System.Linq;
 using FurAffinityClassifier.App.Console.Properties;
+using FurAffinityClassifier.Common.Datas;
 using FurAffinityClassifier.Common.Models;
 
 namespace FurAffinityClassifier.App.Console.Models
@@ -73,9 +72,16 @@ namespace FurAffinityClassifier.App.Console.Models
                         return Resources.InvalidOption;
                 }
             }
-            else if (args.Length == 3)
+            else if (args.Length == 4)
             {
-                return "MULTI";
+                if (args[1] == "classify-as")
+                {
+                    return ChangeClassifyAs(args[2], args[3]);
+                }
+                else
+                {
+                    return Resources.InvalidOption;
+                }
             }
             else
             {
@@ -184,6 +190,64 @@ namespace FurAffinityClassifier.App.Console.Models
             else
             {
                 return Resources.MessageChangeSettingInvalidValue;
+            }
+        }
+
+        /// <summary>
+        /// IDと異なるフォルダーへの分類設定を変更する
+        /// </summary>
+        /// <param name="mode">モード(追加/削除)</param>
+        /// <param name="param">パラメーター</param>
+        /// <returns>コンソールに出力する文字列</returns>
+        private string ChangeClassifyAs(string mode, string param)
+        {
+            if (mode == "add")
+            {
+                var x = param.Split("=");
+                if (x.Length != 2)
+                {
+                    return Resources.MessageChangeSettingInvalidValue;
+                }
+
+                var id = x[0];
+                var folder = x[1];
+                appModel.ClassifyAsDatas.Add(
+                    new ClassifyAsData()
+                    {
+                        Id = id,
+                        Folder = folder
+                    });
+                if (appModel.SaveSetting())
+                {
+                    return Resources.MessageChangeSettingDone;
+                }
+                else
+                {
+                    return Resources.MessageChangeSettingFailed;
+                }
+            }
+            else if (mode == "delete")
+            {
+                if (appModel.ClassifyAsDatas.Count(x => x.Id == param) != 0)
+                {
+                    appModel.ClassifyAsDatas.RemoveAll(x => x.Id == param);
+                    if (appModel.SaveSetting())
+                    {
+                        return Resources.MessageChangeSettingDone;
+                    }
+                    else
+                    {
+                        return Resources.MessageChangeSettingFailed;
+                    }
+                }
+                else
+                {
+                    return Resources.MessageChangeSettingInvalidValue;
+                }
+            }
+            else
+            {
+                return Resources.InvalidOption;
             }
         }
 
