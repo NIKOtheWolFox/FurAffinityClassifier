@@ -133,8 +133,8 @@ param:
   to-folder=[path][TAB][TAB]移動先フォルダーを設定する
   create-folder=[True|False][TAB]フォルダーがないときの動作を設定する
   overwrite=[True|False][TAB]移動先に同名ファイルがあるときの動作を設定する
-  classify-as add [id=folder][TAB]IDと異なるフォルダーへの分類設定を追加する
-  classify-as delete [id][TAB]IDと異なるフォルダーへの分類設定を削除する</value>
+  classify-as add [ID]=[folder][TAB]IDと異なるフォルダーへの分類設定を追加する
+  classify-as delete [ID][TAB]IDと異なるフォルダーへの分類設定を削除する</value>
   </data>
   <data name="InvalidOption" xml:space="preserve">
     <value>正しくないオプションです。

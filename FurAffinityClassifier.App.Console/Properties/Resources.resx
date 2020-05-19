@@ -133,8 +133,8 @@ param:
   to-folder=[path][TAB][TAB]Set destination folder
   create-folder=[True|False][TAB]Set create folder if not exist
   overwrite=[True|False][TAB]Set overwrite file if exist
-  classify-as add [id=folder][TAB]Add classify as setting
-  classify-as delete [id][TAB]Delete classify as setting</value>
+  classify-as add [ID]=[folder][TAB]Add classify as setting
+  classify-as delete [ID][TAB]Delete classify as setting</value>
   </data>
   <data name="InvalidOption" xml:space="preserve">
     <value>Invalid option.
