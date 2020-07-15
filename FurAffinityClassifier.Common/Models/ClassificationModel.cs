@@ -73,7 +73,8 @@ namespace FurAffinityClassifier.Common.Models
                         var classificationResult = new ClassificationResult(file);
                         try
                         {
-                            var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
+                            //var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]{3,}?)_.*");
+                            var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*");
                             if (!match.Success)
                             {
                                 return classificationResult;
