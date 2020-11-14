@@ -93,9 +93,9 @@ Fur Affinity : [NIKOtheWolFox](https://www.furaffinity.net/user/nikothewolfox/)
 ![MIT License](https://img.shields.io/github/license/NIKOtheWolFox/FurAffinityClassifier)<br>
 See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier/master/LICENSE) for more information.
 
-## Plans(Withes)
-* Make GUI more cool.
-* Create .NET Core multi platform GUI application.
+## Plans
+* Port to .NET 5
+* Create multi platform GUI application by using Avalonia UI.
 
 ## Libraries usage
 [Jil](https://github.com/kevin-montrose/Jil)<br>
