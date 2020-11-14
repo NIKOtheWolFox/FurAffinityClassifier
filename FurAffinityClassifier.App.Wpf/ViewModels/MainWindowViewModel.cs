@@ -10,6 +10,7 @@ using FurAffinityClassifier.Common.Datas.Messages;
 using FurAffinityClassifier.Common.Models;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using NLog;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
@@ -20,6 +21,15 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
     /// </summary>
     public class MainWindowViewModel : INotifyPropertyChanged, IDisposable
     {
+        #region Private Field
+
+        /// <summary>
+        /// NLogのロガー
+        /// </summary>
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        #endregion
+
         #region Constructor
 
         /// <summary>
@@ -27,28 +37,31 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
-            SettingModel.LoadFromFile();
+            AppModel.LoadSetting();
 
             FromFolder = ReactiveProperty
-                .FromObject(SettingModel, x => x.FromFolder)
+                .FromObject(AppModel, x => x.FromFolder)
                 .AddTo(Disposables);
             ToFolder = ReactiveProperty
-                .FromObject(SettingModel, x => x.ToFolder)
+                .FromObject(AppModel, x => x.ToFolder)
                 .AddTo(Disposables);
             CreateFolderIfNotExist = ReactiveProperty
-                .FromObject(SettingModel, x => x.CreateFolderIfNotExist)
+                .FromObject(AppModel, x => x.CreateFolderIfNotExist)
                 .AddTo(Disposables);
             OverwriteIfExist = ReactiveProperty
-                .FromObject(SettingModel, x => x.OverwriteIfExist)
+                .FromObject(AppModel, x => x.OverwriteIfExist)
                 .AddTo(Disposables);
             ClassifyAsDatas = ReactiveProperty
-                .FromObject(SettingModel, x => x.ClassifyAsDatas)
+                .FromObject(AppModel, x => x.ClassifyAsDatas)
                 .AddTo(Disposables);
 
-            SelectFromFolderCommand = new ReactiveCommand()
+            ButtonEnable = new ReactiveProperty<bool>(true);
+
+            SelectFromFolderCommand = ButtonEnable
+                .ToReactiveCommand()
                 .WithSubscribe(_ =>
                 {
-                    ShowFolderSelectDialogMessage<string> showFolderSelectDialogMessage =
+                    var showFolderSelectDialogMessage =
                         new ShowFolderSelectDialogMessage<string>(
                             s =>
                             {
@@ -65,10 +78,11 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     Messenger.Default.Send(showFolderSelectDialogMessage, MessageToken.ShowFolderSelectDialog);
                 })
                 .AddTo(Disposables);
-            SelectToFolderCommand = new ReactiveCommand()
+            SelectToFolderCommand = ButtonEnable
+                .ToReactiveCommand()
                 .WithSubscribe(_ =>
                 {
-                    ShowFolderSelectDialogMessage<string> showFolderSelectDialogMessage =
+                    var showFolderSelectDialogMessage =
                         new ShowFolderSelectDialogMessage<string>(
                             s =>
                             {
@@ -85,18 +99,21 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     Messenger.Default.Send(showFolderSelectDialogMessage, MessageToken.ShowFolderSelectDialog);
                 })
                 .AddTo(Disposables);
-            SaveSettingCommand = new ReactiveCommand()
-                .WithSubscribe(_ =>
+            SaveSettingCommand = ButtonEnable
+                .ToReactiveCommand()
+                .WithSubscribe(async _ =>
                 {
-                    ShowDialogMessage showDialogMessage = new ShowDialogMessage()
+                    ButtonEnable.Value = false;
+
+                    var showDialogMessage = new ShowDialogMessage()
                     {
                         Title = Resources.DialogTitleSaveSetting,
                         Button = TaskDialogStandardButtons.Ok,
                     };
 
-                    if (SettingModel.Validate())
+                    if (AppModel.ValidateSetting())
                     {
-                        if (SettingModel.SaveToFile())
+                        if (await AppModel.SaveSettingAsync())
                         {
                             showDialogMessage.Message = Resources.DialogMessageSaveSettingDone;
                             showDialogMessage.Icon = TaskDialogStandardIcon.Information;
@@ -114,20 +131,25 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     }
 
                     Messenger.Default.Send(showDialogMessage, MessageToken.ShowDialog);
+
+                    ButtonEnable.Value = true;
                 })
                 .AddTo(Disposables);
-            ExecuteCommand = new ReactiveCommand()
-                .WithSubscribe(_ =>
+            ExecuteCommand = ButtonEnable
+                .ToReactiveCommand()
+                .WithSubscribe(async _ =>
                 {
-                    ShowDialogMessage showDialogMessage = new ShowDialogMessage()
+                    ButtonEnable.Value = false;
+
+                    var showDialogMessage = new ShowDialogMessage()
                     {
                         Title = Resources.DialogTitleClassifyFile,
                         Button = TaskDialogStandardButtons.Ok,
                     };
 
-                    if (SettingModel.Validate())
+                    if (AppModel.ValidateSetting())
                     {
-                        var classificationResult = new ClassificationModel(SettingModel.SettingData).Execute();
+                        var classificationResult = await AppModel.ClassifyAsync();
                         var messageBuilder = new StringBuilder();
                         messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
                         messageBuilder.AppendLine();
@@ -153,6 +175,8 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
                     }
 
                     Messenger.Default.Send(showDialogMessage, MessageToken.ShowDialog);
+
+                    ButtonEnable.Value = true;
                 })
                 .AddTo(Disposables);
         }
@@ -197,6 +221,11 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         public ReactiveProperty<List<ClassifyAsData>> ClassifyAsDatas { get; }
 
         /// <summary>
+        /// ボタンが操作可能か
+        /// </summary>
+        public ReactiveProperty<bool> ButtonEnable { get; }
+
+        /// <summary>
         /// 移動元の[選択]ボタンクリック時のコマンド
         /// </summary>
         public ReactiveCommand<object> SelectFromFolderCommand { get; }
@@ -221,9 +250,9 @@ namespace FurAffinityClassifier.App.Wpf.ViewModels
         #region Private Property
 
         /// <summary>
-        /// 設定機能
+        /// アプリケーションの機能
         /// </summary>
-        private SettingModel SettingModel { get; } = new SettingModel();
+        private AppModel AppModel { get; } = new AppModel();
 
         /// <summary>
         /// 一括Disposeを行うためにReactiveXxをまとめるオブジェクト

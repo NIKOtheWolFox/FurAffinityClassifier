@@ -119,11 +119,22 @@
   </resheader>
   <data name="Help" xml:space="preserve">
     <value>Fur Affinity Classifier
-使用法 : FurAffinityClassifier.App.Console [option]
+使用法 : FurAffinityClassifier.App.Console [option] [param]
 
 option:
-  --help[TAB]ヘルプを表示する
-  --version[TAB]バージョンを表示する</value>
+  (オプションなし)[TAB]分類を実行する
+  --help[TAB][TAB]ヘルプを表示する
+  --version[TAB][TAB]バージョンを表示する
+  --show-setting[TAB]設定を表示する
+  --change-setting[TAB]設定を変更する ([param]が必要です)
+
+param:
+  from-folder=[path][TAB][TAB]移動元フォルダーを設定する
+  to-folder=[path][TAB][TAB]移動先フォルダーを設定する
+  create-folder=[True|False][TAB]フォルダーがないときの動作を設定する
+  overwrite=[True|False][TAB]移動先に同名ファイルがあるときの動作を設定する
+  classify-as add [ID]=[folder][TAB]IDと異なるフォルダーへの分類設定を追加する
+  classify-as delete [ID][TAB]IDと異なるフォルダーへの分類設定を削除する</value>
   </data>
   <data name="InvalidOption" xml:space="preserve">
     <value>正しくないオプションです。
@@ -143,5 +154,21 @@ option:
   </data>
   <data name="MessageClassifyFileTargetFiles" xml:space="preserve">
     <value>分類対象のファイル数:{0}</value>
+  </data>
+  <data name="MessageShowSetting" xml:space="preserve">
+    <value>移動元 : {0}
+移動先 : {1}
+フォルダーがないときは作成する : {2}
+ファイルがあるときは上書きする : {3}
+IDと異なるフォルダーへの分類 : {4}</value>
+  </data>
+  <data name="MessageChangeSettingDone" xml:space="preserve">
+    <value>設定の変更が完了しました。</value>
+  </data>
+  <data name="MessageChangeSettingFailed" xml:space="preserve">
+    <value>設定の変更に失敗しました。</value>
+  </data>
+  <data name="MessageChangeSettingInvalidValue" xml:space="preserve">
+    <value>入力値が正しくありません。</value>
   </data>
 </root>

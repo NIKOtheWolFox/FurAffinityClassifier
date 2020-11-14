@@ -62,11 +62,20 @@ namespace FurAffinityClassifier.App.Console.Properties {
         
         /// <summary>
         ///   Fur Affinity Classifier
-        ///Usage : FurAffinityClassifier.App.Console [option]
+        ///Usage : FurAffinityClassifier.App.Console [option] [param]
         ///
         ///option:
-        ///  --help[TAB]Show this help
-        ///  --version[TAB]Show version に類似しているローカライズされた文字列を検索します。
+        ///  (empty)[TAB]Execute classification
+        ///  --help[TAB][TAB]Show this help
+        ///  --version[TAB][TAB]Show version
+        ///  --show-setting[TAB]Show setting
+        ///  --change-setting[TAB]Change setting ([param] needed)
+        ///
+        ///param:
+        ///  from-folder=[path][TAB][TAB]Set source folder
+        ///  to-folder=[path][TAB][TAB]Set destination folder
+        ///  create-folder=[True|False][TAB]Set create folder if not exist
+        ///  overwrite=[True|False][TAB]Set overwrite [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Help {
             get {
@@ -81,6 +90,33 @@ namespace FurAffinityClassifier.App.Console.Properties {
         public static string InvalidOption {
             get {
                 return ResourceManager.GetString("InvalidOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Setting changed successfully. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageChangeSettingDone {
+            get {
+                return ResourceManager.GetString("MessageChangeSettingDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Failed to change setting. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageChangeSettingFailed {
+            get {
+                return ResourceManager.GetString("MessageChangeSettingFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   param is invalid. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageChangeSettingInvalidValue {
+            get {
+                return ResourceManager.GetString("MessageChangeSettingInvalidValue", resourceCulture);
             }
         }
         
@@ -126,6 +162,19 @@ namespace FurAffinityClassifier.App.Console.Properties {
         public static string MessageInvalidSetting {
             get {
                 return ResourceManager.GetString("MessageInvalidSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   From : {0}
+        ///To : {1}
+        ///Create folder if not exest : {2}
+        ///Overwrite if exist : {3}
+        ///Classify as : {4} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MessageShowSetting {
+            get {
+                return ResourceManager.GetString("MessageShowSetting", resourceCulture);
             }
         }
     }

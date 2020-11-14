@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using FurAffinityClassifier.Common.Datas;
-using Newtonsoft.Json;
+using Jil;
 using NLog;
 
 namespace FurAffinityClassifier.Common.Models
@@ -113,7 +114,7 @@ namespace FurAffinityClassifier.Common.Models
                 {
                     using (var reader = new StreamReader(settingFilePath))
                     {
-                        settingData = JsonConvert.DeserializeObject<SettingData>(reader.ReadToEnd());
+                        settingData = JSON.Deserialize<SettingData>(reader);
                     }
                 }
             }
@@ -133,13 +134,22 @@ namespace FurAffinityClassifier.Common.Models
         /// <returns>実行結果</returns>
         public bool SaveToFile()
         {
+            return SaveToFileAsync().Result;
+        }
+
+        /// <summary>
+        /// ファイルに設定を非同期で保存する
+        /// </summary>
+        /// <returns>実行結果</returns>
+        public async Task<bool> SaveToFileAsync()
+        {
             var result = true;
 
             try
             {
                 using (var writer = new StreamWriter(settingFilePath))
                 {
-                    writer.Write(JsonConvert.SerializeObject(settingData, Formatting.Indented));
+                    await writer.WriteAsync(JSON.Serialize(settingData, new Options(true)));
                 }
             }
             catch (Exception e)

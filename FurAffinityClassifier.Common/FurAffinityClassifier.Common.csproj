@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.3.0</Version>
-    <AssemblyVersion>0.3.0.0</AssemblyVersion>
+    <Version>0.4.0</Version>
+    <AssemblyVersion>0.4.0.0</AssemblyVersion>
     <Authors>NIKO</Authors>
     <Product>Fur Affinity Classifier</Product>
     <Description>Common Library for Fur Affinity Classifier</Description>
@@ -16,8 +16,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="NLog" Version="4.7.0" />
+    <PackageReference Include="Jil" Version="2.17.0" />
+    <PackageReference Include="NLog" Version="4.7.1" />
   </ItemGroup>
 
 </Project>
