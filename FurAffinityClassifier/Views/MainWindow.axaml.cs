@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace FurAffinityClassifier
+namespace FurAffinityClassifier.Views
 {
     public class MainWindow : Window
     {
