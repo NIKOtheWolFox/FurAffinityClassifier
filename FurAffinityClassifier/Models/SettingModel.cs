@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Datas;
 using NLog;
@@ -106,16 +109,69 @@ namespace FurAffinityClassifier.Models
         /// <returns>実行結果</returns>
         public bool LoadFromFile()
         {
-            return false;
+            var result = true;
+
+            try
+            {
+                if (File.Exists(settingFilePath))
+                {
+                    using (var reader = new StreamReader(settingFilePath))
+                    {
+                        var json = reader.ReadToEnd();
+                        settingData = JsonSerializer.Deserialize<SettingData>(json);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.ToString());
+                settingData = new SettingData();
+                result = false;
+            }
+
+            return result;
         }
 
         /// <summary>
         /// ファイルに設定を保存する
         /// </summary>
         /// <returns>実行結果</returns>
-        public bool SaveToFile()
+        public async Task<bool> SaveToFileAsync()
         {
-            return false;
+            var result = true;
+
+            try
+            {
+                using (var writer = new StreamWriter(settingFilePath))
+                {
+                    var options = new JsonSerializerOptions()
+                    {
+                        Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                        WriteIndented = true,
+                    };
+                    await writer.WriteAsync(JsonSerializer.Serialize(settingData, options));
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.ToString());
+                result = false;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 設定を検証する
+        /// </summary>
+        /// <returns>検証結果</returns>
+        public bool Validate()
+        {
+            return !string.IsNullOrEmpty(FromFolder)
+                && Directory.Exists(FromFolder)
+                && !string.IsNullOrEmpty(ToFolder)
+                && Directory.Exists(ToFolder)
+                && ClassifyAsDatas.Count(x => string.IsNullOrEmpty(x.Id) || string.IsNullOrEmpty(x.Folder)) == 0;
         }
 
         #endregion
