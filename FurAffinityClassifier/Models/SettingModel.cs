@@ -116,8 +116,7 @@ namespace FurAffinityClassifier.Models
                 {
                     using (var reader = new StreamReader(settingFilePath))
                     {
-                        var json = reader.ReadToEnd();
-                        settingData = JsonSerializer.Deserialize<SettingData>(json);
+                        settingData = JsonSerializer.Deserialize<SettingData>(reader.ReadToEnd());
                     }
                 }
             }
