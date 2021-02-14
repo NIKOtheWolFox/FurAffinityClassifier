@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using FurAffinityClassifier.ViewModels;
 using FurAffinityClassifier.Views;
 
 namespace FurAffinityClassifier
@@ -16,7 +17,10 @@ namespace FurAffinityClassifier
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow();
+                desktop.MainWindow = new MainWindow()
+                {
+                    DataContext = new MainWindowViewModel(),
+                };
             }
 
             base.OnFrameworkInitializationCompleted();
