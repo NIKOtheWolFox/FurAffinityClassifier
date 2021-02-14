@@ -1,6 +1,7 @@
 using FurAffinityClassifier.Models;
 using NLog;
 using Prism.Mvvm;
+using System.Diagnostics;
 
 namespace FurAffinityClassifier.ViewModels
 {
@@ -25,9 +26,9 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
-            //Debug.WriteLine(AppModel.LoadSetting());
-            //Debug.WriteLine(AppModel.SaveSetting());
-            ////AppModel.LoadSetting();
+            ////Debug.WriteLine(AppModel.LoadSetting());
+            ////Debug.WriteLine(AppModel.SaveSetting());
+            AppModel.LoadSetting();
         }
 
         #endregion
