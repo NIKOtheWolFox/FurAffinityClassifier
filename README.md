@@ -95,8 +95,7 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 
 ## Plans
 * Port to .NET 5
-* Create multi platform GUI application by using Avalonia UI.
-* * -> I tried but Avalonia DataGrid is difficult for me, it will be abandoned.
+* Create multi platform GUI application by using Avalonia UI. -> It's hard for me, it will be abandoned.
 
 ## Libraries usage
 [Jil](https://github.com/kevin-montrose/Jil)<br>
