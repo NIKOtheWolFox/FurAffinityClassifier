@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FurAffinityClassifier.Models;
 using NLog;
 using Prism.Mvvm;
-using Reactive.Bindings;
 
 namespace FurAffinityClassifier.ViewModels
 {
