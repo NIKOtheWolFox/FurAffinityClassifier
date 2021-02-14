@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Datas;
 
@@ -97,6 +94,33 @@ namespace FurAffinityClassifier.Models
         public bool SaveSetting()
         {
             return SettingModel.SaveToFileAsync().Result;
+        }
+
+        /// <summary>
+        /// 設定を検証する
+        /// </summary>
+        /// <returns>検証結果</returns>
+        public bool ValidateSetting()
+        {
+            return SettingModel.Validate();
+        }
+
+        /// <summary>
+        /// 分類する
+        /// </summary>
+        /// <returns>実行結果</returns>
+        public Dictionary<string, int> Classify()
+        {
+            return new ClassificationModel(SettingModel.SettingData).Execute();
+        }
+
+        /// <summary>
+        /// 非同期で分類する
+        /// </summary>
+        /// <returns>実行結果</returns>
+        public async Task<Dictionary<string, int>> ClassifyAsync()
+        {
+            return await new ClassificationModel(SettingModel.SettingData).ExecuteAsync();
         }
 
         #endregion

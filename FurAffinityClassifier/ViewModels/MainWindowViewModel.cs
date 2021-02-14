@@ -32,9 +32,8 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
-            Debug.WriteLine(AppModel.LoadSetting());
-            System.Threading.Tasks.Task.Delay(10 * 1000).Wait();
-            Debug.WriteLine(AppModel.SaveSetting());
+            //Debug.WriteLine(AppModel.LoadSetting());
+            //Debug.WriteLine(AppModel.SaveSetting());
             ////AppModel.LoadSetting();
         }
 
