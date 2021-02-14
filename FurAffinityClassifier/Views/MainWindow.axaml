@@ -3,10 +3,111 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="450"
-        Width="350"
-        Height="500"
         x:Class="FurAffinityClassifier.Views.MainWindow"
         Icon="avares://FurAffinityClassifier/Assets/app.ico"
+        Width="350"
+        Height="500"
         Title="Fur Affinity Classifier">
-  Welcome to Avalonia!
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   FontWeight="Bold"
+                   Text="フォルダー設定" />
+        <TextBlock Grid.Row="1"
+                   Margin="6 6 0 0"
+                   Text="移動元:" />
+        <Grid Grid.Row="2"
+              Margin="6 0 6 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0"
+                     VerticalAlignment="Center"
+                     Text="{Binding FromFolder.Value}"
+                     IsReadOnly="True" />
+            <Button Grid.Column="1"
+                    Margin="6 0 0 0"
+                    Padding="10 0 10 0"
+                    VerticalAlignment="Stretch"
+                    VerticalContentAlignment="Center"
+                    Content="選択..." />
+        </Grid>
+        <TextBlock Grid.Row="3"
+                   Margin="6 6 0 0"
+                   Text="移動先:" />
+        <Grid Grid.Row="4"
+              Margin="6 0 6 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0"
+                     VerticalAlignment="Center"
+                     Text="{Binding ToFolder.Value}"
+                     IsReadOnly="True" />
+            <Button Grid.Column="1"
+                    Margin="6 0 0 0"
+                    Padding="10 0 10 0"
+                    VerticalAlignment="Stretch"
+                    VerticalContentAlignment="Center"
+                    Content="選択..." />
+        </Grid>
+        <TextBlock Grid.Row="5"
+                   Margin="0 6 0 0"
+                   FontWeight="Bold"
+                   Text="分類設定" />
+        <CheckBox Grid.Row="6"
+                  Margin="6 0 0 0"
+                  Content="自動作成"
+                  IsChecked="{Binding CreateFolderIfNotExist.Value}" />
+        <CheckBox Grid.Row="7"
+                  Margin="6 0 0 0"
+                  Content="上書き"
+                  IsChecked="{Binding OverwriteIfExist.Value}" />
+        <TextBlock Grid.Row="8"
+                   Margin="6 0 0 0"
+                   Text="IDと違うフォルダー" />
+        <DataGrid Grid.Row="9"
+                  Margin="6 0 6 0"
+                  Items="{Binding ClassifyAsDatas.Value}"
+                  AutoGenerateColumns="False"
+                  RowHeaderWidth="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"
+                                    Width="*"
+                                    Binding="{Binding Id}" />
+                <DataGridTextColumn Header="フォルダー"
+                                    Width="*"
+                                    Binding="{Binding Folder}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="10"
+                Margin="6 6 0 6"
+                Padding="10 5 10 5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Center"
+                Content="設定の保存" />
+        <Button Grid.Row="11"
+                Margin="6 6 0 6"
+                Padding="10 5 10 5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Center"
+                Content="実行" />
+    </Grid>
 </Window>
