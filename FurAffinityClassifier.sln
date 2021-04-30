@@ -3,13 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FurAffinityClassifier.Common", "FurAffinityClassifier.Common\FurAffinityClassifier.Common.csproj", "{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurAffinityClassifier.App.Wpf", "FurAffinityClassifier.App.Wpf\FurAffinityClassifier.App.Wpf.csproj", "{1763A4B2-F134-4533-8560-39C8AECAB896}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FurAffinityClassifier.App.Console", "FurAffinityClassifier.App.Console\FurAffinityClassifier.App.Console.csproj", "{26C99098-0485-4840-8AF0-0F35F384AA0B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurAffinityClassifier", "FurAffinityClassifier\FurAffinityClassifier.csproj", "{93EC2855-BCDD-4576-9082-4B26371A523D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FurAffinityClassifier", "FurAffinityClassifier\FurAffinityClassifier.csproj", "{93EC2855-BCDD-4576-9082-4B26371A523D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{098E6CAD-9E4C-46FC-9CA0-E4A6DA01274D}"
 	ProjectSection(SolutionItems) = preProject
@@ -22,18 +16,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BF4AF2C-3453-4B56-B0E6-24CCA0214228}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1763A4B2-F134-4533-8560-39C8AECAB896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1763A4B2-F134-4533-8560-39C8AECAB896}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1763A4B2-F134-4533-8560-39C8AECAB896}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1763A4B2-F134-4533-8560-39C8AECAB896}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26C99098-0485-4840-8AF0-0F35F384AA0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26C99098-0485-4840-8AF0-0F35F384AA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26C99098-0485-4840-8AF0-0F35F384AA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26C99098-0485-4840-8AF0-0F35F384AA0B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93EC2855-BCDD-4576-9082-4B26371A523D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93EC2855-BCDD-4576-9082-4B26371A523D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93EC2855-BCDD-4576-9082-4B26371A523D}.Release|Any CPU.ActiveCfg = Release|Any CPU
