@@ -9,7 +9,7 @@ namespace FurAffinityClassifier.Models
     /// <summary>
     /// アプリケーションの機能
     /// </summary>
-    public class AppModel
+    public class AppModel : IAppModel
     {
     }
 }

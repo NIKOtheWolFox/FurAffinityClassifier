@@ -9,6 +9,7 @@ using Prism;
 using Prism.Ioc;
 using Prism.Unity;
 using FurAffinityClassifier.Views;
+using FurAffinityClassifier.Models;
 
 namespace FurAffinityClassifier
 {
@@ -32,7 +33,9 @@ namespace FurAffinityClassifier
         /// <param name="containerRegistry">Container by Prism</param>
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Implement later...
+            containerRegistry.Register<IAppModel, AppModel>();
+            containerRegistry.Register<ISettingsModel, SettingsModel>();
+            containerRegistry.Register<IClassificationModel, ClassificationModel>();
         }
     }
 }
