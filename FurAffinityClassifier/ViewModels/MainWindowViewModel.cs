@@ -177,16 +177,16 @@ namespace FurAffinityClassifier.ViewModels
             {
                 if (await AppModel.SaveSettingsAsync())
                 {
-                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSetting, Resources.DialogMessageSaveSettingDone, DialogIcon.Information);
+                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsDone, DialogIcon.Information);
                 }
                 else
                 {
-                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSetting, Resources.DialogMessageSaveSettingError, DialogIcon.Error);
+                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsError, DialogIcon.Error);
                 }
             }
             else
             {
-                DialogHelper.ShowDialog(Resources.DialogTitleSaveSetting, Resources.DialogMessageInvalidSetting, DialogIcon.Error);
+                DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
             ButtonEnable.Value = true;
@@ -221,7 +221,7 @@ namespace FurAffinityClassifier.ViewModels
             }
             else
             {
-                DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSetting, DialogIcon.Error);
+                DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
             ButtonEnable.Value = true;

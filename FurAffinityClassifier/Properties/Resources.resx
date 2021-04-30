@@ -97,8 +97,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ClassificationSetting" xml:space="preserve">
-    <value>Classification setting</value>
+  <data name="ClassificationSettings" xml:space="preserve">
+    <value>Classification settings</value>
   </data>
   <data name="ClassifyAs" xml:space="preserve">
     <value>Classify as</value>
@@ -124,20 +124,20 @@
   <data name="DialogMessageClassifyFileTargetFiles" xml:space="preserve">
     <value>Target files:{0}</value>
   </data>
-  <data name="DialogMessageInvalidSetting" xml:space="preserve">
-    <value>Setting is invalid.</value>
+  <data name="DialogMessageInvalidSettings" xml:space="preserve">
+    <value>Settings is invalid.</value>
   </data>
-  <data name="DialogMessageSaveSettingDone" xml:space="preserve">
-    <value>Setting save completed.</value>
+  <data name="DialogMessageSaveSettingsDone" xml:space="preserve">
+    <value>Settings save completed.</value>
   </data>
-  <data name="DialogMessageSaveSettingError" xml:space="preserve">
-    <value>Error occurred while save setting.</value>
+  <data name="DialogMessageSaveSettingsError" xml:space="preserve">
+    <value>Error occurred while save settings.</value>
   </data>
   <data name="DialogTitleClassifyFile" xml:space="preserve">
     <value>File Classification</value>
   </data>
-  <data name="DialogTitleSaveSetting" xml:space="preserve">
-    <value>Save setting</value>
+  <data name="DialogTitleSaveSettings" xml:space="preserve">
+    <value>Save settings</value>
   </data>
   <data name="DialogTitleSelectFolder" xml:space="preserve">
     <value>Select folder</value>
@@ -145,8 +145,8 @@
   <data name="Execute" xml:space="preserve">
     <value>Execute</value>
   </data>
-  <data name="FolderSetting" xml:space="preserve">
-    <value>Folder setting</value>
+  <data name="FolderSettings" xml:space="preserve">
+    <value>Folder settings</value>
   </data>
   <data name="FromFolder" xml:space="preserve">
     <value>From:</value>
@@ -154,8 +154,8 @@
   <data name="OverwriteIfExist" xml:space="preserve">
     <value>Overwrite if exist</value>
   </data>
-  <data name="SaveSetting" xml:space="preserve">
-    <value>Save setting</value>
+  <data name="SaveSettings" xml:space="preserve">
+    <value>Save settings</value>
   </data>
   <data name="SelectFolder" xml:space="preserve">
     <value>Select...</value>
