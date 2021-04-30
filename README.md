@@ -77,7 +77,7 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 [BSD 3-Clause License](https://github.com/NLog/NLog/blob/dev/LICENSE.txt)<br>
 
 [Ookii.Dialogs.Wpf](https://github.com/ookii-dialogs/ookii-dialogs-wpf)<br>
-(c) 2009-2020 Ookii Dialogs Contributors
+(c) 2009-2020 Ookii Dialogs Contributors<br>
 [BSD 3-Clause License](https://github.com/ookii-dialogs/ookii-dialogs-wpf/blob/master/LICENSE)
 
 [Prism](https://github.com/PrismLibrary/Prism)<br>
