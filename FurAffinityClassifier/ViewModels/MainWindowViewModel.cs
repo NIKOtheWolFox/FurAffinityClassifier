@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +11,6 @@ using FurAffinityClassifier.Properties;
 using Prism.Mvvm;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
-using Unity;
 
 namespace FurAffinityClassifier.ViewModels
 {
@@ -142,6 +139,7 @@ namespace FurAffinityClassifier.ViewModels
         public void Dispose()
         {
             Disposables.Dispose();
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -179,16 +177,16 @@ namespace FurAffinityClassifier.ViewModels
             {
                 if (await AppModel.SaveSettingsAsync())
                 {
-                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSetting, Resources.DialogMessageSaveSettingDone, DialogIcon.Information);
+                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsDone, DialogIcon.Information);
                 }
                 else
                 {
-                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSetting, Resources.DialogMessageSaveSettingError, DialogIcon.Error);
+                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsError, DialogIcon.Error);
                 }
             }
             else
             {
-                DialogHelper.ShowDialog(Resources.DialogTitleSaveSetting, Resources.DialogMessageInvalidSetting, DialogIcon.Error);
+                DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
             ButtonEnable.Value = true;
@@ -223,7 +221,7 @@ namespace FurAffinityClassifier.ViewModels
             }
             else
             {
-                DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSetting, DialogIcon.Error);
+                DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
             ButtonEnable.Value = true;

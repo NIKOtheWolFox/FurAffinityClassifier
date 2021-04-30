@@ -9,11 +9,11 @@ This application classify files that downloaded from Fur Affinity into ID-based 
 ## How to use
 1. Unzip released file.
 1. Run "FurAffinityClassifier.exe".
-1. Set up as you wish. (setting will not save unless clicking "Save Setting")
+1. Set up as you wish. (settings will not save unless clicking "Save Setting")
 1. Click "Execute" button.
 
 ## Settings
-This application use a file "settings.json" in same folder as executable file to save setting.<br>
+This application use a file "settings.json" in same folder as executable file to save settings.<br>
 Content of file is:
 ```JSON:settings.json
 {
@@ -30,8 +30,8 @@ Content of file is:
     ]
 }
 ```
-Application create and update this file by clicking "Save Setting" button, but you can create it manually.<br>
-If you make setting file by using this app, order of content can be differ from above example. This is derived from JSON processor library behavior.
+Application create and update this file by clicking "Save Settings" button, but you can create it manually.<br>
+If you make settings.json by using this app, order of content can be differ from above example. This is derived from JSON processor library behavior.
 
 ## How application works
 If you set up as:

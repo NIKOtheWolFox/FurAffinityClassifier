@@ -61,11 +61,11 @@ namespace FurAffinityClassifier.Properties {
         }
         
         /// <summary>
-        ///   Classification setting に類似しているローカライズされた文字列を検索します。
+        ///   Classification settings に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string ClassificationSetting {
+        public static string ClassificationSettings {
             get {
-                return ResourceManager.GetString("ClassificationSetting", resourceCulture);
+                return ResourceManager.GetString("ClassificationSettings", resourceCulture);
             }
         }
         
@@ -142,29 +142,29 @@ namespace FurAffinityClassifier.Properties {
         }
         
         /// <summary>
-        ///   Setting is invalid. に類似しているローカライズされた文字列を検索します。
+        ///   Settings is invalid. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string DialogMessageInvalidSetting {
+        public static string DialogMessageInvalidSettings {
             get {
-                return ResourceManager.GetString("DialogMessageInvalidSetting", resourceCulture);
+                return ResourceManager.GetString("DialogMessageInvalidSettings", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Setting save completed. に類似しているローカライズされた文字列を検索します。
+        ///   Settings save completed. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string DialogMessageSaveSettingDone {
+        public static string DialogMessageSaveSettingsDone {
             get {
-                return ResourceManager.GetString("DialogMessageSaveSettingDone", resourceCulture);
+                return ResourceManager.GetString("DialogMessageSaveSettingsDone", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Error occurred while save setting. に類似しているローカライズされた文字列を検索します。
+        ///   Error occurred while save settings. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string DialogMessageSaveSettingError {
+        public static string DialogMessageSaveSettingsError {
             get {
-                return ResourceManager.GetString("DialogMessageSaveSettingError", resourceCulture);
+                return ResourceManager.GetString("DialogMessageSaveSettingsError", resourceCulture);
             }
         }
         
@@ -178,11 +178,11 @@ namespace FurAffinityClassifier.Properties {
         }
         
         /// <summary>
-        ///   Save setting に類似しているローカライズされた文字列を検索します。
+        ///   Save settings に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string DialogTitleSaveSetting {
+        public static string DialogTitleSaveSettings {
             get {
-                return ResourceManager.GetString("DialogTitleSaveSetting", resourceCulture);
+                return ResourceManager.GetString("DialogTitleSaveSettings", resourceCulture);
             }
         }
         
@@ -205,11 +205,11 @@ namespace FurAffinityClassifier.Properties {
         }
         
         /// <summary>
-        ///   Folder setting に類似しているローカライズされた文字列を検索します。
+        ///   Folder settings に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string FolderSetting {
+        public static string FolderSettings {
             get {
-                return ResourceManager.GetString("FolderSetting", resourceCulture);
+                return ResourceManager.GetString("FolderSettings", resourceCulture);
             }
         }
         
@@ -232,11 +232,11 @@ namespace FurAffinityClassifier.Properties {
         }
         
         /// <summary>
-        ///   Save setting に類似しているローカライズされた文字列を検索します。
+        ///   Save settings に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        public static string SaveSetting {
+        public static string SaveSettings {
             get {
-                return ResourceManager.GetString("SaveSetting", resourceCulture);
+                return ResourceManager.GetString("SaveSettings", resourceCulture);
             }
         }
         

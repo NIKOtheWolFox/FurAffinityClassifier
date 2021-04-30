@@ -32,7 +32,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
-                       Text="{x:Static properties:Resources.FolderSetting}"/>
+                       Text="{x:Static properties:Resources.FolderSettings}"/>
             <Separator Grid.Column="1"
                        Margin="10 0 0 0"
                        VerticalAlignment="Center"/>
@@ -84,7 +84,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
-                       Text="{x:Static properties:Resources.ClassificationSetting}"/>
+                       Text="{x:Static properties:Resources.ClassificationSettings}"/>
             <Separator Grid.Column="1"
                        Margin="10 0 0 0"
                        VerticalAlignment="Center"/>
@@ -118,7 +118,7 @@
                 Margin="0 6 0 0"
                 Padding="10 0 10 0"
                 HorizontalAlignment="Right"
-                Content="{x:Static properties:Resources.SaveSetting}"
+                Content="{x:Static properties:Resources.SaveSettings}"
                 Command="{Binding SaveSettingsCommand}" />
         <Button Grid.Row="11"
                 Margin="0 6 0 0"
