@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:FurAffinityClassifier.Views"
         xmlns:properties="clr-namespace:FurAffinityClassifier.Properties"
         mc:Ignorable="d"
-        Title="Fur Affinity Classifier"
         prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="Fur Affinity Classifier"
         Height="500"
         Width="350">
     <Grid Margin="6">
@@ -119,7 +119,7 @@
                 Padding="10 0 10 0"
                 HorizontalAlignment="Right"
                 Content="{x:Static properties:Resources.SaveSetting}"
-                Command="{Binding SaveSettingCommand}" />
+                Command="{Binding SaveSettingsCommand}" />
         <Button Grid.Row="11"
                 Margin="0 6 0 0"
                 Padding="10 0 10 0"

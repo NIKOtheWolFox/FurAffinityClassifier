@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FurAffinityClassifier.Datas;
 using Unity;
 
 namespace FurAffinityClassifier.Models
@@ -23,6 +24,51 @@ namespace FurAffinityClassifier.Models
         /// </summary>
         [Dependency]
         public IClassificationModel ClassificationModel { get; set; }
+
+        /// <summary>
+        /// 移動元フォルダー
+        /// </summary>
+        public string FromFolder
+        {
+            get => SettingsModel.SettingsData.FromFolder;
+            set => SettingsModel.SettingsData.FromFolder = value;
+        }
+
+        /// <summary>
+        /// 移動先フォルダー
+        /// </summary>
+        public string ToFolder
+        {
+            get => SettingsModel.SettingsData.ToFolder;
+            set => SettingsModel.SettingsData.ToFolder = value;
+        }
+
+        /// <summary>
+        /// 移動先のフォルダーが存在しないときに作成するか
+        /// </summary>
+        public bool CreateFolderIfNotExist
+        {
+            get => SettingsModel.SettingsData.CreateFolderIfNotExist;
+            set => SettingsModel.SettingsData.CreateFolderIfNotExist = value;
+        }
+
+        /// <summary>
+        /// 同名のファイルが存在するときに上書きするか
+        /// </summary>
+        public bool OverwriteIfExist
+        {
+            get => SettingsModel.SettingsData.OverwriteIfExist;
+            set => SettingsModel.SettingsData.OverwriteIfExist = value;
+        }
+
+        /// <summary>
+        /// IDと異なるフォルダーに分類する設定のリスト
+        /// </summary>
+        public List<ClassifyAsData> ClassifyAsDatas
+        {
+            get => SettingsModel.SettingsData.ClassifyAsDatas;
+            set => SettingsModel.SettingsData.ClassifyAsDatas = value;
+        }
 
         /// <summary>
         /// 設定を読み込む

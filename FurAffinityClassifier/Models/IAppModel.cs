@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FurAffinityClassifier.Datas;
 
 namespace FurAffinityClassifier.Models
 {
@@ -11,6 +12,31 @@ namespace FurAffinityClassifier.Models
     /// </summary>
     public interface IAppModel
     {
+        /// <summary>
+        /// 移動元フォルダー
+        /// </summary>
+        string FromFolder { get; set; }
+
+        /// <summary>
+        /// 移動先フォルダー
+        /// </summary>
+        string ToFolder { get; set; }
+
+        /// <summary>
+        /// 移動先のフォルダーが存在しないときに作成するか
+        /// </summary>
+        bool CreateFolderIfNotExist { get; set; }
+
+        /// <summary>
+        /// 同名のファイルが存在するときに上書きするか
+        /// </summary>
+        bool OverwriteIfExist { get; set; }
+
+        /// <summary>
+        /// IDと異なるフォルダーに分類する設定のリスト
+        /// </summary>
+        List<ClassifyAsData> ClassifyAsDatas { get; set; }
+
         /// <summary>
         /// 設定を読み込む
         /// </summary>

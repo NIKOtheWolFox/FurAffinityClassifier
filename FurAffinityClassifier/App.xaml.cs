@@ -5,11 +5,11 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using FurAffinityClassifier.Views;
+using FurAffinityClassifier.Models;
 using Prism;
 using Prism.Ioc;
 using Prism.Unity;
-using FurAffinityClassifier.Views;
-using FurAffinityClassifier.Models;
 
 namespace FurAffinityClassifier
 {
