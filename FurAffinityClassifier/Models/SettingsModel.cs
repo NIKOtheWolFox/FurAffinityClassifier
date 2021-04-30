@@ -44,14 +44,44 @@ namespace FurAffinityClassifier.Models
         /// ファイルから設定を読み込む
         /// </summary>
         /// <returns>true:成功/false:失敗</returns>
-        public async Task<bool> LoadFromFile()
+        public bool LoadFromFile()
         {
             bool result = true;
 
             try
             {
-                using var stream = new StreamReader(settingsFilePath);
-                settingsData = JsonSerializer.Deserialize<SettingsData>(await stream.ReadToEndAsync());
+                if (File.Exists(settingsFilePath))
+                {
+                    using var stream = new StreamReader(settingsFilePath);
+                    settingsData = JsonSerializer.Deserialize<SettingsData>(stream.ReadToEnd());
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                settingsData = new SettingsData();
+                result = false;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 非同期でファイルから設定を読み込む
+        /// </summary>
+        /// <returns>true:成功/false:失敗</returns>
+        public async Task<bool> LoadFromFileAsync()
+        {
+            bool result = true;
+
+            try
+            {
+                if (File.Exists(settingsFilePath))
+                {
+                    using var stream = new StreamReader(settingsFilePath);
+                    settingsData = JsonSerializer.Deserialize<SettingsData>(await stream.ReadToEndAsync());
+                }
             }
             catch (Exception e)
             {
@@ -68,7 +98,30 @@ namespace FurAffinityClassifier.Models
         /// ファイルに設定を書き込む
         /// </summary>
         /// <returns>true:成功/false:失敗</returns>
-        public async Task<bool> SaveToFile()
+        public bool SaveToFile()
+        {
+            bool result = true;
+
+            try
+            {
+                using var writer = new StreamWriter(settingsFilePath);
+                writer.Write(JsonSerializer.Serialize(settingsData, serializeOption));
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                result = false;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 非同期でファイルに設定を書き込む
+        /// </summary>
+        /// <returns>true:成功/false:失敗</returns>
+        public async Task<bool> SaveToFileAsync()
         {
             bool result = true;
 

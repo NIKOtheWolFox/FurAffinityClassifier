@@ -21,12 +21,24 @@ namespace FurAffinityClassifier.Models
         /// ファイルから設定を読み込む
         /// </summary>
         /// <returns>true:成功/false:失敗</returns>
-        Task<bool> LoadFromFile();
+        bool LoadFromFile();
+
+        /// <summary>
+        /// 非同期でファイルから設定を読み込む
+        /// </summary>
+        /// <returns>true:成功/false:失敗</returns>
+        Task<bool> LoadFromFileAsync();
 
         /// <summary>
         /// ファイルに設定を書き込む
         /// </summary>
         /// <returns>true:成功/false:失敗</returns>
-        Task<bool> SaveToFile();
+        bool SaveToFile();
+
+        /// <summary>
+        /// 非同期でファイルに設定を書き込む
+        /// </summary>
+        /// <returns>true:成功/false:失敗</returns>
+        Task<bool> SaveToFileAsync();
     }
 }

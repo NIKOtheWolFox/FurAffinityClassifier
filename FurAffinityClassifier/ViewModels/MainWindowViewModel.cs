@@ -27,6 +27,8 @@ namespace FurAffinityClassifier.ViewModels
         {
             AppModel = appModel;
 
+            AppModel.LoadSettings();
+
             FromFolder = ReactiveProperty
                 .FromObject(AppModel, x => x.FromFolder)
                 .AddTo(Disposables);

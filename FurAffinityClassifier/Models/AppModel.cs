@@ -85,16 +85,16 @@ namespace FurAffinityClassifier.Models
         /// <returns>true:成功/false:失敗</returns>
         public bool LoadSettings()
         {
-            return LoadSettingsAsync().Result;
+            return SettingsModel.LoadFromFile();
         }
 
         /// <summary>
-        /// 設定を非同期で読み込む
+        /// 非同期で設定を読み込む
         /// </summary>
         /// <returns>true:成功/false:失敗</returns>
         public async Task<bool> LoadSettingsAsync()
         {
-            return await SettingsModel.LoadFromFile();
+            return await SettingsModel.LoadFromFileAsync();
         }
 
         /// <summary>
@@ -103,16 +103,16 @@ namespace FurAffinityClassifier.Models
         /// <returns>true:成功/false:失敗</returns>
         public bool SaveSettings()
         {
-            return SaveSettingsAsync().Result;
+            return SettingsModel.SaveToFile();
         }
 
         /// <summary>
-        /// 設定を非同期で保存する
+        /// 非同期で設定を保存する
         /// </summary>
         /// <returns>true:成功/false:失敗</returns>
         public async Task<bool> SaveSettingsAsync()
         {
-            return await SettingsModel.SaveToFile();
+            return await SettingsModel.SaveToFileAsync();
         }
 
         /// <summary>
