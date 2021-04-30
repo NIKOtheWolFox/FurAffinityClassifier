@@ -69,7 +69,6 @@ Fur Affinity : [NIKOtheWolFox](https://www.furaffinity.net/user/nikothewolfox/)
 See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier/master/LICENSE) for more information.
 
 ## Plans
-* Port to .NET 5
 * Create multi platform GUI application by using Avalonia UI. -> It's hard for me, it will be abandoned.
 
 ## Libraries usage
@@ -98,4 +97,4 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 [MIT License](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/LICENSE)
 
 ## Other things
-The author is not an English native, so advices are welcome.
+The author is not an English native, please tell the author if something wrong with this doc.
