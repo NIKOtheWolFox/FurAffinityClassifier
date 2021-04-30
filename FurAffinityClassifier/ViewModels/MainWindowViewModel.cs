@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +11,6 @@ using FurAffinityClassifier.Properties;
 using Prism.Mvvm;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
-using Unity;
 
 namespace FurAffinityClassifier.ViewModels
 {

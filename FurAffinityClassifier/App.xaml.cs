@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Views;
 using FurAffinityClassifier.Models;
 using Prism;
 using Prism.Ioc;
-using Prism.Unity;
 
 namespace FurAffinityClassifier
 {
