@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FurAffinityClassifier.Enums;
 
 namespace FurAffinityClassifier.Helpers
 {
@@ -11,6 +12,14 @@ namespace FurAffinityClassifier.Helpers
     /// </summary>
     public interface IDialogHelper
     {
+        /// <summary>
+        /// ダイアログを表示する
+        /// </summary>
+        /// <param name="title">タイトル</param>
+        /// <param name="message">メッセージ</param>
+        /// <param name="icon">アイコン</param>
+        void ShowDialog(string title, string message, DialogIcon icon);
+
         /// <summary>
         /// フォルダー選択ダイアログを表示する
         /// </summary>

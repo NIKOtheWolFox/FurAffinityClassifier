@@ -116,6 +116,15 @@ namespace FurAffinityClassifier.Models
         }
 
         /// <summary>
+        /// 設定を検証する
+        /// </summary>
+        /// <returns>true:OK/false:NG</returns>
+        public bool ValidateSettings()
+        {
+            return SettingsModel.Validate();
+        }
+
+        /// <summary>
         /// 分類する
         /// </summary>
         /// <param name="settingsData">設定</param>

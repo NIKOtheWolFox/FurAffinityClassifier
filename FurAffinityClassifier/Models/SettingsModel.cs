@@ -139,5 +139,18 @@ namespace FurAffinityClassifier.Models
 
             return result;
         }
+
+        /// <summary>
+        /// 設定を検証する
+        /// </summary>
+        /// <returns>true:OK/false:NG</returns>
+        public bool Validate()
+        {
+            return !string.IsNullOrEmpty(settingsData.FromFolder)
+                && Directory.Exists(settingsData.FromFolder)
+                && !string.IsNullOrEmpty(settingsData.ToFolder)
+                && Directory.Exists(settingsData.ToFolder)
+                && settingsData.ClassifyAsDatas.Count(x => string.IsNullOrEmpty(x.Id) || string.IsNullOrEmpty(x.Folder)) == 0;
+        }
     }
 }

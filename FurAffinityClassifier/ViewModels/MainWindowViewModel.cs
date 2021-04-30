@@ -6,8 +6,10 @@ using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Datas;
+using FurAffinityClassifier.Enums;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
+using FurAffinityClassifier.Properties;
 using Prism.Mvvm;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -59,8 +61,8 @@ namespace FurAffinityClassifier.ViewModels
                 .WithSubscribe(_ => SelectToFolderAction())
                 .AddTo(Disposables);
             SaveSettingsCommand = ButtonEnable
-                .ToReactiveCommand()
-                .WithSubscribe(_ => SaveSettingsAction())
+                .ToAsyncReactiveCommand()
+                .WithSubscribe(_ => SaveSettingsActionAsync())
                 .AddTo(Disposables);
             ExecuteCommand = ButtonEnable
                 .ToReactiveCommand()
@@ -111,7 +113,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// [設定を保存]ボタンクリック時のコマンド
         /// </summary>
-        public ReactiveCommand<object> SaveSettingsCommand { get; }
+        public AsyncReactiveCommand<object> SaveSettingsCommand { get; }
 
         /// <summary>
         /// [実行]ボタンクリック時のコマンド
@@ -169,9 +171,27 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// [設定を保存]ボタンクリック時のaction
         /// </summary>
-        private void SaveSettingsAction()
+        private async Task SaveSettingsActionAsync()
         {
-            System.Diagnostics.Debug.WriteLine("設定保存");
+            ButtonEnable.Value = false;
+
+            if (AppModel.ValidateSettings())
+            {
+                if (await AppModel.SaveSettingsAsync())
+                {
+                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSetting, Resources.DialogMessageSaveSettingDone, DialogIcon.Information);
+                }
+                else
+                {
+                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSetting, Resources.DialogMessageSaveSettingError, DialogIcon.Error);
+                }
+            }
+            else
+            {
+                DialogHelper.ShowDialog(Resources.DialogTitleSaveSetting, Resources.DialogMessageInvalidSetting, DialogIcon.Error);
+            }
+
+            ButtonEnable.Value = true;
         }
 
         /// <summary>

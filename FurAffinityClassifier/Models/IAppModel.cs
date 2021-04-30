@@ -62,6 +62,12 @@ namespace FurAffinityClassifier.Models
         Task<bool> SaveSettingsAsync();
 
         /// <summary>
+        /// 設定を検証する
+        /// </summary>
+        /// <returns>true:OK/false:NG</returns>
+        bool ValidateSettings();
+
+        /// <summary>
         /// 分類する
         /// </summary>
         /// <param name="settingsData">設定</param>
