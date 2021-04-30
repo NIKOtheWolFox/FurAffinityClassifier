@@ -22,7 +22,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// コンストラクター
         /// </summary>
-        /// <param name="appModel">アプリケーションModel</param>
+        /// <param name="appModel">アプリケーションModelのインスタンス</param>
         public MainWindowViewModel(IAppModel appModel)
         {
             AppModel = appModel;
