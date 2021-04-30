@@ -1,7 +1,7 @@
 using System.Windows;
 using FurAffinityClassifier.Helpers;
-using FurAffinityClassifier.Views;
 using FurAffinityClassifier.Models;
+using FurAffinityClassifier.Views;
 using Prism;
 using Prism.Ioc;
 
