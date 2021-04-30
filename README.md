@@ -73,25 +73,29 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 * Create multi platform GUI application by using Avalonia UI. -> It's hard for me, it will be abandoned.
 
 ## Libraries usage
-[Jil](https://github.com/kevin-montrose/Jil)<br>
-(c) 2013-2019 Kevin Montrose<br>
-[MIT License](https://github.com/kevin-montrose/Jil/blob/master/LICENSE)<br>
-
 [NLog](https://nlog-project.org/)<br>
 (c) 2004-2020 NLog Project - https://nlog-project.org/<br>
 [BSD 3-Clause License](https://github.com/NLog/NLog/blob/dev/LICENSE.txt)<br>
 
-[WindowsAPICodePack](https://github.com/contre/Windows-API-Code-Pack-1.1)<br>
-(c) 2020 rpastric, contre, dahall<br>
-[Custom License](https://github.com/contre/Windows-API-Code-Pack-1.1/blob/master/LICENSE)<br>
+[Ookii.Dialogs.Wpf](https://github.com/ookii-dialogs/ookii-dialogs-wpf)<br>
+(c) 2009-2020 Ookii Dialogs Contributors
+[BSD 3-Clause License](https://github.com/ookii-dialogs/ookii-dialogs-wpf/blob/master/LICENSE)
 
-[MVVM Light Toolkit](http://www.mvvmlight.net/)<br>
-(c) 2009-2018 Laurent Bugnion (GalaSoft)<br>
-[MIT License](https://github.com/lbugnion/mvvmlight/blob/master/LICENSE)<br>
+[Prism](https://github.com/PrismLibrary/Prism)<br>
+(c) Brian Lagunas, Dan Siegel<br>
+[MIT License](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)
+
+[Unity.Container](https://github.com/unitycontainer/unity)<br>
+(c) .NET Foundation and Contributors<br>
+[Apache License 2.0](https://github.com/unitycontainer/unity/blob/master/LICENSE)
 
 [ReactiveProperty](https://github.com/runceel/ReactiveProperty)<br>
 (c) 2018 neuecc, xin9le, okazuki<br>
 [MIT License](https://github.com/runceel/ReactiveProperty/blob/master/LICENSE.txt)
+
+[StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)<br>
+(c) 2015 Tunnel Vision Laboratories, LLC<br>
+[MIT License](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/LICENSE)
 
 ## Other things
 The author is not an English native, so advices are welcome.
