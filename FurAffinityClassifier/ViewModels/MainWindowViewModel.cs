@@ -64,12 +64,6 @@ namespace FurAffinityClassifier.ViewModels
         }
 
         /// <summary>
-        /// アプリケーションModel
-        /// </summary>
-        ////[Dependency]
-        ////public IAppModel AppModel { get; set; }
-
-        /// <summary>
         /// 移動元フォルダー
         /// </summary>
         public ReactiveProperty<string> FromFolder { get; }
@@ -136,11 +130,6 @@ namespace FurAffinityClassifier.ViewModels
         public void Dispose()
         {
             Disposables.Dispose();
-        }
-
-        private void SetCommands()
-        {
-
         }
 
         /// <summary>
