@@ -14,16 +14,15 @@ namespace FurAffinityClassifier.Models
     public class AppModel : IAppModel
     {
         /// <summary>
-        /// 設定Model
+        /// コンストラクター
         /// </summary>
-        [Dependency]
-        public ISettingsModel SettingsModel { get; set; }
-
-        /// <summary>
-        /// 分類Model
-        /// </summary>
-        [Dependency]
-        public IClassificationModel ClassificationModel { get; set; }
+        /// <param name="settingsModel">設定Modelのインスタンス</param>
+        /// <param name="classificationModel">分類Modelのインスタンス</param>
+        public AppModel(ISettingsModel settingsModel, IClassificationModel classificationModel)
+        {
+            SettingsModel = settingsModel;
+            ClassificationModel = classificationModel;
+        }
 
         /// <summary>
         /// 移動元フォルダー
@@ -69,6 +68,16 @@ namespace FurAffinityClassifier.Models
             get => SettingsModel.SettingsData.ClassifyAsDatas;
             set => SettingsModel.SettingsData.ClassifyAsDatas = value;
         }
+
+        /// <summary>
+        /// 設定Model
+        /// </summary>
+        private ISettingsModel SettingsModel { get; }
+
+        /// <summary>
+        /// 分類Model
+        /// </summary>
+        private IClassificationModel ClassificationModel { get; }
 
         /// <summary>
         /// 設定を読み込む
