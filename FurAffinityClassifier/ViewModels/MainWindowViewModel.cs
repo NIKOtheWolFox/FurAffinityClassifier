@@ -65,8 +65,8 @@ namespace FurAffinityClassifier.ViewModels
                 .WithSubscribe(_ => SaveSettingsActionAsync())
                 .AddTo(Disposables);
             ExecuteCommand = ButtonEnable
-                .ToReactiveCommand()
-                .WithSubscribe(_ => ExecuteAction())
+                .ToAsyncReactiveCommand()
+                .WithSubscribe(_ => ExecuteActionAsync())
                 .AddTo(Disposables);
         }
 
@@ -118,7 +118,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// [実行]ボタンクリック時のコマンド
         /// </summary>
-        public ReactiveCommand<object> ExecuteCommand { get; }
+        public AsyncReactiveCommand<object> ExecuteCommand { get; }
 
         /// <summary>
         /// アプリケーションModel
@@ -197,9 +197,36 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// [実行]ボタンクリック時のaction
         /// </summary>
-        private void ExecuteAction()
+        private async Task ExecuteActionAsync()
         {
-            System.Diagnostics.Debug.WriteLine("実行");
+            ButtonEnable.Value = false;
+
+            if (AppModel.ValidateSettings())
+            {
+                var classificationResult = await AppModel.ClassifyAsync();
+                StringBuilder messageBuilder = new ();
+                messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
+                messageBuilder.AppendLine();
+                messageBuilder.AppendLine(
+                    string.Format(
+                        Resources.DialogMessageClassifyFileFoundFiles,
+                        classificationResult[Const.ClassificationResultFoundFileCount]));
+                messageBuilder.AppendLine(
+                    string.Format(
+                        Resources.DialogMessageClassifyFileTargetFiles,
+                        classificationResult[Const.ClassificationResultTargetFileCount]));
+                messageBuilder.AppendLine(
+                    string.Format(
+                        Resources.DialogMessageClassifyFileClassifiedFiles,
+                        classificationResult[Const.ClassificationResultClassifiedFileCount]));
+                DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, messageBuilder.ToString(), DialogIcon.Information);
+            }
+            else
+            {
+                DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSetting, DialogIcon.Error);
+            }
+
+            ButtonEnable.Value = true;
         }
     }
 }
