@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Views;
 using FurAffinityClassifier.Models;
 using Prism;
@@ -36,6 +37,8 @@ namespace FurAffinityClassifier
             containerRegistry.Register<IAppModel, AppModel>();
             containerRegistry.Register<ISettingsModel, SettingsModel>();
             containerRegistry.Register<IClassificationModel, ClassificationModel>();
+
+            containerRegistry.Register<IDialogHelper, DialogHelper>();
         }
     }
 }

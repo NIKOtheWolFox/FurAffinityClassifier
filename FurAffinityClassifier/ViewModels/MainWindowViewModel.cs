@@ -6,6 +6,7 @@ using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Datas;
+using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
 using Prism.Mvvm;
 using Reactive.Bindings;
@@ -23,9 +24,11 @@ namespace FurAffinityClassifier.ViewModels
         /// コンストラクター
         /// </summary>
         /// <param name="appModel">アプリケーションModelのインスタンス</param>
-        public MainWindowViewModel(IAppModel appModel)
+        /// <param name="dialogHelper">ダイアログHelperのインスタンス</param>
+        public MainWindowViewModel(IAppModel appModel, IDialogHelper dialogHelper)
         {
             AppModel = appModel;
+            DialogHelper = dialogHelper;
 
             AppModel.LoadSettings();
 
@@ -121,6 +124,11 @@ namespace FurAffinityClassifier.ViewModels
         private IAppModel AppModel { get; }
 
         /// <summary>
+        /// ダイアログHelper
+        /// </summary>
+        private IDialogHelper DialogHelper { get; }
+
+        /// <summary>
         /// 一括Disposeを行うためにReactiveXxをまとめるオブジェクト
         /// </summary>
         private CompositeDisposable Disposables { get; } = new CompositeDisposable();
@@ -139,7 +147,11 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void SelectFromFolderAction()
         {
-            System.Diagnostics.Debug.WriteLine("移動元フォルダー選択");
+            var selectedFolder = DialogHelper.ShowFolderBrowserDialog(FromFolder.Value);
+            if (!string.IsNullOrEmpty(selectedFolder))
+            {
+                FromFolder.Value = selectedFolder;
+            }
         }
 
         /// <summary>
@@ -147,7 +159,11 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void SelectToFolderAction()
         {
-            System.Diagnostics.Debug.WriteLine("移動先フォルダー選択");
+            var selectedFolder = DialogHelper.ShowFolderBrowserDialog(ToFolder.Value);
+            if (!string.IsNullOrEmpty(selectedFolder))
+            {
+                ToFolder.Value = selectedFolder;
+            }
         }
 
         /// <summary>
