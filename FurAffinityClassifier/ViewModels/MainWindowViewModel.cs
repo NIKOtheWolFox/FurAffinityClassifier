@@ -139,6 +139,7 @@ namespace FurAffinityClassifier.ViewModels
         public void Dispose()
         {
             Disposables.Dispose();
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
