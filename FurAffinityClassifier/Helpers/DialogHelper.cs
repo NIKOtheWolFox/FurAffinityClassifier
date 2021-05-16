@@ -18,6 +18,7 @@ namespace FurAffinityClassifier.Helpers
         {
             using TaskDialog dialog = new ()
             {
+                CenterParent = true,
                 WindowTitle = title,
                 Content = message,
                 MainIcon = GetIcon(icon),
