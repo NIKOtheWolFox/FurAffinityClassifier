@@ -10,7 +10,7 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="Fur Affinity Classifier"
         Height="500"
-        Width="350">
+        Width="400">
     <Grid Margin="6">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
