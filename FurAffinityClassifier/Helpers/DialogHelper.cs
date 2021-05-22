@@ -50,7 +50,7 @@ namespace FurAffinityClassifier.Helpers
         /// </summary>
         /// <param name="icon">アイコン(独自enum)</param>
         /// <returns>アイコン(Ookii.dialogのenum)</returns>
-        private TaskDialogIcon GetIcon(DialogIcon icon)
+        private static TaskDialogIcon GetIcon(DialogIcon icon)
         {
             return icon switch
             {
