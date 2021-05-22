@@ -18,6 +18,7 @@ namespace FurAffinityClassifier.Helpers
         {
             using TaskDialog dialog = new ()
             {
+                CenterParent = true,
                 WindowTitle = title,
                 Content = message,
                 MainIcon = GetIcon(icon),
@@ -49,21 +50,16 @@ namespace FurAffinityClassifier.Helpers
         /// </summary>
         /// <param name="icon">アイコン(独自enum)</param>
         /// <returns>アイコン(Ookii.dialogのenum)</returns>
-        private TaskDialogIcon GetIcon(DialogIcon icon)
+        private static TaskDialogIcon GetIcon(DialogIcon icon)
         {
-            switch (icon)
+            return icon switch
             {
-                case DialogIcon.Sheild:
-                    return TaskDialogIcon.Shield;
-                case DialogIcon.Information:
-                    return TaskDialogIcon.Information;
-                case DialogIcon.Error:
-                    return TaskDialogIcon.Error;
-                case DialogIcon.Warning:
-                    return TaskDialogIcon.Warning;
-                default:
-                    return TaskDialogIcon.Custom;
-            }
+                DialogIcon.Sheild => TaskDialogIcon.Shield,
+                DialogIcon.Information => TaskDialogIcon.Information,
+                DialogIcon.Error => TaskDialogIcon.Error,
+                DialogIcon.Warning => TaskDialogIcon.Warning,
+                _ => TaskDialogIcon.Custom,
+            };
         }
     }
 }

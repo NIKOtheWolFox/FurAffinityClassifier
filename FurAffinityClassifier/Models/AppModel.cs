@@ -25,8 +25,15 @@ namespace FurAffinityClassifier.Models
         /// </summary>
         public string FromFolder
         {
-            get => SettingsModel.SettingsData.FromFolder;
-            set => SettingsModel.SettingsData.FromFolder = value;
+            get
+            {
+                return SettingsModel.SettingsData.FromFolder;
+            }
+
+            set
+            {
+                SettingsModel.SettingsData.FromFolder = value;
+            }
         }
 
         /// <summary>
@@ -34,8 +41,15 @@ namespace FurAffinityClassifier.Models
         /// </summary>
         public string ToFolder
         {
-            get => SettingsModel.SettingsData.ToFolder;
-            set => SettingsModel.SettingsData.ToFolder = value;
+            get
+            {
+                return SettingsModel.SettingsData.ToFolder;
+            }
+
+            set
+            {
+                SettingsModel.SettingsData.ToFolder = value;
+            }
         }
 
         /// <summary>
@@ -43,8 +57,15 @@ namespace FurAffinityClassifier.Models
         /// </summary>
         public bool CreateFolderIfNotExist
         {
-            get => SettingsModel.SettingsData.CreateFolderIfNotExist;
-            set => SettingsModel.SettingsData.CreateFolderIfNotExist = value;
+            get
+            {
+                return SettingsModel.SettingsData.CreateFolderIfNotExist;
+            }
+
+            set
+            {
+                SettingsModel.SettingsData.CreateFolderIfNotExist = value;
+            }
         }
 
         /// <summary>
@@ -52,8 +73,15 @@ namespace FurAffinityClassifier.Models
         /// </summary>
         public bool OverwriteIfExist
         {
-            get => SettingsModel.SettingsData.OverwriteIfExist;
-            set => SettingsModel.SettingsData.OverwriteIfExist = value;
+            get
+            {
+                return SettingsModel.SettingsData.OverwriteIfExist;
+            }
+
+            set
+            {
+                SettingsModel.SettingsData.OverwriteIfExist = value;
+            }
         }
 
         /// <summary>
@@ -61,8 +89,15 @@ namespace FurAffinityClassifier.Models
         /// </summary>
         public List<ClassifyAsData> ClassifyAsDatas
         {
-            get => SettingsModel.SettingsData.ClassifyAsDatas;
-            set => SettingsModel.SettingsData.ClassifyAsDatas = value;
+            get
+            {
+                return SettingsModel.SettingsData.ClassifyAsDatas;
+            }
+
+            set
+            {
+                SettingsModel.SettingsData.ClassifyAsDatas = value;
+            }
         }
 
         /// <summary>

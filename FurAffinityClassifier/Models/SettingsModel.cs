@@ -31,12 +31,7 @@ namespace FurAffinityClassifier.Models
         /// <summary>
         /// 設定値
         /// </summary>
-        private SettingsData settingsData = new　();
-
-        /// <summary>
-        /// 設定値
-        /// </summary>
-        public SettingsData SettingsData => settingsData;
+        public SettingsData SettingsData { get; private set; }
 
         /// <summary>
         /// ファイルから設定を読み込む
@@ -51,14 +46,14 @@ namespace FurAffinityClassifier.Models
                 if (File.Exists(settingsFilePath))
                 {
                     using var stream = new StreamReader(settingsFilePath);
-                    settingsData = JsonSerializer.Deserialize<SettingsData>(stream.ReadToEnd());
+                    SettingsData = JsonSerializer.Deserialize<SettingsData>(stream.ReadToEnd());
                 }
             }
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine(e.Message);
                 System.Diagnostics.Debug.WriteLine(e.StackTrace);
-                settingsData = new SettingsData();
+                SettingsData = new SettingsData();
                 result = false;
             }
 
@@ -78,14 +73,14 @@ namespace FurAffinityClassifier.Models
                 if (File.Exists(settingsFilePath))
                 {
                     using var stream = new StreamReader(settingsFilePath);
-                    settingsData = JsonSerializer.Deserialize<SettingsData>(await stream.ReadToEndAsync());
+                    SettingsData = JsonSerializer.Deserialize<SettingsData>(await stream.ReadToEndAsync());
                 }
             }
             catch (Exception e)
             {
                 System.Diagnostics.Debug.WriteLine(e.Message);
                 System.Diagnostics.Debug.WriteLine(e.StackTrace);
-                settingsData = new SettingsData();
+                SettingsData = new SettingsData();
                 result = false;
             }
 
@@ -103,7 +98,7 @@ namespace FurAffinityClassifier.Models
             try
             {
                 using var writer = new StreamWriter(settingsFilePath);
-                writer.Write(JsonSerializer.Serialize(settingsData, serializeOption));
+                writer.Write(JsonSerializer.Serialize(SettingsData, serializeOption));
             }
             catch (Exception e)
             {
@@ -126,7 +121,7 @@ namespace FurAffinityClassifier.Models
             try
             {
                 using var writer = new StreamWriter(settingsFilePath);
-                await writer.WriteAsync(JsonSerializer.Serialize(settingsData, serializeOption));
+                await writer.WriteAsync(JsonSerializer.Serialize(SettingsData, serializeOption));
             }
             catch (Exception e)
             {
@@ -144,11 +139,11 @@ namespace FurAffinityClassifier.Models
         /// <returns>true:OK/false:NG</returns>
         public bool Validate()
         {
-            return !string.IsNullOrEmpty(settingsData.FromFolder)
-                && Directory.Exists(settingsData.FromFolder)
-                && !string.IsNullOrEmpty(settingsData.ToFolder)
-                && Directory.Exists(settingsData.ToFolder)
-                && settingsData.ClassifyAsDatas.Count(x => string.IsNullOrEmpty(x.Id) || string.IsNullOrEmpty(x.Folder)) == 0;
+            return !string.IsNullOrEmpty(SettingsData.FromFolder)
+                && Directory.Exists(SettingsData.FromFolder)
+                && !string.IsNullOrEmpty(SettingsData.ToFolder)
+                && Directory.Exists(SettingsData.ToFolder)
+                && !SettingsData.ClassifyAsDatas.Any(x => string.IsNullOrEmpty(x.Id) || string.IsNullOrEmpty(x.Folder));
         }
     }
 }
