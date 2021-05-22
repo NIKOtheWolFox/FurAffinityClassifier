@@ -52,19 +52,14 @@ namespace FurAffinityClassifier.Helpers
         /// <returns>アイコン(Ookii.dialogのenum)</returns>
         private TaskDialogIcon GetIcon(DialogIcon icon)
         {
-            switch (icon)
+            return icon switch
             {
-                case DialogIcon.Sheild:
-                    return TaskDialogIcon.Shield;
-                case DialogIcon.Information:
-                    return TaskDialogIcon.Information;
-                case DialogIcon.Error:
-                    return TaskDialogIcon.Error;
-                case DialogIcon.Warning:
-                    return TaskDialogIcon.Warning;
-                default:
-                    return TaskDialogIcon.Custom;
-            }
+                DialogIcon.Sheild => TaskDialogIcon.Shield,
+                DialogIcon.Information => TaskDialogIcon.Information,
+                DialogIcon.Error => TaskDialogIcon.Error,
+                DialogIcon.Warning => TaskDialogIcon.Warning,
+                _ => TaskDialogIcon.Custom,
+            };
         }
     }
 }
