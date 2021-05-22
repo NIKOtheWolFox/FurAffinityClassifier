@@ -148,7 +148,7 @@ namespace FurAffinityClassifier.Models
                 && Directory.Exists(settingsData.FromFolder)
                 && !string.IsNullOrEmpty(settingsData.ToFolder)
                 && Directory.Exists(settingsData.ToFolder)
-                && settingsData.ClassifyAsDatas.Count(x => string.IsNullOrEmpty(x.Id) || string.IsNullOrEmpty(x.Folder)) == 0;
+                && !settingsData.ClassifyAsDatas.Any(x => string.IsNullOrEmpty(x.Id) || string.IsNullOrEmpty(x.Folder));
         }
     }
 }
