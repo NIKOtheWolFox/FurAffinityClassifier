@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Datas;
+using NLog;
 
 namespace FurAffinityClassifier.Models
 {
@@ -14,6 +15,11 @@ namespace FurAffinityClassifier.Models
     /// </summary>
     public class SettingsModel : ISettingsModel
     {
+        /// <summary>
+        /// NLogのロガー
+        /// </summary>
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// 設定ファイルのパス
         /// </summary>
@@ -51,8 +57,7 @@ namespace FurAffinityClassifier.Models
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                Logger.Error(e.ToString());
                 SettingsData = new SettingsData();
                 result = false;
             }
@@ -78,8 +83,7 @@ namespace FurAffinityClassifier.Models
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                Logger.Error(e.ToString());
                 SettingsData = new SettingsData();
                 result = false;
             }
@@ -102,8 +106,7 @@ namespace FurAffinityClassifier.Models
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                Logger.Error(e.ToString());
                 result = false;
             }
 
@@ -125,8 +128,7 @@ namespace FurAffinityClassifier.Models
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                Logger.Error(e.ToString());
                 result = false;
             }
 
