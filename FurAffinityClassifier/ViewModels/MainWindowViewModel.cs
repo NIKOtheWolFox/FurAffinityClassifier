@@ -147,7 +147,7 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void SelectFromFolderAction()
         {
-            var selectedFolder = DialogHelper.ShowFolderBrowserDialog(FromFolder.Value);
+            string selectedFolder = DialogHelper.ShowFolderBrowserDialog(FromFolder.Value);
             if (!string.IsNullOrEmpty(selectedFolder))
             {
                 FromFolder.Value = selectedFolder;
@@ -159,7 +159,7 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void SelectToFolderAction()
         {
-            var selectedFolder = DialogHelper.ShowFolderBrowserDialog(ToFolder.Value);
+            string selectedFolder = DialogHelper.ShowFolderBrowserDialog(ToFolder.Value);
             if (!string.IsNullOrEmpty(selectedFolder))
             {
                 ToFolder.Value = selectedFolder;
@@ -201,7 +201,7 @@ namespace FurAffinityClassifier.ViewModels
 
             if (AppModel.ValidateSettings())
             {
-                var classificationResult = await AppModel.ClassifyAsync();
+                Dictionary<string, int> classificationResult = await AppModel.ClassifyAsync();
                 StringBuilder messageBuilder = new ();
                 messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
                 messageBuilder.AppendLine();

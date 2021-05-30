@@ -7,6 +7,9 @@ namespace FurAffinityClassifier.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();

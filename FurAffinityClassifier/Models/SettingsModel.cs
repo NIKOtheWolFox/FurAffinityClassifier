@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Datas;
+using NLog;
 
 namespace FurAffinityClassifier.Models
 {
@@ -14,6 +15,11 @@ namespace FurAffinityClassifier.Models
     /// </summary>
     public class SettingsModel : ISettingsModel
     {
+        /// <summary>
+        /// NLogのロガー
+        /// </summary>
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// 設定ファイルのパス
         /// </summary>
@@ -27,6 +33,14 @@ namespace FurAffinityClassifier.Models
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
             WriteIndented = true,
         };
+
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        public SettingsModel()
+        {
+            SettingsData = new　();
+        }
 
         /// <summary>
         /// 設定値
@@ -45,15 +59,14 @@ namespace FurAffinityClassifier.Models
             {
                 if (File.Exists(settingsFilePath))
                 {
-                    using var stream = new StreamReader(settingsFilePath);
-                    SettingsData = JsonSerializer.Deserialize<SettingsData>(stream.ReadToEnd());
+                    using StreamReader reader = new (settingsFilePath);
+                    SettingsData = JsonSerializer.Deserialize<SettingsData>(reader.ReadToEnd());
                 }
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
-                SettingsData = new SettingsData();
+                Logger.Error(e.ToString());
+                SettingsData = new ();
                 result = false;
             }
 
@@ -72,15 +85,14 @@ namespace FurAffinityClassifier.Models
             {
                 if (File.Exists(settingsFilePath))
                 {
-                    using var stream = new StreamReader(settingsFilePath);
-                    SettingsData = JsonSerializer.Deserialize<SettingsData>(await stream.ReadToEndAsync());
+                    using StreamReader reader = new (settingsFilePath);
+                    SettingsData = JsonSerializer.Deserialize<SettingsData>(await reader.ReadToEndAsync());
                 }
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
-                SettingsData = new SettingsData();
+                Logger.Error(e.ToString());
+                SettingsData = new ();
                 result = false;
             }
 
@@ -97,13 +109,12 @@ namespace FurAffinityClassifier.Models
 
             try
             {
-                using var writer = new StreamWriter(settingsFilePath);
+                using StreamWriter writer = new (settingsFilePath);
                 writer.Write(JsonSerializer.Serialize(SettingsData, serializeOption));
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                Logger.Error(e.ToString());
                 result = false;
             }
 
@@ -120,13 +131,12 @@ namespace FurAffinityClassifier.Models
 
             try
             {
-                using var writer = new StreamWriter(settingsFilePath);
+                using StreamWriter writer = new (settingsFilePath);
                 await writer.WriteAsync(JsonSerializer.Serialize(SettingsData, serializeOption));
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                System.Diagnostics.Debug.WriteLine(e.StackTrace);
+                Logger.Error(e.ToString());
                 result = false;
             }
 

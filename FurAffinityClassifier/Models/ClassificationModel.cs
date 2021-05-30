@@ -21,16 +21,6 @@ namespace FurAffinityClassifier.Models
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// 分類を実行する
-        /// </summary>
-        /// <param name="settingsData">設定</param>
-        /// <returns>ファイルの数を記録したDictionary</returns>
-        public Dictionary<string, int> Execute(SettingsData settingsData)
-        {
-            return ExecuteAsync(settingsData).Result;
-        }
-
-        /// <summary>
         /// 分類を非同期で実行する
         /// </summary>
         /// <param name="settingsData">設定</param>
@@ -41,25 +31,25 @@ namespace FurAffinityClassifier.Models
 
             try
             {
-                var files = Directory.GetFiles(settingsData.FromFolder);
+                string[] files = Directory.GetFiles(settingsData.FromFolder);
 
-                using var semaphore = new SemaphoreSlim(5);
+                using SemaphoreSlim semaphore = new (5);
                 var tasks = files.Select(async file =>
                 {
                     await semaphore.WaitAsync();
                     ClassificationResult classificationResult = new (file);
                     try
                     {
-                        var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*");
+                        Match match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*");
                         if (!match.Success)
                         {
                             return classificationResult;
                         }
 
                         classificationResult.Targeted = true;
-                        var id = match.Groups["id"].Value;
+                        string id = match.Groups["id"].Value;
 
-                        var folderName = string.Empty;
+                        string folderName = string.Empty;
                         if (settingsData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
                         {
                             folderName = settingsData.ClassifyAsDatas
@@ -94,7 +84,7 @@ namespace FurAffinityClassifier.Models
                             }
                         }
 
-                        var classifiedFileName = Path.Combine(settingsData.ToFolder, folderName, Path.GetFileName(file));
+                        string classifiedFileName = Path.Combine(settingsData.ToFolder, folderName, Path.GetFileName(file));
                         if (File.Exists(classifiedFileName))
                         {
                             if (settingsData.OverwriteIfExist)
