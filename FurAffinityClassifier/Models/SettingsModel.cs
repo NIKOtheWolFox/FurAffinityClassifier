@@ -45,8 +45,8 @@ namespace FurAffinityClassifier.Models
             {
                 if (File.Exists(settingsFilePath))
                 {
-                    using var stream = new StreamReader(settingsFilePath);
-                    SettingsData = JsonSerializer.Deserialize<SettingsData>(stream.ReadToEnd());
+                    using StreamReader reader = new (settingsFilePath);
+                    SettingsData = JsonSerializer.Deserialize<SettingsData>(reader.ReadToEnd());
                 }
             }
             catch (Exception e)
@@ -72,8 +72,8 @@ namespace FurAffinityClassifier.Models
             {
                 if (File.Exists(settingsFilePath))
                 {
-                    using var stream = new StreamReader(settingsFilePath);
-                    SettingsData = JsonSerializer.Deserialize<SettingsData>(await stream.ReadToEndAsync());
+                    using StreamReader reader = new (settingsFilePath);
+                    SettingsData = JsonSerializer.Deserialize<SettingsData>(await reader.ReadToEndAsync());
                 }
             }
             catch (Exception e)
@@ -97,7 +97,7 @@ namespace FurAffinityClassifier.Models
 
             try
             {
-                using var writer = new StreamWriter(settingsFilePath);
+                using StreamWriter writer = new (settingsFilePath);
                 writer.Write(JsonSerializer.Serialize(SettingsData, serializeOption));
             }
             catch (Exception e)
@@ -120,7 +120,7 @@ namespace FurAffinityClassifier.Models
 
             try
             {
-                using var writer = new StreamWriter(settingsFilePath);
+                using StreamWriter writer = new (settingsFilePath);
                 await writer.WriteAsync(JsonSerializer.Serialize(SettingsData, serializeOption));
             }
             catch (Exception e)
