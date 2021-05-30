@@ -33,7 +33,7 @@ namespace FurAffinityClassifier.Models
             {
                 string[] files = Directory.GetFiles(settingsData.FromFolder);
 
-                using SemaphoreSlim semaphore = new SemaphoreSlim(5);
+                using SemaphoreSlim semaphore = new (5);
                 var tasks = files.Select(async file =>
                 {
                     await semaphore.WaitAsync();
