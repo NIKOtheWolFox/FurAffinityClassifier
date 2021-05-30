@@ -65,13 +65,6 @@ namespace FurAffinityClassifier.Models
         bool ValidateSettings();
 
         /// <summary>
-        /// 分類する
-        /// </summary>
-        /// <param name="settingsData">設定</param>
-        /// <returns>ファイルの数を記録したDictionary</returns>
-        Dictionary<string, int> Classify();
-
-        /// <summary>
         /// 非同期で分類する
         /// </summary>
         /// <param name="settingsData">設定</param>
