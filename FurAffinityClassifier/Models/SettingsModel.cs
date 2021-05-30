@@ -35,6 +35,14 @@ namespace FurAffinityClassifier.Models
         };
 
         /// <summary>
+        /// コンストラクター
+        /// </summary>
+        public SettingsModel()
+        {
+            SettingsData = new　();
+        }
+
+        /// <summary>
         /// 設定値
         /// </summary>
         public SettingsData SettingsData { get; private set; }
@@ -58,7 +66,7 @@ namespace FurAffinityClassifier.Models
             catch (Exception e)
             {
                 Logger.Error(e.ToString());
-                SettingsData = new SettingsData();
+                SettingsData = new ();
                 result = false;
             }
 
@@ -84,7 +92,7 @@ namespace FurAffinityClassifier.Models
             catch (Exception e)
             {
                 Logger.Error(e.ToString());
-                SettingsData = new SettingsData();
+                SettingsData = new ();
                 result = false;
             }
 
