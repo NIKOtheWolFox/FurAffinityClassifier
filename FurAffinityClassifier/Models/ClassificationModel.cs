@@ -27,7 +27,103 @@ namespace FurAffinityClassifier.Models
         /// <returns>ファイルの数を記録したDictionary</returns>
         public Dictionary<string, int> Execute(SettingsData settingsData)
         {
-            return ExecuteAsync(settingsData).Result;
+            List<ClassificationResult> classificationResults = new ();
+
+            try
+            {
+                var files = Directory.GetFiles(settingsData.FromFolder);
+
+                using var semaphore = new SemaphoreSlim(5);
+                var tasks = files.Select(file =>
+                {
+                    semaphore.Wait();
+                    ClassificationResult classificationResult = new (file);
+                    try
+                    {
+                        var match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*");
+                        if (!match.Success)
+                        {
+                            return classificationResult;
+                        }
+
+                        classificationResult.Targeted = true;
+                        var id = match.Groups["id"].Value;
+
+                        var folderName = string.Empty;
+                        if (settingsData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
+                        {
+                            folderName = settingsData.ClassifyAsDatas
+                                .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()).FirstOrDefault()
+                                .Folder;
+                        }
+                        else
+                        {
+                            var matchedFolder = Directory.GetDirectories(settingsData.ToFolder)
+                                .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
+                            if (matchedFolder.Count() > 1)
+                            {
+                                Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
+                                return classificationResult;
+                            }
+                            else if (matchedFolder.Count() == 1)
+                            {
+                                folderName = Path.GetFileName(matchedFolder.First());
+                            }
+                        }
+
+                        if (string.IsNullOrEmpty(folderName))
+                        {
+                            if (settingsData.CreateFolderIfNotExist)
+                            {
+                                folderName = id.TrimEnd('.');
+                                Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, folderName));
+                            }
+                            else
+                            {
+                                return classificationResult;
+                            }
+                        }
+
+                        var classifiedFileName = Path.Combine(settingsData.ToFolder, folderName, Path.GetFileName(file));
+                        if (File.Exists(classifiedFileName))
+                        {
+                            if (settingsData.OverwriteIfExist)
+                            {
+                                File.Delete(classifiedFileName);
+                            }
+                            else
+                            {
+                                return classificationResult;
+                            }
+                        }
+
+                        File.Move(file, classifiedFileName);
+
+                        classificationResult.Classified = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Error(e.ToString());
+                    }
+                    finally
+                    {
+                        semaphore.Release();
+                    }
+
+                    return classificationResult;
+                });
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.ToString());
+            }
+
+            return new Dictionary<string, int>()
+            {
+                { Const.ClassificationResultFoundFileCount, classificationResults.Count },
+                { Const.ClassificationResultTargetFileCount, classificationResults.Count(x => x.Targeted) },
+                { Const.ClassificationResultClassifiedFileCount, classificationResults.Count(x => x.Classified) },
+            };
         }
 
         /// <summary>
