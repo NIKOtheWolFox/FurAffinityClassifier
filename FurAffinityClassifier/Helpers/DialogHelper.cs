@@ -38,7 +38,7 @@ namespace FurAffinityClassifier.Helpers
             {
                 SelectedPath = initialFolder,
             };
-            var result = dialog.ShowDialog();
+            bool? result = dialog.ShowDialog();
 
             return result.HasValue && result.Value
                 ? dialog.SelectedPath
