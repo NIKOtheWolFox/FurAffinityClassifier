@@ -156,16 +156,6 @@ namespace FurAffinityClassifier.Models
         }
 
         /// <summary>
-        /// 分類する
-        /// </summary>
-        /// <param name="settingsData">設定</param>
-        /// <returns>ファイルの数を記録したDictionary</returns>
-        public Dictionary<string, int> Classify()
-        {
-            return ClassifyAsync().Result;
-        }
-
-        /// <summary>
         /// 非同期で分類する
         /// </summary>
         /// <param name="settingsData">設定</param>

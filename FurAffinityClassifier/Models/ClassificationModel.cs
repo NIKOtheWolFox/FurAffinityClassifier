@@ -21,16 +21,6 @@ namespace FurAffinityClassifier.Models
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// 分類を実行する
-        /// </summary>
-        /// <param name="settingsData">設定</param>
-        /// <returns>ファイルの数を記録したDictionary</returns>
-        public Dictionary<string, int> Execute(SettingsData settingsData)
-        {
-            return ExecuteAsync(settingsData).Result;
-        }
-
-        /// <summary>
         /// 分類を非同期で実行する
         /// </summary>
         /// <param name="settingsData">設定</param>
