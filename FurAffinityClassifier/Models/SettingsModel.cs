@@ -45,8 +45,8 @@ namespace FurAffinityClassifier.Models
             {
                 if (File.Exists(settingsFilePath))
                 {
-                    using StreamReader stream = new (settingsFilePath);
-                    SettingsData = JsonSerializer.Deserialize<SettingsData>(stream.ReadToEnd());
+                    using StreamReader reader = new (settingsFilePath);
+                    SettingsData = JsonSerializer.Deserialize<SettingsData>(reader.ReadToEnd());
                 }
             }
             catch (Exception e)
@@ -72,8 +72,8 @@ namespace FurAffinityClassifier.Models
             {
                 if (File.Exists(settingsFilePath))
                 {
-                    using StreamReader stream = new (settingsFilePath);
-                    SettingsData = JsonSerializer.Deserialize<SettingsData>(await stream.ReadToEndAsync());
+                    using StreamReader reader = new (settingsFilePath);
+                    SettingsData = JsonSerializer.Deserialize<SettingsData>(await reader.ReadToEndAsync());
                 }
             }
             catch (Exception e)
