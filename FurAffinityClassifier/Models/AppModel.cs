@@ -162,7 +162,7 @@ namespace FurAffinityClassifier.Models
         /// <returns>ファイルの数を記録したDictionary</returns>
         public Dictionary<string, int> Classify()
         {
-            return ClassifyAsync().Result;
+            return ClassificationModel.Execute(SettingsModel.SettingsData);
         }
 
         /// <summary>
