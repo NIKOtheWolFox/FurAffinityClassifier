@@ -76,7 +76,7 @@ namespace FurAffinityClassifier.Models
                                     .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
                                 if (matchedFolder.Count() > 1)
                                 {
-                                    Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
+                                    Logger.Warn($"Multiple folders were found for file {file} (ID={id}), skipped");
                                     return;
                                 }
                                 else if (matchedFolder.Count() == 1)
