@@ -33,6 +33,11 @@ namespace FurAffinityClassifier.Models
             {
                 string[] files = Directory.GetFiles(settingsData.FromFolder);
 
+                if (!await CreateFolderAsync(settingsData, files))
+                {
+                    throw new Exception("Error while create folder.");
+                }
+
                 using SemaphoreSlim semaphore = new (5);
                 var tasks = files.Select(async file =>
                 {
@@ -71,6 +76,7 @@ namespace FurAffinityClassifier.Models
                             }
                         }
 
+                        /*
                         if (string.IsNullOrEmpty(folderName))
                         {
                             if (settingsData.CreateFolderIfNotExist)
@@ -82,6 +88,11 @@ namespace FurAffinityClassifier.Models
                             {
                                 return classificationResult;
                             }
+                        }
+                        */
+                        if (string.IsNullOrEmpty(folderName))
+                        {
+                            return classificationResult;
                         }
 
                         string classifiedFileName = Path.Combine(settingsData.ToFolder, folderName, Path.GetFileName(file));
@@ -97,7 +108,7 @@ namespace FurAffinityClassifier.Models
                             }
                         }
 
-                        File.Move(file, classifiedFileName);
+                        // File.Move(file, classifiedFileName);
 
                         classificationResult.Classified = true;
                     }
@@ -126,6 +137,22 @@ namespace FurAffinityClassifier.Models
                 { Const.ClassificationResultTargetFileCount, classificationResults.Count(x => x.Targeted) },
                 { Const.ClassificationResultClassifiedFileCount, classificationResults.Count(x => x.Classified) },
             };
+        }
+
+        /// <summary>
+        /// フォルダーを作成する
+        /// </summary>
+        /// <returns>true:すべて成功/false:失敗あり</returns>
+        private async Task<bool> CreateFolderAsync(SettingsData settingsData, string[] files)
+        {
+            if (!settingsData.CreateFolderIfNotExist)
+            {
+                System.Diagnostics.Debug.WriteLine("no create");
+                return true;
+            }
+
+            System.Diagnostics.Debug.WriteLine("create");
+            return true;
         }
 
         /// <summary>
