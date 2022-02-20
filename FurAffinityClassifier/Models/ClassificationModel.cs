@@ -136,7 +136,6 @@ namespace FurAffinityClassifier.Models
         {
             if (!settingsData.CreateFolderIfNotExist)
             {
-                Logger.Info("no create");
                 return true;
             }
 
