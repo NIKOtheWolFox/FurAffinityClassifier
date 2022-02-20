@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using AngleSharp;
+using AngleSharp.Dom;
 using FurAffinityClassifier.Datas;
 using NLog;
 
@@ -151,55 +153,70 @@ namespace FurAffinityClassifier.Models
                 return true;
             }
 
-            var ids = files.Where(file => Regex.IsMatch(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*"))
-                .Select(file => Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*").Groups["id"].Value)
-                .Distinct();
-
-            await Parallel.ForEachAsync(ids, new ParallelOptions { MaxDegreeOfParallelism = 5 }, async (id, ct) =>
+            bool result = true;
+            try
             {
-                if (settingsData.ClassifyAsDatas.Any(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
+                var ids = files.Where(file => Regex.IsMatch(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*"))
+                    .Select(file => Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*").Groups["id"].Value)
+                    .Distinct();
+
+                IConfiguration config = Configuration.Default
+                    .WithDefaultLoader();
+                using IBrowsingContext context = BrowsingContext.New(config);
+
+                await Parallel.ForEachAsync(ids, new ParallelOptions { MaxDegreeOfParallelism = 5 }, async (id, ct) =>
                 {
-                    string folderName = settingsData.ClassifyAsDatas
-                        .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
-                        .FirstOrDefault()
-                        .Folder;
-                    if (Directory.Exists(Path.Combine(settingsData.ToFolder, folderName)))
+                    if (settingsData.ClassifyAsDatas.Any(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
                     {
-                        return;
-                    }
-                }
-                else
-                {
-                    var matchedFolder = Directory.GetDirectories(settingsData.ToFolder)
-                        .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
-                    if (matchedFolder.Count() > 1)
-                    {
-                        return;
-                    }
-                    else if (matchedFolder.Count() == 1)
-                    {
-                        string folderName = Path.GetFileName(matchedFolder.First());
+                        string folderName = settingsData.ClassifyAsDatas
+                            .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
+                            .FirstOrDefault()
+                            .Folder;
                         if (Directory.Exists(Path.Combine(settingsData.ToFolder, folderName)))
                         {
                             return;
                         }
                     }
-                }
+                    else
+                    {
+                        var matchedFolder = Directory.GetDirectories(settingsData.ToFolder)
+                            .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
+                        if (matchedFolder.Count() > 1)
+                        {
+                            return;
+                        }
+                        else if (matchedFolder.Count() == 1)
+                        {
+                            string folderName = Path.GetFileName(matchedFolder.First());
+                            if (Directory.Exists(Path.Combine(settingsData.ToFolder, folderName)))
+                            {
+                                return;
+                            }
+                        }
+                    }
 
-                Logger.Info($"target id = {id}");
-                if (settingsData.GetIdFromFurAffinity)
-                {
-                    // TODO
-                    Logger.Info("GET ID FROM FA");
-                }
-                else
-                {
-                    string folderName = id.TrimEnd('.');
-                    Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, folderName));
-                }
-            });
+                    if (settingsData.GetIdFromFurAffinity)
+                    {
+                        string url = $"https://www.furaffinity.net/user/{id}/";
+                        IDocument doc = await context.OpenAsync(url, ct);
+                        string title = doc.Title;
+                        string originalId = doc.Title.Replace("Userpage of", string.Empty).Replace("-- Fur Affinity [dot] net", string.Empty).Trim();
+                        Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, originalId));
+                    }
+                    else
+                    {
+                        string folderName = id.TrimEnd('.');
+                        Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, folderName));
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.ToString());
+                result = false;
+            }
 
-            return true;
+            return result;
         }
 
         /// <summary>
