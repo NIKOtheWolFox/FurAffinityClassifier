@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="NLog" Version="4.7.10" />
-    <PackageReference Include="Ookii.Dialogs.Wpf" Version="3.1.0" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
     <PackageReference Include="ReactiveProperty" Version="8.0.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
