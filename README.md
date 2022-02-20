@@ -80,13 +80,13 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 (c) 2009-2021 Ookii Dialogs Contributors<br>
 [BSD 3-Clause License](https://github.com/ookii-dialogs/ookii-dialogs-wpf/blob/master/LICENSE)
 
-[Prism](https://github.com/PrismLibrary/Prism)<br>
-(c) Brian Lagunas, Dan Siegel<br>
-[MIT License](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)
-
-[Unity.Container](https://github.com/unitycontainer/unity)<br>
+[CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet)<br>
 (c) .NET Foundation and Contributors<br>
-[Apache License 2.0](https://github.com/unitycontainer/unity/blob/master/LICENSE)
+[MIT License](https://github.com/CommunityToolkit/dotnet/blob/main/License.md)
+
+[Microsoft.Extensions.DependencyInjection](https://github.com/dotnet/runtime)<br>
+(c) Microsoft Corporation<br>
+[MIT License](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
 
 [ReactiveProperty](https://github.com/runceel/ReactiveProperty)<br>
 (c) 2018 neuecc, xin9le, okazuki<br>
