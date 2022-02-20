@@ -97,7 +97,7 @@ namespace FurAffinityClassifier.Models
                             }
                         }
 
-                        // File.Move(file, classifiedFileName);
+                        File.Move(file, classifiedFileName);
 
                         classificationResult.Classified = true;
                     }
