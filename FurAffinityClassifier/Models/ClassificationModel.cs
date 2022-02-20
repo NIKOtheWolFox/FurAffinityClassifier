@@ -67,7 +67,7 @@ namespace FurAffinityClassifier.Models
                                 return;
                             }
 
-                            string classifiedFileName = Path.Combine(settingsData.ToFolder, GetFolder(settingsData, id), Path.GetFileName(file));
+                            string classifiedFileName = Path.Combine(settingsData.ToFolder, GetFolderName(settingsData, id), Path.GetFileName(file));
                             if (File.Exists(classifiedFileName))
                             {
                                 if (settingsData.OverwriteIfExist)
@@ -158,35 +158,7 @@ namespace FurAffinityClassifier.Models
         /// <returns>true:IDに紐付くフォルダーが存在する/false:IDに紐付くフォルダーが存在しない</returns>
         private bool CheckFolderExists(SettingsData settingsData, string id)
         {
-            try
-            {
-                if (settingsData.ClassifyAsDatas.Any(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
-                {
-                    string folderName = settingsData.ClassifyAsDatas
-                        .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
-                        .FirstOrDefault()
-                        .Folder;
-                    return Directory.Exists(Path.Combine(settingsData.ToFolder, folderName));
-                }
-                else
-                {
-                    var matchedFolder = Directory.GetDirectories(settingsData.ToFolder)
-                        .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
-                    if (matchedFolder.Any())
-                    {
-                        string folderName = Path.GetFileName(matchedFolder.First());
-                        return Directory.Exists(Path.Combine(settingsData.ToFolder, folderName));
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            catch
-            {
-                return false;
-            }
+            return !string.IsNullOrEmpty(GetFolderName(settingsData, id));
         }
 
         /// <summary>
@@ -195,9 +167,9 @@ namespace FurAffinityClassifier.Models
         /// <param name="settingsData">設定データ</param>
         /// <param name="id">ID</param>
         /// <returns>IDに紐付くフォルダー</returns>
-        private string GetFolder(SettingsData settingsData, string id)
+        private string GetFolderName(SettingsData settingsData, string id)
         {
-            if (CheckFolderExists(settingsData, id))
+            try
             {
                 if (settingsData.ClassifyAsDatas.Any(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
                 {
@@ -220,7 +192,7 @@ namespace FurAffinityClassifier.Models
                     }
                 }
             }
-            else
+            catch
             {
                 return string.Empty;
             }
