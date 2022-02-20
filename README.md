@@ -80,6 +80,10 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 (c) 2009-2021 Ookii Dialogs Contributors<br>
 [BSD 3-Clause License](https://github.com/ookii-dialogs/ookii-dialogs-wpf/blob/master/LICENSE)
 
+[AngleSharp](https://anglesharp.github.io/)<br>
+(c)2013-2021, AngleSharp.<br>
+[MIT License](https://github.com/AngleSharp/AngleSharp/blob/devel/LICENSE)
+
 [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet)<br>
 (c) .NET Foundation and Contributors<br>
 [MIT License](https://github.com/CommunityToolkit/dotnet/blob/main/License.md)
