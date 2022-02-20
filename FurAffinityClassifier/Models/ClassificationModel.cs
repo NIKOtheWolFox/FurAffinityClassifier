@@ -79,20 +79,6 @@ namespace FurAffinityClassifier.Models
                             }
                         }
 
-                        /*
-                        if (string.IsNullOrEmpty(folderName))
-                        {
-                            if (settingsData.CreateFolderIfNotExist)
-                            {
-                                folderName = id.TrimEnd('.');
-                                Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, folderName));
-                            }
-                            else
-                            {
-                                return classificationResult;
-                            }
-                        }
-                        */
                         if (string.IsNullOrEmpty(folderName))
                         {
                             return classificationResult;
