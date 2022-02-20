@@ -20,6 +20,7 @@ Content of file is:
     "FromFolder": "[folder contains files before classification]",
     "ToFolder": "[parent folder of ID-based folders]",
     "CreateFolderIfNotExist": [true | false],
+    "GetIdFromFurAffinity": [true | false],
     "OverwriteIfExist": [true | false],
     "ClassifyAsDatas": [
         {
@@ -40,6 +41,7 @@ If you set up as:
     "FromFolder": "C:\\Users\\foo\\Downloads",
     "ToFolder": "C:\\Users\\foo\\Pictures",
     "CreateFolderIfNotExist": false,
+    "GetIdFromFurAffinity": false,
     "OverwriteIfExist": false,
     "ClassifyAsDatas": [
         {
