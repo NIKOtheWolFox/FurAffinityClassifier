@@ -2,8 +2,6 @@ using System.Windows;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
 using FurAffinityClassifier.Views;
-using Prism;
-using Prism.Ioc;
 
 namespace FurAffinityClassifier
 {

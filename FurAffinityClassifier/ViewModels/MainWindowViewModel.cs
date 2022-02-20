@@ -9,7 +9,6 @@ using FurAffinityClassifier.Enums;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
 using FurAffinityClassifier.Properties;
-using Prism.Mvvm;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
