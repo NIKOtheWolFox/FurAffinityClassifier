@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
 using Microsoft.Extensions.DependencyInjection;
