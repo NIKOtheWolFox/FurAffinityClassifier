@@ -40,80 +40,83 @@ namespace FurAffinityClassifier.Models
                     throw new Exception("Error while create folder.");
                 }
 
-                using SemaphoreSlim semaphore = new (5);
-                var tasks = files.Select(async file =>
+                foreach (string file in files)
                 {
-                    await semaphore.WaitAsync();
-                    ClassificationResult classificationResult = new (file);
-                    try
+                    classificationResults.Add(new ClassificationResult(file));
+                }
+
+                await Task.Run(() =>
+                {
+                    Parallel.ForEach(files, new ParallelOptions { MaxDegreeOfParallelism = 5 }, file =>
                     {
-                        Match match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*");
-                        if (!match.Success)
+                        ClassificationResult classificationResult = classificationResults.Where(x => x.Filename == file).FirstOrDefault();
+                        if (classificationResult == null)
                         {
-                            return classificationResult;
+                            return;
                         }
 
-                        classificationResult.Targeted = true;
-                        string id = match.Groups["id"].Value;
-
-                        string folderName = string.Empty;
-                        if (settingsData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
+                        try
                         {
-                            folderName = settingsData.ClassifyAsDatas
-                                .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
-                                .FirstOrDefault()
-                                .Folder;
-                        }
-                        else
-                        {
-                            var matchedFolder = Directory.GetDirectories(settingsData.ToFolder)
-                                .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
-                            if (matchedFolder.Count() > 1)
+                            Match match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*");
+                            if (!match.Success)
                             {
-                                Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
-                                return classificationResult;
+                                return;
                             }
-                            else if (matchedFolder.Count() == 1)
-                            {
-                                folderName = Path.GetFileName(matchedFolder.First());
-                            }
-                        }
 
-                        if (string.IsNullOrEmpty(folderName))
-                        {
-                            return classificationResult;
-                        }
+                            classificationResult.Targeted = true;
+                            string id = match.Groups["id"].Value;
 
-                        string classifiedFileName = Path.Combine(settingsData.ToFolder, folderName, Path.GetFileName(file));
-                        if (File.Exists(classifiedFileName))
-                        {
-                            if (settingsData.OverwriteIfExist)
+                            string folderName = string.Empty;
+                            if (settingsData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
                             {
-                                File.Delete(classifiedFileName);
+                                folderName = settingsData.ClassifyAsDatas
+                                    .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
+                                    .FirstOrDefault()
+                                    .Folder;
                             }
                             else
                             {
-                                return classificationResult;
+                                var matchedFolder = Directory.GetDirectories(settingsData.ToFolder)
+                                    .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
+                                if (matchedFolder.Count() > 1)
+                                {
+                                    Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
+                                    return;
+                                }
+                                else if (matchedFolder.Count() == 1)
+                                {
+                                    folderName = Path.GetFileName(matchedFolder.First());
+                                }
                             }
+
+                            if (string.IsNullOrEmpty(folderName))
+                            {
+                                return;
+                            }
+
+                            string classifiedFileName = Path.Combine(settingsData.ToFolder, folderName, Path.GetFileName(file));
+                            if (File.Exists(classifiedFileName))
+                            {
+                                if (settingsData.OverwriteIfExist)
+                                {
+                                    File.Delete(classifiedFileName);
+                                }
+                                else
+                                {
+                                    return;
+                                }
+                            }
+
+                            File.Move(file, classifiedFileName);
+
+                            classificationResult.Classified = true;
                         }
-
-                        File.Move(file, classifiedFileName);
-
-                        classificationResult.Classified = true;
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.Error(e.ToString());
-                    }
-                    finally
-                    {
-                        semaphore.Release();
-                    }
-
-                    return classificationResult;
+                        catch (Exception e)
+                        {
+                            Logger.Error(e.ToString());
+                        }
+                    });
                 });
-
-                classificationResults = (await Task.WhenAll(tasks)).ToList();
             }
             catch (Exception e)
             {
