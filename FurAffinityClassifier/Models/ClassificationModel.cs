@@ -60,7 +60,8 @@ namespace FurAffinityClassifier.Models
                         if (settingsData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
                         {
                             folderName = settingsData.ClassifyAsDatas
-                                .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()).FirstOrDefault()
+                                .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
+                                .FirstOrDefault()
                                 .Folder;
                         }
                         else
