@@ -25,6 +25,11 @@ namespace FurAffinityClassifier.Models
         bool CreateFolderIfNotExist { get; set; }
 
         /// <summary>
+        /// IDをFur Affinityから取得するか
+        /// </summary>
+        public bool GetIdFromFurAffinity { get; set; }
+
+        /// <summary>
         /// 同名のファイルが存在するときに上書きするか
         /// </summary>
         bool OverwriteIfExist { get; set; }

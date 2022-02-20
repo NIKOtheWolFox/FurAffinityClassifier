@@ -40,6 +40,9 @@ namespace FurAffinityClassifier.ViewModels
             CreateFolderIfNotExist = ReactiveProperty
                 .FromObject(AppModel, x => x.CreateFolderIfNotExist)
                 .AddTo(Disposables);
+            GetIdFromFurAffinity = ReactiveProperty
+                .FromObject(AppModel, x => x.GetIdFromFurAffinity)
+                .AddTo(Disposables);
             OverwriteIfExist = ReactiveProperty
                 .FromObject(AppModel, x => x.OverwriteIfExist)
                 .AddTo(Disposables);
@@ -81,6 +84,11 @@ namespace FurAffinityClassifier.ViewModels
         /// 移動先のフォルダーが存在しないときに作成するか
         /// </summary>
         public ReactiveProperty<bool> CreateFolderIfNotExist { get; }
+
+        /// <summary>
+        /// IDをFur Affinityから取得するか
+        /// </summary>
+        public ReactiveProperty<bool> GetIdFromFurAffinity { get; }
 
         /// <summary>
         /// 同名のファイルが存在するときに上書きするか

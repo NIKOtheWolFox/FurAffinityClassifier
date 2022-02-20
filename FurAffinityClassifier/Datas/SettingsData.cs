@@ -15,6 +15,7 @@ namespace FurAffinityClassifier.Datas
             FromFolder = string.Empty;
             ToFolder = string.Empty;
             CreateFolderIfNotExist = false;
+            GetIdFromFurAffinity = false;
             OverwriteIfExist = false;
             ClassifyAsDatas = new List<ClassifyAsData>();
         }
@@ -33,6 +34,11 @@ namespace FurAffinityClassifier.Datas
         /// 移動先のフォルダーが存在しないときに作成するか
         /// </summary>
         public bool CreateFolderIfNotExist { get; set; }
+
+        /// <summary>
+        /// IDをFur Affinityから取得するか
+        /// </summary>
+        public bool GetIdFromFurAffinity { get; set; }
 
         /// <summary>
         /// 同名のファイルが存在するときに上書きするか

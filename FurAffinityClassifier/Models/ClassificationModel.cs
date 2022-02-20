@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using AngleSharp;
+using AngleSharp.Dom;
 using FurAffinityClassifier.Datas;
 using NLog;
 
@@ -33,6 +35,11 @@ namespace FurAffinityClassifier.Models
             {
                 string[] files = Directory.GetFiles(settingsData.FromFolder);
 
+                if (!await CreateFolderAsync(settingsData, files))
+                {
+                    throw new Exception("Error while create folder.");
+                }
+
                 using SemaphoreSlim semaphore = new (5);
                 var tasks = files.Select(async file =>
                 {
@@ -53,7 +60,8 @@ namespace FurAffinityClassifier.Models
                         if (settingsData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
                         {
                             folderName = settingsData.ClassifyAsDatas
-                                .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()).FirstOrDefault()
+                                .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
+                                .FirstOrDefault()
                                 .Folder;
                         }
                         else
@@ -73,15 +81,7 @@ namespace FurAffinityClassifier.Models
 
                         if (string.IsNullOrEmpty(folderName))
                         {
-                            if (settingsData.CreateFolderIfNotExist)
-                            {
-                                folderName = id.TrimEnd('.');
-                                Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, folderName));
-                            }
-                            else
-                            {
-                                return classificationResult;
-                            }
+                            return classificationResult;
                         }
 
                         string classifiedFileName = Path.Combine(settingsData.ToFolder, folderName, Path.GetFileName(file));
@@ -126,6 +126,81 @@ namespace FurAffinityClassifier.Models
                 { Const.ClassificationResultTargetFileCount, classificationResults.Count(x => x.Targeted) },
                 { Const.ClassificationResultClassifiedFileCount, classificationResults.Count(x => x.Classified) },
             };
+        }
+
+        /// <summary>
+        /// フォルダーを作成する
+        /// </summary>
+        /// <returns>true:すべて成功/false:失敗あり</returns>
+        private async Task<bool> CreateFolderAsync(SettingsData settingsData, string[] files)
+        {
+            if (!settingsData.CreateFolderIfNotExist)
+            {
+                return true;
+            }
+
+            bool result = true;
+            try
+            {
+                var ids = files.Where(file => Regex.IsMatch(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*"))
+                    .Select(file => Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*").Groups["id"].Value)
+                    .Distinct();
+
+                IConfiguration config = Configuration.Default
+                    .WithDefaultLoader();
+                using IBrowsingContext context = BrowsingContext.New(config);
+
+                await Parallel.ForEachAsync(ids, new ParallelOptions { MaxDegreeOfParallelism = 5 }, async (id, ct) =>
+                {
+                    if (settingsData.ClassifyAsDatas.Any(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
+                    {
+                        string folderName = settingsData.ClassifyAsDatas
+                            .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
+                            .FirstOrDefault()
+                            .Folder;
+                        if (Directory.Exists(Path.Combine(settingsData.ToFolder, folderName)))
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        var matchedFolder = Directory.GetDirectories(settingsData.ToFolder)
+                            .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
+                        if (matchedFolder.Count() > 1)
+                        {
+                            return;
+                        }
+                        else if (matchedFolder.Count() == 1)
+                        {
+                            string folderName = Path.GetFileName(matchedFolder.First());
+                            if (Directory.Exists(Path.Combine(settingsData.ToFolder, folderName)))
+                            {
+                                return;
+                            }
+                        }
+                    }
+
+                    if (settingsData.GetIdFromFurAffinity)
+                    {
+                        IDocument doc = await context.OpenAsync($"https://www.furaffinity.net/user/{id}/", ct);
+                        string originalId = doc.Title.Replace("Userpage of", string.Empty).Replace("-- Fur Affinity [dot] net", string.Empty).Trim();
+                        Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, originalId));
+                    }
+                    else
+                    {
+                        string folderName = id.TrimEnd('.');
+                        Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, folderName));
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e.ToString());
+                result = false;
+            }
+
+            return result;
         }
 
         /// <summary>

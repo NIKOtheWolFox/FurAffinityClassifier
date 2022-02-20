@@ -163,4 +163,7 @@
   <data name="ToFolder" xml:space="preserve">
     <value>To:</value>
   </data>
+  <data name="GetIdFromFurAffinity" xml:space="preserve">
+    <value>Get ID from Fur Affinity</value>
+  </data>
 </root>
