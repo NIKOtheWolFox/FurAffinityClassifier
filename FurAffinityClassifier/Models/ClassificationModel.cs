@@ -34,15 +34,11 @@ namespace FurAffinityClassifier.Models
             try
             {
                 string[] files = Directory.GetFiles(settingsData.FromFolder);
+                classificationResults = files.Select(x => new ClassificationResult(x)).ToList();
 
                 if (!await CreateFolderAsync(settingsData, files))
                 {
                     throw new Exception("Error while create folder.");
-                }
-
-                foreach (string file in files)
-                {
-                    classificationResults.Add(new ClassificationResult(file));
                 }
 
                 await Task.Run(() =>
