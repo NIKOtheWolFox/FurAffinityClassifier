@@ -26,8 +26,8 @@ namespace FurAffinityClassifier.Models
         /// 分類を非同期で実行する
         /// </summary>
         /// <param name="settingsData">設定</param>
-        /// <returns>ファイルの数を記録したDictionary</returns>
-        public async Task<Dictionary<string, int>> ExecuteAsync(SettingsData settingsData)
+        /// <returns>ファイルの数を格納したValueTuple</returns>
+        public async Task<(int foundFiles, int targetFiles, int classifiedFiles)> ExecuteAsync(SettingsData settingsData)
         {
             List<ClassificationResult> classificationResults = new ();
 
@@ -120,12 +120,7 @@ namespace FurAffinityClassifier.Models
                 Logger.Error(e.ToString());
             }
 
-            return new Dictionary<string, int>()
-            {
-                { Const.ClassificationResultFoundFileCount, classificationResults.Count },
-                { Const.ClassificationResultTargetFileCount, classificationResults.Count(x => x.Targeted) },
-                { Const.ClassificationResultClassifiedFileCount, classificationResults.Count(x => x.Classified) },
-            };
+            return (classificationResults.Count, classificationResults.Count(x => x.Targeted), classificationResults.Count(x => x.Classified));
         }
 
         /// <summary>

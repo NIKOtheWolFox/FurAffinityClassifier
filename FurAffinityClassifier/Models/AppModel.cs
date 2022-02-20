@@ -175,8 +175,8 @@ namespace FurAffinityClassifier.Models
         /// 非同期で分類する
         /// </summary>
         /// <param name="settingsData">設定</param>
-        /// <returns>ファイルの数を記録したDictionary</returns>
-        public async Task<Dictionary<string, int>> ClassifyAsync()
+        /// <returns>ファイルの数を格納したValueTuple</returns>
+        public async Task<(int foundFiles, int targetFiles, int classifiedFiles)> ClassifyAsync()
         {
             return await ClassificationModel.ExecuteAsync(SettingsModel.SettingsData);
         }
