@@ -49,21 +49,5 @@ namespace FurAffinityClassifier.Datas
         /// IDと異なるフォルダーに分類する設定のリスト
         /// </summary>
         public List<ClassifyAsData> ClassifyAsDatas { get; set; }
-
-        /// <summary>
-        /// インスタンスをコピーする
-        /// </summary>
-        /// <returns>コピーしたインスタンス</returns>
-        public SettingsData Copy()
-        {
-            return new SettingsData()
-            {
-                FromFolder = FromFolder,
-                ToFolder = ToFolder,
-                CreateFolderIfNotExist = CreateFolderIfNotExist,
-                OverwriteIfExist = OverwriteIfExist,
-                ClassifyAsDatas = new List<ClassifyAsData>(ClassifyAsDatas),
-            };
-        }
     }
 }
