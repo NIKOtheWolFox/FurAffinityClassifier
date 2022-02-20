@@ -95,7 +95,7 @@
                   IsChecked="{Binding CreateFolderIfNotExist.Value}" />
         <CheckBox Grid.Row="7"
                   Margin="0 6 0 0"
-                  Content="IDをFAから取得する"
+                  Content="{x:Static properties:Resources.GetIdFromFurAffinity}"
                   IsChecked="{Binding GetIdFromFurAffinity.Value}" />
         <CheckBox Grid.Row="8"
                   Margin="0 6 0 0"

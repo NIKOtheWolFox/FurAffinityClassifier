@@ -183,4 +183,7 @@
   <data name="ToFolder" xml:space="preserve">
     <value>移動先:</value>
   </data>
+  <data name="GetIdFromFurAffinity" xml:space="preserve">
+    <value>Fur AffinityからIDを取得する</value>
+  </data>
 </root>
