@@ -85,11 +85,11 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 [MIT License](https://github.com/AngleSharp/AngleSharp/blob/devel/LICENSE)
 
 [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet)<br>
-(c) .NET Foundation and Contributors<br>
+(c) .NET Foundation and Contributors.<br>
 [MIT License](https://github.com/CommunityToolkit/dotnet/blob/main/License.md)
 
 [Microsoft.Extensions.DependencyInjection](https://github.com/dotnet/runtime)<br>
-(c) Microsoft Corporation<br>
+(c) Microsoft Corporation.<br>
 [MIT License](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
 
 [ReactiveProperty](https://github.com/runceel/ReactiveProperty)<br>
