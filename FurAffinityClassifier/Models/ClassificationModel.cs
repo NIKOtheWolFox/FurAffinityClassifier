@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp;
 using AngleSharp.Dom;
@@ -34,86 +33,62 @@ namespace FurAffinityClassifier.Models
             try
             {
                 string[] files = Directory.GetFiles(settingsData.FromFolder);
+                classificationResults = files.Select(x => new ClassificationResult(x)).ToList();
 
                 if (!await CreateFolderAsync(settingsData, files))
                 {
                     throw new Exception("Error while create folder.");
                 }
 
-                using SemaphoreSlim semaphore = new (5);
-                var tasks = files.Select(async file =>
+                await Task.Run(() =>
                 {
-                    await semaphore.WaitAsync();
-                    ClassificationResult classificationResult = new (file);
-                    try
+                    Parallel.ForEach(files, new ParallelOptions { MaxDegreeOfParallelism = 5 }, file =>
                     {
-                        Match match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*");
-                        if (!match.Success)
+                        ClassificationResult classificationResult = classificationResults.Where(x => x.Filename == file).FirstOrDefault();
+                        if (classificationResult == null)
                         {
-                            return classificationResult;
+                            return;
                         }
 
-                        classificationResult.Targeted = true;
-                        string id = match.Groups["id"].Value;
-
-                        string folderName = string.Empty;
-                        if (settingsData.ClassifyAsDatas.Exists(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
+                        try
                         {
-                            folderName = settingsData.ClassifyAsDatas
-                                .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
-                                .FirstOrDefault()
-                                .Folder;
-                        }
-                        else
-                        {
-                            var matchedFolder = Directory.GetDirectories(settingsData.ToFolder)
-                                .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
-                            if (matchedFolder.Count() > 1)
+                            Match match = Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*");
+                            if (!match.Success)
                             {
-                                Logger.Warn($"Multiple folders weere found for file {file} (ID={id}), skipped");
-                                return classificationResult;
+                                return;
                             }
-                            else if (matchedFolder.Count() == 1)
-                            {
-                                folderName = Path.GetFileName(matchedFolder.First());
-                            }
-                        }
 
-                        if (string.IsNullOrEmpty(folderName))
+                            classificationResult.Targeted = true;
+                            string id = match.Groups["id"].Value;
+
+                            if (!CheckFolderExists(settingsData, id))
+                            {
+                                return;
+                            }
+
+                            string classifiedFileName = Path.Combine(settingsData.ToFolder, GetFolderName(settingsData, id), Path.GetFileName(file));
+                            if (File.Exists(classifiedFileName))
+                            {
+                                if (settingsData.OverwriteIfExist)
+                                {
+                                    File.Delete(classifiedFileName);
+                                }
+                                else
+                                {
+                                    return;
+                                }
+                            }
+
+                            File.Move(file, classifiedFileName);
+
+                            classificationResult.Classified = true;
+                        }
+                        catch (Exception e)
                         {
-                            return classificationResult;
+                            Logger.Error(e.ToString());
                         }
-
-                        string classifiedFileName = Path.Combine(settingsData.ToFolder, folderName, Path.GetFileName(file));
-                        if (File.Exists(classifiedFileName))
-                        {
-                            if (settingsData.OverwriteIfExist)
-                            {
-                                File.Delete(classifiedFileName);
-                            }
-                            else
-                            {
-                                return classificationResult;
-                            }
-                        }
-
-                        File.Move(file, classifiedFileName);
-
-                        classificationResult.Classified = true;
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.Error(e.ToString());
-                    }
-                    finally
-                    {
-                        semaphore.Release();
-                    }
-
-                    return classificationResult;
+                    });
                 });
-
-                classificationResults = (await Task.WhenAll(tasks)).ToList();
             }
             catch (Exception e)
             {
@@ -147,40 +122,16 @@ namespace FurAffinityClassifier.Models
 
                 await Parallel.ForEachAsync(ids, new ParallelOptions { MaxDegreeOfParallelism = 5 }, async (id, ct) =>
                 {
-                    if (settingsData.ClassifyAsDatas.Any(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
+                    if (CheckFolderExists(settingsData, id))
                     {
-                        string folderName = settingsData.ClassifyAsDatas
-                            .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
-                            .FirstOrDefault()
-                            .Folder;
-                        if (Directory.Exists(Path.Combine(settingsData.ToFolder, folderName)))
-                        {
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        var matchedFolder = Directory.GetDirectories(settingsData.ToFolder)
-                            .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
-                        if (matchedFolder.Count() > 1)
-                        {
-                            return;
-                        }
-                        else if (matchedFolder.Count() == 1)
-                        {
-                            string folderName = Path.GetFileName(matchedFolder.First());
-                            if (Directory.Exists(Path.Combine(settingsData.ToFolder, folderName)))
-                            {
-                                return;
-                            }
-                        }
+                        return;
                     }
 
                     if (settingsData.GetIdFromFurAffinity)
                     {
                         IDocument doc = await context.OpenAsync($"https://www.furaffinity.net/user/{id}/", ct);
                         string originalId = doc.Title.Replace("Userpage of", string.Empty).Replace("-- Fur Affinity [dot] net", string.Empty).Trim();
-                        Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, originalId));
+                        Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, originalId.TrimEnd('.')));
                     }
                     else
                     {
@@ -196,6 +147,54 @@ namespace FurAffinityClassifier.Models
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// フォルダーが存在するか
+        /// </summary>
+        /// <param name="settingsData">設定データ</param>
+        /// <param name="id">ID</param>
+        /// <returns>true:IDに紐付くフォルダーが存在する/false:IDに紐付くフォルダーが存在しない</returns>
+        private bool CheckFolderExists(SettingsData settingsData, string id)
+        {
+            return !string.IsNullOrEmpty(GetFolderName(settingsData, id));
+        }
+
+        /// <summary>
+        /// フォルダーを取得する
+        /// </summary>
+        /// <param name="settingsData">設定データ</param>
+        /// <param name="id">ID</param>
+        /// <returns>IDに紐付くフォルダー</returns>
+        private string GetFolderName(SettingsData settingsData, string id)
+        {
+            try
+            {
+                if (settingsData.ClassifyAsDatas.Any(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower()))
+                {
+                    return settingsData.ClassifyAsDatas
+                        .Where(mapping => id == mapping.Id.Replace("_", string.Empty).ToLower())
+                        .FirstOrDefault()
+                        .Folder;
+                }
+                else
+                {
+                    var matchedFolder = Directory.GetDirectories(settingsData.ToFolder)
+                        .Where(f => id.TrimEnd('.') == Path.GetFileName(f).ToLower().Replace("_", string.Empty));
+                    if (matchedFolder.Any())
+                    {
+                        return Path.GetFileName(matchedFolder.First());
+                    }
+                    else
+                    {
+                        return string.Empty;
+                    }
+                }
+            }
+            catch
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>
