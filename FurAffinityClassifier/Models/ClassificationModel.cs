@@ -187,6 +187,16 @@ namespace FurAffinityClassifier.Models
                 }
 
                 Logger.Info($"target id = {id}");
+                if (settingsData.GetIdFromFurAffinity)
+                {
+                    // TODO
+                    Logger.Info("GET ID FROM FA");
+                }
+                else
+                {
+                    string folderName = id.TrimEnd('.');
+                    Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, folderName));
+                }
             });
 
             return true;
