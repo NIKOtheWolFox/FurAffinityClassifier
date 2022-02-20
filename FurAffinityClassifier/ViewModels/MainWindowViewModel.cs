@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 using FurAffinityClassifier.Datas;
 using FurAffinityClassifier.Enums;
 using FurAffinityClassifier.Helpers;
@@ -17,7 +18,7 @@ namespace FurAffinityClassifier.ViewModels
     /// <summary>
     /// メイン画面のViewModel
     /// </summary>
-    public class MainWindowViewModel : BindableBase, IDisposable
+    public class MainWindowViewModel : ObservableObject, IDisposable
     {
         /// <summary>
         /// コンストラクター
