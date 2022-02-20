@@ -59,6 +59,13 @@ Then you run this application, files are classified as below:
 * 1234567890.test_bar.jpg : FA user ID is in ClassifyAsDatas, so this file will be moved to C:\Users\foo\Pictures\test_folder.
 * 2345678901.test2_baz.jpg : FA user ID isn't in Classifyas Datas, so this file will be moved to C:\Users\foo\Pictures\test2.
 
+(Ver. 6.0.0 and newer)<br>
+"GetIdFromFurAffinity" is added to settings.json.<br>
+This setting is effective only when "CreateFolderIfNotExist" is true.<br>
+If it is false, the app create folder by using ID get from filename.<br>
+If it is true, the app create folder by using ID get from Fur Affinity userpage.<br>
+
+
 ## Copyright
 (c) 2020 NIKO
 
