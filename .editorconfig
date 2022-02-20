@@ -60,7 +60,8 @@ csharp_style_expression_bodied_constructors = false:suggestion
 #prefer block bodies for methods
 csharp_style_expression_bodied_methods = false:suggestion
 #prefer block bodies for properties
-csharp_style_expression_bodied_properties = false:suggestion
+#csharp_style_expression_bodied_properties = false:suggestion
+csharp_style_expression_bodied_properties = false
 
 #Style - expression level options
 
