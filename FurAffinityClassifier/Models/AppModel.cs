@@ -69,6 +69,22 @@ namespace FurAffinityClassifier.Models
         }
 
         /// <summary>
+        /// IDをFur Affinityから取得するか
+        /// </summary>
+        public bool GetIdFromFurAffinity
+        {
+            get
+            {
+                return SettingsModel.SettingsData.GetIdFromFurAffinity;
+            }
+
+            set
+            {
+                SettingsModel.SettingsData.GetIdFromFurAffinity = value;
+            }
+        }
+
+        /// <summary>
         /// 同名のファイルが存在するときに上書きするか
         /// </summary>
         public bool OverwriteIfExist
