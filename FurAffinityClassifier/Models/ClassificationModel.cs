@@ -197,9 +197,7 @@ namespace FurAffinityClassifier.Models
 
                     if (settingsData.GetIdFromFurAffinity)
                     {
-                        string url = $"https://www.furaffinity.net/user/{id}/";
-                        IDocument doc = await context.OpenAsync(url, ct);
-                        string title = doc.Title;
+                        IDocument doc = await context.OpenAsync($"https://www.furaffinity.net/user/{id}/", ct);
                         string originalId = doc.Title.Replace("Userpage of", string.Empty).Replace("-- Fur Affinity [dot] net", string.Empty).Trim();
                         Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, originalId));
                     }
