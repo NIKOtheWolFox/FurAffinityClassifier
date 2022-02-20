@@ -73,11 +73,11 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 
 ## Libraries usage
 [NLog](https://nlog-project.org/)<br>
-(c) 2004-2021 NLog Project - https://nlog-project.org/<br>
+(c) 2004-2022 NLog Project - https://nlog-project.org/<br>
 [BSD 3-Clause License](https://github.com/NLog/NLog/blob/dev/LICENSE.txt)<br>
 
 [Ookii.Dialogs.Wpf](https://github.com/ookii-dialogs/ookii-dialogs-wpf)<br>
-(c) 2009-2020 Ookii Dialogs Contributors<br>
+(c) 2009-2021 Ookii Dialogs Contributors<br>
 [BSD 3-Clause License](https://github.com/ookii-dialogs/ookii-dialogs-wpf/blob/master/LICENSE)
 
 [Prism](https://github.com/PrismLibrary/Prism)<br>
