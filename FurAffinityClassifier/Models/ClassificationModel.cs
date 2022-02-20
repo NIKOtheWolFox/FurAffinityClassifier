@@ -147,11 +147,19 @@ namespace FurAffinityClassifier.Models
         {
             if (!settingsData.CreateFolderIfNotExist)
             {
-                System.Diagnostics.Debug.WriteLine("no create");
+                Logger.Info("no create");
                 return true;
             }
 
-            System.Diagnostics.Debug.WriteLine("create");
+            var ids = files.Where(file => Regex.IsMatch(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*"))
+                .Select(file => Regex.Match(Path.GetFileName(file), @"[0-9]+\.(?<id>[a-z0-9-~^.]+?)_.*").Groups["id"].Value)
+                .Distinct();
+
+            foreach (var id in ids)
+            {
+                Logger.Info($"id = {id}");
+            }
+
             return true;
         }
 
