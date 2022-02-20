@@ -209,22 +209,23 @@ namespace FurAffinityClassifier.ViewModels
 
             if (AppModel.ValidateSettings())
             {
-                Dictionary<string, int> classificationResult = await AppModel.ClassifyAsync();
+                (int foundFiles, int targetFiles, int classifiedFiles) classificationResult
+                    = await AppModel.ClassifyAsync();
                 StringBuilder messageBuilder = new ();
                 messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
                 messageBuilder.AppendLine();
                 messageBuilder.AppendLine(
                     string.Format(
                         Resources.DialogMessageClassifyFileFoundFiles,
-                        classificationResult[Const.ClassificationResultFoundFileCount]));
+                        classificationResult.foundFiles));
                 messageBuilder.AppendLine(
                     string.Format(
                         Resources.DialogMessageClassifyFileTargetFiles,
-                        classificationResult[Const.ClassificationResultTargetFileCount]));
+                        classificationResult.targetFiles));
                 messageBuilder.AppendLine(
                     string.Format(
                         Resources.DialogMessageClassifyFileClassifiedFiles,
-                        classificationResult[Const.ClassificationResultClassifiedFileCount]));
+                        classificationResult.classifiedFiles));
                 DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, messageBuilder.ToString(), DialogIcon.Information);
             }
             else

@@ -13,7 +13,7 @@ namespace FurAffinityClassifier.Models
         /// 分類を非同期で実行する
         /// </summary>
         /// <param name="settingsData">設定</param>
-        /// <returns>ファイルの数を記録したDictionary</returns>
-        Task<Dictionary<string, int>> ExecuteAsync(SettingsData settingsData);
+        /// <returns>ファイルの数を格納したValueTuple</returns>
+        Task<(int foundFiles, int targetFiles, int classifiedFiles)> ExecuteAsync(SettingsData settingsData);
     }
 }
