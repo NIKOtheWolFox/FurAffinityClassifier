@@ -21,6 +21,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -94,12 +95,16 @@
                   IsChecked="{Binding CreateFolderIfNotExist.Value}" />
         <CheckBox Grid.Row="7"
                   Margin="0 6 0 0"
+                  Content="IDをFAから取得する"
+                  IsChecked="{Binding GetIdFromFurAffinity.Value}" />
+        <CheckBox Grid.Row="8"
+                  Margin="0 6 0 0"
                   Content="{x:Static properties:Resources.OverwriteIfExist}"
                   IsChecked="{Binding OverwriteIfExist.Value}" />
-        <TextBlock Grid.Row="8"
+        <TextBlock Grid.Row="9"
                    Margin="0 6 0 0"
                    Text="{x:Static properties:Resources.ClassifyAs}" />
-        <DataGrid Grid.Row="9"
+        <DataGrid Grid.Row="10"
                   Margin="0 6 0 0"
                   ItemsSource="{Binding ClassifyAsDatas.Value}"
                   AutoGenerateColumns="False"
@@ -113,13 +118,13 @@
                                     Binding="{Binding Folder}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="10"
+        <Button Grid.Row="11"
                 Margin="0 6 0 0"
                 Padding="10 0 10 0"
                 HorizontalAlignment="Right"
                 Content="{x:Static properties:Resources.SaveSettings}"
                 Command="{Binding SaveSettingsCommand}" />
-        <Button Grid.Row="11"
+        <Button Grid.Row="12"
                 Margin="0 6 0 0"
                 Padding="10 0 10 0"
                 HorizontalAlignment="Right"
