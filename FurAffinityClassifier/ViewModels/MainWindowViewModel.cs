@@ -29,7 +29,7 @@ namespace FurAffinityClassifier.ViewModels
             AppModel = appModel;
             DialogHelper = dialogHelper;
 
-            AppModel.LoadSettings();
+            //// AppModel.LoadSettings();
 
             FromFolder = ReactiveProperty
                 .FromObject(AppModel, x => x.FromFolder)
