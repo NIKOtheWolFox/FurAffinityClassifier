@@ -50,7 +50,7 @@ namespace FurAffinityClassifier.ViewModels
                 .FromObject(AppModel, x => x.ClassifyAsDatas)
                 .AddTo(Disposables);
 
-            ButtonEnable = new ReactiveProperty<bool>(true);
+            ButtonEnable = new ReactiveProperty<bool>(false);
 
             LoadedCommand = new AsyncReactiveCommand()
                 .WithSubscribe(_ => LoadedActionAsync())
@@ -157,7 +157,7 @@ namespace FurAffinityClassifier.ViewModels
 
         private async Task LoadedActionAsync()
         {
-            System.Diagnostics.Debug.WriteLine("LOADED");
+            ButtonEnable.Value = true;
         }
 
         /// <summary>
