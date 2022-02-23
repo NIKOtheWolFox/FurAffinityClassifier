@@ -29,8 +29,6 @@ namespace FurAffinityClassifier.ViewModels
             AppModel = appModel;
             DialogHelper = dialogHelper;
 
-            AppModel.LoadSettings();
-
             FromFolder = ReactiveProperty
                 .FromObject(AppModel, x => x.FromFolder)
                 .AddTo(Disposables);
@@ -157,13 +155,18 @@ namespace FurAffinityClassifier.ViewModels
 
         private async Task LoadedActionAsync()
         {
-            //await AppModel.LoadSettingsAsync();
-            //OnPropertyChanged(nameof(FromFolder));
-            //OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs(nameof(FromFolder)));
-            //System.Diagnostics.Debug.WriteLine(nameof(FromFolder));
-            //FromFolder.Value = "TETS";
-            //OnPropertyChanged("FromFolder.Value");
-            //FromFolder.Value = AppModel.FromFolder;
+            await AppModel.LoadSettingsAsync();
+
+            // LoadSettingAsync()による設定値の変化を自動で検出できないので
+            // AppModelのプロパティからVMのプロパティに反映する
+            // 解決策がないか検討が必要
+            FromFolder.Value = AppModel.FromFolder;
+            ToFolder.Value = AppModel.ToFolder;
+            CreateFolderIfNotExist.Value = AppModel.CreateFolderIfNotExist;
+            GetIdFromFurAffinity.Value = AppModel.GetIdFromFurAffinity;
+            OverwriteIfExist.Value = AppModel.OverwriteIfExist;
+            ClassifyAsDatas.Value = AppModel.ClassifyAsDatas;
+
             ButtonEnable.Value = true;
         }
 
