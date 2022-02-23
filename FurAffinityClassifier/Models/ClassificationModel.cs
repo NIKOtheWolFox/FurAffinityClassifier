@@ -101,6 +101,8 @@ namespace FurAffinityClassifier.Models
         /// <summary>
         /// フォルダーを作成する
         /// </summary>
+        /// <param name="settingsData">設定データ</param>
+        /// <param name="files">移動元フォルダーにあるファイル</param>
         /// <returns>true:すべて成功/false:失敗あり</returns>
         private async Task<bool> CreateFolderAsync(SettingsData settingsData, string[] files)
         {
