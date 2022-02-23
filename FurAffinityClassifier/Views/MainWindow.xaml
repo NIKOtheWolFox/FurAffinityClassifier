@@ -55,7 +55,8 @@
             <TextBox Grid.Column="0"
                      VerticalAlignment="Center"
                      Text="{Binding FromFolder.Value}"
-                     IsReadOnly="True" />
+                     IsReadOnly="True"
+                     IsEnabled="{Binding ButtonEnable.Value}" />
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
                     Padding="10 0 10 0"
@@ -75,7 +76,8 @@
             <TextBox Grid.Column="0"
                      VerticalAlignment="Center"
                      Text="{Binding ToFolder.Value}"
-                     IsReadOnly="True" />
+                     IsReadOnly="True"
+                     IsEnabled="{Binding ButtonEnable.Value}" />
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
                     Padding="10 0 10 0"
@@ -98,15 +100,18 @@
         <CheckBox Grid.Row="6"
                   Margin="0 6 0 0"
                   Content="{x:Static properties:Resources.CreateFolderIfNotExist}"
-                  IsChecked="{Binding CreateFolderIfNotExist.Value}" />
+                  IsChecked="{Binding CreateFolderIfNotExist.Value}"
+                  IsEnabled="{Binding ButtonEnable.Value}" />
         <CheckBox Grid.Row="7"
                   Margin="15 6 0 0"
                   Content="{x:Static properties:Resources.GetIdFromFurAffinity}"
-                  IsChecked="{Binding GetIdFromFurAffinity.Value}" />
+                  IsChecked="{Binding GetIdFromFurAffinity.Value}"
+                  IsEnabled="{Binding ButtonEnable.Value}" />
         <CheckBox Grid.Row="8"
                   Margin="0 6 0 0"
                   Content="{x:Static properties:Resources.OverwriteIfExist}"
-                  IsChecked="{Binding OverwriteIfExist.Value}" />
+                  IsChecked="{Binding OverwriteIfExist.Value}"
+                  IsEnabled="{Binding ButtonEnable.Value}" />
         <TextBlock Grid.Row="9"
                    Margin="0 6 0 0"
                    Text="{x:Static properties:Resources.ClassifyAs}" />
@@ -114,7 +119,8 @@
                   Margin="0 6 0 0"
                   ItemsSource="{Binding ClassifyAsDatas.Value}"
                   AutoGenerateColumns="False"
-                  RowHeaderWidth="20">
+                  RowHeaderWidth="20"
+                  IsEnabled="{Binding ButtonEnable.Value}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderId}"
                                     Width="*"

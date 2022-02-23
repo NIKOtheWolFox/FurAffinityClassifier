@@ -29,7 +29,7 @@ namespace FurAffinityClassifier.ViewModels
             AppModel = appModel;
             DialogHelper = dialogHelper;
 
-            //// AppModel.LoadSettings();
+            AppModel.LoadSettings();
 
             FromFolder = ReactiveProperty
                 .FromObject(AppModel, x => x.FromFolder)
@@ -157,6 +157,13 @@ namespace FurAffinityClassifier.ViewModels
 
         private async Task LoadedActionAsync()
         {
+            //await AppModel.LoadSettingsAsync();
+            //OnPropertyChanged(nameof(FromFolder));
+            //OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs(nameof(FromFolder)));
+            //System.Diagnostics.Debug.WriteLine(nameof(FromFolder));
+            //FromFolder.Value = "TETS";
+            //OnPropertyChanged("FromFolder.Value");
+            //FromFolder.Value = AppModel.FromFolder;
             ButtonEnable.Value = true;
         }
 
