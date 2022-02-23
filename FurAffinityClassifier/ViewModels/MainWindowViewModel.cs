@@ -106,6 +106,9 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         public ReactiveProperty<bool> ButtonEnable { get; }
 
+        /// <summary>
+        /// 画面読み込み時のコマンド
+        /// </summary>
         public AsyncReactiveCommand<object> LoadedCommand { get; }
 
         /// <summary>
@@ -153,6 +156,10 @@ namespace FurAffinityClassifier.ViewModels
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// 画面読み込み時のaction
+        /// </summary>
+        /// <returns>async Task</returns>
         private async Task LoadedActionAsync()
         {
             await AppModel.LoadSettingsAsync();
@@ -197,6 +204,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// [設定を保存]ボタンクリック時のaction
         /// </summary>
+        /// <returns>async Task</returns>
         private async Task SaveSettingsActionAsync()
         {
             ButtonEnable.Value = false;
@@ -223,6 +231,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// [実行]ボタンクリック時のaction
         /// </summary>
+        /// <returns>async Task</returns>
         private async Task ExecuteActionAsync()
         {
             ButtonEnable.Value = false;
