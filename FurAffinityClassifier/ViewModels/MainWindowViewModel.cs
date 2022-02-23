@@ -48,24 +48,24 @@ namespace FurAffinityClassifier.ViewModels
                 .FromObject(AppModel, x => x.ClassifyAsDatas)
                 .AddTo(Disposables);
 
-            ButtonEnable = new ReactiveProperty<bool>(false);
+            Enabled = new ReactiveProperty<bool>(false);
 
             LoadedCommand = new AsyncReactiveCommand()
                 .WithSubscribe(_ => LoadedActionAsync())
                 .AddTo(Disposables);
-            SelectFromFolderCommand = ButtonEnable
+            SelectFromFolderCommand = Enabled
                 .ToReactiveCommand()
                 .WithSubscribe(_ => SelectFromFolderAction())
                 .AddTo(Disposables);
-            SelectToFolderCommand = ButtonEnable
+            SelectToFolderCommand = Enabled
                 .ToReactiveCommand()
                 .WithSubscribe(_ => SelectToFolderAction())
                 .AddTo(Disposables);
-            SaveSettingsCommand = ButtonEnable
+            SaveSettingsCommand = Enabled
                 .ToAsyncReactiveCommand()
                 .WithSubscribe(_ => SaveSettingsActionAsync())
                 .AddTo(Disposables);
-            ExecuteCommand = ButtonEnable
+            ExecuteCommand = Enabled
                 .ToAsyncReactiveCommand()
                 .WithSubscribe(_ => ExecuteActionAsync())
                 .AddTo(Disposables);
@@ -102,9 +102,9 @@ namespace FurAffinityClassifier.ViewModels
         public ReactiveProperty<List<ClassifyAsData>> ClassifyAsDatas { get; }
 
         /// <summary>
-        /// ボタンが操作可能か
+        /// 操作可能か
         /// </summary>
-        public ReactiveProperty<bool> ButtonEnable { get; }
+        public ReactiveProperty<bool> Enabled { get; }
 
         /// <summary>
         /// 画面読み込み時のコマンド
@@ -174,7 +174,7 @@ namespace FurAffinityClassifier.ViewModels
             OverwriteIfExist.Value = AppModel.OverwriteIfExist;
             ClassifyAsDatas.Value = AppModel.ClassifyAsDatas;
 
-            ButtonEnable.Value = true;
+            Enabled.Value = true;
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <returns>async Task</returns>
         private async Task SaveSettingsActionAsync()
         {
-            ButtonEnable.Value = false;
+            Enabled.Value = false;
 
             if (AppModel.ValidateSettings())
             {
@@ -225,7 +225,7 @@ namespace FurAffinityClassifier.ViewModels
                 DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
-            ButtonEnable.Value = true;
+            Enabled.Value = true;
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <returns>async Task</returns>
         private async Task ExecuteActionAsync()
         {
-            ButtonEnable.Value = false;
+            Enabled.Value = false;
 
             if (AppModel.ValidateSettings())
             {
@@ -261,7 +261,7 @@ namespace FurAffinityClassifier.ViewModels
                 DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
-            ButtonEnable.Value = true;
+            Enabled.Value = true;
         }
     }
 }
