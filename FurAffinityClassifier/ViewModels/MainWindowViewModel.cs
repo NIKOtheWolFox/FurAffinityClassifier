@@ -52,6 +52,9 @@ namespace FurAffinityClassifier.ViewModels
 
             ButtonEnable = new ReactiveProperty<bool>(true);
 
+            LoadedCommand = new AsyncReactiveCommand()
+                .WithSubscribe(_ => LoadedActionAsync())
+                .AddTo(Disposables);
             SelectFromFolderCommand = ButtonEnable
                 .ToReactiveCommand()
                 .WithSubscribe(_ => SelectFromFolderAction())
@@ -105,6 +108,8 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         public ReactiveProperty<bool> ButtonEnable { get; }
 
+        public AsyncReactiveCommand<object> LoadedCommand { get; }
+
         /// <summary>
         /// 移動元の[選択]ボタンクリック時のコマンド
         /// </summary>
@@ -148,6 +153,11 @@ namespace FurAffinityClassifier.ViewModels
         {
             Disposables.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        private async Task LoadedActionAsync()
+        {
+            System.Diagnostics.Debug.WriteLine("LOADED");
         }
 
         /// <summary>
