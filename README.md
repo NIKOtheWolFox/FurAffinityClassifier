@@ -105,6 +105,10 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 (c) 2018 neuecc, xin9le, okazuki<br>
 [MIT License](https://github.com/runceel/ReactiveProperty/blob/master/LICENSE.txt)
 
+[Microsoft.Xaml.Behaviors.Wpf](https://github.com/Microsoft/XamlBehaviorsWpf)<br>
+(c) Microsoft Corporation.<br>
+[MIT License](https://github.com/microsoft/XamlBehaviorsWpf/blob/master/LICENSE)
+
 [StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)<br>
 (c) 2015 Tunnel Vision Laboratories, LLC<br>
 [MIT License](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/LICENSE)

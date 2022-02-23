@@ -29,8 +29,6 @@ namespace FurAffinityClassifier.ViewModels
             AppModel = appModel;
             DialogHelper = dialogHelper;
 
-            AppModel.LoadSettings();
-
             FromFolder = ReactiveProperty
                 .FromObject(AppModel, x => x.FromFolder)
                 .AddTo(Disposables);
@@ -50,21 +48,24 @@ namespace FurAffinityClassifier.ViewModels
                 .FromObject(AppModel, x => x.ClassifyAsDatas)
                 .AddTo(Disposables);
 
-            ButtonEnable = new ReactiveProperty<bool>(true);
+            Enabled = new ReactiveProperty<bool>(false);
 
-            SelectFromFolderCommand = ButtonEnable
+            LoadedCommand = new AsyncReactiveCommand()
+                .WithSubscribe(_ => LoadedActionAsync())
+                .AddTo(Disposables);
+            SelectFromFolderCommand = Enabled
                 .ToReactiveCommand()
                 .WithSubscribe(_ => SelectFromFolderAction())
                 .AddTo(Disposables);
-            SelectToFolderCommand = ButtonEnable
+            SelectToFolderCommand = Enabled
                 .ToReactiveCommand()
                 .WithSubscribe(_ => SelectToFolderAction())
                 .AddTo(Disposables);
-            SaveSettingsCommand = ButtonEnable
+            SaveSettingsCommand = Enabled
                 .ToAsyncReactiveCommand()
                 .WithSubscribe(_ => SaveSettingsActionAsync())
                 .AddTo(Disposables);
-            ExecuteCommand = ButtonEnable
+            ExecuteCommand = Enabled
                 .ToAsyncReactiveCommand()
                 .WithSubscribe(_ => ExecuteActionAsync())
                 .AddTo(Disposables);
@@ -101,9 +102,14 @@ namespace FurAffinityClassifier.ViewModels
         public ReactiveProperty<List<ClassifyAsData>> ClassifyAsDatas { get; }
 
         /// <summary>
-        /// ボタンが操作可能か
+        /// 操作可能か
         /// </summary>
-        public ReactiveProperty<bool> ButtonEnable { get; }
+        public ReactiveProperty<bool> Enabled { get; }
+
+        /// <summary>
+        /// 画面読み込み時のコマンド
+        /// </summary>
+        public AsyncReactiveCommand<object> LoadedCommand { get; }
 
         /// <summary>
         /// 移動元の[選択]ボタンクリック時のコマンド
@@ -151,6 +157,27 @@ namespace FurAffinityClassifier.ViewModels
         }
 
         /// <summary>
+        /// 画面読み込み時のaction
+        /// </summary>
+        /// <returns>async Task</returns>
+        private async Task LoadedActionAsync()
+        {
+            await AppModel.LoadSettingsAsync();
+
+            // LoadSettingAsync()による設定値の変化を自動で検出できないので
+            // AppModelのプロパティからVMのプロパティに反映する
+            // 解決策がないか検討が必要
+            FromFolder.Value = AppModel.FromFolder;
+            ToFolder.Value = AppModel.ToFolder;
+            CreateFolderIfNotExist.Value = AppModel.CreateFolderIfNotExist;
+            GetIdFromFurAffinity.Value = AppModel.GetIdFromFurAffinity;
+            OverwriteIfExist.Value = AppModel.OverwriteIfExist;
+            ClassifyAsDatas.Value = AppModel.ClassifyAsDatas;
+
+            Enabled.Value = true;
+        }
+
+        /// <summary>
         /// 移動元の[選択]ボタンクリック時のaction
         /// </summary>
         private void SelectFromFolderAction()
@@ -177,9 +204,10 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// [設定を保存]ボタンクリック時のaction
         /// </summary>
+        /// <returns>async Task</returns>
         private async Task SaveSettingsActionAsync()
         {
-            ButtonEnable.Value = false;
+            Enabled.Value = false;
 
             if (AppModel.ValidateSettings())
             {
@@ -197,15 +225,16 @@ namespace FurAffinityClassifier.ViewModels
                 DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
-            ButtonEnable.Value = true;
+            Enabled.Value = true;
         }
 
         /// <summary>
         /// [実行]ボタンクリック時のaction
         /// </summary>
+        /// <returns>async Task</returns>
         private async Task ExecuteActionAsync()
         {
-            ButtonEnable.Value = false;
+            Enabled.Value = false;
 
             if (AppModel.ValidateSettings())
             {
@@ -232,7 +261,7 @@ namespace FurAffinityClassifier.ViewModels
                 DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
-            ButtonEnable.Value = true;
+            Enabled.Value = true;
         }
     }
 }

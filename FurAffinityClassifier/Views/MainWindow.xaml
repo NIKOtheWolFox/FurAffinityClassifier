@@ -5,11 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FurAffinityClassifier.Views"
         xmlns:properties="clr-namespace:FurAffinityClassifier.Properties"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}"
         Title="Fur Affinity Classifier"
         Height="500"
         Width="400">
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Loaded">
+            <behaviors:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
     <Grid Margin="6">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -49,7 +55,8 @@
             <TextBox Grid.Column="0"
                      VerticalAlignment="Center"
                      Text="{Binding FromFolder.Value}"
-                     IsReadOnly="True" />
+                     IsReadOnly="True"
+                     IsEnabled="{Binding Enabled.Value}" />
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
                     Padding="10 0 10 0"
@@ -69,7 +76,8 @@
             <TextBox Grid.Column="0"
                      VerticalAlignment="Center"
                      Text="{Binding ToFolder.Value}"
-                     IsReadOnly="True" />
+                     IsReadOnly="True"
+                     IsEnabled="{Binding Enabled.Value}" />
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
                     Padding="10 0 10 0"
@@ -92,15 +100,18 @@
         <CheckBox Grid.Row="6"
                   Margin="0 6 0 0"
                   Content="{x:Static properties:Resources.CreateFolderIfNotExist}"
-                  IsChecked="{Binding CreateFolderIfNotExist.Value}" />
+                  IsChecked="{Binding CreateFolderIfNotExist.Value}"
+                  IsEnabled="{Binding Enabled.Value}" />
         <CheckBox Grid.Row="7"
                   Margin="15 6 0 0"
                   Content="{x:Static properties:Resources.GetIdFromFurAffinity}"
-                  IsChecked="{Binding GetIdFromFurAffinity.Value}" />
+                  IsChecked="{Binding GetIdFromFurAffinity.Value}"
+                  IsEnabled="{Binding Enabled.Value}" />
         <CheckBox Grid.Row="8"
                   Margin="0 6 0 0"
                   Content="{x:Static properties:Resources.OverwriteIfExist}"
-                  IsChecked="{Binding OverwriteIfExist.Value}" />
+                  IsChecked="{Binding OverwriteIfExist.Value}"
+                  IsEnabled="{Binding Enabled.Value}" />
         <TextBlock Grid.Row="9"
                    Margin="0 6 0 0"
                    Text="{x:Static properties:Resources.ClassifyAs}" />
@@ -108,7 +119,8 @@
                   Margin="0 6 0 0"
                   ItemsSource="{Binding ClassifyAsDatas.Value}"
                   AutoGenerateColumns="False"
-                  RowHeaderWidth="20">
+                  RowHeaderWidth="20"
+                  IsEnabled="{Binding Enabled.Value}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderId}"
                                     Width="*"
