@@ -123,6 +123,7 @@ csharp_style_var_elsewhere = true:silent
 
 # StyleCop.Analyzer
 dotnet_diagnostic.SA0001.severity = none
+dotnet_diagnostic.SA1000.severity = silent
 dotnet_diagnostic.SA1100.severity = none
 dotnet_diagnostic.SA1101.severity = none
 dotnet_diagnostic.SA1124.severity = none
