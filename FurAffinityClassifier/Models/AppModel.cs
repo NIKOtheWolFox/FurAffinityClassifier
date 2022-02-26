@@ -32,7 +32,10 @@ namespace FurAffinityClassifier.Models
 
             set
             {
-                SettingsModel.SettingsData.FromFolder = value;
+                if (value != SettingsModel.SettingsData.FromFolder)
+                {
+                    SettingsModel.SettingsData.FromFolder = value;
+                }
             }
         }
 
@@ -48,7 +51,10 @@ namespace FurAffinityClassifier.Models
 
             set
             {
-                SettingsModel.SettingsData.ToFolder = value;
+                if (value != SettingsModel.SettingsData.ToFolder)
+                {
+                    SettingsModel.SettingsData.ToFolder = value;
+                }
             }
         }
 
@@ -64,7 +70,10 @@ namespace FurAffinityClassifier.Models
 
             set
             {
-                SettingsModel.SettingsData.CreateFolderIfNotExist = value;
+                if (value != SettingsModel.SettingsData.CreateFolderIfNotExist)
+                {
+                    SettingsModel.SettingsData.CreateFolderIfNotExist = value;
+                }
             }
         }
 
@@ -80,7 +89,10 @@ namespace FurAffinityClassifier.Models
 
             set
             {
-                SettingsModel.SettingsData.GetIdFromFurAffinity = value;
+                if (value != SettingsModel.SettingsData.GetIdFromFurAffinity)
+                {
+                    SettingsModel.SettingsData.GetIdFromFurAffinity = value;
+                }
             }
         }
 
@@ -96,7 +108,10 @@ namespace FurAffinityClassifier.Models
 
             set
             {
-                SettingsModel.SettingsData.OverwriteIfExist = value;
+                if (value != SettingsModel.SettingsData.OverwriteIfExist)
+                {
+                    SettingsModel.SettingsData.OverwriteIfExist = value;
+                }
             }
         }
 
@@ -112,7 +127,10 @@ namespace FurAffinityClassifier.Models
 
             set
             {
-                SettingsModel.SettingsData.ClassifyAsDatas = value;
+                if (value != SettingsModel.SettingsData.ClassifyAsDatas)
+                {
+                    SettingsModel.SettingsData.ClassifyAsDatas = value;
+                }
             }
         }
 
