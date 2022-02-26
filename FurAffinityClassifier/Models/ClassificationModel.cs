@@ -28,7 +28,7 @@ namespace FurAffinityClassifier.Models
         /// <returns>ファイルの数を格納したValueTuple</returns>
         public async Task<(int foundFiles, int targetFiles, int classifiedFiles)> ExecuteAsync(SettingsData settingsData)
         {
-            List<ClassificationResult> classificationResults = new ();
+            List<ClassificationResult> classificationResults = new();
 
             try
             {
