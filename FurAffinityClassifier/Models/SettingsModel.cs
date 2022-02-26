@@ -28,7 +28,7 @@ namespace FurAffinityClassifier.Models
         /// <summary>
         /// JSONのシリアライズ/デシリアライズ設定
         /// </summary>
-        private readonly JsonSerializerOptions serializeOption = new ()
+        private readonly JsonSerializerOptions serializeOption = new()
         {
             Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
             WriteIndented = true,
@@ -39,7 +39,7 @@ namespace FurAffinityClassifier.Models
         /// </summary>
         public SettingsModel()
         {
-            SettingsData = new　();
+            SettingsData = new();
         }
 
         /// <summary>
@@ -59,14 +59,14 @@ namespace FurAffinityClassifier.Models
             {
                 if (File.Exists(settingsFilePath))
                 {
-                    using StreamReader reader = new (settingsFilePath);
+                    using StreamReader reader = new(settingsFilePath);
                     SettingsData = JsonSerializer.Deserialize<SettingsData>(reader.ReadToEnd());
                 }
             }
             catch (Exception e)
             {
                 Logger.Error(e.ToString());
-                SettingsData = new ();
+                SettingsData = new();
                 result = false;
             }
 
@@ -85,14 +85,14 @@ namespace FurAffinityClassifier.Models
             {
                 if (File.Exists(settingsFilePath))
                 {
-                    using StreamReader reader = new (settingsFilePath);
+                    using StreamReader reader = new(settingsFilePath);
                     SettingsData = JsonSerializer.Deserialize<SettingsData>(await reader.ReadToEndAsync());
                 }
             }
             catch (Exception e)
             {
                 Logger.Error(e.ToString());
-                SettingsData = new ();
+                SettingsData = new();
                 result = false;
             }
 
@@ -109,7 +109,7 @@ namespace FurAffinityClassifier.Models
 
             try
             {
-                using StreamWriter writer = new (settingsFilePath);
+                using StreamWriter writer = new(settingsFilePath);
                 writer.Write(JsonSerializer.Serialize(SettingsData, serializeOption));
             }
             catch (Exception e)
@@ -131,7 +131,7 @@ namespace FurAffinityClassifier.Models
 
             try
             {
-                using StreamWriter writer = new (settingsFilePath);
+                using StreamWriter writer = new(settingsFilePath);
                 await writer.WriteAsync(JsonSerializer.Serialize(SettingsData, serializeOption));
             }
             catch (Exception e)

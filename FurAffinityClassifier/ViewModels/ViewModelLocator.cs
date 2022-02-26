@@ -20,7 +20,7 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         public ViewModelLocator()
         {
-            ServiceCollection services = new ();
+            ServiceCollection services = new();
 
             services.AddTransient<MainWindowViewModel>();
 

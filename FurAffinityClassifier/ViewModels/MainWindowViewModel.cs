@@ -239,7 +239,7 @@ namespace FurAffinityClassifier.ViewModels
             if (AppModel.ValidateSettings())
             {
                 (int foundFiles, int targetFiles, int classifiedFiles) = await AppModel.ClassifyAsync();
-                StringBuilder messageBuilder = new ();
+                StringBuilder messageBuilder = new();
                 messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
                 messageBuilder.AppendLine();
                 messageBuilder.AppendLine(
