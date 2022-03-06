@@ -15,6 +15,11 @@ namespace FurAffinityClassifier.Models
     public class MainWindowModel : IMainWindowModel
     {
         /// <summary>
+        /// 設定読み込み済みフラグ
+        /// </summary>
+        private bool settingsLoaded = false;
+
+        /// <summary>
         /// コンストラクター
         /// </summary>
         /// <param name="settingsModel">設定Modelのインスタンス</param>
@@ -25,11 +30,85 @@ namespace FurAffinityClassifier.Models
             ClassificationModel = classificationModel;
 
             FromFolder = new();
+            FromFolder.Subscribe(v =>
+            {
+                if (v != SettingsModel.SettingsData.FromFolder)
+                {
+                    SettingsModel.SettingsData.FromFolder = v;
+                }
+            });
             ToFolder = new();
+            ToFolder.Subscribe(v =>
+            {
+                if (v != SettingsModel.SettingsData.ToFolder)
+                {
+                    SettingsModel.SettingsData.ToFolder = v;
+                }
+            });
             CreateFolderIfNotExist = new();
+            CreateFolderIfNotExist.Subscribe(v =>
+            {
+                if (v != SettingsModel.SettingsData.CreateFolderIfNotExist)
+                {
+                    SettingsModel.SettingsData.CreateFolderIfNotExist = v;
+                }
+            });
             GetIdFromFurAffinity = new();
+            GetIdFromFurAffinity.Subscribe(v =>
+            {
+                if (v != SettingsModel.SettingsData.GetIdFromFurAffinity)
+                {
+                    SettingsModel.SettingsData.GetIdFromFurAffinity = v;
+                }
+            });
             OverwriteIfExist = new();
+            OverwriteIfExist.Subscribe(v =>
+            {
+                if (v != SettingsModel.SettingsData.OverwriteIfExist!)
+                {
+                    SettingsModel.SettingsData.OverwriteIfExist = v;
+                }
+            });
             ClassifyAsDatas = new();
+            ClassifyAsDatas.ObserveAddChangedItems()
+                .Subscribe(v =>
+                {
+                    if (settingsLoaded)
+                    {
+                        SettingsModel.SettingsData.ClassifyAsDatas.AddRange(v);
+                    }
+                });
+            ClassifyAsDatas.ObserveRemoveChangedItems()
+                .Subscribe(v =>
+                {
+                    if (settingsLoaded)
+                    {
+                        foreach (ClassifyAsData data in v)
+                        {
+                            SettingsModel.SettingsData.ClassifyAsDatas.RemoveAll(x => x.Id == data.Id && x.Folder == data.Folder);
+                        }
+                    }
+                });
+            ClassifyAsDatas.ObserveReplaceChangedItems()
+                .Subscribe(v =>
+                {
+                    if (settingsLoaded)
+                    {
+                        if (v.OldItem.Length != v.NewItem.Length)
+                        {
+                            return;
+                        }
+
+                        for (int i = 0; i < v.OldItem.Length; i++)
+                        {
+                            ClassifyAsData oldData = v.OldItem[i];
+                            int index = SettingsModel.SettingsData.ClassifyAsDatas.IndexOf(oldData);
+
+                            ClassifyAsData newData = v.NewItem[i];
+                            SettingsModel.SettingsData.ClassifyAsDatas[index] = newData;
+                        }
+                    }
+                });
         }
 
         /// <summary>
@@ -84,7 +163,15 @@ namespace FurAffinityClassifier.Models
             CreateFolderIfNotExist.Value = SettingsModel.SettingsData.CreateFolderIfNotExist;
             GetIdFromFurAffinity.Value = SettingsModel.SettingsData.GetIdFromFurAffinity;
             OverwriteIfExist.Value = SettingsModel.SettingsData.OverwriteIfExist;
-            ClassifyAsDatas.AddRangeOnScheduler(SettingsModel.SettingsData.ClassifyAsDatas);
+            SettingsModel.SettingsData.ClassifyAsDatas.ForEach(d =>
+            {
+                ClassifyAsDatas.Add(new()
+                {
+                    Id = d.Id,
+                    Folder = d.Folder,
+                });
+            });
+            settingsLoaded = true;
             return result;
         }
 
@@ -94,18 +181,7 @@ namespace FurAffinityClassifier.Models
         /// <returns>true:成功/false:失敗</returns>
         public async Task<bool> SaveSettingsAsync()
         {
-            UpdateSettings();
             return await SettingsModel.SaveToFileAsync();
-        }
-
-        private void UpdateSettings()
-        {
-            SettingsModel.SettingsData.FromFolder = FromFolder.Value;
-            SettingsModel.SettingsData.ToFolder = ToFolder.Value;
-            SettingsModel.SettingsData.CreateFolderIfNotExist = CreateFolderIfNotExist.Value;
-            SettingsModel.SettingsData.GetIdFromFurAffinity = GetIdFromFurAffinity.Value;
-            SettingsModel.SettingsData.OverwriteIfExist = OverwriteIfExist.Value;
-            SettingsModel.SettingsData.ClassifyAsDatas = ClassifyAsDatas.ToList();
         }
     }
 }

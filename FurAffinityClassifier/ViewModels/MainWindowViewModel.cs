@@ -242,6 +242,10 @@ namespace FurAffinityClassifier.ViewModels
         /// <returns>async Task</returns>
         private async Task ExecuteActionAsync()
         {
+            //MainWindowModel.ClassifyAsDatas.Add(new ClassifyAsData() { Id = "test", Folder = "TEST" });
+            //var rr = MainWindowModel.ClassifyAsDatas.Remove(new ClassifyAsData() { Id = "test", Folder = "TEST" });
+            //System.Diagnostics.Debug.WriteLine($"Remove result = {rr}");
+            //MainWindowModel.ClassifyAsDatas[0] = new ClassifyAsData() { Id = "r1", Folder = "R!" };
             /*
             Enabled.Value = false;
 
