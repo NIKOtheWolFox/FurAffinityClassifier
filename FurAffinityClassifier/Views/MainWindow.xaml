@@ -117,7 +117,7 @@
                    Text="{x:Static properties:Resources.ClassifyAs}" />
         <DataGrid Grid.Row="10"
                   Margin="0 6 0 0"
-                  ItemsSource="{Binding ClassifyAsDatas.Value}"
+                  ItemsSource="{Binding ClassifyAsDatas}"
                   AutoGenerateColumns="False"
                   RowHeaderWidth="20"
                   IsEnabled="{Binding Enabled.Value}" >
