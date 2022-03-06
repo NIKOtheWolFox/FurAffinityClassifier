@@ -14,7 +14,7 @@ namespace FurAffinityClassifier.Helpers
     {
         public (bool update, ClassifyAsData result) ShowClassifyAsSettingWindow(ClassifyAsData classifyAsData)
         {
-            return (false, new ClassifyAsData);
+            return (false, new ClassifyAsData());
         }
     }
 }
