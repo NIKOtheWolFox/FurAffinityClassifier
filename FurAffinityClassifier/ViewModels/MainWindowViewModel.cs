@@ -54,7 +54,8 @@ namespace FurAffinityClassifier.ViewModels
                 .ToReadOnlyReactiveCollection()
                 .AddTo(Disposables);
 
-            Enabled = new ReactiveProperty<bool>(false);
+            Enabled = new ReactiveProperty<bool>(false)
+                .AddTo(Disposables);
 
             LoadedCommand = new AsyncReactiveCommand()
                 .WithSubscribe(_ => LoadedActionAsync())
