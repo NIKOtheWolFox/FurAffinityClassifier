@@ -1,24 +1,25 @@
 using System;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
+using FurAffinityClassifier.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FurAffinityClassifier.ViewModels
+namespace FurAffinityClassifier
 {
     /// <summary>
-    /// ViewModelとDIの設定
+    /// Model, ViewModel, Helperのロケーター
     /// </summary>
-    public class ViewModelLocator
+    public class Locator
     {
         /// <summary>
-        /// ViewModelとDIのServiceProvider
+        /// ServiceProvider
         /// </summary>
         private readonly IServiceProvider serviceProvider;
 
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public ViewModelLocator()
+        public Locator()
         {
             ServiceCollection services = new();
 
@@ -34,7 +35,7 @@ namespace FurAffinityClassifier.ViewModels
         }
 
         /// <summary>
-        /// メイン画面のViewModel
+        /// メイン画面 ViewModel
         /// </summary>
         public MainWindowViewModel MainWindowViewModel => serviceProvider.GetRequiredService<MainWindowViewModel>();
     }
