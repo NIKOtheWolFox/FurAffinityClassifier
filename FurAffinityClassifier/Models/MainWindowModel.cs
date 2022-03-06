@@ -10,7 +10,7 @@ using Reactive.Bindings.Extensions;
 namespace FurAffinityClassifier.Models
 {
     /// <summary>
-    /// メイン画面のModel
+    /// メイン画面Model
     /// </summary>
     public class MainWindowModel : IMainWindowModel
     {

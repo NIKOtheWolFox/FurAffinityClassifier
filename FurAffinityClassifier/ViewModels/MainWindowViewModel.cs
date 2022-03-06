@@ -15,7 +15,7 @@ using Reactive.Bindings.Extensions;
 namespace FurAffinityClassifier.ViewModels
 {
     /// <summary>
-    /// メイン画面のViewModel
+    /// メイン画面ViewModel
     /// </summary>
     public class MainWindowViewModel : ObservableObject, IDisposable
     {
