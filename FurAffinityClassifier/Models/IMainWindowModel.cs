@@ -14,16 +14,34 @@ namespace FurAffinityClassifier.Models
     /// </summary>
     public interface IMainWindowModel
     {
+        /// <summary>
+        /// 移動元フォルダー
+        /// </summary>
         ReactivePropertySlim<string> FromFolder { get; }
 
+        /// <summary>
+        /// 移動先フォルダー
+        /// </summary>
         ReactivePropertySlim<string> ToFolder { get; }
 
+        /// <summary>
+        /// 移動先のフォルダーが存在しないときに作成するか
+        /// </summary>
         ReactivePropertySlim<bool> CreateFolderIfNotExist { get; }
 
+        /// <summary>
+        /// IDをFur Affinityから取得するか
+        /// </summary>
         ReactivePropertySlim<bool> GetIdFromFurAffinity { get; }
 
+        /// <summary>
+        /// 同名のファイルが存在するときに上書きするか
+        /// </summary>
         ReactivePropertySlim<bool> OverwriteIfExist { get; }
 
+        /// <summary>
+        /// IDと異なるフォルダーに分類する設定
+        /// </summary>
         ReactiveCollection<ClassifyAsData> ClassifyAsDatas { get; }
     }
 }

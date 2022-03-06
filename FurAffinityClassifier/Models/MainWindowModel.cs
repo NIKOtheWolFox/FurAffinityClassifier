@@ -23,18 +23,43 @@ namespace FurAffinityClassifier.Models
         {
             SettingsModel = settingsModel;
             ClassificationModel = classificationModel;
+
+            FromFolder = new();
+            ToFolder = new();
+            CreateFolderIfNotExist = new();
+            GetIdFromFurAffinity = new();
+            OverwriteIfExist = new();
+            ClassifyAsDatas = new();
         }
 
+        /// <summary>
+        /// 移動元フォルダー
+        /// </summary>
         public ReactivePropertySlim<string> FromFolder { get; }
 
+        /// <summary>
+        /// 移動先フォルダー
+        /// </summary>
         public ReactivePropertySlim<string> ToFolder { get; }
 
+        /// <summary>
+        /// 移動先のフォルダーが存在しないときに作成するか
+        /// </summary>
         public ReactivePropertySlim<bool> CreateFolderIfNotExist { get; }
 
+        /// <summary>
+        /// IDをFur Affinityから取得するか
+        /// </summary>
         public ReactivePropertySlim<bool> GetIdFromFurAffinity { get; }
 
+        /// <summary>
+        /// 同名のファイルが存在するときに上書きするか
+        /// </summary>
         public ReactivePropertySlim<bool> OverwriteIfExist { get; }
 
+        /// <summary>
+        /// IDと異なるフォルダーに分類する設定
+        /// </summary>
         public ReactiveCollection<ClassifyAsData> ClassifyAsDatas { get; }
 
         /// <summary>
