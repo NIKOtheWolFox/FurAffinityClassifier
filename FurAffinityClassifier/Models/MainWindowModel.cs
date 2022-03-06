@@ -71,5 +71,23 @@ namespace FurAffinityClassifier.Models
         /// 分類Model
         /// </summary>
         private IClassificationModel ClassificationModel { get; }
+
+        /// <summary>
+        /// 非同期で設定を読み込む
+        /// </summary>
+        /// <returns>true:成功/false:失敗</returns>
+        public async Task<bool> LoadSettingsAsync()
+        {
+            bool result = await SettingsModel.LoadFromFileAsync();
+            FromFolder.Value = SettingsModel.SettingsData.FromFolder;
+            ToFolder.Value = SettingsModel.SettingsData.ToFolder;
+            CreateFolderIfNotExist.Value = SettingsModel.SettingsData.CreateFolderIfNotExist;
+            GetIdFromFurAffinity.Value = SettingsModel.SettingsData.GetIdFromFurAffinity;
+            OverwriteIfExist.Value = SettingsModel.SettingsData.OverwriteIfExist;
+            ClassifyAsDatas.AddRangeOnScheduler(SettingsModel.SettingsData.ClassifyAsDatas);
+            System.Diagnostics.Debug.WriteLine("LoadSettingsAsync()");
+            System.Diagnostics.Debug.WriteLine($"ClassifyAsDatas.Count={ClassifyAsDatas.Count}");
+            return result;
+        }
     }
 }

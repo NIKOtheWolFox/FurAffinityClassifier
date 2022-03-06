@@ -169,21 +169,10 @@ namespace FurAffinityClassifier.ViewModels
         /// <returns>async Task</returns>
         private async Task LoadedActionAsync()
         {
-            /*
-            await AppModel.LoadSettingsAsync();
-
-            // LoadSettingAsync()による設定値の変化を自動で検出できないので
-            // AppModelのプロパティからVMのプロパティに反映する
-            // 解決策がないか検討が必要
-            FromFolder.Value = AppModel.FromFolder;
-            ToFolder.Value = AppModel.ToFolder;
-            CreateFolderIfNotExist.Value = AppModel.CreateFolderIfNotExist;
-            GetIdFromFurAffinity.Value = AppModel.GetIdFromFurAffinity;
-            OverwriteIfExist.Value = AppModel.OverwriteIfExist;
-            ClassifyAsDatas.Value = AppModel.ClassifyAsDatas;
-
+            await MainWindowModel.LoadSettingsAsync();
+            System.Diagnostics.Debug.WriteLine("LoadedActionAsync()");
+            System.Diagnostics.Debug.WriteLine($"ClassifyAsDatas.Count={ClassifyAsDatas.Count}");
             Enabled.Value = true;
-            */
         }
 
         /// <summary>

@@ -43,5 +43,11 @@ namespace FurAffinityClassifier.Models
         /// IDと異なるフォルダーに分類する設定
         /// </summary>
         ReactiveCollection<ClassifyAsData> ClassifyAsDatas { get; }
+
+        /// <summary>
+        /// 非同期で設定を読み込む
+        /// </summary>
+        /// <returns>true:成功/false:失敗</returns>
+        Task<bool> LoadSettingsAsync();
     }
 }
