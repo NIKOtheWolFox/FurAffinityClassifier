@@ -22,13 +22,14 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// コンストラクター
         /// </summary>
-        /// <param name="appModel">アプリケーションModelのインスタンス</param>
+        /// <param name="mainWindowModel">メイン画面Modelのインスタンス</param>
         /// <param name="dialogHelper">ダイアログHelperのインスタンス</param>
-        public MainWindowViewModel(IAppModel appModel, IDialogHelper dialogHelper)
+        public MainWindowViewModel(IMainWindowModel mainWindowModel, IDialogHelper dialogHelper)
         {
-            AppModel = appModel;
+            MainWindowModel = mainWindowModel;
             DialogHelper = dialogHelper;
 
+            /*
             FromFolder = ReactiveProperty
                 .FromObject(AppModel, x => x.FromFolder)
                 .AddTo(Disposables);
@@ -47,6 +48,7 @@ namespace FurAffinityClassifier.ViewModels
             ClassifyAsDatas = ReactiveProperty
                 .FromObject(AppModel, x => x.ClassifyAsDatas)
                 .AddTo(Disposables);
+            */
 
             Enabled = new ReactiveProperty<bool>(false);
 
@@ -132,9 +134,9 @@ namespace FurAffinityClassifier.ViewModels
         public AsyncReactiveCommand<object> ExecuteCommand { get; }
 
         /// <summary>
-        /// アプリケーションModel
+        /// メイン画面Model
         /// </summary>
-        private IAppModel AppModel { get; }
+        private MainWindowModel MainWindowModel { get; }
 
         /// <summary>
         /// ダイアログHelper
@@ -162,6 +164,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <returns>async Task</returns>
         private async Task LoadedActionAsync()
         {
+            /*
             await AppModel.LoadSettingsAsync();
 
             // LoadSettingAsync()による設定値の変化を自動で検出できないので
@@ -175,6 +178,7 @@ namespace FurAffinityClassifier.ViewModels
             ClassifyAsDatas.Value = AppModel.ClassifyAsDatas;
 
             Enabled.Value = true;
+            */
         }
 
         /// <summary>
@@ -207,6 +211,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <returns>async Task</returns>
         private async Task SaveSettingsActionAsync()
         {
+            /*
             Enabled.Value = false;
 
             if (AppModel.ValidateSettings())
@@ -226,6 +231,7 @@ namespace FurAffinityClassifier.ViewModels
             }
 
             Enabled.Value = true;
+            */
         }
 
         /// <summary>
@@ -234,6 +240,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <returns>async Task</returns>
         private async Task ExecuteActionAsync()
         {
+            /*
             Enabled.Value = false;
 
             if (AppModel.ValidateSettings())
@@ -262,6 +269,7 @@ namespace FurAffinityClassifier.ViewModels
             }
 
             Enabled.Value = true;
+            */
         }
     }
 }
