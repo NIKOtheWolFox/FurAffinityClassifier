@@ -29,26 +29,30 @@ namespace FurAffinityClassifier.ViewModels
             MainWindowModel = mainWindowModel;
             DialogHelper = dialogHelper;
 
-            /*
-            FromFolder = ReactiveProperty
-                .FromObject(AppModel, x => x.FromFolder)
+            FromFolder = MainWindowModel
+                .FromFolder
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            ToFolder = ReactiveProperty
-                .FromObject(AppModel, x => x.ToFolder)
+            ToFolder = MainWindowModel
+                .ToFolder
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            CreateFolderIfNotExist = ReactiveProperty
-                .FromObject(AppModel, x => x.CreateFolderIfNotExist)
+            CreateFolderIfNotExist = MainWindowModel
+                .CreateFolderIfNotExist
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            GetIdFromFurAffinity = ReactiveProperty
-                .FromObject(AppModel, x => x.GetIdFromFurAffinity)
+            GetIdFromFurAffinity = MainWindowModel
+                .GetIdFromFurAffinity
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            OverwriteIfExist = ReactiveProperty
-                .FromObject(AppModel, x => x.OverwriteIfExist)
+            OverwriteIfExist = MainWindowModel
+                .OverwriteIfExist
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            ClassifyAsDatas = ReactiveProperty
-                .FromObject(AppModel, x => x.ClassifyAsDatas)
+            ClassifyAsDatas = MainWindowModel
+                .ClassifyAsDatas
+                .ToReadOnlyReactiveCollection()
                 .AddTo(Disposables);
-            */
 
             Enabled = new ReactiveProperty<bool>(false);
 
@@ -76,32 +80,32 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// 移動元フォルダー
         /// </summary>
-        public ReactiveProperty<string> FromFolder { get; }
+        public ReactivePropertySlim<string> FromFolder { get; }
 
         /// <summary>
         /// 移動先フォルダー
         /// </summary>
-        public ReactiveProperty<string> ToFolder { get; }
+        public ReactivePropertySlim<string> ToFolder { get; }
 
         /// <summary>
         /// 移動先のフォルダーが存在しないときに作成するか
         /// </summary>
-        public ReactiveProperty<bool> CreateFolderIfNotExist { get; }
+        public ReactivePropertySlim<bool> CreateFolderIfNotExist { get; }
 
         /// <summary>
         /// IDをFur Affinityから取得するか
         /// </summary>
-        public ReactiveProperty<bool> GetIdFromFurAffinity { get; }
+        public ReactivePropertySlim<bool> GetIdFromFurAffinity { get; }
 
         /// <summary>
         /// 同名のファイルが存在するときに上書きするか
         /// </summary>
-        public ReactiveProperty<bool> OverwriteIfExist { get; }
+        public ReactivePropertySlim<bool> OverwriteIfExist { get; }
 
         /// <summary>
-        /// IDと異なるフォルダーに分類する設定のリスト
+        /// IDと異なるフォルダーに分類する設定
         /// </summary>
-        public ReactiveProperty<List<ClassifyAsData>> ClassifyAsDatas { get; }
+        public ReadOnlyReactiveCollection<ClassifyAsData> ClassifyAsDatas { get; }
 
         /// <summary>
         /// 操作可能か
