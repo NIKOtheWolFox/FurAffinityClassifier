@@ -136,7 +136,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// メイン画面Model
         /// </summary>
-        private MainWindowModel MainWindowModel { get; }
+        private IMainWindowModel MainWindowModel { get; }
 
         /// <summary>
         /// ダイアログHelper
