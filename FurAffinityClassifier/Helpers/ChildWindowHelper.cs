@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FurAffinityClassifier.Datas;
 
 namespace FurAffinityClassifier.Helpers
 {
@@ -11,5 +12,9 @@ namespace FurAffinityClassifier.Helpers
     /// </summary>
     public class ChildWindowHelper : IChildWindowHelper
     {
+        public (bool update, ClassifyAsData result) ShowClassifyAsSettingWindow(ClassifyAsData classifyAsData)
+        {
+            return (false, new ClassifyAsData);
+        }
     }
 }
