@@ -31,6 +31,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -119,7 +120,12 @@
                   Margin="0 6 0 0"
                   ItemsSource="{Binding ClassifyAsDatas}"
                   AutoGenerateColumns="False"
-                  RowHeaderWidth="20"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  SelectionUnit="FullRow"
+                  RowHeaderWidth="0"
+                  IsReadOnly="True"
                   IsEnabled="{Binding Enabled.Value}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderId}"
@@ -130,13 +136,35 @@
                                     Binding="{Binding Folder}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="11"
+        <Grid Grid.Row="11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Margin="0 6 0 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Left"
+                    Content="追加" />
+            <Button Grid.Column="1"
+                    Margin="6 6 0 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Left"
+                    Content="編集" />
+            <Button Grid.Column="2"
+                    Margin="6 6 0 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Left"
+                    Content="削除" />
+        </Grid>
+        <Button Grid.Row="12"
                 Margin="0 6 0 0"
                 Padding="10 0 10 0"
                 HorizontalAlignment="Right"
                 Content="{x:Static properties:Resources.SaveSettings}"
                 Command="{Binding SaveSettingsCommand}" />
-        <Button Grid.Row="12"
+        <Button Grid.Row="13"
                 Margin="0 6 0 0"
                 Padding="10 0 10 0"
                 HorizontalAlignment="Right"
