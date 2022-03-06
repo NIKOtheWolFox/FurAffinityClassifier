@@ -166,4 +166,13 @@
   <data name="GetIdFromFurAffinity" xml:space="preserve">
     <value>Get ID from Fur Affinity</value>
   </data>
+  <data name="AddClassifyAsSetting" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="EditClassifyAsSetting" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="DeleteClassifyAsSetting" xml:space="preserve">
+    <value>Delete</value>
+  </data>
 </root>

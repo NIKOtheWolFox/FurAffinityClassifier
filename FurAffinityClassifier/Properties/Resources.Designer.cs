@@ -61,6 +61,15 @@ namespace FurAffinityClassifier.Properties {
         }
         
         /// <summary>
+        ///   Add に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string AddClassifyAsSetting {
+            get {
+                return ResourceManager.GetString("AddClassifyAsSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Classification settings に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ClassificationSettings {
@@ -102,6 +111,15 @@ namespace FurAffinityClassifier.Properties {
         public static string DataGridHeaderId {
             get {
                 return ResourceManager.GetString("DataGridHeaderId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delete に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DeleteClassifyAsSetting {
+            get {
+                return ResourceManager.GetString("DeleteClassifyAsSetting", resourceCulture);
             }
         }
         
@@ -192,6 +210,15 @@ namespace FurAffinityClassifier.Properties {
         public static string DialogTitleSelectFolder {
             get {
                 return ResourceManager.GetString("DialogTitleSelectFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Edit に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string EditClassifyAsSetting {
+            get {
+                return ResourceManager.GetString("EditClassifyAsSetting", resourceCulture);
             }
         }
         

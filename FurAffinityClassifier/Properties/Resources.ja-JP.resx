@@ -186,4 +186,13 @@
   <data name="GetIdFromFurAffinity" xml:space="preserve">
     <value>Fur AffinityからIDを取得する</value>
   </data>
+  <data name="AddClassifyAsSetting" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="EditClassifyAsSetting" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="DeleteClassifyAsSetting" xml:space="preserve">
+    <value>削除</value>
+  </data>
 </root>

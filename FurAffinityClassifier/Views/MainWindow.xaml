@@ -146,17 +146,17 @@
                     Margin="0 6 0 0"
                     Padding="10 0 10 0"
                     HorizontalAlignment="Left"
-                    Content="追加" />
+                    Content="{x:Static properties:Resources.AddClassifyAsSetting}" />
             <Button Grid.Column="1"
                     Margin="6 6 0 0"
                     Padding="10 0 10 0"
                     HorizontalAlignment="Left"
-                    Content="編集" />
+                    Content="{x:Static properties:Resources.EditClassifyAsSetting}" />
             <Button Grid.Column="2"
                     Margin="6 6 0 0"
                     Padding="10 0 10 0"
                     HorizontalAlignment="Left"
-                    Content="削除" />
+                    Content="{x:Static properties:Resources.DeleteClassifyAsSetting}" />
         </Grid>
         <Button Grid.Row="12"
                 Margin="0 6 0 0"
