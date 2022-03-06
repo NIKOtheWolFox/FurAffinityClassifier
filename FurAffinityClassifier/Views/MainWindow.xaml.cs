@@ -13,6 +13,15 @@ namespace FurAffinityClassifier.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            if (DataContext == null)
+            {
+                System.Diagnostics.Debug.WriteLine("DataContext == null");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("DataContext != null");
+            }
         }
     }
 }
