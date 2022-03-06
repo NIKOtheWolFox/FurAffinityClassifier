@@ -94,7 +94,18 @@ namespace FurAffinityClassifier.Models
         /// <returns>true:成功/false:失敗</returns>
         public async Task<bool> SaveSettingsAsync()
         {
+            UpdateSettings();
             return await SettingsModel.SaveToFileAsync();
+        }
+
+        private void UpdateSettings()
+        {
+            SettingsModel.SettingsData.FromFolder = FromFolder.Value;
+            SettingsModel.SettingsData.ToFolder = ToFolder.Value;
+            SettingsModel.SettingsData.CreateFolderIfNotExist = CreateFolderIfNotExist.Value;
+            SettingsModel.SettingsData.GetIdFromFurAffinity = GetIdFromFurAffinity.Value;
+            SettingsModel.SettingsData.OverwriteIfExist = OverwriteIfExist.Value;
+            SettingsModel.SettingsData.ClassifyAsDatas = ClassifyAsDatas.ToList();
         }
     }
 }
