@@ -239,6 +239,8 @@ namespace FurAffinityClassifier.ViewModels
         private void EditClassifyAsSettingAction()
         {
             System.Diagnostics.Debug.WriteLine("分類設定の編集");
+            System.Diagnostics.Debug.WriteLine($"ClassifyAsDatas.Count : {ClassifyAsDatas.Count}");
+            System.Diagnostics.Debug.WriteLine($"ClassifyAsDatas.ToList().Count : {ClassifyAsDatas.ToList().Count}");
         }
 
         /// <summary>
