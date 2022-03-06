@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FurAffinityClassifier.Views"
         xmlns:properties="clr-namespace:FurAffinityClassifier.Properties"
         mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator}, Path=ClassifyAsSettingWindowViewModel}"
         Title="{x:Static properties:Resources.ClassifyAsSettingWindowTitle}"
         Height="90"
         Width="200">
@@ -30,14 +31,16 @@
                        Text="{x:Static properties:Resources.ClassifyAsSettingWindowId}" />
             <TextBox Grid.Row="0"
                      Grid.Column="1"
-                     VerticalAlignment="Center" />
+                     VerticalAlignment="Center"
+                     Text="{Binding Id.Value}" />
             <TextBlock Grid.Row="1"
                        Grid.Column="0"
                        Margin="0 0 6 0"
                        Text="{x:Static properties:Resources.ClassifyAsSettingWindowFolder}" />
             <TextBox Grid.Row="1"
                      Grid.Column="1"
-                     VerticalAlignment="Center" />
+                     VerticalAlignment="Center"
+                     Text="{Binding Folder.Value}" />
         </Grid>
         <Grid Grid.Row="2"
               HorizontalAlignment="Right">
@@ -49,12 +52,14 @@
                     Margin="0 6 6 0"
                     Padding="10 0 10 0"
                     HorizontalAlignment="Right"
-                    Content="{x:Static properties:Resources.ClassifyAsSettingWindowOk}" />
+                    Content="{x:Static properties:Resources.ClassifyAsSettingWindowOk}"
+                    Command="{Binding OkCommand}" />
             <Button Grid.Column="1"
                     Margin="0 6 0 0"
                     Padding="10 0 10 0"
                     HorizontalAlignment="Right"
-                    Content="{x:Static properties:Resources.ClassifyAsSettingWindowCancel}" />
+                    Content="{x:Static properties:Resources.ClassifyAsSettingWindowCancel}"
+                    Command="{Binding CancelCommand}" />
         </Grid>
     </Grid>
 </Window>
