@@ -88,6 +88,51 @@ namespace FurAffinityClassifier.Properties {
         }
         
         /// <summary>
+        ///   Cancel に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ClassifyAsSettingWindowCancel {
+            get {
+                return ResourceManager.GetString("ClassifyAsSettingWindowCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Folder に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ClassifyAsSettingWindowFolder {
+            get {
+                return ResourceManager.GetString("ClassifyAsSettingWindowFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ID に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ClassifyAsSettingWindowId {
+            get {
+                return ResourceManager.GetString("ClassifyAsSettingWindowId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   OK に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ClassifyAsSettingWindowOk {
+            get {
+                return ResourceManager.GetString("ClassifyAsSettingWindowOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Classification setting に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ClassifyAsSettingWindowTitle {
+            get {
+                return ResourceManager.GetString("ClassifyAsSettingWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Create folder if not exist に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string CreateFolderIfNotExist {
