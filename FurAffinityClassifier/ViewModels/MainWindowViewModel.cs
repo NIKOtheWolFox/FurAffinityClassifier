@@ -69,6 +69,18 @@ namespace FurAffinityClassifier.ViewModels
                 .ToReactiveCommand()
                 .WithSubscribe(_ => SelectToFolderAction())
                 .AddTo(Disposables);
+            AddClassifyAsSettingCommand = Enabled
+                .ToReactiveCommand()
+                .WithSubscribe(_ => AddClassifyAsSettingAction())
+                .AddTo(Disposables);
+            EditClassifyAsSettingCommand = Enabled
+                .ToReactiveCommand()
+                .WithSubscribe(_ => EditClassifyAsSettingAction())
+                .AddTo(Disposables);
+            DeleteClassifyAsSettingCommand = Enabled
+                .ToReactiveCommand()
+                .WithSubscribe(_ => DeleteClassifyAsSettingAction())
+                .AddTo(Disposables);
             SaveSettingsCommand = Enabled
                 .ToAsyncReactiveCommand()
                 .WithSubscribe(_ => SaveSettingsActionAsync())
@@ -128,6 +140,21 @@ namespace FurAffinityClassifier.ViewModels
         /// 移動先の[選択]ボタンクリック時のコマンド
         /// </summary>
         public ReactiveCommand<object> SelectToFolderCommand { get; }
+
+        /// <summary>
+        /// 分類設定の[追加]ボタンクリック時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> AddClassifyAsSettingCommand { get; }
+
+        /// <summary>
+        /// 分類設定の[編集]ボタンクリック時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> EditClassifyAsSettingCommand { get; }
+
+        /// <summary>
+        /// 分類設定の[削除]ボタンクリック時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> DeleteClassifyAsSettingCommand { get; }
 
         /// <summary>
         /// [設定を保存]ボタンクリック時のコマンド
@@ -196,6 +223,30 @@ namespace FurAffinityClassifier.ViewModels
             {
                 ToFolder.Value = selectedFolder;
             }
+        }
+
+        /// <summary>
+        /// 分類設定の[追加]ボタンクリック時のAction
+        /// </summary>
+        private void AddClassifyAsSettingAction()
+        {
+            System.Diagnostics.Debug.WriteLine("分類設定の追加");
+        }
+
+        /// <summary>
+        /// 分類設定の[編集]ボタンクリック時のAction
+        /// </summary>
+        private void EditClassifyAsSettingAction()
+        {
+            System.Diagnostics.Debug.WriteLine("分類設定の編集");
+        }
+
+        /// <summary>
+        /// 分類設定の[削除]ボタンクリック時のAction
+        /// </summary>
+        private void DeleteClassifyAsSettingAction()
+        {
+            System.Diagnostics.Debug.WriteLine("分類設定の削除");
         }
 
         /// <summary>
