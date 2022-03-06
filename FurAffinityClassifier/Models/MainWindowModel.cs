@@ -85,8 +85,6 @@ namespace FurAffinityClassifier.Models
             GetIdFromFurAffinity.Value = SettingsModel.SettingsData.GetIdFromFurAffinity;
             OverwriteIfExist.Value = SettingsModel.SettingsData.OverwriteIfExist;
             ClassifyAsDatas.AddRangeOnScheduler(SettingsModel.SettingsData.ClassifyAsDatas);
-            System.Diagnostics.Debug.WriteLine("LoadSettingsAsync()");
-            System.Diagnostics.Debug.WriteLine($"ClassifyAsDatas.Count={ClassifyAsDatas.Count}");
             return result;
         }
     }

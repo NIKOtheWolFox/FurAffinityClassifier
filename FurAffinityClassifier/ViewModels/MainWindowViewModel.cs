@@ -53,6 +53,11 @@ namespace FurAffinityClassifier.ViewModels
                 .ClassifyAsDatas
                 .ToReadOnlyReactiveCollection()
                 .AddTo(Disposables);
+            /*
+            ClassifyAsDatas = MainWindowModel
+                .ClassifyAsDatas
+                .ToReadOnlyReactiveCollection()
+                .AddTo(Disposables);*/
 
             Enabled = new ReactiveProperty<bool>(false)
                 .AddTo(Disposables);
@@ -172,6 +177,7 @@ namespace FurAffinityClassifier.ViewModels
             await MainWindowModel.LoadSettingsAsync();
             System.Diagnostics.Debug.WriteLine("LoadedActionAsync()");
             System.Diagnostics.Debug.WriteLine($"ClassifyAsDatas.Count={ClassifyAsDatas.Count}");
+            System.Diagnostics.Debug.WriteLine($"MainWindowModel.ClassifyAsDatas.Count={MainWindowModel.ClassifyAsDatas.Count}");
             Enabled.Value = true;
         }
 
