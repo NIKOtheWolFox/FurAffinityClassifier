@@ -206,19 +206,9 @@ namespace FurAffinityClassifier.ViewModels
         {
             Enabled.Value = false;
 
-            if (await MainWindowModel.SaveSettingsAsync())
+            if (MainWindowModel.ValidateSettings())
             {
-                DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsDone, DialogIcon.Information);
-            }
-            else
-            {
-                DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsError, DialogIcon.Error);
-            }
-
-            /*
-            if (AppModel.ValidateSettings())
-            {
-                if (await AppModel.SaveSettingsAsync())
+                if (await MainWindowModel.SaveSettingsAsync())
                 {
                     DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsDone, DialogIcon.Information);
                 }
@@ -231,7 +221,6 @@ namespace FurAffinityClassifier.ViewModels
             {
                 DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
-            */
 
             Enabled.Value = true;
         }

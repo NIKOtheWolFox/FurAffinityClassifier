@@ -183,5 +183,14 @@ namespace FurAffinityClassifier.Models
         {
             return await SettingsModel.SaveToFileAsync();
         }
+
+        /// <summary>
+        /// 設定を検証する
+        /// </summary>
+        /// <returns>true:OK/false:NG</returns>
+        public bool ValidateSettings()
+        {
+            return SettingsModel.Validate();
+        }
     }
 }
