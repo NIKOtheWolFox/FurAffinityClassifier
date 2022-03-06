@@ -49,5 +49,11 @@ namespace FurAffinityClassifier.Models
         /// </summary>
         /// <returns>true:成功/false:失敗</returns>
         Task<bool> LoadSettingsAsync();
+
+        /// <summary>
+        /// 非同期で設定を保存する
+        /// </summary>
+        /// <returns>true:成功/false:失敗</returns>
+        Task<bool> SaveSettingsAsync();
     }
 }

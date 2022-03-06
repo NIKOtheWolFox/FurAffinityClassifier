@@ -204,9 +204,18 @@ namespace FurAffinityClassifier.ViewModels
         /// <returns>async Task</returns>
         private async Task SaveSettingsActionAsync()
         {
-            /*
             Enabled.Value = false;
 
+            if (await MainWindowModel.SaveSettingsAsync())
+            {
+                DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsDone, DialogIcon.Information);
+            }
+            else
+            {
+                DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsError, DialogIcon.Error);
+            }
+
+            /*
             if (AppModel.ValidateSettings())
             {
                 if (await AppModel.SaveSettingsAsync())
@@ -222,9 +231,9 @@ namespace FurAffinityClassifier.ViewModels
             {
                 DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
+            */
 
             Enabled.Value = true;
-            */
         }
 
         /// <summary>

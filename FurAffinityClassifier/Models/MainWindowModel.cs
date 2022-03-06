@@ -87,5 +87,14 @@ namespace FurAffinityClassifier.Models
             ClassifyAsDatas.AddRangeOnScheduler(SettingsModel.SettingsData.ClassifyAsDatas);
             return result;
         }
+
+        /// <summary>
+        /// 非同期で設定を保存する
+        /// </summary>
+        /// <returns>true:成功/false:失敗</returns>
+        public async Task<bool> SaveSettingsAsync()
+        {
+            return await SettingsModel.SaveToFileAsync();
+        }
     }
 }
