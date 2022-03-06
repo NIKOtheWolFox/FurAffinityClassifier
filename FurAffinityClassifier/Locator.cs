@@ -40,5 +40,10 @@ namespace FurAffinityClassifier
         /// メイン画面 ViewModel
         /// </summary>
         public MainWindowViewModel MainWindowViewModel => serviceProvider.GetRequiredService<MainWindowViewModel>();
+
+        /// <summary>
+        /// 分類設定画面 ViewModel
+        /// </summary>
+        public ClassifyAsSettingWindowViewModel ClassifyAsSettingWindowViewModel => serviceProvider.GetRequiredService<ClassifyAsSettingWindowViewModel>();
     }
 }
