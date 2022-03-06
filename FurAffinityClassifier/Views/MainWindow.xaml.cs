@@ -22,6 +22,22 @@ namespace FurAffinityClassifier.Views
             {
                 System.Diagnostics.Debug.WriteLine("DataContext != null");
             }
+
+            try
+            {
+                if (App.Current.Resources["Locator"] is FurAffinityClassifier.Locator X)
+                {
+                    System.Diagnostics.Debug.WriteLine("App.Current.Resources[Locator] as FurAffinityClassifier.Locator != null");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("App.Current.Resources[Locator] as FurAffinityClassifier.Locator == null");
+                }
+            }
+            catch
+            {
+                // do nothing
+            }
         }
     }
 }
