@@ -231,16 +231,11 @@ namespace FurAffinityClassifier.ViewModels
         /// <returns>async Task</returns>
         private async Task ExecuteActionAsync()
         {
-            //MainWindowModel.ClassifyAsDatas.Add(new ClassifyAsData() { Id = "test", Folder = "TEST" });
-            //var rr = MainWindowModel.ClassifyAsDatas.Remove(new ClassifyAsData() { Id = "test", Folder = "TEST" });
-            //System.Diagnostics.Debug.WriteLine($"Remove result = {rr}");
-            //MainWindowModel.ClassifyAsDatas[0] = new ClassifyAsData() { Id = "r1", Folder = "R!" };
-            /*
             Enabled.Value = false;
 
-            if (AppModel.ValidateSettings())
+            if (MainWindowModel.ValidateSettings())
             {
-                (int foundFiles, int targetFiles, int classifiedFiles) = await AppModel.ClassifyAsync();
+                (int foundFiles, int targetFiles, int classifiedFiles) = await MainWindowModel.ClassifyAsync();
                 StringBuilder messageBuilder = new();
                 messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
                 messageBuilder.AppendLine();
@@ -264,7 +259,6 @@ namespace FurAffinityClassifier.ViewModels
             }
 
             Enabled.Value = true;
-            */
         }
     }
 }

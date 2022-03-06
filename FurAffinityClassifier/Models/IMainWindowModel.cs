@@ -61,5 +61,12 @@ namespace FurAffinityClassifier.Models
         /// </summary>
         /// <returns>true:OK/false:NG</returns>
         bool ValidateSettings();
+
+        /// <summary>
+        /// 非同期で分類する
+        /// </summary>
+        /// <param name="settingsData">設定</param>
+        /// <returns>ファイルの数を格納したValueTuple</returns>
+        Task<(int foundFiles, int targetFiles, int classifiedFiles)> ClassifyAsync();
     }
 }
