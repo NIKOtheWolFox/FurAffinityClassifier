@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FurAffinityClassifier.Datas;
+using FurAffinityClassifier.Models;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
@@ -13,11 +14,17 @@ namespace FurAffinityClassifier.ViewModels
 {
     public class ClassifyAsSettingWindowViewModel : ObservableObject, IDisposable
     {
-        public ClassifyAsSettingWindowViewModel()
+        private readonly ClassifyAsSettingWindowModel model;
+
+        public ClassifyAsSettingWindowViewModel(ClassifyAsSettingWindowModel classifyAsSettingWindowModel)
         {
-            Id = new ReactivePropertySlim<string>()
+            model = classifyAsSettingWindowModel;
+
+            Id = model.Id
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            Folder = new ReactivePropertySlim<string>()
+            Folder = model.Folder
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
             OkCommand = new ReactiveCommand<object>()
                 .WithSubscribe(_ => OkAction())
