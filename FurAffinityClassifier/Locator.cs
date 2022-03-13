@@ -26,7 +26,6 @@ namespace FurAffinityClassifier
             services.AddTransient<MainWindowViewModel>();
             services.AddTransient<ClassifyAsSettingWindowViewModel>();
 
-            services.AddSingleton<IAppModel, AppModel>();
             services.AddTransient<IMainWindowModel, MainWindowModel>();
             services.AddTransient<IClassifyAsSettingWindowModel, ClassifyAsSettingWindowModel>();
             services.AddSingleton<ISettingsModel, SettingsModel>();
