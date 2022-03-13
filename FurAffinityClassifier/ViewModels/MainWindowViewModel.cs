@@ -11,6 +11,7 @@ using FurAffinityClassifier.Enums;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
 using FurAffinityClassifier.Properties;
+using FurAffinityClassifier.Views;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
@@ -65,9 +66,6 @@ namespace FurAffinityClassifier.ViewModels
             DataGridSelectedItem = new ReactivePropertySlim<object>()
                 .AddTo(Disposables);
 
-            LoadedCommand = new AsyncReactiveCommand()
-                .WithSubscribe(_ => LoadedActionAsync())
-                .AddTo(Disposables);
             SelectFromFolderCommand = Enabled
                 .ToReactiveCommand()
                 .WithSubscribe(_ => SelectFromFolderAction())
@@ -95,6 +93,12 @@ namespace FurAffinityClassifier.ViewModels
             ExecuteCommand = Enabled
                 .ToAsyncReactiveCommand()
                 .WithSubscribe(_ => ExecuteActionAsync())
+                .AddTo(Disposables);
+            LoadedCommand = new AsyncReactiveCommand()
+                .WithSubscribe(_ => LoadedActionAsync())
+                .AddTo(Disposables);
+            ClosedCommand = new ReactiveCommand<object>()
+                .WithSubscribe(x => ClosedAction(x))
                 .AddTo(Disposables);
         }
 
@@ -139,11 +143,6 @@ namespace FurAffinityClassifier.ViewModels
         public ReactivePropertySlim<object> DataGridSelectedItem { get; }
 
         /// <summary>
-        /// 画面読み込み時のコマンド
-        /// </summary>
-        public AsyncReactiveCommand<object> LoadedCommand { get; }
-
-        /// <summary>
         /// 移動元の[選択]ボタンクリック時のコマンド
         /// </summary>
         public ReactiveCommand<object> SelectFromFolderCommand { get; }
@@ -179,6 +178,16 @@ namespace FurAffinityClassifier.ViewModels
         public AsyncReactiveCommand<object> ExecuteCommand { get; }
 
         /// <summary>
+        /// 画面読み込み時のコマンド
+        /// </summary>
+        public AsyncReactiveCommand<object> LoadedCommand { get; }
+
+        /// <summary>
+        /// 画面終了時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> ClosedCommand { get; }
+
+        /// <summary>
         /// 一括Disposeを行うためにReactiveXxをまとめるオブジェクト
         /// </summary>
         private CompositeDisposable Disposables { get; } = new CompositeDisposable();
@@ -191,16 +200,6 @@ namespace FurAffinityClassifier.ViewModels
         {
             Disposables.Dispose();
             GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// 画面読み込み時のAction
-        /// </summary>
-        /// <returns>async Task</returns>
-        private async Task LoadedActionAsync()
-        {
-            await _mainWindowModel.LoadSettingsAsync();
-            Enabled.Value = true;
         }
 
         /// <summary>
@@ -330,6 +329,28 @@ namespace FurAffinityClassifier.ViewModels
             }
 
             Enabled.Value = true;
+        }
+
+        /// <summary>
+        /// 画面読み込み時のAction
+        /// </summary>
+        /// <returns>async Task</returns>
+        private async Task LoadedActionAsync()
+        {
+            await _mainWindowModel.LoadSettingsAsync();
+            Enabled.Value = true;
+        }
+
+        /// <summary>
+        /// 画面終了時のAction
+        /// </summary>
+        /// <param name="x">画面からのパラメーター</param>
+        private void ClosedAction(object x)
+        {
+            if (x is MainWindow window)
+            {
+                WeakReferenceMessenger.Default.UnregisterAll(window);
+            }
         }
     }
 }

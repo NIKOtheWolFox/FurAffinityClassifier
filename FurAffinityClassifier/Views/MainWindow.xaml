@@ -15,6 +15,10 @@
         <behaviors:EventTrigger EventName="Loaded">
             <behaviors:InvokeCommandAction Command="{Binding LoadedCommand}" />
         </behaviors:EventTrigger>
+        <behaviors:EventTrigger EventName="Closed">
+            <behaviors:InvokeCommandAction Command="{Binding ClosedCommand}"
+                                           CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+        </behaviors:EventTrigger>
     </behaviors:Interaction.Triggers>
     <Grid Margin="6">
         <Grid.RowDefinitions>
