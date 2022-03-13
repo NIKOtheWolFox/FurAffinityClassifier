@@ -60,6 +60,8 @@ namespace FurAffinityClassifier.ViewModels
 
             Enabled = new ReactiveProperty<bool>(false)
                 .AddTo(Disposables);
+            DataGridSelectedItem = new ReactivePropertySlim<object>()
+                .AddTo(Disposables);
 
             LoadedCommand = new AsyncReactiveCommand()
                 .WithSubscribe(_ => LoadedActionAsync())
@@ -128,6 +130,11 @@ namespace FurAffinityClassifier.ViewModels
         /// 操作可能か
         /// </summary>
         public ReactiveProperty<bool> Enabled { get; }
+
+        /// <summary>
+        /// 分類設定一覧の選択アイテム
+        /// </summary>
+        public ReactivePropertySlim<object> DataGridSelectedItem { get; }
 
         /// <summary>
         /// 画面読み込み時のコマンド
@@ -246,6 +253,10 @@ namespace FurAffinityClassifier.ViewModels
         private void EditClassifyAsSettingAction()
         {
             System.Diagnostics.Debug.WriteLine("分類設定の編集");
+            if (DataGridSelectedItem.Value is ClassifyAsData classifyAsData)
+            {
+                System.Diagnostics.Debug.WriteLine($"このデータを使え : {classifyAsData.Id}->{classifyAsData.Folder}");
+            }
             System.Diagnostics.Debug.WriteLine($"ClassifyAsDatas.Count : {ClassifyAsDatas.Count}");
             System.Diagnostics.Debug.WriteLine($"ClassifyAsDatas.ToList().Count : {ClassifyAsDatas.ToList().Count}");
         }

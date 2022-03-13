@@ -124,6 +124,7 @@
                   CanUserDeleteRows="False"
                   CanUserResizeRows="False"
                   SelectionUnit="FullRow"
+                  SelectedItem="{Binding DataGridSelectedItem.Value, Mode=OneWayToSource}"
                   RowHeaderWidth="0"
                   IsReadOnly="True"
                   IsEnabled="{Binding Enabled.Value}" >
