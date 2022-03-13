@@ -58,7 +58,7 @@ namespace FurAffinityClassifier.ViewModels
                 .ToReadOnlyReactiveCollection()
                 .AddTo(Disposables);
 
-            Enabled = new ReactiveProperty<bool>(false)
+            Enabled = new ReactivePropertySlim<bool>(false)
                 .AddTo(Disposables);
             DataGridSelectedItem = new ReactivePropertySlim<object>()
                 .AddTo(Disposables);
@@ -129,7 +129,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// 操作可能か
         /// </summary>
-        public ReactiveProperty<bool> Enabled { get; }
+        public ReactivePropertySlim<bool> Enabled { get; }
 
         /// <summary>
         /// 分類設定一覧の選択アイテム
