@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FurAffinityClassifier.Datas;
+using FurAffinityClassifier.ViewModels;
 
 namespace FurAffinityClassifier.Views
 {
@@ -22,6 +24,14 @@ namespace FurAffinityClassifier.Views
         public ClassifyAsSettingWindow()
         {
             InitializeComponent();
+        }
+
+        public void Initialize(ClassifyAsData classifyAsData)
+        {
+            if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
+            {
+                viewModel.Initialize(classifyAsData);
+            }
         }
     }
 }

@@ -73,6 +73,12 @@ namespace FurAffinityClassifier.ViewModels
             GC.SuppressFinalize(this);
         }
 
+        public void Initialize(ClassifyAsData classifyAsData)
+        {
+            model.Id.Value = classifyAsData.Id;
+            model.Folder.Value = classifyAsData.Folder;
+        }
+
         private void OkAction()
         {
             Update = true;
