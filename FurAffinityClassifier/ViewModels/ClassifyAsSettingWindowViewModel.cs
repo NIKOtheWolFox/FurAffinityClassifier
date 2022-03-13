@@ -14,16 +14,16 @@ namespace FurAffinityClassifier.ViewModels
 {
     public class ClassifyAsSettingWindowViewModel : ObservableObject, IDisposable
     {
-        private readonly ClassifyAsSettingWindowModel model;
+        private readonly IClassifyAsSettingWindowModel _classifyAsSettingWindowModel;
 
-        public ClassifyAsSettingWindowViewModel(ClassifyAsSettingWindowModel classifyAsSettingWindowModel)
+        public ClassifyAsSettingWindowViewModel(IClassifyAsSettingWindowModel classifyAsSettingWindowModel)
         {
-            model = classifyAsSettingWindowModel;
+            _classifyAsSettingWindowModel = classifyAsSettingWindowModel;
 
-            Id = model.Id
+            Id = _classifyAsSettingWindowModel.Id
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            Folder = model.Folder
+            Folder = _classifyAsSettingWindowModel.Folder
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
             OkCommand = new ReactiveCommand<object>()
@@ -75,8 +75,8 @@ namespace FurAffinityClassifier.ViewModels
 
         public void Initialize(ClassifyAsData classifyAsData)
         {
-            model.Id.Value = classifyAsData.Id;
-            model.Folder.Value = classifyAsData.Folder;
+            _classifyAsSettingWindowModel.Id.Value = classifyAsData.Id;
+            _classifyAsSettingWindowModel.Folder.Value = classifyAsData.Folder;
         }
 
         private void OkAction()
