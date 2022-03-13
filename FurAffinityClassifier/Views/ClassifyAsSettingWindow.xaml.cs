@@ -34,6 +34,25 @@ namespace FurAffinityClassifier.Views
         }
 
         /// <summary>
+        /// 結果
+        /// </summary>
+        /// <returns>(更新有無, 画面の入力値)</returns>
+        public (bool update, ClassifyAsData classifyAsDataResult) Result
+        {
+            get
+            {
+                if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
+                {
+                    return viewModel.Result;
+                }
+                else
+                {
+                    return (false, new());
+                }
+            }
+        }
+
+        /// <summary>
         /// 初期化
         /// </summary>
         /// <param name="classifyAsData">画面の初期値</param>
@@ -42,22 +61,6 @@ namespace FurAffinityClassifier.Views
             if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
             {
                 viewModel.Initialize(classifyAsData);
-            }
-        }
-
-        /// <summary>
-        /// 結果
-        /// </summary>
-        /// <returns>(更新有無, 画面の入力値)</returns>
-        public (bool update, ClassifyAsData classifyAsDataResult) Result()
-        {
-            if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
-            {
-                return viewModel.Result;
-            }
-            else
-            {
-                return (false, new());
             }
         }
 

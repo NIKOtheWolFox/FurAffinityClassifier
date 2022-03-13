@@ -25,7 +25,7 @@ namespace FurAffinityClassifier.Helpers
             ClassifyAsSettingWindow window = new();
             window.Initialize(classifyAsDataParam);
             window.ShowDialog();
-            return window.Result();
+            return window.Result;
         }
     }
 }
