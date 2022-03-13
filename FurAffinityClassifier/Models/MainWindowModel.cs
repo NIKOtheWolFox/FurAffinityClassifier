@@ -209,6 +209,17 @@ namespace FurAffinityClassifier.Models
         }
 
         /// <summary>
+        /// 分類設定を更新する
+        /// </summary>
+        /// <param name="oldData">更新前の分類設定データ</param>
+        /// <param name="newData">更新後の分類設定データ</param>
+        public void UpdateClassifyAsSetting(ClassifyAsData oldData, ClassifyAsData newData)
+        {
+            int index = ClassifyAsDatas.IndexOf(oldData);
+            ClassifyAsDatas[index] = newData;
+        }
+
+        /// <summary>
         /// 非同期で分類する
         /// </summary>
         /// <param name="settingsData">設定</param>

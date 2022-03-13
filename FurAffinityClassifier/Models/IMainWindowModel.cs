@@ -70,6 +70,13 @@ namespace FurAffinityClassifier.Models
         void RemoveClassifyAsSetting(ClassifyAsData classifyAsData);
 
         /// <summary>
+        /// 分類設定を更新する
+        /// </summary>
+        /// <param name="oldData">更新前の分類設定データ</param>
+        /// <param name="newData">更新後の分類設定データ</param>
+        void UpdateClassifyAsSetting(ClassifyAsData oldData, ClassifyAsData newData);
+
+        /// <summary>
         /// 非同期で分類する
         /// </summary>
         /// <param name="settingsData">設定</param>

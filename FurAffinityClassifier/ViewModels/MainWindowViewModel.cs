@@ -252,13 +252,14 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void EditClassifyAsSettingAction()
         {
-            System.Diagnostics.Debug.WriteLine("分類設定の編集");
             if (DataGridSelectedItem.Value is ClassifyAsData classifyAsData)
             {
-                System.Diagnostics.Debug.WriteLine($"このデータを使え : {classifyAsData.Id}->{classifyAsData.Folder}");
+                (bool update, ClassifyAsData result) = _childWindowHelper.ShowClassifyAsSettingWindow(classifyAsData);
+                if (update)
+                {
+                    MainWindowModel.UpdateClassifyAsSetting(classifyAsData, result);
+                }
             }
-            System.Diagnostics.Debug.WriteLine($"ClassifyAsDatas.Count : {ClassifyAsDatas.Count}");
-            System.Diagnostics.Debug.WriteLine($"ClassifyAsDatas.ToList().Count : {ClassifyAsDatas.ToList().Count}");
         }
 
         /// <summary>
