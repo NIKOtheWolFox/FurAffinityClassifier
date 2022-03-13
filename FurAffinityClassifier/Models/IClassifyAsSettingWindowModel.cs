@@ -10,16 +10,16 @@ namespace FurAffinityClassifier.Models
         /// <summary>
         /// ID
         /// </summary>
-        public ReactivePropertySlim<string> Id { get; }
+        ReactivePropertySlim<string> Id { get; }
 
         /// <summary>
         /// フォルダー
         /// </summary>
-        public ReactivePropertySlim<string> Folder { get; }
+        ReactivePropertySlim<string> Folder { get; }
 
         /// <summary>
         /// 更新有無
         /// </summary>
-        public bool Update { get; set; }
+        bool Update { get; set; }
     }
 }
