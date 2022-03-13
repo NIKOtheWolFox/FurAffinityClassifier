@@ -4,7 +4,10 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
 using FurAffinityClassifier.Datas.Messages;
+using FurAffinityClassifier.Enums;
+using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
+using FurAffinityClassifier.Properties;
 using FurAffinityClassifier.Views;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -22,12 +25,19 @@ namespace FurAffinityClassifier.ViewModels
         private readonly IClassifyAsSettingWindowModel _classifyAsSettingWindowModel;
 
         /// <summary>
+        /// ダイアログHelper
+        /// </summary>
+        private readonly IDialogHelper _dialogHelper;
+
+        /// <summary>
         /// コンストラクター
         /// </summary>
         /// <param name="classifyAsSettingWindowModel">分類設定画面Model</param>
-        public ClassifyAsSettingWindowViewModel(IClassifyAsSettingWindowModel classifyAsSettingWindowModel)
+        /// <param name="dialogHelper">ダイアログHelper</param>
+        public ClassifyAsSettingWindowViewModel(IClassifyAsSettingWindowModel classifyAsSettingWindowModel, IDialogHelper dialogHelper)
         {
             _classifyAsSettingWindowModel = classifyAsSettingWindowModel;
+            _dialogHelper = dialogHelper;
 
             Id = _classifyAsSettingWindowModel.Id
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
@@ -120,7 +130,7 @@ namespace FurAffinityClassifier.ViewModels
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("チェックNG");
+                _dialogHelper.ShowDialog(Resources.ClassificationSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
         }
 
