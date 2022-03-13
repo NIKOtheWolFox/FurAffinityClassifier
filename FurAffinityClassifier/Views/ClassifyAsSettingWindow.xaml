@@ -10,7 +10,8 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=ClassifyAsSettingWindowViewModel}"
         Title="{x:Static properties:Resources.ClassifyAsSettingWindowTitle}"
         Height="120"
-        Width="200">
+        Width="200"
+        WindowStartupLocation="CenterOwner">
     <behaviors:Interaction.Triggers>
         <behaviors:EventTrigger EventName="Closed">
             <behaviors:InvokeCommandAction Command="{Binding ClosedCommand}"

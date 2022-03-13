@@ -4,7 +4,9 @@ using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
+using FurAffinityClassifier.Datas.Messages;
 using FurAffinityClassifier.Enums;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
@@ -30,21 +32,14 @@ namespace FurAffinityClassifier.ViewModels
         private readonly IDialogHelper _dialogHelper;
 
         /// <summary>
-        /// 子ウインドウHelper
-        /// </summary>
-        private readonly IChildWindowHelper _childWindowHelper;
-
-        /// <summary>
         /// コンストラクター
         /// </summary>
         /// <param name="mainWindowModel">メイン画面Model</param>
         /// <param name="dialogHelper">ダイアログHelper</param>
-        /// <param name="childWindowHelper">子ウインドウHelper</param>
-        public MainWindowViewModel(IMainWindowModel mainWindowModel, IDialogHelper dialogHelper, IChildWindowHelper childWindowHelper)
+        public MainWindowViewModel(IMainWindowModel mainWindowModel, IDialogHelper dialogHelper)
         {
             _mainWindowModel = mainWindowModel;
             _dialogHelper = dialogHelper;
-            _childWindowHelper = childWindowHelper;
 
             FromFolder = _mainWindowModel.FromFolder
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
@@ -237,11 +232,13 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void AddClassifyAsSettingAction()
         {
-            (bool update, ClassifyAsData result) = _childWindowHelper.ShowClassifyAsSettingWindow(new());
-            if (update)
+            WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(new(), (update, data) =>
             {
-                _mainWindowModel.AddClassifyAsSetting(result);
-            }
+                if (update)
+                {
+                    _mainWindowModel.AddClassifyAsSetting(data);
+                }
+            }));
         }
 
         /// <summary>
@@ -251,11 +248,13 @@ namespace FurAffinityClassifier.ViewModels
         {
             if (DataGridSelectedItem.Value is ClassifyAsData classifyAsData)
             {
-                (bool update, ClassifyAsData result) = _childWindowHelper.ShowClassifyAsSettingWindow(classifyAsData);
-                if (update)
+                WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(classifyAsData, (update, data) =>
                 {
-                    _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, result);
-                }
+                    if (update)
+                    {
+                        _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, data);
+                    }
+                }));
             }
         }
 

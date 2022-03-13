@@ -32,7 +32,6 @@ namespace FurAffinityClassifier
             services.AddTransient<IClassificationModel, ClassificationModel>();
 
             services.AddTransient<IDialogHelper, DialogHelper>();
-            services.AddTransient<IChildWindowHelper, ChildWindowHelper>();
 
             serviceProvider = services.BuildServiceProvider();
         }
