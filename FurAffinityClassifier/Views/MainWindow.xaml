@@ -15,6 +15,10 @@
         <behaviors:EventTrigger EventName="Loaded">
             <behaviors:InvokeCommandAction Command="{Binding LoadedCommand}" />
         </behaviors:EventTrigger>
+        <behaviors:EventTrigger EventName="Closed">
+            <behaviors:InvokeCommandAction Command="{Binding ClosedCommand}"
+                                           CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+        </behaviors:EventTrigger>
     </behaviors:Interaction.Triggers>
     <Grid Margin="6">
         <Grid.RowDefinitions>
@@ -29,6 +33,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -117,9 +122,15 @@
                    Text="{x:Static properties:Resources.ClassifyAs}" />
         <DataGrid Grid.Row="10"
                   Margin="0 6 0 0"
-                  ItemsSource="{Binding ClassifyAsDatas.Value}"
+                  ItemsSource="{Binding ClassifyAsDatas}"
                   AutoGenerateColumns="False"
-                  RowHeaderWidth="20"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  SelectionUnit="FullRow"
+                  SelectedItem="{Binding DataGridSelectedItem.Value, Mode=OneWayToSource}"
+                  RowHeaderWidth="0"
+                  IsReadOnly="True"
                   IsEnabled="{Binding Enabled.Value}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderId}"
@@ -130,13 +141,38 @@
                                     Binding="{Binding Folder}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="11"
+        <Grid Grid.Row="11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Margin="0 6 0 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Left"
+                    Content="{x:Static properties:Resources.AddClassifyAsSetting}"
+                    Command="{Binding AddClassifyAsSettingCommand}" />
+            <Button Grid.Column="1"
+                    Margin="6 6 0 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Left"
+                    Content="{x:Static properties:Resources.EditClassifyAsSetting}"
+                    Command="{Binding EditClassifyAsSettingCommand}" />
+            <Button Grid.Column="2"
+                    Margin="6 6 0 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Left"
+                    Content="{x:Static properties:Resources.DeleteClassifyAsSetting}"
+                    Command="{Binding DeleteClassifyAsSettingCommand}" />
+        </Grid>
+        <Button Grid.Row="12"
                 Margin="0 6 0 0"
                 Padding="10 0 10 0"
                 HorizontalAlignment="Right"
                 Content="{x:Static properties:Resources.SaveSettings}"
                 Command="{Binding SaveSettingsCommand}" />
-        <Button Grid.Row="12"
+        <Button Grid.Row="13"
                 Margin="0 6 0 0"
                 Padding="10 0 10 0"
                 HorizontalAlignment="Right"

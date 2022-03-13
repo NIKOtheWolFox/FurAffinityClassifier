@@ -1,0 +1,74 @@
+<Window x:Class="FurAffinityClassifier.Views.ClassifyAsSettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurAffinityClassifier.Views"
+        xmlns:properties="clr-namespace:FurAffinityClassifier.Properties"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator}, Path=ClassifyAsSettingWindowViewModel}"
+        Title="{x:Static properties:Resources.ClassifyAsSettingWindowTitle}"
+        Height="120"
+        Width="250"
+        WindowStartupLocation="CenterOwner">
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Closed">
+            <behaviors:InvokeCommandAction Command="{Binding ClosedCommand}"
+                                           CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Margin="0 0 6 0"
+                       Text="{x:Static properties:Resources.ClassifyAsSettingWindowId}" />
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     Text="{Binding Id.Value}" />
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Margin="0 0 6 0"
+                       Text="{x:Static properties:Resources.ClassifyAsSettingWindowFolder}" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     Text="{Binding Folder.Value}" />
+        </Grid>
+        <Grid Grid.Row="1" />
+        <Grid Grid.Row="2"
+              HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Margin="0 6 6 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Right"
+                    Content="{x:Static properties:Resources.ClassifyAsSettingWindowOk}"
+                    Command="{Binding OkCommand}" />
+            <Button Grid.Column="1"
+                    Margin="0 6 0 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Right"
+                    Content="{x:Static properties:Resources.ClassifyAsSettingWindowCancel}"
+                    Command="{Binding CancelCommand}" />
+        </Grid>
+    </Grid>
+</Window>

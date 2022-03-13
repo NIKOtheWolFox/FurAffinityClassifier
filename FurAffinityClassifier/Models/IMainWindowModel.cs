@@ -1,61 +1,49 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using FurAffinityClassifier.Datas;
+using Reactive.Bindings;
 
 namespace FurAffinityClassifier.Models
 {
     /// <summary>
-    /// アプリケーションの機能 interface
+    /// メイン画面Model interface
     /// </summary>
-    public interface IAppModel
+    public interface IMainWindowModel
     {
         /// <summary>
         /// 移動元フォルダー
         /// </summary>
-        string FromFolder { get; set; }
+        ReactivePropertySlim<string> FromFolder { get; }
 
         /// <summary>
         /// 移動先フォルダー
         /// </summary>
-        string ToFolder { get; set; }
+        ReactivePropertySlim<string> ToFolder { get; }
 
         /// <summary>
         /// 移動先のフォルダーが存在しないときに作成するか
         /// </summary>
-        bool CreateFolderIfNotExist { get; set; }
+        ReactivePropertySlim<bool> CreateFolderIfNotExist { get; }
 
         /// <summary>
         /// IDをFur Affinityから取得するか
         /// </summary>
-        public bool GetIdFromFurAffinity { get; set; }
+        ReactivePropertySlim<bool> GetIdFromFurAffinity { get; }
 
         /// <summary>
         /// 同名のファイルが存在するときに上書きするか
         /// </summary>
-        bool OverwriteIfExist { get; set; }
+        ReactivePropertySlim<bool> OverwriteIfExist { get; }
 
         /// <summary>
-        /// IDと異なるフォルダーに分類する設定のリスト
+        /// IDと異なるフォルダーに分類する設定
         /// </summary>
-        List<ClassifyAsData> ClassifyAsDatas { get; set; }
-
-        /// <summary>
-        /// 設定を読み込む
-        /// </summary>
-        /// <returns>true:成功/false:失敗</returns>
-        bool LoadSettings();
+        ReactiveCollection<ClassifyAsData> ClassifyAsDatas { get; }
 
         /// <summary>
         /// 非同期で設定を読み込む
         /// </summary>
         /// <returns>true:成功/false:失敗</returns>
         Task<bool> LoadSettingsAsync();
-
-        /// <summary>
-        /// 設定を保存する
-        /// </summary>
-        /// <returns>true:成功/false:失敗</returns>
-        bool SaveSettings();
 
         /// <summary>
         /// 非同期で設定を保存する
@@ -68,6 +56,25 @@ namespace FurAffinityClassifier.Models
         /// </summary>
         /// <returns>true:OK/false:NG</returns>
         bool ValidateSettings();
+
+        /// <summary>
+        /// 分類設定を追加する
+        /// </summary>
+        /// <param name="classifyAsData">分類設定データ</param>
+        void AddClassifyAsSetting(ClassifyAsData classifyAsData);
+
+        /// <summary>
+        /// 分類設定を削除する
+        /// </summary>
+        /// <param name="classifyAsData">分類設定データ</param>
+        void RemoveClassifyAsSetting(ClassifyAsData classifyAsData);
+
+        /// <summary>
+        /// 分類設定を更新する
+        /// </summary>
+        /// <param name="oldData">更新前の分類設定データ</param>
+        /// <param name="newData">更新後の分類設定データ</param>
+        void UpdateClassifyAsSetting(ClassifyAsData oldData, ClassifyAsData newData);
 
         /// <summary>
         /// 非同期で分類する

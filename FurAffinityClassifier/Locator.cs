@@ -1,32 +1,35 @@
 using System;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
+using FurAffinityClassifier.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FurAffinityClassifier.ViewModels
+namespace FurAffinityClassifier
 {
     /// <summary>
-    /// ViewModelとDIの設定
+    /// Model, ViewModel, Helperのロケーター
     /// </summary>
-    public class ViewModelLocator
+    public class Locator
     {
         /// <summary>
-        /// ViewModelとDIのServiceProvider
+        /// ServiceProvider
         /// </summary>
         private readonly IServiceProvider serviceProvider;
 
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public ViewModelLocator()
+        public Locator()
         {
             ServiceCollection services = new();
 
             services.AddTransient<MainWindowViewModel>();
+            services.AddTransient<ClassifyAsSettingWindowViewModel>();
 
-            services.AddSingleton<IAppModel, AppModel>();
+            services.AddTransient<IMainWindowModel, MainWindowModel>();
+            services.AddTransient<IClassifyAsSettingWindowModel, ClassifyAsSettingWindowModel>();
             services.AddSingleton<ISettingsModel, SettingsModel>();
-            services.AddSingleton<IClassificationModel, ClassificationModel>();
+            services.AddTransient<IClassificationModel, ClassificationModel>();
 
             services.AddTransient<IDialogHelper, DialogHelper>();
 
@@ -34,8 +37,13 @@ namespace FurAffinityClassifier.ViewModels
         }
 
         /// <summary>
-        /// メイン画面のViewModel
+        /// メイン画面 ViewModel
         /// </summary>
         public MainWindowViewModel MainWindowViewModel => serviceProvider.GetRequiredService<MainWindowViewModel>();
+
+        /// <summary>
+        /// 分類設定画面 ViewModel
+        /// </summary>
+        public ClassifyAsSettingWindowViewModel ClassifyAsSettingWindowViewModel => serviceProvider.GetRequiredService<ClassifyAsSettingWindowViewModel>();
     }
 }
