@@ -33,5 +33,17 @@ namespace FurAffinityClassifier.Views
                 viewModel.Initialize(classifyAsData);
             }
         }
+
+        public (bool update, ClassifyAsData classifyAsDataResult) Result()
+        {
+            if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
+            {
+                return viewModel.Result;
+            }
+            else
+            {
+                return (false, new());
+            }
+        }
     }
 }

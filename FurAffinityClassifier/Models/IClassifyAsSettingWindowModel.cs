@@ -12,5 +12,7 @@ namespace FurAffinityClassifier.Models
         public ReactivePropertySlim<string> Id { get; }
 
         public ReactivePropertySlim<string> Folder { get; }
+
+        public bool Update { get; set; }
     }
 }

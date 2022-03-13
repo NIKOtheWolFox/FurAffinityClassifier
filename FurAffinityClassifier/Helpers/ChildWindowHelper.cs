@@ -20,7 +20,7 @@ namespace FurAffinityClassifier.Helpers
             ClassifyAsSettingWindow window = new();
             window.Initialize(classifyAsDataParam);
             window.ShowDialog();
-            return (false, new ClassifyAsData());
+            return window.Result();
         }
     }
 }

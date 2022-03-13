@@ -42,21 +42,13 @@ namespace FurAffinityClassifier.ViewModels
 
         public ReactiveCommand<object> CancelCommand { get; }
 
-        public bool Update { get; private set; }
-
-        public ClassifyAsData ClassifyAsData
-        {
-            get
+        public (bool update, ClassifyAsData classifyAsDataResult) Result =>
+            (_classifyAsSettingWindowModel.Update,
+            new()
             {
-                return new ClassifyAsData { Id = Id.Value, Folder = Folder.Value };
-            }
-
-            set
-            {
-                Id.Value = value.Id;
-                Folder.Value = value.Folder;
-            }
-        }
+                Id = _classifyAsSettingWindowModel.Id.Value,
+                Folder = _classifyAsSettingWindowModel.Folder.Value,
+            });
 
         /// <summary>
         /// 一括Disposeを行うためにReactiveXxをまとめるオブジェクト
@@ -81,12 +73,12 @@ namespace FurAffinityClassifier.ViewModels
 
         private void OkAction()
         {
-            Update = true;
+            _classifyAsSettingWindowModel.Update = true;
         }
 
         private void CancelAction()
         {
-            Update = false;
+            _classifyAsSettingWindowModel.Update = false;
         }
     }
 }
