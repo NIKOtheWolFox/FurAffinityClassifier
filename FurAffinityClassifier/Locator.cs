@@ -24,6 +24,7 @@ namespace FurAffinityClassifier
             ServiceCollection services = new();
 
             services.AddTransient<MainWindowViewModel>();
+            services.AddTransient<ClassifyAsSettingWindowViewModel>();
 
             services.AddSingleton<IAppModel, AppModel>();
             services.AddTransient<IMainWindowModel, MainWindowModel>();
