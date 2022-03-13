@@ -1,4 +1,3 @@
-using FurAffinityClassifier.Datas;
 using Reactive.Bindings;
 
 namespace FurAffinityClassifier.Models
@@ -22,12 +21,5 @@ namespace FurAffinityClassifier.Models
         /// 更新有無
         /// </summary>
         public bool Update { get; set; }
-
-        /// <summary>
-        /// 重複チェックする
-        /// </summary>
-        /// <param name="classifyAsData">分類設定データ</param>
-        /// <returns>true:重複なし/false:重複あり</returns>
-        public bool CheckDuplicate(ClassifyAsData classifyAsData);
     }
 }

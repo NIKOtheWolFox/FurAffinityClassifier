@@ -4,8 +4,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
 using FurAffinityClassifier.Datas.Messages;
-using FurAffinityClassifier.Enums;
-using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -23,19 +21,12 @@ namespace FurAffinityClassifier.ViewModels
         private readonly IClassifyAsSettingWindowModel _classifyAsSettingWindowModel;
 
         /// <summary>
-        /// ダイアログHelper
-        /// </summary>
-        private readonly IDialogHelper _dialogHelper;
-
-        /// <summary>
         /// コンストラクター
         /// </summary>
         /// <param name="classifyAsSettingWindowModel">分類設定画面Model</param>
-        /// <param name="dialogHelper">ダイアログHelper</param>
-        public ClassifyAsSettingWindowViewModel(IClassifyAsSettingWindowModel classifyAsSettingWindowModel, IDialogHelper dialogHelper)
+        public ClassifyAsSettingWindowViewModel(IClassifyAsSettingWindowModel classifyAsSettingWindowModel)
         {
             _classifyAsSettingWindowModel = classifyAsSettingWindowModel;
-            _dialogHelper = dialogHelper;
 
             Id = _classifyAsSettingWindowModel.Id
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
@@ -113,14 +104,7 @@ namespace FurAffinityClassifier.ViewModels
         private void OkAction()
         {
             _classifyAsSettingWindowModel.Update = true;
-            if (_classifyAsSettingWindowModel.CheckDuplicate(new() { Id = Id.Value, Folder = Folder.Value }))
-            {
-                WeakReferenceMessenger.Default.Send<ClassifyAsWindowCloseMessage>(new());
-            }
-            else
-            {
-                _dialogHelper.ShowDialog("エラー", "重複しています", DialogIcon.Error);
-            }
+            WeakReferenceMessenger.Default.Send<ClassifyAsWindowCloseMessage>(new());
         }
 
         /// <summary>
