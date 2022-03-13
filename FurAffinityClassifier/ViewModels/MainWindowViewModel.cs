@@ -24,9 +24,9 @@ namespace FurAffinityClassifier.ViewModels
         /// <summary>
         /// コンストラクター
         /// </summary>
-        /// <param name="mainWindowModel">メイン画面Modelのインスタンス</param>
-        /// <param name="dialogHelper">ダイアログHelperのインスタンス</param>
-        /// <param name="childWindowHelper">子ウインドウHelperのインスタンス</param>
+        /// <param name="mainWindowModel">メイン画面Model</param>
+        /// <param name="dialogHelper">ダイアログHelper</param>
+        /// <param name="childWindowHelper">子ウインドウHelper</param>
         public MainWindowViewModel(IMainWindowModel mainWindowModel, IDialogHelper dialogHelper, IChildWindowHelper childWindowHelper)
         {
             MainWindowModel = mainWindowModel;
