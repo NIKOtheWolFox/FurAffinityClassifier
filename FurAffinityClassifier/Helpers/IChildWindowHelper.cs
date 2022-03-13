@@ -12,6 +12,6 @@ namespace FurAffinityClassifier.Helpers
     /// </summary>
     public interface IChildWindowHelper
     {
-        (bool update, ClassifyAsData result) ShowClassifyAsSettingWindow(ClassifyAsData classifyAsData);
+        (bool update, ClassifyAsData classifyAsDataResult) ShowClassifyAsSettingWindow(ClassifyAsData classifyAsDataParam);
     }
 }
