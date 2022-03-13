@@ -266,7 +266,10 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void DeleteClassifyAsSettingAction()
         {
-            System.Diagnostics.Debug.WriteLine("分類設定の削除");
+            if (DataGridSelectedItem.Value is ClassifyAsData classifyAsData)
+            {
+                MainWindowModel.RemoveClassifyAsSetting(classifyAsData);
+            }
         }
 
         /// <summary>

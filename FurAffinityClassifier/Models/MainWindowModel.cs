@@ -200,6 +200,15 @@ namespace FurAffinityClassifier.Models
         }
 
         /// <summary>
+        /// 分類設定を削除する
+        /// </summary>
+        /// <param name="classifyAsData">分類設定データ</param>
+        public void RemoveClassifyAsSetting(ClassifyAsData classifyAsData)
+        {
+            ClassifyAsDatas.Remove(classifyAsData);
+        }
+
+        /// <summary>
         /// 非同期で分類する
         /// </summary>
         /// <param name="settingsData">設定</param>
