@@ -20,15 +20,19 @@ namespace FurAffinityClassifier.ViewModels
     /// </summary>
     public class MainWindowViewModel : ObservableObject, IDisposable
     {
+        private readonly IChildWindowHelper _childWindowHelper;
+
         /// <summary>
         /// コンストラクター
         /// </summary>
         /// <param name="mainWindowModel">メイン画面Modelのインスタンス</param>
         /// <param name="dialogHelper">ダイアログHelperのインスタンス</param>
-        public MainWindowViewModel(IMainWindowModel mainWindowModel, IDialogHelper dialogHelper)
+        /// <param name="childWindowHelper">子ウインドウHelperのインスタンス</param>
+        public MainWindowViewModel(IMainWindowModel mainWindowModel, IDialogHelper dialogHelper, IChildWindowHelper childWindowHelper)
         {
             MainWindowModel = mainWindowModel;
             DialogHelper = dialogHelper;
+            _childWindowHelper = childWindowHelper;
 
             FromFolder = MainWindowModel
                 .FromFolder
@@ -230,7 +234,11 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void AddClassifyAsSettingAction()
         {
-            System.Diagnostics.Debug.WriteLine("分類設定の追加");
+            //(bool update, ClassifyAsData result) = _childWindowHelper.ShowClassifyAsSettingWindow(new());
+            (bool update, ClassifyAsData result) = _childWindowHelper.ShowClassifyAsSettingWindow(new() { Id = "testId", Folder = "testFolder" });
+            System.Diagnostics.Debug.WriteLine($"update={update}");
+            System.Diagnostics.Debug.WriteLine($"result.Id={result.Id}");
+            System.Diagnostics.Debug.WriteLine($"result.Folder={result.Folder}");
         }
 
         /// <summary>
