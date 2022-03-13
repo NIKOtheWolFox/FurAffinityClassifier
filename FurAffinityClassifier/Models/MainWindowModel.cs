@@ -191,6 +191,15 @@ namespace FurAffinityClassifier.Models
         }
 
         /// <summary>
+        /// 分類設定を追加する
+        /// </summary>
+        /// <param name="classifyAsData">分類設定データ</param>
+        public void AddClassifyAsSetting(ClassifyAsData classifyAsData)
+        {
+            ClassifyAsDatas.Add(classifyAsData);
+        }
+
+        /// <summary>
         /// 非同期で分類する
         /// </summary>
         /// <param name="settingsData">設定</param>

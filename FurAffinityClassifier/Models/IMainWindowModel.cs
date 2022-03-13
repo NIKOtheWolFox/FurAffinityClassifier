@@ -58,6 +58,12 @@ namespace FurAffinityClassifier.Models
         bool ValidateSettings();
 
         /// <summary>
+        /// 分類設定を追加する
+        /// </summary>
+        /// <param name="classifyAsData">分類設定データ</param>
+        void AddClassifyAsSetting(ClassifyAsData classifyAsData);
+
+        /// <summary>
         /// 非同期で分類する
         /// </summary>
         /// <param name="settingsData">設定</param>
