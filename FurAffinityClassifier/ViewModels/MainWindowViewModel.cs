@@ -234,8 +234,7 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void AddClassifyAsSettingAction()
         {
-            //(bool update, ClassifyAsData result) = _childWindowHelper.ShowClassifyAsSettingWindow(new());
-            (bool update, ClassifyAsData result) = _childWindowHelper.ShowClassifyAsSettingWindow(new() { Id = "testId", Folder = "testFolder" });
+            (bool update, ClassifyAsData result) = _childWindowHelper.ShowClassifyAsSettingWindow(new());
             System.Diagnostics.Debug.WriteLine($"update={update}");
             System.Diagnostics.Debug.WriteLine($"result.Id={result.Id}");
             System.Diagnostics.Debug.WriteLine($"result.Folder={result.Folder}");
