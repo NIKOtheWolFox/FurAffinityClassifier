@@ -11,7 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
+using FurAffinityClassifier.Datas.Messages;
 using FurAffinityClassifier.ViewModels;
 
 namespace FurAffinityClassifier.Views
@@ -24,6 +26,8 @@ namespace FurAffinityClassifier.Views
         public ClassifyAsSettingWindow()
         {
             InitializeComponent();
+
+            WeakReferenceMessenger.Default.Register<ClassifyAsWindowCloseMessage>(this, CloseWindow);
         }
 
         public void Initialize(ClassifyAsData classifyAsData)
@@ -44,6 +48,11 @@ namespace FurAffinityClassifier.Views
             {
                 return (false, new());
             }
+        }
+
+        private void CloseWindow(object recipient, ClassifyAsWindowCloseMessage message)
+        {
+            Close();
         }
     }
 }

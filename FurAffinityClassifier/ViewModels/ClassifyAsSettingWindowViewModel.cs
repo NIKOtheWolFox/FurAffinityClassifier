@@ -5,7 +5,9 @@ using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
+using FurAffinityClassifier.Datas.Messages;
 using FurAffinityClassifier.Models;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -74,11 +76,13 @@ namespace FurAffinityClassifier.ViewModels
         private void OkAction()
         {
             _classifyAsSettingWindowModel.Update = true;
+            WeakReferenceMessenger.Default.Send<ClassifyAsWindowCloseMessage>(new());
         }
 
         private void CancelAction()
         {
             _classifyAsSettingWindowModel.Update = false;
+            WeakReferenceMessenger.Default.Send<ClassifyAsWindowCloseMessage>(new());
         }
     }
 }
