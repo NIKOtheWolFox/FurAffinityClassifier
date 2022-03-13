@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FurAffinityClassifier.Datas.Messages
 {
+    /// <summary>
+    /// 分類設定画面を閉じるMessage
+    /// </summary>
     public class ClassifyAsWindowCloseMessage
     {
     }

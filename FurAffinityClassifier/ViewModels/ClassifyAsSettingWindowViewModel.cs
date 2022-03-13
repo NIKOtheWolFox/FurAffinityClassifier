@@ -14,10 +14,20 @@ using Reactive.Bindings.Extensions;
 
 namespace FurAffinityClassifier.ViewModels
 {
+    /// <summary>
+    /// 分類設定画面 ViewModel
+    /// </summary>
     public class ClassifyAsSettingWindowViewModel : ObservableObject, IDisposable
     {
+        /// <summary>
+        /// 分類設定画面Model
+        /// </summary>
         private readonly IClassifyAsSettingWindowModel _classifyAsSettingWindowModel;
 
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        /// <param name="classifyAsSettingWindowModel">分類設定画面Model</param>
         public ClassifyAsSettingWindowViewModel(IClassifyAsSettingWindowModel classifyAsSettingWindowModel)
         {
             _classifyAsSettingWindowModel = classifyAsSettingWindowModel;
@@ -36,14 +46,29 @@ namespace FurAffinityClassifier.ViewModels
                 .AddTo(Disposables);
         }
 
+        /// <summary>
+        /// ID
+        /// </summary>
         public ReactivePropertySlim<string> Id { get; }
 
+        /// <summary>
+        /// フォルダー
+        /// </summary>
         public ReactivePropertySlim<string> Folder { get; }
 
+        /// <summary>
+        /// [OK]ボタンクリック時のコマンド
+        /// </summary>
         public ReactiveCommand<object> OkCommand { get; }
 
+        /// <summary>
+        /// [キャンセル]ボタンクリック時のコマンド
+        /// </summary>
         public ReactiveCommand<object> CancelCommand { get; }
 
+        /// <summary>
+        /// 画面の結果
+        /// </summary>
         public (bool update, ClassifyAsData classifyAsDataResult) Result =>
             (_classifyAsSettingWindowModel.Update,
             new()
@@ -67,18 +92,28 @@ namespace FurAffinityClassifier.ViewModels
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// 初期化
+        /// </summary>
+        /// <param name="classifyAsData">画面の初期値</param>
         public void Initialize(ClassifyAsData classifyAsData)
         {
             _classifyAsSettingWindowModel.Id.Value = classifyAsData.Id;
             _classifyAsSettingWindowModel.Folder.Value = classifyAsData.Folder;
         }
 
+        /// <summary>
+        /// [OK]ボタンクリック時のAction
+        /// </summary>
         private void OkAction()
         {
             _classifyAsSettingWindowModel.Update = true;
             WeakReferenceMessenger.Default.Send<ClassifyAsWindowCloseMessage>(new());
         }
 
+        /// <summary>
+        /// [キャンセル]ボタンクリック時のAction
+        /// </summary>
         private void CancelAction()
         {
             _classifyAsSettingWindowModel.Update = false;
