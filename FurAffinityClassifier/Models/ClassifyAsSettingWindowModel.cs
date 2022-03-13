@@ -31,5 +31,14 @@ namespace FurAffinityClassifier.Models
         /// 更新有無
         /// </summary>
         public bool Update { get; set; }
+
+        /// <summary>
+        /// 入力をチェックする
+        /// </summary>
+        /// <returns>true:OK/false:NG</returns>
+        public bool Validate()
+        {
+            return !string.IsNullOrEmpty(Id.Value) && !string.IsNullOrEmpty(Folder.Value);
+        }
     }
 }

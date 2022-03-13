@@ -113,8 +113,15 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void OkAction()
         {
-            _classifyAsSettingWindowModel.Update = true;
-            WeakReferenceMessenger.Default.Send<ClassifyAsWindowCloseMessage>(new());
+            if (_classifyAsSettingWindowModel.Validate())
+            {
+                _classifyAsSettingWindowModel.Update = true;
+                WeakReferenceMessenger.Default.Send<ClassifyAsWindowCloseMessage>(new());
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("チェックNG");
+            }
         }
 
         /// <summary>

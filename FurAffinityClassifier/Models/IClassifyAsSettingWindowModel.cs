@@ -21,5 +21,11 @@ namespace FurAffinityClassifier.Models
         /// 更新有無
         /// </summary>
         bool Update { get; set; }
+
+        /// <summary>
+        /// 入力をチェックする
+        /// </summary>
+        /// <returns>true:OK/false:NG</returns>
+        bool Validate();
     }
 }
