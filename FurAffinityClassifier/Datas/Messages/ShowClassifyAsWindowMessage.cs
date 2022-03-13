@@ -16,7 +16,7 @@ namespace FurAffinityClassifier.Datas.Messages
         /// </summary>
         /// <param name="initialData">画面の初期値</param>
         /// <param name="callback">分類設定画面を閉じた後のコールバック</param>
-        public ShowClassifyAsWindowMessage(ClassifyAsData initialData, Action<bool, ClassifyAsData> callback)
+        public ShowClassifyAsWindowMessage(ClassifyAsData initialData, Action<(bool, ClassifyAsData)> callback)
         {
             InitialData = initialData;
             Callback = callback;
@@ -30,6 +30,6 @@ namespace FurAffinityClassifier.Datas.Messages
         /// <summary>
         /// 分類設定画面を閉じた後のコールバック
         /// </summary>
-        public Action<bool, ClassifyAsData> Callback { get; set; }
+        public Action<(bool, ClassifyAsData)> Callback { get; set; }
     }
 }

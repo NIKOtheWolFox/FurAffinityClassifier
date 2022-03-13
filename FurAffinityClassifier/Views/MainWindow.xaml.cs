@@ -32,8 +32,7 @@ namespace FurAffinityClassifier.Views
             };
             window.Initialize(message.InitialData);
             window.ShowDialog();
-            (bool update, FurAffinityClassifier.Datas.ClassifyAsData classifyAsDataResult) = window.Result;
-            message.Callback(update, classifyAsDataResult);
+            message.Callback(window.Result);
         }
     }
 }
