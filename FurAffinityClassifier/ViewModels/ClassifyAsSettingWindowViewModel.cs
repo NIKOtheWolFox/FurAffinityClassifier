@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
 using FurAffinityClassifier.Datas.Messages;
 using FurAffinityClassifier.Models;
+using FurAffinityClassifier.Views;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
@@ -34,11 +35,15 @@ namespace FurAffinityClassifier.ViewModels
             Folder = _classifyAsSettingWindowModel.Folder
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
+
             OkCommand = new ReactiveCommand<object>()
                 .WithSubscribe(_ => OkAction())
                 .AddTo(Disposables);
             CancelCommand = new ReactiveCommand<object>()
                 .WithSubscribe(_ => CancelAction())
+                .AddTo(Disposables);
+            ClosedCommand = new ReactiveCommand<object>()
+                .WithSubscribe(x => ClosedAction(x))
                 .AddTo(Disposables);
         }
 
@@ -61,6 +66,11 @@ namespace FurAffinityClassifier.ViewModels
         /// [キャンセル]ボタンクリック時のコマンド
         /// </summary>
         public ReactiveCommand<object> CancelCommand { get; }
+
+        /// <summary>
+        /// 画面終了時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> ClosedCommand { get; }
 
         /// <summary>
         /// 画面の結果
@@ -114,6 +124,18 @@ namespace FurAffinityClassifier.ViewModels
         {
             _classifyAsSettingWindowModel.Update = false;
             WeakReferenceMessenger.Default.Send<ClassifyAsWindowCloseMessage>(new());
+        }
+
+        /// <summary>
+        /// 画面終了時のAction
+        /// </summary>
+        /// <param name="x">X param</param>
+        private void ClosedAction(object x)
+        {
+            if (x is ClassifyAsSettingWindow window)
+            {
+                WeakReferenceMessenger.Default.UnregisterAll(window);
+            }
         }
     }
 }
