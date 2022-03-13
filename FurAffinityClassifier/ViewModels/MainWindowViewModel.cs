@@ -194,7 +194,7 @@ namespace FurAffinityClassifier.ViewModels
         }
 
         /// <summary>
-        /// 画面読み込み時のaction
+        /// 画面読み込み時のAction
         /// </summary>
         /// <returns>async Task</returns>
         private async Task LoadedActionAsync()
@@ -204,7 +204,7 @@ namespace FurAffinityClassifier.ViewModels
         }
 
         /// <summary>
-        /// 移動元の[選択]ボタンクリック時のaction
+        /// 移動元の[選択]ボタンクリック時のAction
         /// </summary>
         private void SelectFromFolderAction()
         {
@@ -216,7 +216,7 @@ namespace FurAffinityClassifier.ViewModels
         }
 
         /// <summary>
-        /// 移動先の[選択]ボタンクリック時のaction
+        /// 移動先の[選択]ボタンクリック時のAction
         /// </summary>
         private void SelectToFolderAction()
         {
