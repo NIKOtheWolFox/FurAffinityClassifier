@@ -19,6 +19,19 @@ namespace FurAffinityClassifier.ViewModels
     /// </summary>
     public class MainWindowViewModel : ObservableObject, IDisposable
     {
+        /// <summary>
+        /// メイン画面Model
+        /// </summary>
+        private readonly IMainWindowModel _mainWindowModel;
+
+        /// <summary>
+        /// ダイアログHelper
+        /// </summary>
+        private readonly IDialogHelper _dialogHelper;
+
+        /// <summary>
+        /// 子ウインドウHelper
+        /// </summary>
         private readonly IChildWindowHelper _childWindowHelper;
 
         /// <summary>
@@ -29,32 +42,26 @@ namespace FurAffinityClassifier.ViewModels
         /// <param name="childWindowHelper">子ウインドウHelper</param>
         public MainWindowViewModel(IMainWindowModel mainWindowModel, IDialogHelper dialogHelper, IChildWindowHelper childWindowHelper)
         {
-            MainWindowModel = mainWindowModel;
-            DialogHelper = dialogHelper;
+            _mainWindowModel = mainWindowModel;
+            _dialogHelper = dialogHelper;
             _childWindowHelper = childWindowHelper;
 
-            FromFolder = MainWindowModel
-                .FromFolder
+            FromFolder = _mainWindowModel.FromFolder
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            ToFolder = MainWindowModel
-                .ToFolder
+            ToFolder = _mainWindowModel.ToFolder
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            CreateFolderIfNotExist = MainWindowModel
-                .CreateFolderIfNotExist
+            CreateFolderIfNotExist = _mainWindowModel.CreateFolderIfNotExist
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            GetIdFromFurAffinity = MainWindowModel
-                .GetIdFromFurAffinity
+            GetIdFromFurAffinity = _mainWindowModel.GetIdFromFurAffinity
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            OverwriteIfExist = MainWindowModel
-                .OverwriteIfExist
+            OverwriteIfExist = _mainWindowModel.OverwriteIfExist
                 .ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(Disposables);
-            ClassifyAsDatas = MainWindowModel
-                .ClassifyAsDatas
+            ClassifyAsDatas = _mainWindowModel.ClassifyAsDatas
                 .ToReadOnlyReactiveCollection()
                 .AddTo(Disposables);
 
@@ -177,16 +184,6 @@ namespace FurAffinityClassifier.ViewModels
         public AsyncReactiveCommand<object> ExecuteCommand { get; }
 
         /// <summary>
-        /// メイン画面Model
-        /// </summary>
-        private IMainWindowModel MainWindowModel { get; }
-
-        /// <summary>
-        /// ダイアログHelper
-        /// </summary>
-        private IDialogHelper DialogHelper { get; }
-
-        /// <summary>
         /// 一括Disposeを行うためにReactiveXxをまとめるオブジェクト
         /// </summary>
         private CompositeDisposable Disposables { get; } = new CompositeDisposable();
@@ -207,7 +204,7 @@ namespace FurAffinityClassifier.ViewModels
         /// <returns>async Task</returns>
         private async Task LoadedActionAsync()
         {
-            await MainWindowModel.LoadSettingsAsync();
+            await _mainWindowModel.LoadSettingsAsync();
             Enabled.Value = true;
         }
 
@@ -216,7 +213,7 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void SelectFromFolderAction()
         {
-            string selectedFolder = DialogHelper.ShowFolderBrowserDialog(FromFolder.Value);
+            string selectedFolder = _dialogHelper.ShowFolderBrowserDialog(FromFolder.Value);
             if (!string.IsNullOrEmpty(selectedFolder))
             {
                 FromFolder.Value = selectedFolder;
@@ -228,7 +225,7 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void SelectToFolderAction()
         {
-            string selectedFolder = DialogHelper.ShowFolderBrowserDialog(ToFolder.Value);
+            string selectedFolder = _dialogHelper.ShowFolderBrowserDialog(ToFolder.Value);
             if (!string.IsNullOrEmpty(selectedFolder))
             {
                 ToFolder.Value = selectedFolder;
@@ -243,7 +240,7 @@ namespace FurAffinityClassifier.ViewModels
             (bool update, ClassifyAsData result) = _childWindowHelper.ShowClassifyAsSettingWindow(new());
             if (update)
             {
-                MainWindowModel.AddClassifyAsSetting(result);
+                _mainWindowModel.AddClassifyAsSetting(result);
             }
         }
 
@@ -257,7 +254,7 @@ namespace FurAffinityClassifier.ViewModels
                 (bool update, ClassifyAsData result) = _childWindowHelper.ShowClassifyAsSettingWindow(classifyAsData);
                 if (update)
                 {
-                    MainWindowModel.UpdateClassifyAsSetting(classifyAsData, result);
+                    _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, result);
                 }
             }
         }
@@ -269,7 +266,7 @@ namespace FurAffinityClassifier.ViewModels
         {
             if (DataGridSelectedItem.Value is ClassifyAsData classifyAsData)
             {
-                MainWindowModel.RemoveClassifyAsSetting(classifyAsData);
+                _mainWindowModel.RemoveClassifyAsSetting(classifyAsData);
             }
         }
 
@@ -281,20 +278,20 @@ namespace FurAffinityClassifier.ViewModels
         {
             Enabled.Value = false;
 
-            if (MainWindowModel.ValidateSettings())
+            if (_mainWindowModel.ValidateSettings())
             {
-                if (await MainWindowModel.SaveSettingsAsync())
+                if (await _mainWindowModel.SaveSettingsAsync())
                 {
-                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsDone, DialogIcon.Information);
+                    _dialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsDone, DialogIcon.Information);
                 }
                 else
                 {
-                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsError, DialogIcon.Error);
+                    _dialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsError, DialogIcon.Error);
                 }
             }
             else
             {
-                DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
+                _dialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
             Enabled.Value = true;
@@ -308,9 +305,9 @@ namespace FurAffinityClassifier.ViewModels
         {
             Enabled.Value = false;
 
-            if (MainWindowModel.ValidateSettings())
+            if (_mainWindowModel.ValidateSettings())
             {
-                (int foundFiles, int targetFiles, int classifiedFiles) = await MainWindowModel.ClassifyAsync();
+                (int foundFiles, int targetFiles, int classifiedFiles) = await _mainWindowModel.ClassifyAsync();
                 StringBuilder messageBuilder = new();
                 messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
                 messageBuilder.AppendLine();
@@ -326,11 +323,11 @@ namespace FurAffinityClassifier.ViewModels
                     string.Format(
                         Resources.DialogMessageClassifyFileClassifiedFiles,
                         classifiedFiles));
-                DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, messageBuilder.ToString(), DialogIcon.Information);
+                _dialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, messageBuilder.ToString(), DialogIcon.Information);
             }
             else
             {
-                DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
+                _dialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
             Enabled.Value = true;
