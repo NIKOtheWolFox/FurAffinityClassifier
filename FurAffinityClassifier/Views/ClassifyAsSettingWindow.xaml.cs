@@ -59,6 +59,7 @@ namespace FurAffinityClassifier.Views
         /// <param name="message">メッセージ</param>
         private void CloseWindow(object recipient, ClassifyAsWindowCloseMessage message)
         {
+            WeakReferenceMessenger.Default.UnregisterAll(this);
             Close();
         }
     }
