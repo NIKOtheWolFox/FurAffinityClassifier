@@ -163,4 +163,31 @@
   <data name="ToFolder" xml:space="preserve">
     <value>To:</value>
   </data>
+  <data name="GetIdFromFurAffinity" xml:space="preserve">
+    <value>Get ID from Fur Affinity</value>
+  </data>
+  <data name="AddClassifyAsSetting" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="EditClassifyAsSetting" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="DeleteClassifyAsSetting" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ClassifyAsSettingWindowTitle" xml:space="preserve">
+    <value>Classification setting</value>
+  </data>
+  <data name="ClassifyAsSettingWindowId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="ClassifyAsSettingWindowFolder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="ClassifyAsSettingWindowOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ClassifyAsSettingWindowCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

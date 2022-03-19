@@ -16,7 +16,7 @@ namespace FurAffinityClassifier.Helpers
         /// <param name="icon">アイコン</param>
         public void ShowDialog(string title, string message, DialogIcon icon)
         {
-            using TaskDialog dialog = new ()
+            using TaskDialog dialog = new()
             {
                 CenterParent = true,
                 WindowTitle = title,
@@ -34,7 +34,7 @@ namespace FurAffinityClassifier.Helpers
         /// <returns>ダイアログで選択したフォルダーのパス</returns>
         public string ShowFolderBrowserDialog(string initialFolder)
         {
-            VistaFolderBrowserDialog dialog = new ()
+            VistaFolderBrowserDialog dialog = new()
             {
                 SelectedPath = initialFolder,
             };

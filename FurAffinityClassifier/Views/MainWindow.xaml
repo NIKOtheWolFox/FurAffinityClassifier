@@ -3,14 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:prism="http://prismlibrary.com/"
         xmlns:local="clr-namespace:FurAffinityClassifier.Views"
         xmlns:properties="clr-namespace:FurAffinityClassifier.Properties"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        prism:ViewModelLocator.AutoWireViewModel="True"
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainWindowViewModel}"
         Title="Fur Affinity Classifier"
         Height="500"
         Width="400">
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Loaded">
+            <behaviors:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </behaviors:EventTrigger>
+        <behaviors:EventTrigger EventName="Closed">
+            <behaviors:InvokeCommandAction Command="{Binding ClosedCommand}"
+                                           CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
     <Grid Margin="6">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -22,7 +31,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -49,7 +60,8 @@
             <TextBox Grid.Column="0"
                      VerticalAlignment="Center"
                      Text="{Binding FromFolder.Value}"
-                     IsReadOnly="True" />
+                     IsReadOnly="True"
+                     IsEnabled="{Binding Enabled.Value}" />
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
                     Padding="10 0 10 0"
@@ -69,7 +81,8 @@
             <TextBox Grid.Column="0"
                      VerticalAlignment="Center"
                      Text="{Binding ToFolder.Value}"
-                     IsReadOnly="True" />
+                     IsReadOnly="True"
+                     IsEnabled="{Binding Enabled.Value}" />
             <Button Grid.Column="1"
                     Margin="6 0 0 0"
                     Padding="10 0 10 0"
@@ -92,19 +105,33 @@
         <CheckBox Grid.Row="6"
                   Margin="0 6 0 0"
                   Content="{x:Static properties:Resources.CreateFolderIfNotExist}"
-                  IsChecked="{Binding CreateFolderIfNotExist.Value}" />
+                  IsChecked="{Binding CreateFolderIfNotExist.Value}"
+                  IsEnabled="{Binding Enabled.Value}" />
         <CheckBox Grid.Row="7"
+                  Margin="15 6 0 0"
+                  Content="{x:Static properties:Resources.GetIdFromFurAffinity}"
+                  IsChecked="{Binding GetIdFromFurAffinity.Value}"
+                  IsEnabled="{Binding Enabled.Value}" />
+        <CheckBox Grid.Row="8"
                   Margin="0 6 0 0"
                   Content="{x:Static properties:Resources.OverwriteIfExist}"
-                  IsChecked="{Binding OverwriteIfExist.Value}" />
-        <TextBlock Grid.Row="8"
+                  IsChecked="{Binding OverwriteIfExist.Value}"
+                  IsEnabled="{Binding Enabled.Value}" />
+        <TextBlock Grid.Row="9"
                    Margin="0 6 0 0"
                    Text="{x:Static properties:Resources.ClassifyAs}" />
-        <DataGrid Grid.Row="9"
+        <DataGrid Grid.Row="10"
                   Margin="0 6 0 0"
-                  ItemsSource="{Binding ClassifyAsDatas.Value}"
+                  ItemsSource="{Binding ClassifyAsDatas}"
                   AutoGenerateColumns="False"
-                  RowHeaderWidth="20">
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeRows="False"
+                  SelectionUnit="FullRow"
+                  SelectedItem="{Binding DataGridSelectedItem.Value, Mode=OneWayToSource}"
+                  RowHeaderWidth="0"
+                  IsReadOnly="True"
+                  IsEnabled="{Binding Enabled.Value}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridHeaderId}"
                                     Width="*"
@@ -114,13 +141,38 @@
                                     Binding="{Binding Folder}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="10"
+        <Grid Grid.Row="11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Margin="0 6 0 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Left"
+                    Content="{x:Static properties:Resources.AddClassifyAsSetting}"
+                    Command="{Binding AddClassifyAsSettingCommand}" />
+            <Button Grid.Column="1"
+                    Margin="6 6 0 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Left"
+                    Content="{x:Static properties:Resources.EditClassifyAsSetting}"
+                    Command="{Binding EditClassifyAsSettingCommand}" />
+            <Button Grid.Column="2"
+                    Margin="6 6 0 0"
+                    Padding="10 0 10 0"
+                    HorizontalAlignment="Left"
+                    Content="{x:Static properties:Resources.DeleteClassifyAsSetting}"
+                    Command="{Binding DeleteClassifyAsSettingCommand}" />
+        </Grid>
+        <Button Grid.Row="12"
                 Margin="0 6 0 0"
                 Padding="10 0 10 0"
                 HorizontalAlignment="Right"
                 Content="{x:Static properties:Resources.SaveSettings}"
                 Command="{Binding SaveSettingsCommand}" />
-        <Button Grid.Row="11"
+        <Button Grid.Row="13"
                 Margin="0 6 0 0"
                 Padding="10 0 10 0"
                 HorizontalAlignment="Right"

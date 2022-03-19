@@ -1,101 +1,145 @@
 using System;
-using System.Collections.Generic;
 using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
+using FurAffinityClassifier.Datas.Messages;
 using FurAffinityClassifier.Enums;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
 using FurAffinityClassifier.Properties;
-using Prism.Mvvm;
+using FurAffinityClassifier.Views;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
 namespace FurAffinityClassifier.ViewModels
 {
     /// <summary>
-    /// メイン画面のViewModel
+    /// メイン画面ViewModel
     /// </summary>
-    public class MainWindowViewModel : BindableBase, IDisposable
+    public class MainWindowViewModel : ObservableObject, IDisposable
     {
+        /// <summary>
+        /// メイン画面Model
+        /// </summary>
+        private readonly IMainWindowModel _mainWindowModel;
+
+        /// <summary>
+        /// ダイアログHelper
+        /// </summary>
+        private readonly IDialogHelper _dialogHelper;
+
         /// <summary>
         /// コンストラクター
         /// </summary>
-        /// <param name="appModel">アプリケーションModelのインスタンス</param>
-        /// <param name="dialogHelper">ダイアログHelperのインスタンス</param>
-        public MainWindowViewModel(IAppModel appModel, IDialogHelper dialogHelper)
+        /// <param name="mainWindowModel">メイン画面Model</param>
+        /// <param name="dialogHelper">ダイアログHelper</param>
+        public MainWindowViewModel(IMainWindowModel mainWindowModel, IDialogHelper dialogHelper)
         {
-            AppModel = appModel;
-            DialogHelper = dialogHelper;
+            _mainWindowModel = mainWindowModel;
+            _dialogHelper = dialogHelper;
 
-            AppModel.LoadSettings();
+            FromFolder = _mainWindowModel.FromFolder
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(Disposables);
+            ToFolder = _mainWindowModel.ToFolder
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(Disposables);
+            CreateFolderIfNotExist = _mainWindowModel.CreateFolderIfNotExist
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(Disposables);
+            GetIdFromFurAffinity = _mainWindowModel.GetIdFromFurAffinity
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(Disposables);
+            OverwriteIfExist = _mainWindowModel.OverwriteIfExist
+                .ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(Disposables);
+            ClassifyAsDatas = _mainWindowModel.ClassifyAsDatas
+                .ToReadOnlyReactiveCollection()
+                .AddTo(Disposables);
 
-            FromFolder = ReactiveProperty
-                .FromObject(AppModel, x => x.FromFolder)
+            Enabled = new ReactivePropertySlim<bool>(false)
                 .AddTo(Disposables);
-            ToFolder = ReactiveProperty
-                .FromObject(AppModel, x => x.ToFolder)
-                .AddTo(Disposables);
-            CreateFolderIfNotExist = ReactiveProperty
-                .FromObject(AppModel, x => x.CreateFolderIfNotExist)
-                .AddTo(Disposables);
-            OverwriteIfExist = ReactiveProperty
-                .FromObject(AppModel, x => x.OverwriteIfExist)
-                .AddTo(Disposables);
-            ClassifyAsDatas = ReactiveProperty
-                .FromObject(AppModel, x => x.ClassifyAsDatas)
+            DataGridSelectedItem = new ReactivePropertySlim<object>()
                 .AddTo(Disposables);
 
-            ButtonEnable = new ReactiveProperty<bool>(true);
-
-            SelectFromFolderCommand = ButtonEnable
+            SelectFromFolderCommand = Enabled
                 .ToReactiveCommand()
                 .WithSubscribe(_ => SelectFromFolderAction())
                 .AddTo(Disposables);
-            SelectToFolderCommand = ButtonEnable
+            SelectToFolderCommand = Enabled
                 .ToReactiveCommand()
                 .WithSubscribe(_ => SelectToFolderAction())
                 .AddTo(Disposables);
-            SaveSettingsCommand = ButtonEnable
+            AddClassifyAsSettingCommand = Enabled
+                .ToReactiveCommand()
+                .WithSubscribe(_ => AddClassifyAsSettingAction())
+                .AddTo(Disposables);
+            EditClassifyAsSettingCommand = Enabled
+                .ToReactiveCommand()
+                .WithSubscribe(_ => EditClassifyAsSettingAction())
+                .AddTo(Disposables);
+            DeleteClassifyAsSettingCommand = Enabled
+                .ToReactiveCommand()
+                .WithSubscribe(_ => DeleteClassifyAsSettingAction())
+                .AddTo(Disposables);
+            SaveSettingsCommand = Enabled
                 .ToAsyncReactiveCommand()
                 .WithSubscribe(_ => SaveSettingsActionAsync())
                 .AddTo(Disposables);
-            ExecuteCommand = ButtonEnable
+            ExecuteCommand = Enabled
                 .ToAsyncReactiveCommand()
                 .WithSubscribe(_ => ExecuteActionAsync())
+                .AddTo(Disposables);
+            LoadedCommand = new AsyncReactiveCommand()
+                .WithSubscribe(_ => LoadedActionAsync())
+                .AddTo(Disposables);
+            ClosedCommand = new ReactiveCommand<object>()
+                .WithSubscribe(x => ClosedAction(x))
                 .AddTo(Disposables);
         }
 
         /// <summary>
         /// 移動元フォルダー
         /// </summary>
-        public ReactiveProperty<string> FromFolder { get; }
+        public ReactivePropertySlim<string> FromFolder { get; }
 
         /// <summary>
         /// 移動先フォルダー
         /// </summary>
-        public ReactiveProperty<string> ToFolder { get; }
+        public ReactivePropertySlim<string> ToFolder { get; }
 
         /// <summary>
         /// 移動先のフォルダーが存在しないときに作成するか
         /// </summary>
-        public ReactiveProperty<bool> CreateFolderIfNotExist { get; }
+        public ReactivePropertySlim<bool> CreateFolderIfNotExist { get; }
+
+        /// <summary>
+        /// IDをFur Affinityから取得するか
+        /// </summary>
+        public ReactivePropertySlim<bool> GetIdFromFurAffinity { get; }
 
         /// <summary>
         /// 同名のファイルが存在するときに上書きするか
         /// </summary>
-        public ReactiveProperty<bool> OverwriteIfExist { get; }
+        public ReactivePropertySlim<bool> OverwriteIfExist { get; }
 
         /// <summary>
-        /// IDと異なるフォルダーに分類する設定のリスト
+        /// IDと異なるフォルダーに分類する設定
         /// </summary>
-        public ReactiveProperty<List<ClassifyAsData>> ClassifyAsDatas { get; }
+        public ReadOnlyReactiveCollection<ClassifyAsData> ClassifyAsDatas { get; }
 
         /// <summary>
-        /// ボタンが操作可能か
+        /// 操作可能か
         /// </summary>
-        public ReactiveProperty<bool> ButtonEnable { get; }
+        public ReactivePropertySlim<bool> Enabled { get; }
+
+        /// <summary>
+        /// 分類設定一覧の選択アイテム
+        /// </summary>
+        public ReactivePropertySlim<object> DataGridSelectedItem { get; }
 
         /// <summary>
         /// 移動元の[選択]ボタンクリック時のコマンド
@@ -108,6 +152,21 @@ namespace FurAffinityClassifier.ViewModels
         public ReactiveCommand<object> SelectToFolderCommand { get; }
 
         /// <summary>
+        /// 分類設定の[追加]ボタンクリック時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> AddClassifyAsSettingCommand { get; }
+
+        /// <summary>
+        /// 分類設定の[編集]ボタンクリック時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> EditClassifyAsSettingCommand { get; }
+
+        /// <summary>
+        /// 分類設定の[削除]ボタンクリック時のコマンド
+        /// </summary>
+        public ReactiveCommand<object> DeleteClassifyAsSettingCommand { get; }
+
+        /// <summary>
         /// [設定を保存]ボタンクリック時のコマンド
         /// </summary>
         public AsyncReactiveCommand<object> SaveSettingsCommand { get; }
@@ -118,14 +177,14 @@ namespace FurAffinityClassifier.ViewModels
         public AsyncReactiveCommand<object> ExecuteCommand { get; }
 
         /// <summary>
-        /// アプリケーションModel
+        /// 画面読み込み時のコマンド
         /// </summary>
-        private IAppModel AppModel { get; }
+        public AsyncReactiveCommand<object> LoadedCommand { get; }
 
         /// <summary>
-        /// ダイアログHelper
+        /// 画面終了時のコマンド
         /// </summary>
-        private IDialogHelper DialogHelper { get; }
+        public ReactiveCommand<object> ClosedCommand { get; }
 
         /// <summary>
         /// 一括Disposeを行うためにReactiveXxをまとめるオブジェクト
@@ -143,11 +202,11 @@ namespace FurAffinityClassifier.ViewModels
         }
 
         /// <summary>
-        /// 移動元の[選択]ボタンクリック時のaction
+        /// 移動元の[選択]ボタンクリック時のAction
         /// </summary>
         private void SelectFromFolderAction()
         {
-            string selectedFolder = DialogHelper.ShowFolderBrowserDialog(FromFolder.Value);
+            string selectedFolder = _dialogHelper.ShowFolderBrowserDialog(FromFolder.Value);
             if (!string.IsNullOrEmpty(selectedFolder))
             {
                 FromFolder.Value = selectedFolder;
@@ -155,11 +214,11 @@ namespace FurAffinityClassifier.ViewModels
         }
 
         /// <summary>
-        /// 移動先の[選択]ボタンクリック時のaction
+        /// 移動先の[選択]ボタンクリック時のAction
         /// </summary>
         private void SelectToFolderAction()
         {
-            string selectedFolder = DialogHelper.ShowFolderBrowserDialog(ToFolder.Value);
+            string selectedFolder = _dialogHelper.ShowFolderBrowserDialog(ToFolder.Value);
             if (!string.IsNullOrEmpty(selectedFolder))
             {
                 ToFolder.Value = selectedFolder;
@@ -167,64 +226,126 @@ namespace FurAffinityClassifier.ViewModels
         }
 
         /// <summary>
+        /// 分類設定の[追加]ボタンクリック時のAction
+        /// </summary>
+        private void AddClassifyAsSettingAction()
+        {
+            (bool update, ClassifyAsData data) = WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(new())).Response;
+            if (update)
+            {
+                _mainWindowModel.AddClassifyAsSetting(data);
+            }
+        }
+
+        /// <summary>
+        /// 分類設定の[編集]ボタンクリック時のAction
+        /// </summary>
+        private void EditClassifyAsSettingAction()
+        {
+            if (DataGridSelectedItem.Value is ClassifyAsData classifyAsData)
+            {
+                (bool update, ClassifyAsData data) = WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(classifyAsData)).Response;
+                if (update)
+                {
+                    _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, data);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 分類設定の[削除]ボタンクリック時のAction
+        /// </summary>
+        private void DeleteClassifyAsSettingAction()
+        {
+            if (DataGridSelectedItem.Value is ClassifyAsData classifyAsData)
+            {
+                _mainWindowModel.RemoveClassifyAsSetting(classifyAsData);
+            }
+        }
+
+        /// <summary>
         /// [設定を保存]ボタンクリック時のaction
         /// </summary>
+        /// <returns>async Task</returns>
         private async Task SaveSettingsActionAsync()
         {
-            ButtonEnable.Value = false;
+            Enabled.Value = false;
 
-            if (AppModel.ValidateSettings())
+            if (_mainWindowModel.ValidateSettings())
             {
-                if (await AppModel.SaveSettingsAsync())
+                if (await _mainWindowModel.SaveSettingsAsync())
                 {
-                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsDone, DialogIcon.Information);
+                    _dialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsDone, DialogIcon.Information);
                 }
                 else
                 {
-                    DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsError, DialogIcon.Error);
+                    _dialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageSaveSettingsError, DialogIcon.Error);
                 }
             }
             else
             {
-                DialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
+                _dialogHelper.ShowDialog(Resources.DialogTitleSaveSettings, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
-            ButtonEnable.Value = true;
+            Enabled.Value = true;
         }
 
         /// <summary>
         /// [実行]ボタンクリック時のaction
         /// </summary>
+        /// <returns>async Task</returns>
         private async Task ExecuteActionAsync()
         {
-            ButtonEnable.Value = false;
+            Enabled.Value = false;
 
-            if (AppModel.ValidateSettings())
+            if (_mainWindowModel.ValidateSettings())
             {
-                Dictionary<string, int> classificationResult = await AppModel.ClassifyAsync();
-                StringBuilder messageBuilder = new ();
+                (int foundFiles, int targetFiles, int classifiedFiles) = await _mainWindowModel.ClassifyAsync();
+                StringBuilder messageBuilder = new();
                 messageBuilder.AppendLine(Resources.DialogMessageClassifyFileDone);
                 messageBuilder.AppendLine();
                 messageBuilder.AppendLine(
                     string.Format(
                         Resources.DialogMessageClassifyFileFoundFiles,
-                        classificationResult[Const.ClassificationResultFoundFileCount]));
+                        foundFiles));
                 messageBuilder.AppendLine(
                     string.Format(
                         Resources.DialogMessageClassifyFileTargetFiles,
-                        classificationResult[Const.ClassificationResultTargetFileCount]));
+                        targetFiles));
                 messageBuilder.AppendLine(
                     string.Format(
                         Resources.DialogMessageClassifyFileClassifiedFiles,
-                        classificationResult[Const.ClassificationResultClassifiedFileCount]));
-                DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, messageBuilder.ToString(), DialogIcon.Information);
+                        classifiedFiles));
+                _dialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, messageBuilder.ToString(), DialogIcon.Information);
             }
             else
             {
-                DialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
+                _dialogHelper.ShowDialog(Resources.DialogTitleClassifyFile, Resources.DialogMessageInvalidSettings, DialogIcon.Error);
             }
 
-            ButtonEnable.Value = true;
+            Enabled.Value = true;
+        }
+
+        /// <summary>
+        /// 画面読み込み時のAction
+        /// </summary>
+        /// <returns>async Task</returns>
+        private async Task LoadedActionAsync()
+        {
+            await _mainWindowModel.LoadSettingsAsync();
+            Enabled.Value = true;
+        }
+
+        /// <summary>
+        /// 画面終了時のAction
+        /// </summary>
+        /// <param name="x">画面からのパラメーター</param>
+        private void ClosedAction(object x)
+        {
+            if (x is MainWindow window)
+            {
+                WeakReferenceMessenger.Default.UnregisterAll(window);
+            }
         }
     }
 }

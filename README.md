@@ -4,7 +4,7 @@ This application classify files that downloaded from Fur Affinity into ID-based 
 [![Latest Release](https://img.shields.io/github/v/release/NIKOtheWolFox/FurAffinityClassifier)](https://github.com/NIKOtheWolFox/FurAffinityClassifier/releases)
 
 ## Requirements
-.NET 5
+.NET 6
 
 ## How to use
 1. Unzip released file.
@@ -20,6 +20,7 @@ Content of file is:
     "FromFolder": "[folder contains files before classification]",
     "ToFolder": "[parent folder of ID-based folders]",
     "CreateFolderIfNotExist": [true | false],
+    "GetIdFromFurAffinity": [true | false],
     "OverwriteIfExist": [true | false],
     "ClassifyAsDatas": [
         {
@@ -40,6 +41,7 @@ If you set up as:
     "FromFolder": "C:\\Users\\foo\\Downloads",
     "ToFolder": "C:\\Users\\foo\\Pictures",
     "CreateFolderIfNotExist": false,
+    "GetIdFromFurAffinity": false,
     "OverwriteIfExist": false,
     "ClassifyAsDatas": [
         {
@@ -57,6 +59,13 @@ Then you run this application, files are classified as below:
 * 1234567890.test_bar.jpg : FA user ID is in ClassifyAsDatas, so this file will be moved to C:\Users\foo\Pictures\test_folder.
 * 2345678901.test2_baz.jpg : FA user ID isn't in Classifyas Datas, so this file will be moved to C:\Users\foo\Pictures\test2.
 
+(Ver. 6.0.0 and newer)<br>
+"GetIdFromFurAffinity" is added to settings.json.<br>
+This setting is effective only when "CreateFolderIfNotExist" is true.<br>
+If it is false, the app create folder by using ID get from filename.<br>
+If it is true, the app create folder by using ID get from Fur Affinity userpage.<br>
+
+
 ## Copyright
 (c) 2020 NIKO
 
@@ -73,24 +82,32 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 
 ## Libraries usage
 [NLog](https://nlog-project.org/)<br>
-(c) 2004-2021 NLog Project - https://nlog-project.org/<br>
+(c) 2004-2022 NLog Project - https://nlog-project.org/<br>
 [BSD 3-Clause License](https://github.com/NLog/NLog/blob/dev/LICENSE.txt)<br>
 
 [Ookii.Dialogs.Wpf](https://github.com/ookii-dialogs/ookii-dialogs-wpf)<br>
-(c) 2009-2020 Ookii Dialogs Contributors<br>
+(c) 2009-2021 Ookii Dialogs Contributors<br>
 [BSD 3-Clause License](https://github.com/ookii-dialogs/ookii-dialogs-wpf/blob/master/LICENSE)
 
-[Prism](https://github.com/PrismLibrary/Prism)<br>
-(c) Brian Lagunas, Dan Siegel<br>
-[MIT License](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)
+[AngleSharp](https://anglesharp.github.io/)<br>
+(c)2013-2021, AngleSharp.<br>
+[MIT License](https://github.com/AngleSharp/AngleSharp/blob/devel/LICENSE)
 
-[Unity.Container](https://github.com/unitycontainer/unity)<br>
-(c) .NET Foundation and Contributors<br>
-[Apache License 2.0](https://github.com/unitycontainer/unity/blob/master/LICENSE)
+[CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet)<br>
+(c) .NET Foundation and Contributors.<br>
+[MIT License](https://github.com/CommunityToolkit/dotnet/blob/main/License.md)
+
+[Microsoft.Extensions.DependencyInjection](https://github.com/dotnet/runtime)<br>
+(c) Microsoft Corporation.<br>
+[MIT License](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
 
 [ReactiveProperty](https://github.com/runceel/ReactiveProperty)<br>
 (c) 2018 neuecc, xin9le, okazuki<br>
 [MIT License](https://github.com/runceel/ReactiveProperty/blob/master/LICENSE.txt)
+
+[Microsoft.Xaml.Behaviors.Wpf](https://github.com/Microsoft/XamlBehaviorsWpf)<br>
+(c) Microsoft Corporation.<br>
+[MIT License](https://github.com/microsoft/XamlBehaviorsWpf/blob/master/LICENSE)
 
 [StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)<br>
 (c) 2015 Tunnel Vision Laboratories, LLC<br>
