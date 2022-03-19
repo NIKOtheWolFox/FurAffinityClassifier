@@ -230,13 +230,11 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void AddClassifyAsSettingAction()
         {
-            WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(new(), ((bool update, ClassifyAsData data) r) =>
+            (bool update, ClassifyAsData data) = WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(new())).Response;
+            if (update)
             {
-                if (r.update)
-                {
-                    _mainWindowModel.AddClassifyAsSetting(r.data);
-                }
-            }));
+                _mainWindowModel.AddClassifyAsSetting(data);
+            }
         }
 
         /// <summary>
@@ -246,13 +244,11 @@ namespace FurAffinityClassifier.ViewModels
         {
             if (DataGridSelectedItem.Value is ClassifyAsData classifyAsData)
             {
-                WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(classifyAsData, ((bool update, ClassifyAsData data) r) =>
+                (bool update, ClassifyAsData data) = WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(classifyAsData)).Response;
+                if (update)
                 {
-                    if (r.update)
-                    {
-                        _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, r.data);
-                    }
-                }));
+                    _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, data);
+                }
             }
         }
 

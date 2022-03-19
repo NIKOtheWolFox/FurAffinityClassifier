@@ -32,7 +32,7 @@ namespace FurAffinityClassifier.Views
             };
             window.Initialize(message.InitialData);
             window.ShowDialog();
-            message.Callback(window.Result);
+            message.Reply(window.Result);
         }
     }
 }
