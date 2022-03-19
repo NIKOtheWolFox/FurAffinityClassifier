@@ -17,7 +17,6 @@ namespace FurAffinityClassifier.Views
             InitializeComponent();
 
             WeakReferenceMessenger.Default.Register<ShowClassifyAsWindowMessage>(this, ShowClassifyAsWindow);
-            WeakReferenceMessenger.Default.Register<ShowClassifyAsWindow2Message>(this, ShowClassifyAsWindow2);
         }
 
         /// <summary>
@@ -26,17 +25,6 @@ namespace FurAffinityClassifier.Views
         /// <param name="recipient">メッセージを受信するオブジェクト</param>
         /// <param name="message">メッセージ</param>
         private void ShowClassifyAsWindow(object recipient, ShowClassifyAsWindowMessage message)
-        {
-            ClassifyAsSettingWindow window = new()
-            {
-                Owner = this,
-            };
-            window.Initialize(message.InitialData);
-            window.ShowDialog();
-            message.Callback(window.Result);
-        }
-
-        private void ShowClassifyAsWindow2(object recipient, ShowClassifyAsWindow2Message message)
         {
             ClassifyAsSettingWindow window = new()
             {
