@@ -247,7 +247,7 @@ namespace FurAffinityClassifier.ViewModels
                 (bool update, ClassifyAsData data) = WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(classifyAsData)).Response;
                 if (update)
                 {
-                    _mainWindowModel.AddClassifyAsSetting(data);
+                    _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, data);
                 }
             }
         }
