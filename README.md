@@ -4,7 +4,7 @@ This application classify files that downloaded from Fur Affinity into ID-based 
 [![Latest Release](https://img.shields.io/github/v/release/NIKOtheWolFox/FurAffinityClassifier)](https://github.com/NIKOtheWolFox/FurAffinityClassifier/releases)
 
 ## Requirements
-.NET 5
+.NET 6
 
 ## How to use
 1. Unzip released file.
