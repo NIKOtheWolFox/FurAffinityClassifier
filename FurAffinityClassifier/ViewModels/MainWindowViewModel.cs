@@ -230,6 +230,7 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void AddClassifyAsSettingAction()
         {
+            /*
             WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(new(), ((bool update, ClassifyAsData data) r) =>
             {
                 if (r.update)
@@ -237,6 +238,13 @@ namespace FurAffinityClassifier.ViewModels
                     _mainWindowModel.AddClassifyAsSetting(r.data);
                 }
             }));
+            */
+            System.Diagnostics.Debug.WriteLine("p1");
+            var x = WeakReferenceMessenger.Default.Send<ShowClassifyAsWindow2Message>(new(new()));
+            System.Diagnostics.Debug.WriteLine("p2");
+            System.Diagnostics.Debug.WriteLine($"x.Response.update={x.Response.update}");
+            System.Diagnostics.Debug.WriteLine($"x.Response.data.Id={x.Response.data.Id}");
+            System.Diagnostics.Debug.WriteLine($"x.Response.data.Folder={x.Response.data.Folder}");
         }
 
         /// <summary>

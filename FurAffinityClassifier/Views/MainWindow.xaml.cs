@@ -17,6 +17,7 @@ namespace FurAffinityClassifier.Views
             InitializeComponent();
 
             WeakReferenceMessenger.Default.Register<ShowClassifyAsWindowMessage>(this, ShowClassifyAsWindow);
+            WeakReferenceMessenger.Default.Register<ShowClassifyAsWindow2Message>(this, ShowClassifyAsWindow2);
         }
 
         /// <summary>
@@ -33,6 +34,17 @@ namespace FurAffinityClassifier.Views
             window.Initialize(message.InitialData);
             window.ShowDialog();
             message.Callback(window.Result);
+        }
+
+        private void ShowClassifyAsWindow2(object recipient, ShowClassifyAsWindow2Message message)
+        {
+            ClassifyAsSettingWindow window = new()
+            {
+                Owner = this,
+            };
+            window.Initialize(message.InitialData);
+            window.ShowDialog();
+            message.Reply(window.Result);
         }
     }
 }
