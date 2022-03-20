@@ -1,14 +1,11 @@
 using System;
 using System.Reactive.Disposables;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
-using FurAffinityClassifier.Datas.Messages;
 using FurAffinityClassifier.Enums;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
 using FurAffinityClassifier.Properties;
-using FurAffinityClassifier.Views;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
@@ -52,9 +49,6 @@ namespace FurAffinityClassifier.ViewModels
             CancelCommand = new ReactiveCommand<object>()
                 .WithSubscribe(_ => CancelAction())
                 .AddTo(Disposables);
-            ClosedCommand = new ReactiveCommand<object>()
-                .WithSubscribe(x => ClosedAction(x))
-                .AddTo(Disposables);
         }
 
         /// <summary>
@@ -77,10 +71,7 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         public ReactiveCommand<object> CancelCommand { get; }
 
-        /// <summary>
-        /// 画面終了時のコマンド
-        /// </summary>
-        public ReactiveCommand<object> ClosedCommand { get; }
+        public Action CloseWindowAction { get; set; }
 
         /// <summary>
         /// 画面の結果
@@ -126,7 +117,7 @@ namespace FurAffinityClassifier.ViewModels
             if (_classifyAsSettingWindowModel.Validate())
             {
                 _classifyAsSettingWindowModel.Update = true;
-                WeakReferenceMessenger.Default.Send<ClassifyAsWindowCloseMessage>(new());
+                CloseWindowAction?.Invoke();
             }
             else
             {
@@ -140,19 +131,7 @@ namespace FurAffinityClassifier.ViewModels
         private void CancelAction()
         {
             _classifyAsSettingWindowModel.Update = false;
-            WeakReferenceMessenger.Default.Send<ClassifyAsWindowCloseMessage>(new());
-        }
-
-        /// <summary>
-        /// 画面終了時のAction
-        /// </summary>
-        /// <param name="x">X param</param>
-        private void ClosedAction(object x)
-        {
-            if (x is ClassifyAsSettingWindow window)
-            {
-                WeakReferenceMessenger.Default.UnregisterAll(window);
-            }
+            CloseWindowAction?.Invoke();
         }
     }
 }

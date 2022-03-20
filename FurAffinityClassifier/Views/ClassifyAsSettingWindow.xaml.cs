@@ -1,7 +1,5 @@
 using System.Windows;
-using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
-using FurAffinityClassifier.Datas.Messages;
 using FurAffinityClassifier.ViewModels;
 
 namespace FurAffinityClassifier.Views
@@ -18,7 +16,13 @@ namespace FurAffinityClassifier.Views
         {
             InitializeComponent();
 
-            WeakReferenceMessenger.Default.Register<ClassifyAsWindowCloseMessage>(this, CloseWindow);
+            if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
+            {
+                viewModel.CloseWindowAction += () =>
+                {
+                    Close();
+                };
+            }
         }
 
         /// <summary>
@@ -50,16 +54,6 @@ namespace FurAffinityClassifier.Views
             {
                 viewModel.Initialize(classifyAsData);
             }
-        }
-
-        /// <summary>
-        /// 画面を閉じる
-        /// </summary>
-        /// <param name="recipient">メッセージを受信するオブジェクト</param>
-        /// <param name="message">メッセージ</param>
-        private void CloseWindow(object recipient, ClassifyAsWindowCloseMessage message)
-        {
-            Close();
         }
     }
 }
