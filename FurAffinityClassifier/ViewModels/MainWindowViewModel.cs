@@ -3,14 +3,11 @@ using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
-using FurAffinityClassifier.Datas.Messages;
 using FurAffinityClassifier.Enums;
 using FurAffinityClassifier.Helpers;
 using FurAffinityClassifier.Models;
 using FurAffinityClassifier.Properties;
-using FurAffinityClassifier.Views;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 
@@ -96,9 +93,6 @@ namespace FurAffinityClassifier.ViewModels
             LoadedCommand = new AsyncReactiveCommand()
                 .WithSubscribe(_ => LoadedActionAsync())
                 .AddTo(Disposables);
-            ClosedCommand = new ReactiveCommand<object>()
-                .WithSubscribe(x => ClosedAction(x))
-                .AddTo(Disposables);
         }
 
         /// <summary>
@@ -182,9 +176,9 @@ namespace FurAffinityClassifier.ViewModels
         public AsyncReactiveCommand<object> LoadedCommand { get; }
 
         /// <summary>
-        /// 画面終了時のコマンド
+        /// 分類設定画面を表示するFunc
         /// </summary>
-        public ReactiveCommand<object> ClosedCommand { get; }
+        public Func<ClassifyAsData, (bool update, ClassifyAsData data)> ShowClassifyAsSettingWindowFunc { get; set; }
 
         /// <summary>
         /// 一括Disposeを行うためにReactiveXxをまとめるオブジェクト
@@ -230,10 +224,14 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void AddClassifyAsSettingAction()
         {
-            (bool update, ClassifyAsData data) = WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(new())).Response;
-            if (update)
+            var result = ShowClassifyAsSettingWindowFunc?.Invoke(new());
+            if (result.HasValue)
             {
-                _mainWindowModel.AddClassifyAsSetting(data);
+                (bool update, ClassifyAsData data) = result.Value;
+                if (update)
+                {
+                    _mainWindowModel.AddClassifyAsSetting(data);
+                }
             }
         }
 
@@ -244,10 +242,14 @@ namespace FurAffinityClassifier.ViewModels
         {
             if (DataGridSelectedItem.Value is ClassifyAsData classifyAsData)
             {
-                (bool update, ClassifyAsData data) = WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(classifyAsData)).Response;
-                if (update)
+                var result = ShowClassifyAsSettingWindowFunc?.Invoke(classifyAsData);
+                if (result.HasValue)
                 {
-                    _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, data);
+                    (bool update, ClassifyAsData data) = result.Value;
+                    if (update)
+                    {
+                        _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, data);
+                    }
                 }
             }
         }
@@ -334,18 +336,6 @@ namespace FurAffinityClassifier.ViewModels
         {
             await _mainWindowModel.LoadSettingsAsync();
             Enabled.Value = true;
-        }
-
-        /// <summary>
-        /// 画面終了時のAction
-        /// </summary>
-        /// <param name="x">画面からのパラメーター</param>
-        private void ClosedAction(object x)
-        {
-            if (x is MainWindow window)
-            {
-                WeakReferenceMessenger.Default.UnregisterAll(window);
-            }
         }
     }
 }

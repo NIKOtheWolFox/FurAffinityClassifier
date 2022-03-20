@@ -1,6 +1,5 @@
 using System.Windows;
-using CommunityToolkit.Mvvm.Messaging;
-using FurAffinityClassifier.Datas.Messages;
+using FurAffinityClassifier.ViewModels;
 
 namespace FurAffinityClassifier.Views
 {
@@ -16,22 +15,18 @@ namespace FurAffinityClassifier.Views
         {
             InitializeComponent();
 
-            WeakReferenceMessenger.Default.Register<ShowClassifyAsWindowMessage>(this, ShowClassifyAsWindow);
-        }
-
-        /// <summary>
-        /// 分類設定画面を表示する
-        /// </summary>
-        /// <param name="recipient">メッセージを受信するオブジェクト</param>
-        /// <param name="message">メッセージ</param>
-        private void ShowClassifyAsWindow(object recipient, ShowClassifyAsWindowMessage message)
-        {
-            ClassifyAsSettingWindow window = new(message.InitialData)
+            if (DataContext is MainWindowViewModel viewModel)
             {
-                Owner = this,
-            };
-            window.ShowDialog();
-            message.Reply(window.Result);
+                viewModel.ShowClassifyAsSettingWindowFunc += (data) =>
+                {
+                    ClassifyAsSettingWindow window = new(data)
+                    {
+                        Owner = this,
+                    };
+                    window.ShowDialog();
+                    return window.Result;
+                };
+            }
         }
     }
 }
