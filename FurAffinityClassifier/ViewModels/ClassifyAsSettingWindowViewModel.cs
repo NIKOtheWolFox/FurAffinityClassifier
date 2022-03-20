@@ -71,6 +71,9 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         public ReactiveCommand<object> CancelCommand { get; }
 
+        /// <summary>
+        /// 画面を閉じるAction
+        /// </summary>
         public Action CloseWindowAction { get; set; }
 
         /// <summary>

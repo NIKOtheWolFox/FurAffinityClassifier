@@ -15,9 +15,18 @@ namespace FurAffinityClassifier.Views
         public ClassifyAsSettingWindow()
         {
             InitializeComponent();
+        }
 
+        /// <summary>
+        /// 初期値を指定するコンストラクター
+        /// </summary>
+        /// <param name="classifyAsData">画面の初期値</param>
+        public ClassifyAsSettingWindow(ClassifyAsData classifyAsData)
+            : this()
+        {
             if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
             {
+                viewModel.Initialize(classifyAsData);
                 viewModel.CloseWindowAction += () =>
                 {
                     Close();
@@ -41,18 +50,6 @@ namespace FurAffinityClassifier.Views
                 {
                     return (false, new());
                 }
-            }
-        }
-
-        /// <summary>
-        /// 初期化
-        /// </summary>
-        /// <param name="classifyAsData">画面の初期値</param>
-        public void Initialize(ClassifyAsData classifyAsData)
-        {
-            if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
-            {
-                viewModel.Initialize(classifyAsData);
             }
         }
     }

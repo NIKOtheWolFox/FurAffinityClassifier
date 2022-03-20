@@ -26,11 +26,10 @@ namespace FurAffinityClassifier.Views
         /// <param name="message">メッセージ</param>
         private void ShowClassifyAsWindow(object recipient, ShowClassifyAsWindowMessage message)
         {
-            ClassifyAsSettingWindow window = new()
+            ClassifyAsSettingWindow window = new(message.InitialData)
             {
                 Owner = this,
             };
-            window.Initialize(message.InitialData);
             window.ShowDialog();
             message.Reply(window.Result);
         }
