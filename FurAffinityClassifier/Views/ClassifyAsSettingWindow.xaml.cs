@@ -1,7 +1,5 @@
 using System.Windows;
-using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
-using FurAffinityClassifier.Datas.Messages;
 using FurAffinityClassifier.ViewModels;
 
 namespace FurAffinityClassifier.Views
@@ -17,8 +15,23 @@ namespace FurAffinityClassifier.Views
         public ClassifyAsSettingWindow()
         {
             InitializeComponent();
+        }
 
-            WeakReferenceMessenger.Default.Register<ClassifyAsWindowCloseMessage>(this, CloseWindow);
+        /// <summary>
+        /// 初期値を指定するコンストラクター
+        /// </summary>
+        /// <param name="classifyAsData">画面の初期値</param>
+        public ClassifyAsSettingWindow(ClassifyAsData classifyAsData)
+            : this()
+        {
+            if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
+            {
+                viewModel.Initialize(classifyAsData);
+                viewModel.CloseWindowAction += () =>
+                {
+                    Close();
+                };
+            }
         }
 
         /// <summary>
@@ -38,28 +51,6 @@ namespace FurAffinityClassifier.Views
                     return (false, new());
                 }
             }
-        }
-
-        /// <summary>
-        /// 初期化
-        /// </summary>
-        /// <param name="classifyAsData">画面の初期値</param>
-        public void Initialize(ClassifyAsData classifyAsData)
-        {
-            if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
-            {
-                viewModel.Initialize(classifyAsData);
-            }
-        }
-
-        /// <summary>
-        /// 画面を閉じる
-        /// </summary>
-        /// <param name="recipient">メッセージを受信するオブジェクト</param>
-        /// <param name="message">メッセージ</param>
-        private void CloseWindow(object recipient, ClassifyAsWindowCloseMessage message)
-        {
-            Close();
         }
     }
 }

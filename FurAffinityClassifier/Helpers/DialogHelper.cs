@@ -21,7 +21,7 @@ namespace FurAffinityClassifier.Helpers
                 CenterParent = true,
                 WindowTitle = title,
                 Content = message,
-                MainIcon = GetIcon(icon),
+                MainIcon = icon.ToTaskDialogIcon(),
             };
             dialog.Buttons.Add(new TaskDialogButton(ButtonType.Ok));
             dialog.ShowDialog();
@@ -43,23 +43,6 @@ namespace FurAffinityClassifier.Helpers
             return result.HasValue && result.Value
                 ? dialog.SelectedPath
                 : string.Empty;
-        }
-
-        /// <summary>
-        /// アイコンを独自enumからOokii.dialogのenumに変換する
-        /// </summary>
-        /// <param name="icon">アイコン(独自enum)</param>
-        /// <returns>アイコン(Ookii.dialogのenum)</returns>
-        private static TaskDialogIcon GetIcon(DialogIcon icon)
-        {
-            return icon switch
-            {
-                DialogIcon.Sheild => TaskDialogIcon.Shield,
-                DialogIcon.Information => TaskDialogIcon.Information,
-                DialogIcon.Error => TaskDialogIcon.Error,
-                DialogIcon.Warning => TaskDialogIcon.Warning,
-                _ => TaskDialogIcon.Custom,
-            };
         }
     }
 }
