@@ -122,7 +122,7 @@ namespace FurAffinityClassifier.Models
                     .WithDefaultLoader();
                 using IBrowsingContext context = BrowsingContext.New(config);
 
-                await Parallel.ForEachAsync(ids, new ParallelOptions { MaxDegreeOfParallelism = 5 }, async (id, ct) =>
+                await Parallel.ForEachAsync(ids, new ParallelOptions { MaxDegreeOfParallelism = 2 }, async (id, ct) =>
                 {
                     if (CheckFolderExists(settingsData, id))
                     {
