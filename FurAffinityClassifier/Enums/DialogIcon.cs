@@ -37,7 +37,7 @@ namespace FurAffinityClassifier.Enums
         /// Ookii.dialogのenumに変換する
         /// </summary>
         /// <param name="dialogIcon">ダイアログのアイコン(DialogIcon)</param>
-        /// <returns>ダイアログのアイコン(Ookii.dialogのenum)</returns>
+        /// <returns>ダイアログのアイコン(Ookii.Dialogs.Wpf.TaskDialogIcon)</returns>
         public static TaskDialogIcon ToTaskDialogIcon(this DialogIcon dialogIcon)
         {
             return dialogIcon switch
