@@ -12,25 +12,25 @@ namespace FurAffinityClassifier.Views
     public partial class ClassifyAsSettingWindow : Window
     {
         /// <summary>
-        /// コンストラクター
-        /// </summary>
-        public ClassifyAsSettingWindow()
-        {
-            InitializeComponent();
-            WeakReferenceMessenger.Default.Register<CloseClassifyAsWindowMessage>(this, CloseWindow);
-        }
-
-        /// <summary>
         /// 初期値を指定するコンストラクター
         /// </summary>
         /// <param name="classifyAsData">画面の初期値</param>
         public ClassifyAsSettingWindow(ClassifyAsData classifyAsData)
             : this()
         {
+            WeakReferenceMessenger.Default.Register<CloseClassifyAsWindowMessage>(this, CloseWindow);
             if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
             {
                 viewModel.Initialize(classifyAsData);
             }
+        }
+
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        private ClassifyAsSettingWindow()
+        {
+            InitializeComponent();
         }
 
         /// <summary>
