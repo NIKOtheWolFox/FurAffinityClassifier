@@ -1,9 +1,11 @@
 using System;
 using System.Reactive.Disposables;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
 using FurAffinityClassifier.Enums;
 using FurAffinityClassifier.Helpers;
+using FurAffinityClassifier.Messages;
 using FurAffinityClassifier.Models;
 using FurAffinityClassifier.Properties;
 using Reactive.Bindings;
@@ -14,7 +16,7 @@ namespace FurAffinityClassifier.ViewModels
     /// <summary>
     /// 分類設定画面 ViewModel
     /// </summary>
-    public class ClassifyAsSettingWindowViewModel : ObservableObject, IDisposable, IWindowClosable
+    public class ClassifyAsSettingWindowViewModel : ObservableObject, IDisposable
     {
         /// <summary>
         /// 分類設定画面Model
@@ -72,11 +74,6 @@ namespace FurAffinityClassifier.ViewModels
         public ReactiveCommand<object> CancelCommand { get; }
 
         /// <summary>
-        /// 画面を閉じるAction
-        /// </summary>
-        public Action CloseWindowAction { get; set; }
-
-        /// <summary>
         /// 画面の結果
         /// </summary>
         public (bool update, ClassifyAsData classifyAsDataResult) Result =>
@@ -120,7 +117,7 @@ namespace FurAffinityClassifier.ViewModels
             if (_classifyAsSettingWindowModel.Validate())
             {
                 _classifyAsSettingWindowModel.Update = true;
-                CloseWindowAction?.Invoke();
+                WeakReferenceMessenger.Default.Send<CloseClassifyAsWindowMessage>(new());
             }
             else
             {
@@ -134,7 +131,7 @@ namespace FurAffinityClassifier.ViewModels
         private void CancelAction()
         {
             _classifyAsSettingWindowModel.Update = false;
-            CloseWindowAction?.Invoke();
+            WeakReferenceMessenger.Default.Send<CloseClassifyAsWindowMessage>(new());
         }
     }
 }

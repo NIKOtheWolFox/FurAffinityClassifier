@@ -8,7 +8,6 @@
         xmlns:properties="clr-namespace:FurAffinityClassifier.Properties"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=ClassifyAsSettingWindowViewModel}"
-        helper:WindowCloseHelper.EnableWindowClosing="True"
         Title="{x:Static properties:Resources.ClassifyAsSettingWindowTitle}"
         Height="120"
         Width="250"

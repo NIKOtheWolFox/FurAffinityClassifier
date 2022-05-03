@@ -3,9 +3,11 @@ using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
 using FurAffinityClassifier.Enums;
 using FurAffinityClassifier.Helpers;
+using FurAffinityClassifier.Messages;
 using FurAffinityClassifier.Models;
 using FurAffinityClassifier.Properties;
 using Reactive.Bindings;
@@ -176,11 +178,6 @@ namespace FurAffinityClassifier.ViewModels
         public AsyncReactiveCommand<object> LoadedCommand { get; }
 
         /// <summary>
-        /// 分類設定画面を表示するFunc
-        /// </summary>
-        public Func<ClassifyAsData, (bool update, ClassifyAsData data)> ShowClassifyAsSettingWindowFunc { get; set; }
-
-        /// <summary>
         /// 一括Disposeを行うためにReactiveXxをまとめるオブジェクト
         /// </summary>
         private CompositeDisposable Disposables { get; } = new CompositeDisposable();
@@ -224,14 +221,10 @@ namespace FurAffinityClassifier.ViewModels
         /// </summary>
         private void AddClassifyAsSettingAction()
         {
-            var result = ShowClassifyAsSettingWindowFunc?.Invoke(new());
-            if (result.HasValue)
+            (bool update, ClassifyAsData data) = WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(new())).Response;
+            if (update)
             {
-                (bool update, ClassifyAsData data) = result.Value;
-                if (update)
-                {
-                    _mainWindowModel.AddClassifyAsSetting(data);
-                }
+                _mainWindowModel.AddClassifyAsSetting(data);
             }
         }
 
@@ -242,14 +235,10 @@ namespace FurAffinityClassifier.ViewModels
         {
             if (DataGridSelectedItem.Value is ClassifyAsData classifyAsData)
             {
-                var result = ShowClassifyAsSettingWindowFunc?.Invoke(classifyAsData);
-                if (result.HasValue)
+                (bool update, ClassifyAsData data) = WeakReferenceMessenger.Default.Send<ShowClassifyAsWindowMessage>(new(classifyAsData)).Response;
+                if (update)
                 {
-                    (bool update, ClassifyAsData data) = result.Value;
-                    if (update)
-                    {
-                        _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, data);
-                    }
+                    _mainWindowModel.UpdateClassifyAsSetting(classifyAsData, data);
                 }
             }
         }
