@@ -24,6 +24,7 @@ namespace FurAffinityClassifier.Views
         public ClassifyAsSettingWindow(ClassifyAsData classifyAsData)
             : this()
         {
+            /*
             if (DataContext is IWindowClosable viewModel)
             {
                 // viewModel.Initialize(classifyAsData);
@@ -32,6 +33,7 @@ namespace FurAffinityClassifier.Views
                     Close();
                 };
             }
+            */
         }
 
         /// <summary>
