@@ -24,9 +24,9 @@ namespace FurAffinityClassifier.Views
         public ClassifyAsSettingWindow(ClassifyAsData classifyAsData)
             : this()
         {
-            if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
+            if (DataContext is IWindowClosable viewModel)
             {
-                viewModel.Initialize(classifyAsData);
+                // viewModel.Initialize(classifyAsData);
                 viewModel.CloseWindowAction += () =>
                 {
                     Close();

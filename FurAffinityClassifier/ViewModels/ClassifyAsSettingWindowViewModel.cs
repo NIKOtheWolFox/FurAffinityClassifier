@@ -14,7 +14,7 @@ namespace FurAffinityClassifier.ViewModels
     /// <summary>
     /// 分類設定画面 ViewModel
     /// </summary>
-    public class ClassifyAsSettingWindowViewModel : ObservableObject, IDisposable
+    public class ClassifyAsSettingWindowViewModel : ObservableObject, IDisposable, IWindowClosable
     {
         /// <summary>
         /// 分類設定画面Model
