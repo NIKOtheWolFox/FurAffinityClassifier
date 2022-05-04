@@ -4,14 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FurAffinityClassifier.Views"
-        xmlns:helper="clr-namespace:FurAffinityClassifier.Helpers"
         xmlns:properties="clr-namespace:FurAffinityClassifier.Properties"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=ClassifyAsSettingWindowViewModel}"
         Title="{x:Static properties:Resources.ClassifyAsSettingWindowTitle}"
         Height="120"
         Width="250"
         WindowStartupLocation="CenterOwner">
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Closed">
+            <behaviors:CallMethodAction TargetObject="{Binding Source={StaticResource Locator}, Path=UnregisterMessageHelper}"
+                                        MethodName="Unregister" />
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
     <Grid Margin="6">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
