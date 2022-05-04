@@ -15,7 +15,9 @@ namespace FurAffinityClassifier.Helpers
         /// <param name="e">イベントパラメーター</param>
         public void Unregister(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("Unregister 1");
             WeakReferenceMessenger.Default.UnregisterAll(sender);
+            System.Diagnostics.Debug.WriteLine("Unregister 2");
         }
     }
 }
