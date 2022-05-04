@@ -32,6 +32,7 @@ namespace FurAffinityClassifier
             services.AddTransient<IClassificationModel, ClassificationModel>();
 
             services.AddTransient<IDialogHelper, DialogHelper>();
+            services.AddTransient<UnregisterMessageHelper>();
 
             serviceProvider = services.BuildServiceProvider();
         }
@@ -45,5 +46,10 @@ namespace FurAffinityClassifier
         /// 分類設定画面 ViewModel
         /// </summary>
         public ClassifyAsSettingWindowViewModel ClassifyAsSettingWindowViewModel => serviceProvider.GetRequiredService<ClassifyAsSettingWindowViewModel>();
+
+        /// <summary>
+        /// Message購読解除Helper
+        /// </summary>
+        public UnregisterMessageHelper UnregisterMessageHelper => serviceProvider.GetRequiredService<UnregisterMessageHelper>();
     }
 }
