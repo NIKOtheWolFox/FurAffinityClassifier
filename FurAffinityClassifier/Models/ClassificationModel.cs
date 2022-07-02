@@ -122,6 +122,7 @@ namespace FurAffinityClassifier.Models
                     .WithDefaultLoader();
                 using IBrowsingContext context = BrowsingContext.New(config);
 
+                /*
                 await Parallel.ForEachAsync(ids, new ParallelOptions { MaxDegreeOfParallelism = 2 }, async (id, ct) =>
                 {
                     if (CheckFolderExists(settingsData, id))
@@ -133,14 +134,38 @@ namespace FurAffinityClassifier.Models
                     {
                         IDocument doc = await context.OpenAsync($"https://www.furaffinity.net/user/{id}/", ct);
                         string originalId = doc.Title.Replace("Userpage of", string.Empty).Replace("-- Fur Affinity [dot] net", string.Empty).Trim();
-                        Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, originalId.TrimEnd('.')));
+                        //Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, originalId.TrimEnd('.')));
+                        System.Diagnostics.Debug.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} : {id} -> {originalId}");
+                    }
+                    else
+                    {
+                        string folderName = id.TrimEnd('.');
+                        //Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, folderName));
+                    }
+                });
+                */
+                foreach (string id in ids)
+                {
+                    if (CheckFolderExists(settingsData, id))
+                    {
+                        continue;
+                    }
+
+                    if (settingsData.GetIdFromFurAffinity)
+                    {
+                        IDocument doc = await context.OpenAsync($"https://www.furaffinity.net/user/{id}/");
+                        string originalId = doc.Title.Replace("Userpage of", string.Empty).Replace("-- Fur Affinity [dot] net", string.Empty).Trim();
+                        //Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, originalId.TrimEnd('.')));
+                        System.Diagnostics.Debug.WriteLine($"{DateTime.Now.ToString("HH:mm:ss.fff")} : {id} -> {originalId}");
                     }
                     else
                     {
                         string folderName = id.TrimEnd('.');
                         Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, folderName));
                     }
-                });
+
+                    await Task.Delay(1000);
+                }
             }
             catch (Exception e)
             {
