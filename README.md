@@ -90,7 +90,7 @@ See [here](https://raw.githubusercontent.com/NIKOtheWolFox/FurAffinityClassifier
 [BSD 3-Clause License](https://github.com/ookii-dialogs/ookii-dialogs-wpf/blob/master/LICENSE)
 
 [AngleSharp](https://anglesharp.github.io/)<br>
-(c)2013-2021, AngleSharp.<br>
+(c)2013-2022, AngleSharp.<br>
 [MIT License](https://github.com/AngleSharp/AngleSharp/blob/devel/LICENSE)
 
 [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet)<br>
