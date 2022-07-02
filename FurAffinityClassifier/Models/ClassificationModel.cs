@@ -122,16 +122,16 @@ namespace FurAffinityClassifier.Models
                     .WithDefaultLoader();
                 using IBrowsingContext context = BrowsingContext.New(config);
 
-                await Parallel.ForEachAsync(ids, new ParallelOptions { MaxDegreeOfParallelism = 2 }, async (id, ct) =>
+                foreach (string id in ids)
                 {
                     if (CheckFolderExists(settingsData, id))
                     {
-                        return;
+                        continue;
                     }
 
                     if (settingsData.GetIdFromFurAffinity)
                     {
-                        IDocument doc = await context.OpenAsync($"https://www.furaffinity.net/user/{id}/", ct);
+                        IDocument doc = await context.OpenAsync($"https://www.furaffinity.net/user/{id}/");
                         string originalId = doc.Title.Replace("Userpage of", string.Empty).Replace("-- Fur Affinity [dot] net", string.Empty).Trim();
                         Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, originalId.TrimEnd('.')));
                     }
@@ -140,7 +140,9 @@ namespace FurAffinityClassifier.Models
                         string folderName = id.TrimEnd('.');
                         Directory.CreateDirectory(Path.Combine(settingsData.ToFolder, folderName));
                     }
-                });
+
+                    await Task.Delay(1000);
+                }
             }
             catch (Exception e)
             {

@@ -1,5 +1,7 @@
 using System.Windows;
+using CommunityToolkit.Mvvm.Messaging;
 using FurAffinityClassifier.Datas;
+using FurAffinityClassifier.Messages;
 using FurAffinityClassifier.ViewModels;
 
 namespace FurAffinityClassifier.Views
@@ -10,28 +12,25 @@ namespace FurAffinityClassifier.Views
     public partial class ClassifyAsSettingWindow : Window
     {
         /// <summary>
-        /// コンストラクター
-        /// </summary>
-        public ClassifyAsSettingWindow()
-        {
-            InitializeComponent();
-        }
-
-        /// <summary>
         /// 初期値を指定するコンストラクター
         /// </summary>
         /// <param name="classifyAsData">画面の初期値</param>
         public ClassifyAsSettingWindow(ClassifyAsData classifyAsData)
             : this()
         {
+            WeakReferenceMessenger.Default.Register<CloseClassifyAsWindowMessage>(this, CloseWindow);
             if (DataContext is ClassifyAsSettingWindowViewModel viewModel)
             {
                 viewModel.Initialize(classifyAsData);
-                viewModel.CloseWindowAction += () =>
-                {
-                    Close();
-                };
             }
+        }
+
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        private ClassifyAsSettingWindow()
+        {
+            InitializeComponent();
         }
 
         /// <summary>
@@ -51,6 +50,16 @@ namespace FurAffinityClassifier.Views
                     return (false, new());
                 }
             }
+        }
+
+        /// <summary>
+        /// 画面を閉じる
+        /// </summary>
+        /// <param name="recipient">メッセージを受信するオブジェクト</param>
+        /// <param name="message">メッセージ</param>
+        private void CloseWindow(object recipient, CloseClassifyAsWindowMessage message)
+        {
+            Close();
         }
     }
 }
